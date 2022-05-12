@@ -1,0 +1,171 @@
+import random
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin
+from . import serializers
+from .  import models
+
+
+class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
+    
+    node_serializer = serializers.NodeSerializer
+    edge_serializer = serializers.EdgeSerializer
+    serializer_class = serializers.WorkspaceSerializer
+
+    new_version = None
+    
+    def get_node_serializer(self, *args, **kwargs):
+        kwargs.setdefault("context", self.get_serializer_context())
+        return self.node_serializer(*args, **kwargs)
+        
+    def get_edge_serializer(self, *args, **kwargs):
+        kwargs.setdefault("context", self.get_serializer_context())
+        return self.edge_serializer(*args, **kwargs)
+
+    def save_nodes(self, nodes):
+        # models.Nodes.objects.filter(chatbot=cb).delete()
+        nodes_queryset = models.Node.objects.all()
+        node_ids_before_save = nodes_queryset.values_list('node_id', flat = True)
+        node_ids_after_save = []
+
+        list_datas = []
+        for node in nodes:
+            assert "data" in node, "You need to provide data in node."
+            assert "id" in node, "You need to provide id in node."
+            assert "position" in node, "You need to provide positio in node"
+
+            node_ids_after_save.append(node['id'])
+            node_object = None
+            try:
+                id = node['id']
+                # if node_object is found we will update the data else we will create a new data
+                node_object = nodes_queryset.get(node_id = id)
+            except models.Node.DoesNotExist:
+                pass
+            label = node["data"].get("label", None)
+            data = {
+                "data": node["data"],
+                "position_x": node["position"]["x"],
+                "position_y": node["position"]["y"],
+                "saved_version": self.new_version,
+                "node_id": node["id"],
+            }
+            if node_object:
+                s = self.get_node_serializer(data = data, instance = node_object, partial = True)
+                s.is_valid(raise_exception = True)
+                s.save()
+            else:
+                list_datas.append(data)
+
+        s = self.get_node_serializer(data=list_datas, many=True)
+        s.is_valid(raise_exception=True)
+        s.save()
+
+        deleted_node_ids = []
+        for i in node_ids_before_save:
+            if not i in node_ids_after_save:
+                deleted_node_ids.append(i)
+        # delete old nodes
+        for id in deleted_node_ids:
+            nodes_queryset.get(node_id = id).delete()
+
+    
+    def save_edges(self, edges):
+        edge_queryset = models.Edge.objects.all()
+        list_data = []
+        for edge in edges:
+            ed = None
+            assert "id" in edge, "You need to provide id in Edge."
+            assert "source" in edge, "You need to provide source in Edge."
+            assert "target" in edge, "You need to provide target in Edge."
+            assert "sourceHandle" in edge, "You need to provide sourceHandle in Edge."
+            assert "targetHandle" in edge, "You need to provide targetHandle in Edge."
+            data_object = None
+            try:
+                data_object = edge_queryset.get(edge_id = edge['id'])
+            except models.Edge.DoesNotExist:
+                pass
+            data = {
+                "source": edge["source"],
+                "target": edge["target"],
+                "sourceHandle": edge["sourceHandle"],
+                "targetHandle": edge["targetHandle"],
+                "animated": edge.get("animated", False),
+                "label": edge.get("label", None),
+                # "type": edge["type"],
+                "saved_version": self.new_version,
+                "edge_id": edge["id"],
+            }
+            if data_object:
+                s = self.get_edge_serializer(data = data, instance = data_object, partial = True)
+                s.is_valid(raise_exception = True)
+                s.save()
+            else:
+                list_data.append(data)
+        serializer = self.get_edge_serializer(data=list_data, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        edge_queryset.exclude(saved_version = self.new_version).delete()
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        self.new_version = random.randrange(10000, 99999, 5)
+        try:
+            self.save_nodes(serializer.data["nodes"])
+            self.save_edges(serializer.data["edges"])
+        except AssertionError as e:
+            print(e)
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            print(e)
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        headers = self.get_success_headers(serializer.data)
+        return Response("success", status=status.HTTP_200_OK, headers=headers)
+
+
+    def get(self, request, *args, **kwargs):
+        node_queryset = models.Node.objects.all()
+        edge_queryset = models.Edge.objects.all()
+
+        nodes = self.get_node_serializer(node_queryset, many=True).data
+        edges = self.get_edge_serializer(edge_queryset, many=True).data
+
+        ResponseData = {
+            "nodes": nodes,
+            "edges": edges,
+        }
+        return Response(ResponseData)
+
+class WebhookView(APIView):
+
+    prev_node = None
+    edges = None
+    prev_node = None
+
+    def get_response(self):
+        if self.prev_node:
+            edge = self.edges.get(source = self.prev_node.node_id)
+        else:
+            edge = self.edges.get(source = "1")
+        
+        target_id = edge.target
+        target_node = self.nodes.get(node_id = target_id)
+        if target_node.data['label'] == "Send email":
+            print('an email is sent ')
+        return 'Success'
+
+
+    def post(self, request, *args, **kwargs):
+        self.edges = models.Edge.objects.all()
+        self.nodes = models.Node.objects.all()
+        response = self.get_response()
+
+        return Response({
+            'value': response,
+        }, status = status.HTTP_200_OK)
