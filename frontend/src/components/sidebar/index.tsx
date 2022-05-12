@@ -4,10 +4,6 @@ import ActionButtons from './Actionbuttons';
 import MainComponents from './MainComponents';
 
 
-const onDragStart = (event: DragEvent, element: { name: string }) => {
-  event.dataTransfer.setData("name", element.name);
-};
-
 const Sidebar: FC = () => {
   return (
     <div className="sidebar">
