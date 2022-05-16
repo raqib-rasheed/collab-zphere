@@ -7,6 +7,13 @@ from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin
 from . import serializers
 from .  import models
 
+class TaskViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
+    
+    def post(self, request, *args, **kwargs):
+        
+        return Response()
+
+
 
 class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
     
