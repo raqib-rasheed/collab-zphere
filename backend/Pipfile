@@ -10,8 +10,13 @@ django-cors-headers = "*"
 djangorestframework-simplejwt = "*"
 celery = {extras = ["redis"], version = "*"}
 django-celery-beat = "*"
+mysql-connector-python = "*"
+bcrypt = "*"
+pymysql = "*"
+mysqlclient = "*"
 
 [dev-packages]
+ipython = "*"
 
 [requires]
 python_version = "3.8"

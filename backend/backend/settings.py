@@ -27,8 +27,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # apps
     'main.apps.MainConfig',
+    'user.apps.UserConfig',
     # packages
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'django_celery_beat',
 ]
@@ -68,10 +70,21 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# zphere db name
+ZPHERE_DB_NAME = 'zphere'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'zphere': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': ZPHERE_DB_NAME,
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
@@ -139,3 +152,7 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Kolkata'
+
+# setting user model
+
+AUTH_USER_MODEL = 'user.User'
