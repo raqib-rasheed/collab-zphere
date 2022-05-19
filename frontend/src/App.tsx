@@ -1,15 +1,41 @@
-import React, { FC } from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { FC, useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { ReactFlowProvider } from "react-flow-renderer";
-import BotsWrokspace from "./routes/BotsWorkspace";
-import TasksWorkspace, { SpecialDayTaskForm } from "./routes/TasksWorkspace";
-import {AdminInterface} from './routes/EmailTemplate';
+import axios from "axios";
+import { TaskWorkspace, SpecialDayTaskForm, AdminInterface, Home, Login, Profile, BotsWrokspace } from "routes";
+import { apiUrl } from "settings";
+import { getCookie } from "utils";
 
 import "./styles/css/index.css";
 
 const App: FC = () => {
+    let navigate = useNavigate();
+    const token = getCookie("AUTHORIZATION");
+    const axiosInstance = axios.create({
+        baseURL: apiUrl,
+        timeout: 20000,
+        headers: {
+            Authorization: token as string,
+            "Content-Type": "application/json",
+            accept: "application/json",
+        },
+    });
+
+    useEffect(() => {
+        console.log('called');
+        axiosInstance
+            .get("/user/")
+            .then((response) => {
+                if (response.status !== 200) {
+                    navigate("/login");
+                }
+            })
+            .catch((e) => navigate("/login"));
+    }, []);
+
     return (
         <Routes>
+            <Route path="/" element={<Home />}></Route>
             <Route
                 path="/bots-workspace"
                 element={
@@ -20,9 +46,11 @@ const App: FC = () => {
             />
             <Route path="/tasks-workspace">
                 <Route path="special-day" element={<SpecialDayTaskForm />} />
-                <Route index element={<TasksWorkspace />} />
+                <Route index element={<TaskWorkspace />} />
             </Route>
             <Route path="/admin-template-create" element={<AdminInterface />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/user/" element={<Profile />} />
         </Routes>
     );
 };

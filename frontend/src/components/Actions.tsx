@@ -2,15 +2,15 @@ import React, { FC } from "react";
 import axios from "axios";
 import { Node, Edge, useEdges, useNodes } from "react-flow-renderer";
 
-type Props = {
-    nodes: Node[],
-    edges: Edge[],
-}
+// type Props = {
+//     nodes: Node[],
+//     edges: Edge[],
+// }
 
 
 export const url = "http://localhost:8000/api/workspace/";
 
-const Action: FC = (props) => {
+const Action: FC = () => {
     const nodes = useNodes()
     const edges = useEdges()
 

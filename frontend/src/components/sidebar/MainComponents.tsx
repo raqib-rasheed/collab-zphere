@@ -93,6 +93,7 @@ const MainComponents: FC = () => {
                             onClick={(e) => toggleOptionOnClickListener(e, mainComponents.Triggers)}
                             className="nav-link"
                             role="tag"
+                            href="#"
                         >
                             <i className="fa fa-gear"></i> {mainComponents.Triggers}
                         </a>
@@ -102,6 +103,7 @@ const MainComponents: FC = () => {
                             onClick={(e) => toggleOptionOnClickListener(e, mainComponents.Conditions)}
                             className="nav-link"
                             role="tag"
+                            href="#"
                         >
                             <i className="fa fa-edit"></i> {mainComponents.Conditions}
                         </a>
@@ -111,6 +113,7 @@ const MainComponents: FC = () => {
                             onClick={(e) => toggleOptionOnClickListener(e, mainComponents.Actions)}
                             className="nav-link"
                             role="tag"
+                            href="#"
                         >
                             <i className="fa fa-code"></i> {mainComponents.Actions}
                         </a>

@@ -1,4 +1,4 @@
-import React, { DragEvent, FC } from "react";
+import React, { FC } from "react";
 import Search from './Search';
 import ActionButtons from './Actionbuttons';
 import MainComponents from './MainComponents';

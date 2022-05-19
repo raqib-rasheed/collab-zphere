@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 
-const ActionButtons = () => {
+const ActionButtons:FC = () => {
     return <section>
         <div className="button-section">
             <button className="btn-save"><i className="fa fa-check-square-o btn-i"></i> Save</button>

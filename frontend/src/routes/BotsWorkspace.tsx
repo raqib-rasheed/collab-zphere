@@ -1,4 +1,4 @@
-import React, { DragEvent, useState } from "react";
+import React, { DragEvent, useState,FC } from "react";
 // import 'react-flow-renderer/dist/style.css';
 // import 'react-flow-renderer/dist/theme-default.css';
 import ReactFlow, {
@@ -12,11 +12,11 @@ import ReactFlow, {
     Edge,
     Node,
 } from "react-flow-renderer";
-import Sidebar from "../components/sidebar";
-import Action, { url } from "../components/Actions";
+import Sidebar from "components/sidebar";
+import Action from "components/Actions";
 import "../styles/css/index.css";
 
-const BotsWorkspace = () => {
+const BotsWorkspace:FC = () => {
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance>();

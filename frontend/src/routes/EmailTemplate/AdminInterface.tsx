@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import Editor from "@monaco-editor/react";
 import { Editor as UIEditor } from "react-draft-wysiwyg";
 // import { EditorState } from "draft-js";
