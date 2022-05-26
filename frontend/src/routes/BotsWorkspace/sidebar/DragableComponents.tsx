@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+import {elements} from 'routes/BotsWorkspace/sidebar';
 
 enum mainComponents {
     Triggers = "Triggers",
@@ -6,27 +7,16 @@ enum mainComponents {
     Actions = "Actions",
 }
 
-const elements = {
-    events: [
-        // triggers
-        {
-            name: "Client Created",
-        },
-    ],
-    actions: [
-        {
-            name: "Send email",
-        },
-    ],
-};
-
 const Triggers: FC = () => {
     return (
         <div className="tab-pane active" id="home" role="tabpanel">
             <div className="row">
-                {elements.events.map((event, i) => (
-                    <div className="col-md-6" key={i}>
-                        <div className="drag-item-t"> {event.name}</div>
+                {elements.triggers.map((trigger, i) => (
+                    <div className="col-md-6 dragable-element trigger-element" key={i} draggable>
+                        <div className="icon-container">
+                            <img src={trigger.icon} alt="bell icon" />
+                        </div>
+                        <p>{trigger.name}</p>
                     </div>
                 ))}
             </div>
@@ -38,12 +28,14 @@ const Conditions: FC = () => {
     return (
         <div className="tab-pane active" id="home" role="tabpanel">
             <div className="row">
-                <div className="col-md-6">
-                    <div className="drag-item-t"> condition 1</div>
-                </div>
-                <div className="col-md-6">
-                    <div className="drag-item-t"> condition 2</div>
-                </div>
+                {elements.conditions.map((condition, i) => (
+                    <div className="col-md-6 dragable-element condition-element" key={i} draggable>
+                        <div className="icon-container">
+                            <img src={condition.icon} alt="bell icon" />
+                        </div>
+                        <p>{condition.name}</p>
+                    </div>
+                ))}
             </div>
         </div>
     );
@@ -54,8 +46,11 @@ const Actions: FC = () => {
         <div className="tab-pane active" id="home" role="tabpanel">
             <div className="row">
                 {elements.actions.map((action, i) => (
-                    <div className="col-md-6" key={i}>
-                        <div className="drag-item-t"> {action.name}</div>
+                    <div className="col-md-6 dragable-element action-element" key={i} draggable>
+                        <div className="icon-container">
+                            <img src={action.icon} alt="bell icon" />
+                        </div>
+                        <p>{action.name}</p>
                     </div>
                 ))}
             </div>
@@ -75,7 +70,7 @@ const MainComponents: FC = () => {
     };
 
     const toggleOptionOnClickListener = (
-        e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+        e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
         component: mainComponents
     ) => {
         e.preventDefault();
@@ -89,34 +84,28 @@ const MainComponents: FC = () => {
             <div className="card-header">
                 <ul className="nav nav-tabs justify-content-center" role="tablist">
                     <li className={`nav-item ${isTrigger ? " active" : ""}`}>
-                        <a
+                        <button
                             onClick={(e) => toggleOptionOnClickListener(e, mainComponents.Triggers)}
                             className="nav-link"
-                            role="tag"
-                            href="#"
                         >
                             <i className="fa fa-gear"></i> {mainComponents.Triggers}
-                        </a>
+                        </button>
                     </li>
                     <li className={`nav-item ${isConditions ? " active" : ""}`}>
-                        <a
+                        <button
                             onClick={(e) => toggleOptionOnClickListener(e, mainComponents.Conditions)}
                             className="nav-link"
-                            role="tag"
-                            href="#"
                         >
                             <i className="fa fa-edit"></i> {mainComponents.Conditions}
-                        </a>
+                        </button>
                     </li>
                     <li className={`nav-item ${isActions ? " active" : ""}`}>
-                        <a
+                        <button
                             onClick={(e) => toggleOptionOnClickListener(e, mainComponents.Actions)}
                             className="nav-link"
-                            role="tag"
-                            href="#"
                         >
                             <i className="fa fa-code"></i> {mainComponents.Actions}
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </div>

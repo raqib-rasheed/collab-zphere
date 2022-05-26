@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import axios from "axios";
-import { apiUrl, host } from "settings";
-import { setCookie } from "utils";
-
+import { apiUrl, host } from "helpers/settings";
+import { setCookie } from "helpers/utils";
+import './login.css'
 interface LoginFormData {
     email: string;
     password: string;

@@ -19,7 +19,11 @@ class LoginView(GenericAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data
         login(request, user)
-        token = Token.objects.create(user=user)
+        token, is_new = Token.objects.get_or_create(user=user)
+        if not is_new:
+            # refresh the old token
+            token.save()
+            token.refresh_from_db()
         res = Response({'token': 'Token ' + token.key})
         res.set_cookie("AUTHORIZATION", token)
         return res

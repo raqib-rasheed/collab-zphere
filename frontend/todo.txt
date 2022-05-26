@@ -2,3 +2,8 @@
 - Process the form in backend and create a periodic task
 - create a page of email template writing
     - live html Compiler
+
+
+how
+- crm triggers
+    - all except 'status change'

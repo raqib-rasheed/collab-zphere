@@ -3,8 +3,8 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { ReactFlowProvider } from "react-flow-renderer";
 import axios from "axios";
 import { TaskWorkspace, SpecialDayTaskForm, AdminInterface, Home, Login, Profile, BotsWrokspace } from "routes";
-import { apiUrl } from "settings";
-import { getCookie } from "utils";
+import { apiUrl } from "helpers/settings";
+import { getCookie } from "helpers/utils";
 
 import "./styles/css/index.css";
 
