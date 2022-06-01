@@ -7,8 +7,11 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import login, get_user_model
 from . import auth
 from . import serializers
-from . import authenticators
 
+"""
+- Test
+- Test user creation and profile creation
+"""
 class LoginView(GenericAPIView):
     authentication_classes = [auth.CsrfExemptSessionAuthentication, ]
     serializer_class = serializers.LoginSerializer

@@ -8,19 +8,29 @@ from django.db import connections
 from django.utils import timezone
 from rest_framework import serializers
 
+from . models import Profile
+
 User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'email')
 
-
+## TODO check user profile is created
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
+    timezone = serializers.CharField()
 
     def authenticate(self, password, hash):
         return bcrypt.checkpw(password.encode('utf-8'), hash.encode('utf-8'))
+
+    def create_profile(self, user, zphere_user_id, avatar, attrs):
+        pic_url = None
+        if(avatar is not None):
+            pic_url = f'https://zphere.io/storage/uploads/avatar/{avatar}'
+        profile = Profile.objects.create(user = user, pic_url = pic_url, zphere_user_id = zphere_user_id, timezone = attrs.get('timezone', 'UTC'))
+        return profile
 
     def validate(self, attrs):
         current_tz = timezone.get_current_timezone()
@@ -55,10 +65,15 @@ class LoginSerializer(serializers.Serializer):
                     user.last_login = timezone.now()
                     user.set_password(attrs['password']) # imp rest the password
                     user.save()
+                    user.profile # should call profile to check user has profile if not exception will be raised
                     return user
                 except User.DoesNotExist:
-                    return User.objects.create_user(**user_details)
+                    user = User.objects.create_user(**user_details)
+                    self.create_profile(user, data['id'], data['avatar'], attrs)
+                    return user
+                except Profile.DoesNotExist:
+                    self.create_profile(user, data['id'], data['avatar'])
+                    return user
         except IndexError:
             pass
         raise serializers.ValidationError("Incorrect Credentials")
-

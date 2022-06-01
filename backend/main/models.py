@@ -1,5 +1,13 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
+
+class Workspace(models.Model):
+    DEFAULT_NAME = 'default'
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    name = models.CharField(max_length = 250)
+    description = models.TextField()
 
 class AbstractReactFlowElement(models.Model):
     saved_version = models.PositiveIntegerField(blank=True, null=True)
@@ -23,3 +31,14 @@ class Edge(AbstractReactFlowElement):
     animated = models.BooleanField(default=True)
     label = models.CharField(max_length=100, null=True)
     type = models.CharField(max_length=40)
+
+"""
+also sent delete signal to task to delete periodic task 
+"""
+class Task(models.Model):
+    workspace = models.ForeignKey('Workspace', on_delete = models.CASCADE)
+    datetime = models.DateTimeField()
+    is_active = models.BooleanField(default = True)
+    message = models.TextField()
+    leads_email = models.TextField() # leads list is stored as string separated by comma
+    periodic_task = models.ForeignKey('django_celery_beat.periodictask', on_delete = models.SET_NULL, related_name = "tasks", null = True, blank = True)

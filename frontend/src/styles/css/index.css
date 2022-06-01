@@ -347,4 +347,8 @@ p {
 body {
   font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 }
+
+.w-13px {
+  width: 13px;
+}
 /*# sourceMappingURL=index.css.map */

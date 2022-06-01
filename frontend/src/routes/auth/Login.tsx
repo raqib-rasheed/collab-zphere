@@ -1,17 +1,21 @@
 import React, { FC, useState } from "react";
+import { PasswordInput,TextInput } from "@mantine/core";
 import axios from "axios";
-import { apiUrl, host } from "helpers/settings";
+import { apiUrl, host, timezone } from "helpers/settings";
 import { setCookie } from "helpers/utils";
-import './login.css'
+import {loginIcons} from 'helpers/assets/Images';
+import "./login.css";
 interface LoginFormData {
     email: string;
     password: string;
+    timezone: string;
 }
 
 const Login: FC = () => {
     const [formData, setFormData] = useState<LoginFormData>({
         email: "",
         password: "",
+        timezone,
     });
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,27 +51,28 @@ const Login: FC = () => {
         <div className="container">
             <form onSubmit={onSubmitHandler}>
                 <div className="form-group">
-                    <label htmlFor="email">Email Address:</label>
-                    <input
-                        type="email"
-                        className="form-control"
+                    <TextInput
+                        icon={<img src={loginIcons.emailIcon} className="w-13px"/>}
                         name="email"
+                        type="email"
                         id="email"
+                        label= "Email"
                         onChange={onChangeHandler}
-                        value={formData.email}
-                    />
+                        value = {formData.email}
+                        required
+                     />
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        id="exampleInputPassword1"
-                        placeholder="Password"
+                    <PasswordInput
+                        icon={<img src={loginIcons.passwordIcon} className="w-13px"/>}
                         name="password"
                         value={formData.password}
                         onChange={onChangeHandler}
+                        placeholder="Password"
+                        label="Type out your password"
+                        description="Password must include at least one letter, number and special character"
+                        required
                     />
                 </div>
                 <div>

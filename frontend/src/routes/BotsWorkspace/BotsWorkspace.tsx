@@ -1,4 +1,4 @@
-import React, { DragEvent, useState, FC } from "react";
+import React, { DragEvent, useState, FC, memo } from "react";
 // import 'react-flow-renderer/dist/style.css';
 // import 'react-flow-renderer/dist/theme-default.css';
 import ReactFlow, {
@@ -45,7 +45,8 @@ const BotsWorkspace: FC = () => {
 
         event.preventDefault();
         if (reactFlowInstance) {
-            const name = event.dataTransfer.getData("name");
+            const name = event.dataTransfer.getData("nodeName");
+            const icon = event.dataTransfer.getData("icon");
             const x = event.clientX;
             const y = event.clientY;
             const position = reactFlowInstance.project({ x, y });
@@ -54,6 +55,7 @@ const BotsWorkspace: FC = () => {
                 position,
                 data: {
                     label: `${name}`,
+                    icon,
                 },
             };
             setNodes([...nodes, newNode]);
@@ -88,4 +90,4 @@ const BotsWorkspace: FC = () => {
     );
 };
 
-export default BotsWorkspace;
+export default memo(BotsWorkspace);

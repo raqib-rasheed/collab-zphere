@@ -14,6 +14,6 @@ const Sidebar: FC = () => {
   );
 };
 
-
 export {default as elements} from 'routes/BotsWorkspace/sidebar/DragableElements'
+
 export default Sidebar;

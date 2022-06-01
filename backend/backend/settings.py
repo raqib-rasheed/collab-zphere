@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': ZPHERE_DB_NAME,
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'TestPass@123',
         'HOST': '', # default localhost
         'PORT': '', # 
     }
@@ -159,7 +159,7 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Asia/Kolkata'
+# CELERY_TIMEZONE = 'Asia/Kolkata'
 
 # setting user model
 

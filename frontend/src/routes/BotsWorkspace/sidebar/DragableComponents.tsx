@@ -1,5 +1,7 @@
 import React, { FC, useState } from "react";
-import {elements} from 'routes/BotsWorkspace/sidebar';
+import { elements } from "routes/BotsWorkspace/sidebar";
+
+import { DragableElementsFields } from "helpers/types";
 
 enum mainComponents {
     Triggers = "Triggers",
@@ -7,12 +9,23 @@ enum mainComponents {
     Actions = "Actions",
 }
 
+const onDragStart = (event: React.DragEvent<HTMLDivElement>, element: DragableElementsFields) => {
+    event.dataTransfer.setData("nodeName", element.name);
+    event.dataTransfer.effectAllowed = "move";
+    event.dataTransfer.setData("icon", element.icon);
+};
+
 const Triggers: FC = () => {
     return (
         <div className="tab-pane active" id="home" role="tabpanel">
             <div className="row">
                 {elements.triggers.map((trigger, i) => (
-                    <div className="col-md-6 dragable-element trigger-element" key={i} draggable>
+                    <div
+                        className="col-md-6 dragable-element trigger-element"
+                        key={i}
+                        draggable
+                        onDragStart={(e) => onDragStart(e, trigger)}
+                    >
                         <div className="icon-container">
                             <img src={trigger.icon} alt="bell icon" />
                         </div>
@@ -29,7 +42,12 @@ const Conditions: FC = () => {
         <div className="tab-pane active" id="home" role="tabpanel">
             <div className="row">
                 {elements.conditions.map((condition, i) => (
-                    <div className="col-md-6 dragable-element condition-element" key={i} draggable>
+                    <div
+                        className="col-md-6 dragable-element condition-element"
+                        key={i}
+                        draggable
+                        onDragStart={(e) => onDragStart(e, condition)}
+                    >
                         <div className="icon-container">
                             <img src={condition.icon} alt="bell icon" />
                         </div>
@@ -46,7 +64,12 @@ const Actions: FC = () => {
         <div className="tab-pane active" id="home" role="tabpanel">
             <div className="row">
                 {elements.actions.map((action, i) => (
-                    <div className="col-md-6 dragable-element action-element" key={i} draggable>
+                    <div
+                        className="col-md-6 dragable-element action-element"
+                        key={i}
+                        draggable
+                        onDragStart={(e) => onDragStart(e, action)}
+                    >
                         <div className="icon-container">
                             <img src={action.icon} alt="bell icon" />
                         </div>

@@ -1,17 +1,66 @@
 import random
+from datetime import datetime
+from pytz import timezone as tz_fun
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.viewsets import GenericViewSet
+from rest_framework.generics import GenericAPIView
+from rest_framework.viewsets import GenericViewSet, ModelViewSet
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin
 from . import serializers
 from .  import models
+from . import permissions
 
-class TaskViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
-    
-    def post(self, request, *args, **kwargs):
-        
-        return Response()
+
+class LeadListView(GenericAPIView):
+    """
+    not tested
+    """
+    authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated, ]
+    serializer_class = serializers.LeadsListSerializer
+
+    def get(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+        return Response(data)
+
+class TaskViewSet(ModelViewSet):
+    """
+    check the datetime if it is less than today dont save
+    """
+    authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated, permissions.IsUserOwnerOfObject]
+    serializer_class = serializers.TaskSerializer
+
+    def create(self, request, *args, **kwargs):
+        data = request.data.copy()
+        timezone = data.pop('timezone', None) # if timezone is not passed then your profile time is taken
+        data.update({
+            # 'date': data.get('date', '').split('T')[0],
+            # 'time': data['time'].split('T')[1].split('.')[0],
+            'leads_email': ','.join(map(str,request.data.get('leads', [])))
+        })
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer, timezone)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def perform_create(self, serializer, timezone):
+        workspace, _ = models.Workspace.objects.get_or_create(user = self.request.user, name = models.Workspace.DEFAULT_NAME)
+        if not timezone:
+            timezone = self.reqeust.user.profile.timezone
+        # we need to change the timezone according to the user location
+        tz = tz_fun(timezone)
+        datetime = serializer.validated_data['datetime'] 
+        newDatetime = datetime.replace(tzinfo = tz)
+        serializer.validated_data['datetime'] = newDatetime # this will automatically converted to utc
+        serializer.save(workspace = workspace)
+
 
 
 

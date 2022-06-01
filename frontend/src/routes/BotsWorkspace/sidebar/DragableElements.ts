@@ -1,6 +1,7 @@
 import {faIcons} from 'helpers/assets/Images';
+import {DragableElements} from 'helpers/types'
 
-export const elements = {
+export const elements: DragableElements = {
     triggers: [
         // triggers
         {
