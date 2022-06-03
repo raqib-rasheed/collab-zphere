@@ -3,18 +3,18 @@
 - create a page of email template writing
     - live html Compiler
 
-// monday
- - saving user avatar in django backend
- - saving user id in django backend
- - querying user leads with user id - and listing it in dropdown
+// thuresday
+- timezone issue - 5 hours
+- form validation - 1 hour
 
-// tuesday
-- task saving
+// friday
+- task saving 10 
+- form validation 
 
-// wednesday
-- timezone saving in backend
-- added mantine to login form
-
+// saturday
+- redirection afte successful submition
+- showing list of saved task
+- updating task details
 
 how
 - crm triggers

@@ -87,7 +87,7 @@ class WorkspaceModelSerializer(serializers.ModelSerializer):
 
 class TaskSerializer(serializers.ModelSerializer):
     workspace = WorkspaceModelSerializer(read_only = True)
-    # timezone = serializers.CharField(write_only = True)
+    timezone = serializers.CharField(read_only = True)
     leads_email_array= serializers.SerializerMethodField() # this will be returned when we call client
 
     def get_leads_email_array(self, obj):

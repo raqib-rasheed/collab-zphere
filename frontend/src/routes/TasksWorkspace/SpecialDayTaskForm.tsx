@@ -1,12 +1,12 @@
 import React, { FC, useEffect, useState } from "react";
-import { Textarea, Checkbox, Button, Group, Box, MultiSelect, Badge } from "@mantine/core";
+import { Textarea, Checkbox, Button, Group, Box, MultiSelect, Badge, Select, Alert } from "@mantine/core";
 import { TimeInput, DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 import dayjs from "dayjs";
 
 import { getAxiosInstance } from "helpers/AxiosInstance";
 import { EmptyFieldError, timezone } from "helpers/settings";
-
+import { timeZones } from "helpers/timezones";
 
 type LeadList = {
     value: string;
@@ -23,11 +23,14 @@ const SpecialDayTaskForm: FC = () => {
     };
 
     const [leadList, setLeadLists] = useState<LeadList[]>([]);
+    const [showAlert, setShowAlert] = useState<boolean>(false);
 
     const form = useForm({
         initialValues: {
             time: {} as Date,
-            date: dayjs().toDate(),
+            // date: dayjs().toDate(),
+            date: {} as Date,
+            timezone: timezone,
             isActive: true,
             message: "",
             leads: [] as string[],
@@ -35,6 +38,7 @@ const SpecialDayTaskForm: FC = () => {
         validate: {
             time: (value) => (value === null ? EmptyFieldError : null),
             date: (value) => (value === null ? EmptyFieldError : null),
+            timezone: (value) => (value === null || value === "" ? EmptyFieldError : null),
             // leads: (value) => {
             //     if (value.length === 0) {
             //         return "Select any leads";
@@ -66,24 +70,28 @@ const SpecialDayTaskForm: FC = () => {
 
     const onSubmitHandler = (values: typeof form.values, event: React.FormEvent<Element>) => {
         event.preventDefault();
-        const tempDate = dayjs(values.date)
+        setShowAlert(false)
+        const tempDate = dayjs(values.date);
         const time = {
             hours: values.time.getHours(),
             minutes: values.time.getMinutes(),
-        }
+        };
         const day = {
             day: tempDate.date(),
-            month: tempDate.month() + 1,
+            month: tempDate.month(), // month starts from 0 index
             year: tempDate.year(),
-        }
-        const datetime = new Date(Date.UTC(day.year, day.month, day.day, time.hours, time.minutes))
+        };
+        const datetime = new Date(Date.UTC(day.year, day.month, day.day, time.hours, time.minutes));
         axiosInstance
-            .post("tasks/", {...values, datetime, timezone})
+            .post("tasks/", { ...values, datetime })
             .then((response) => {
                 console.log(response);
             })
             .catch((err) => {
                 console.log(err);
+                if (err.response.data.datetime) {
+                    setShowAlert(true);
+                }
             });
         console.log(values);
     };
@@ -141,10 +149,22 @@ const SpecialDayTaskForm: FC = () => {
 
     return (
         <div className="container">
-            <Badge title="change timezone"/>
+            <Badge title="change timezone" />
             <Box sx={{ maxWidth: 300 }} mx="auto">
                 <h1>Create a task</h1>
                 <form onSubmit={form.onSubmit((values, event) => onSubmitHandler(values, event))}>
+                    {showAlert && (
+                        <Alert
+                            icon=""
+                            title="Date and time is not valid!"
+                            color="red"
+                            onClose={() => setShowAlert(!showAlert)}
+                            withCloseButton
+                        >
+                            You cannot add events to past Date and time
+                        </Alert>
+                    )}
+
                     <TimeInput
                         clearable={true}
                         format={"12"}
@@ -153,7 +173,14 @@ const SpecialDayTaskForm: FC = () => {
                         required
                     />
                     <DatePicker clearable={true} label="Pick date" {...form.getInputProps("date")} required />
-                    <Checkbox label="Is active" {...form.getInputProps("isActive", { type: "checkbox" })} />
+                    <Select
+                        label="Select Timezone"
+                        data={timeZones}
+                        searchable
+                        nothingFound="No options"
+                        required
+                        {...form.getInputProps("timezone")}
+                    />
                     <Textarea
                         label="Enter a message"
                         placeholder="Enter a message you want to send"
@@ -173,6 +200,7 @@ const SpecialDayTaskForm: FC = () => {
                         searchable
                         required
                     />
+                    <Checkbox label="Is active" {...form.getInputProps("isActive", { type: "checkbox" })} />
                     <Group position="right" mt="md">
                         <Button type="submit">Submit</Button>
                     </Group>

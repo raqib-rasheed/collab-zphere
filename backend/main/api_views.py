@@ -1,9 +1,8 @@
 import random
-from datetime import datetime
-from pytz import timezone as tz_fun
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.exceptions import ValidationError
 from rest_framework.generics import GenericAPIView
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 from rest_framework.permissions import IsAuthenticated
@@ -12,8 +11,7 @@ from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin
 from . import serializers
 from .  import models
 from . import permissions
-
-
+from . import utils
 class LeadListView(GenericAPIView):
     """
     not tested
@@ -28,6 +26,15 @@ class LeadListView(GenericAPIView):
         data = serializer.validated_data
         return Response(data)
 
+'''
+test condictions
+pass invalid timezone
+pass past dates
+check clockedschedule created
+check periodictask created
+check maintask creation
+check time is saved correctly 10:24 am in asia/calcutta == 4:54 in utc
+'''
 class TaskViewSet(ModelViewSet):
     """
     check the datetime if it is less than today dont save
@@ -52,16 +59,15 @@ class TaskViewSet(ModelViewSet):
 
     def perform_create(self, serializer, timezone):
         workspace, _ = models.Workspace.objects.get_or_create(user = self.request.user, name = models.Workspace.DEFAULT_NAME)
+        # we need to change the timezone according to the user location
         if not timezone:
             timezone = self.reqeust.user.profile.timezone
-        # we need to change the timezone according to the user location
-        tz = tz_fun(timezone)
-        datetime = serializer.validated_data['datetime'] 
-        newDatetime = datetime.replace(tzinfo = tz)
-        serializer.validated_data['datetime'] = newDatetime # this will automatically converted to utc
-        serializer.save(workspace = workspace)
-
-
+        
+        utc_time, is_valid = utils.convert_and_validate(serializer.validated_data['datetime'], timezone)
+        if not is_valid:
+            raise ValidationError({'datetime': "You cannot set past date and time!"})
+        serializer.validated_data['datetime'] = utc_time
+        serializer.save(workspace = workspace, timezone = timezone)
 
 
 class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):

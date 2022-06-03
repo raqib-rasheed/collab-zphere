@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -37,6 +38,7 @@ also sent delete signal to task to delete periodic task
 """
 class Task(models.Model):
     workspace = models.ForeignKey('Workspace', on_delete = models.CASCADE)
+    timezone = models.CharField(max_length = 100, choices = settings.TIMEZONES)
     datetime = models.DateTimeField()
     is_active = models.BooleanField(default = True)
     message = models.TextField()

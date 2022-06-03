@@ -1,3 +1,4 @@
+import pytz
 import os
 from pathlib import Path
 
@@ -159,9 +160,13 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_ENABLE_UTC = False
 # CELERY_TIMEZONE = 'Asia/Kolkata'
 
 # setting user model
 
 AUTH_USER_MODEL = 'user.User'
 
+# globals
+
+TIMEZONES = tuple(zip(pytz.all_timezones, pytz.all_timezones))
