@@ -6,7 +6,6 @@ import {
     Group,
     Box,
     MultiSelect,
-    Badge,
     Select,
     Alert,
     TextInput,
@@ -15,8 +14,6 @@ import {
 import { TimeInput, DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 import dayjs from "dayjs";
-import dayjstimezone from "dayjs/plugin/timezone";
-import dayjsutc from "dayjs/plugin/utc";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { getAxiosInstance } from "helpers/AxiosInstance";
@@ -25,7 +22,7 @@ import { timeZones } from "helpers/timezones";
 import { faBell } from "helpers/assets/Images";
 
 import { Task } from "./SpecialDayTaskList";
-import {getTempDate} from 'helpers/utils';
+import { getTempDate } from "helpers/utils";
 
 export type LeadList = {
     value: string;
@@ -52,7 +49,6 @@ const SpecialDayTaskForm: FC = () => {
     const navigator = useNavigate();
     const [leadList, setLeadLists] = useState<LeadList[]>([]);
     const [showAlert, setShowAlert] = useState<boolean>(false);
-    const [time, setTime] = useState<Date>(new Date()); // setting default time resolves error while setting value with setUpdateValues method
     const [errors, setErrors] = useState<Errors>(defaultErrors);
 
     const form = useForm({
@@ -98,20 +94,27 @@ const SpecialDayTaskForm: FC = () => {
             //         : null,
         },
     });
-    const onTimeChangeHandler = (value: Date, form) => {
-        console.log(value.getDate());
-        form.setFieldValue("time", value);
-    };
 
     const setUpdateValues = (task: Task) => {
         form.setFieldValue("date", new Date(getTempDate(task.date)));
         // form.setFieldValue("time", new Date(dayjs(task.date).tz(task.timezone).toString()));
-        form.setFieldValue("time", new Date(getTempDate(task.date)))
+        form.setFieldValue("time", new Date(getTempDate(task.date)));
         form.setFieldValue("name", task.name);
         form.setFieldValue("leads", task.leadEmails);
         form.setFieldValue("isActive", task.isActive);
         form.setFieldValue("message", task.message);
         form.setFieldValue("timezone", task.timezone);
+    };
+
+    const onDeleteClickHandler = () => {
+        axiosInstance
+            .delete(`tasks/${params.id}/`)
+            .then((response) => {
+                if (response.status === 204) navigator("/tasks-workspace/special-day-list/");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     const onSubmitHandler = (values: typeof form.values, event: React.FormEvent<Element>) => {
@@ -145,7 +148,11 @@ const SpecialDayTaskForm: FC = () => {
                     time: timeString,
                     date: dateString,
                 })
-                .then((response) => console.log(response))
+                .then((response) =>
+                    response.status === 200
+                        ? navigator("/tasks-workspace/special-day-list/")
+                        : console.log(response)
+                )
                 .catch((error) => console.log(error));
         } else
             axiosInstance
@@ -223,7 +230,12 @@ const SpecialDayTaskForm: FC = () => {
                         setUpdateValues(response.data as Task);
                     }
                 })
-                .catch((error) => console.log(error));
+                .catch((error) => {
+                    console.log(error);
+                    if(error.response.status == 404) {
+                        navigator("/tasks-workspace/special-day/")
+                    }
+                });
         }
     }, []);
 
@@ -236,7 +248,7 @@ const SpecialDayTaskForm: FC = () => {
                         <Alert
                             icon={
                                 <ThemeIcon variant="outline" color="red">
-                                    <img src={faBell} />
+                                    <img src={faBell} alt="icon" />
                                 </ThemeIcon>
                             }
                             title="Date and time is not valid!"
@@ -295,7 +307,16 @@ const SpecialDayTaskForm: FC = () => {
                     />
                     <Checkbox label="Is active" {...form.getInputProps("isActive", { type: "checkbox" })} />
                     <Group position="right" mt="md">
-                        <Button type="submit">Submit</Button>
+                        {params.id ? (
+                            <>
+                                <Button color="red" onClick={onDeleteClickHandler}>
+                                    Delete
+                                </Button>
+                                <Button type="submit">Update</Button>
+                            </>
+                        ) : (
+                            <Button type="submit">Submit</Button>
+                        )}
                     </Group>
                 </form>
             </Box>

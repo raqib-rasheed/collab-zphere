@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
-import Editor from "@monaco-editor/react";
-import { Editor as UIEditor } from "react-draft-wysiwyg";
+// import Editor from "@monaco-editor/react";
+// import { Editor as UIEditor } from "react-draft-wysiwyg";
 // import { EditorState } from "draft-js";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+// import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const AdminInterface: FC = () => {
     // const [editorState, setEditorState] = useState<EditorState>();
@@ -15,7 +15,7 @@ const AdminInterface: FC = () => {
 
     return (
         <>
-            <button onClick={toggleEditorButtonClick}>Toggle Editor</button>
+            {/* <button onClick={toggleEditorButtonClick}>Toggle Editor</button>
             {rawEditor ? (
                 <Editor
                     width="800"
@@ -34,7 +34,7 @@ const AdminInterface: FC = () => {
                     editorClassName="demo-editor"
                     // onEditorStateChange={this.onEditorStateChange}
                 />
-            )}
+            )} */}
         </>
     );
 };
