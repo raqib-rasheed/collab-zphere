@@ -38,6 +38,7 @@ also sent delete signal to task to delete periodic task
 """
 class Task(models.Model):
     workspace = models.ForeignKey('Workspace', on_delete = models.CASCADE)
+    name = models.CharField(max_length = 120)
     timezone = models.CharField(max_length = 100, choices = settings.TIMEZONES)
     datetime = models.DateTimeField()
     is_active = models.BooleanField(default = True)

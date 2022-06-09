@@ -9,13 +9,15 @@
 
 // friday
 - task saving 10 
-- form validation 
+- form validation - validating date
 
 // saturday
+- validate date in frontend also
+- validate leads in form
 - redirection afte successful submition
 - showing list of saved task
 - updating task details
-
+31384874878
 how
 - crm triggers
     - all except 'status change'

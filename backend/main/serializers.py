@@ -4,6 +4,8 @@ from django.conf import settings
 from django.db import connections
 from backend import mysqlutils
 
+from . import utils
+
 
 class WorkspaceSerializer(serializers.Serializer):
     nodes = serializers.JSONField()
@@ -82,19 +84,27 @@ class LeadsListSerializer(serializers.Serializer):
 
 class WorkspaceModelSerializer(serializers.ModelSerializer):
     class Meta:
-        exclude = ('id', )
+        exclude = ('id', 'user')
         model = models.Workspace
 
 class TaskSerializer(serializers.ModelSerializer):
     workspace = WorkspaceModelSerializer(read_only = True)
-    timezone = serializers.CharField(read_only = True)
-    leads_email_array= serializers.SerializerMethodField() # this will be returned when we call client
+    timezone = serializers.CharField()
+    leadEmails= serializers.SerializerMethodField() # this will be returned when we call client
+    isActive = serializers.BooleanField(source = "is_active")
+    date = serializers.SerializerMethodField()
 
-    def get_leads_email_array(self, obj):
+    def get_date(self, obj):
+        return utils.localize_datetime(obj.datetime, obj.timezone)
+        # return obj.datetime
+
+    def get_leadEmails(self, obj):
         return obj.leads_email.split(',')
     class Meta:
-        exclude = ('id', )
+        exclude = ('periodic_task', )
         model = models.Task
         extra_kwargs = {
             "leads_email": {"write_only": True},
+            "is_active": {"write_only": True},
+            "datetime": {"write_only": True},
         }

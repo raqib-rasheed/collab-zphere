@@ -2,7 +2,16 @@ import React, { FC, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ReactFlowProvider } from "react-flow-renderer";
 import axios from "axios";
-import { TaskWorkspace, SpecialDayTaskForm, AdminInterface, Home, Login, Profile, BotsWrokspace } from "routes";
+import {
+    TaskWorkspace,
+    SpecialDayTaskForm,
+    AdminInterface,
+    Home,
+    Login,
+    Profile,
+    BotsWrokspace,
+    SpecialDayTaskList,
+} from "routes";
 import { apiUrl } from "helpers/settings";
 import { getCookie } from "helpers/utils";
 
@@ -22,7 +31,7 @@ const App: FC = () => {
     });
 
     useEffect(() => {
-        console.log('called');
+        console.log("called");
         axiosInstance
             .get("/user/")
             .then((response) => {
@@ -46,6 +55,8 @@ const App: FC = () => {
             />
             <Route path="/tasks-workspace">
                 <Route path="special-day" element={<SpecialDayTaskForm />} />
+                <Route path="special-day-list" element={<SpecialDayTaskList />} />
+                <Route path="special-day/:id/" element={<SpecialDayTaskForm />} />
                 <Route index element={<TaskWorkspace />} />
             </Route>
             <Route path="/admin-template-create" element={<AdminInterface />} />

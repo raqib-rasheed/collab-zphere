@@ -43,12 +43,13 @@ class TaskViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated, permissions.IsUserOwnerOfObject]
     serializer_class = serializers.TaskSerializer
 
+    def get_queryset(self):
+        return models.Task.objects.filter(workspace__user = self.request.user)
+
     def create(self, request, *args, **kwargs):
         data = request.data.copy()
         timezone = data.pop('timezone', None) # if timezone is not passed then your profile time is taken
         data.update({
-            # 'date': data.get('date', '').split('T')[0],
-            # 'time': data['time'].split('T')[1].split('.')[0],
             'leads_email': ','.join(map(str,request.data.get('leads', [])))
         })
         serializer = self.get_serializer(data=data)
@@ -56,6 +57,15 @@ class TaskViewSet(ModelViewSet):
         self.perform_create(serializer, timezone)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def perform_update(self, serializer):
+        timezone = serializer.validated_data['timezone']
+        utc_time, is_valid = utils.convert_and_validate(serializer.validated_data['datetime'], timezone)
+        if not is_valid:
+            raise ValidationError({'datetime': "You cannot set past date and time!"})
+        serializer.validated_data['datetime'] = utc_time
+        serializer.save()
+
 
     def perform_create(self, serializer, timezone):
         workspace, _ = models.Workspace.objects.get_or_create(user = self.request.user, name = models.Workspace.DEFAULT_NAME)

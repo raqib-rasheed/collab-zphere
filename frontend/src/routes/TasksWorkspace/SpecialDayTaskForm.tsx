@@ -1,17 +1,40 @@
 import React, { FC, useEffect, useState } from "react";
-import { Textarea, Checkbox, Button, Group, Box, MultiSelect, Badge, Select, Alert } from "@mantine/core";
+import {
+    Textarea,
+    Checkbox,
+    Button,
+    Group,
+    Box,
+    MultiSelect,
+    Badge,
+    Select,
+    Alert,
+    TextInput,
+    ThemeIcon,
+} from "@mantine/core";
 import { TimeInput, DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 import dayjs from "dayjs";
+import dayjstimezone from "dayjs/plugin/timezone";
+import dayjsutc from "dayjs/plugin/utc";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { getAxiosInstance } from "helpers/AxiosInstance";
 import { EmptyFieldError, timezone } from "helpers/settings";
 import { timeZones } from "helpers/timezones";
+import { faBell } from "helpers/assets/Images";
 
-type LeadList = {
+import { Task } from "./SpecialDayTaskList";
+import {getTempDate} from 'helpers/utils';
+
+export type LeadList = {
     value: string;
     label: string;
     disabled: boolean;
+};
+
+export type Errors = {
+    name: null | string;
 };
 
 const SpecialDayTaskForm: FC = () => {
@@ -21,21 +44,29 @@ const SpecialDayTaskForm: FC = () => {
         label: "Select all",
         disabled: false,
     };
+    const defaultErrors = {
+        name: null,
+    };
 
+    const params = useParams();
+    const navigator = useNavigate();
     const [leadList, setLeadLists] = useState<LeadList[]>([]);
     const [showAlert, setShowAlert] = useState<boolean>(false);
+    const [time, setTime] = useState<Date>(new Date()); // setting default time resolves error while setting value with setUpdateValues method
+    const [errors, setErrors] = useState<Errors>(defaultErrors);
 
     const form = useForm({
         initialValues: {
-            time: {} as Date,
-            // date: dayjs().toDate(),
+            time: new Date(), // setting default time resolves error while setting value with setUpdateValues method
             date: {} as Date,
             timezone: timezone,
             isActive: true,
             message: "",
+            name: "",
             leads: [] as string[],
         },
         validate: {
+            name: (value) => (value === null ? EmptyFieldError : null),
             time: (value) => (value === null ? EmptyFieldError : null),
             date: (value) => (value === null ? EmptyFieldError : null),
             timezone: (value) => (value === null || value === "" ? EmptyFieldError : null),
@@ -67,10 +98,26 @@ const SpecialDayTaskForm: FC = () => {
             //         : null,
         },
     });
+    const onTimeChangeHandler = (value: Date, form) => {
+        console.log(value.getDate());
+        form.setFieldValue("time", value);
+    };
+
+    const setUpdateValues = (task: Task) => {
+        form.setFieldValue("date", new Date(getTempDate(task.date)));
+        // form.setFieldValue("time", new Date(dayjs(task.date).tz(task.timezone).toString()));
+        form.setFieldValue("time", new Date(getTempDate(task.date)))
+        form.setFieldValue("name", task.name);
+        form.setFieldValue("leads", task.leadEmails);
+        form.setFieldValue("isActive", task.isActive);
+        form.setFieldValue("message", task.message);
+        form.setFieldValue("timezone", task.timezone);
+    };
 
     const onSubmitHandler = (values: typeof form.values, event: React.FormEvent<Element>) => {
         event.preventDefault();
-        setShowAlert(false)
+        setShowAlert(false);
+        setErrors(defaultErrors);
         const tempDate = dayjs(values.date);
         const time = {
             hours: values.time.getHours(),
@@ -81,18 +128,41 @@ const SpecialDayTaskForm: FC = () => {
             month: tempDate.month(), // month starts from 0 index
             year: tempDate.year(),
         };
-        const datetime = new Date(Date.UTC(day.year, day.month, day.day, time.hours, time.minutes));
-        axiosInstance
-            .post("tasks/", { ...values, datetime })
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((err) => {
-                console.log(err);
-                if (err.response.data.datetime) {
-                    setShowAlert(true);
-                }
-            });
+
+        // Date object will call toIsoString function by default when we pass it to axios
+        // this function will convert to UTC we don't need that
+        const datetimeString = dayjs(new Date(day.year, day.month, day.day, time.hours, time.minutes)).format(
+            "YYYY-MM-DDTHH:mm:ss[Z]"
+        );
+        const timeString = dayjs(values.time).format("YYYY-MM-DDTHH:mm:ss[Z]");
+        const dateString = dayjs(values.date).format("YYYY-MM-DDTHH:mm:ss[Z]");
+
+        if (params.id) {
+            axiosInstance
+                .patch(`tasks/${params.id}/`, {
+                    ...values,
+                    datetime: datetimeString,
+                    time: timeString,
+                    date: dateString,
+                })
+                .then((response) => console.log(response))
+                .catch((error) => console.log(error));
+        } else
+            axiosInstance
+                .post("tasks/", { ...values, datetime: datetimeString, time: timeString, date: dateString })
+                .then((response) => {
+                    if (response.status === 201) {
+                        navigator("/tasks-workspace/special-day-list/");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                    if (err.response.data.datetime) {
+                        setShowAlert(true);
+                    } else if (err.response.data.name) {
+                        setErrors({ name: err.response.data.name });
+                    }
+                });
         console.log(values);
     };
 
@@ -145,17 +215,30 @@ const SpecialDayTaskForm: FC = () => {
                 .catch((error) => {
                     console.log(error);
                 });
+        if (params.id) {
+            axiosInstance
+                .get(`tasks/${params.id}/`)
+                .then((response) => {
+                    if (response.status === 200) {
+                        setUpdateValues(response.data as Task);
+                    }
+                })
+                .catch((error) => console.log(error));
+        }
     }, []);
 
     return (
         <div className="container">
-            <Badge title="change timezone" />
             <Box sx={{ maxWidth: 300 }} mx="auto">
-                <h1>Create a task</h1>
+                <h1>{params.id ? "Update task" : "Create a task"}</h1>
                 <form onSubmit={form.onSubmit((values, event) => onSubmitHandler(values, event))}>
                     {showAlert && (
                         <Alert
-                            icon=""
+                            icon={
+                                <ThemeIcon variant="outline" color="red">
+                                    <img src={faBell} />
+                                </ThemeIcon>
+                            }
                             title="Date and time is not valid!"
                             color="red"
                             onClose={() => setShowAlert(!showAlert)}
@@ -164,11 +247,21 @@ const SpecialDayTaskForm: FC = () => {
                             You cannot add events to past Date and time
                         </Alert>
                     )}
-
+                    <TextInput
+                        label="Name"
+                        placeholder="Enter a name for task.."
+                        error={errors.name}
+                        {...form.getInputProps("name")}
+                        required
+                    />
                     <TimeInput
+                        // onTimeUpdate={}
                         clearable={true}
                         format={"12"}
                         label="Pick time"
+                        // value = {task ? new Date() : {}}
+                        // value = {time}
+                        // onChange = {(value) => onTimeChangeHandler(value, form)}
                         {...form.getInputProps("time")}
                         required
                     />
