@@ -48,7 +48,7 @@ class TaskViewSet(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         data = request.data.copy()
-        timezone = data.pop('timezone', None) # if timezone is not passed then your profile time is taken
+        timezone = data.get('timezone', None) # if timezone is not passed then your profile time is taken
         data.update({
             'leads_email': ','.join(map(str,request.data.get('leads', [])))
         })
@@ -213,6 +213,19 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
             "edges": edges,
         }
         return Response(ResponseData)
+
+class TemplateVaribles(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, *args, **kwargs):
+        temp_template_variables = []
+        for key in utils.template_variables:
+            temp_template_variables.append({
+                'value': utils.template_variables[key]['data_value'],
+                'id': utils.template_variables[key]['data_id']
+            })
+        return Response(temp_template_variables)
 
 class WebhookView(APIView):
 

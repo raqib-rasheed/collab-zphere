@@ -33,7 +33,7 @@ class LoginSerializer(serializers.Serializer):
         return profile
 
     def validate(self, attrs):
-        current_tz = timezone.get_current_timezone()
+        # current_tz = timezone.get_current_timezone()
         email = attrs.get('email')
         data = None
         with connections[settings.ZPHERE_DB_NAME].cursor() as cursor:
@@ -55,7 +55,7 @@ class LoginSerializer(serializers.Serializer):
                 'username': f'{random_no}',
                 'first_name': first_name,
                 'last_name': last_name,
-                'date_joined': current_tz.localize(data['created_at']),
+                'date_joined': (data['created_at']),
                 'last_login': timezone.now(),
             }
             is_user_authenticated = self.authenticate(attrs.get('password'), data.get('password'))

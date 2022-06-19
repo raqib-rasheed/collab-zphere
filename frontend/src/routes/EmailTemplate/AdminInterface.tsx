@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+import { RichTextEditor } from '@mantine/rte';
 // import Editor from "@monaco-editor/react";
 // import { Editor as UIEditor } from "react-draft-wysiwyg";
 // import { EditorState } from "draft-js";

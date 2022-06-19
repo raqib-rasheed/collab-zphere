@@ -20,11 +20,12 @@ export const getCookie = (name: string): string | null => {
 };
 
 export const getTempDate = (date: string) => {
-        const firstPart = date.split('T')[0]
-        const secondPart = date.split('T')[1]
-        if(secondPart.includes("+")) { 
-            return firstPart + 'T' + secondPart.split('+')[0]
-        } else {
-            return firstPart + "T" + secondPart.split('-')[0]
-        }
+    // removes timezone from datetime
+    const firstPart = date.split("T")[0];
+    const secondPart = date.split("T")[1];
+    if (secondPart.includes("+")) {
+        return firstPart + "T" + secondPart.split("+")[0];
+    } else {
+        return firstPart + "T" + secondPart.split("-")[0];
     }
+};

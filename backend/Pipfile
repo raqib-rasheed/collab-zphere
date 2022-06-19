@@ -15,9 +15,15 @@ bcrypt = "*"
 pymysql = "*"
 mysqlclient = "*"
 pillow = "*"
+beautifulsoup4 = "*"
+lxml = "*"
 
 [dev-packages]
 ipython = "*"
+black = "*"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true

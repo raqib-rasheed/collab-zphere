@@ -35,12 +35,11 @@ export type Errors = {
     name: null | string;
 };
 
-export type TemplateVariable = {
-    id: number;
-    value: string;
+type Props = {
+    fetchedData?: Task;
 };
 
-const SpecialDayTaskForm: FC = () => {
+const SpecialDayTaskForm: FC<Props> = (props) => {
     const axiosInstance = getAxiosInstance();
     const selectAllLead = {
         value: "__all__",
@@ -51,22 +50,38 @@ const SpecialDayTaskForm: FC = () => {
         name: null,
     };
 
+    const templateVariables = [
+        {
+            id: 1,
+            value: "Name",
+        },
+        {
+            id: 2,
+            value: "Email",
+        },
+        {
+            id: 3,
+            value: "Phone",
+        },
+    ];
+
     const params = useParams();
     const navigator = useNavigate();
     const [leadList, setLeadLists] = useState<LeadList[]>([]);
     const [showAlert, setShowAlert] = useState<boolean>(false);
     const [errors, setErrors] = useState<Errors>(defaultErrors);
-    const [templateVariables, setTemplateVariables] = useState<TemplateVariable[]>([]); 
+
+    // const [value, setValue] = useState<string>();
 
     const form = useForm({
         initialValues: {
-            time: new Date(), // setting default time resolves error while setting value with setUpdateValues method
-            date: {} as Date,
-            timezone: timezone,
-            isActive: true,
-            message: "",
-            name: "",
-            leads: [] as string[],
+            time: props.fetchedData ? new Date(getTempDate(props.fetchedData.date)) : new Date(), // setting default time resolves error while setting value with setUpdateValues method
+            date: props.fetchedData ? new Date(getTempDate(props.fetchedData.date)) : new Date(),
+            timezone: props.fetchedData ? props.fetchedData.timezone : timezone,
+            isActive: props.fetchedData ? props.fetchedData.isActive : true,
+            message: props.fetchedData ? props.fetchedData.message : "",
+            name: props.fetchedData ? props.fetchedData.name : "",
+            leads: props.fetchedData ? props.fetchedData.leadEmails : ([] as string[]),
         },
         validate: {
             name: (value) => (value === null ? EmptyFieldError : null),
@@ -106,33 +121,33 @@ const SpecialDayTaskForm: FC = () => {
         () => ({
             allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
             mentionDenotationChars: ["#"],
-            source: async (searchTerm, renderList, mentionChar) => {
-                const list =
-                    templateVariables.length === 0
-                        ? await axiosInstance.get("/template-variables/").then((response) => {
-                              setTemplateVariables(response.data);
-                              return response.data;
-                          })
-                        : templateVariables;
+            source: (searchTerm, renderList, mentionChar) => {
+                const list = templateVariables;
                 const includesSearchTerm = list.filter((item) =>
                     item.value.toLowerCase().includes(searchTerm.toLowerCase())
                 );
                 renderList(includesSearchTerm);
             },
         }),
-        [templateVariables]
+        []
     );
 
-    const setUpdateValues = (task: Task) => {
-        form.setFieldValue("date", new Date(getTempDate(task.date)));
-        // form.setFieldValue("time", new Date(dayjs(task.date).tz(task.timezone).toString()));
-        form.setFieldValue("time", new Date(getTempDate(task.date)));
-        form.setFieldValue("name", task.name);
-        form.setFieldValue("leads", task.leadEmails);
-        form.setFieldValue("isActive", task.isActive);
-        form.setFieldValue("message", task.message);
-        form.setFieldValue("timezone", task.timezone);
-    };
+    // const setValueHandler = (value) => {
+    //     // setValue(value);
+    //     form.setFieldValue("message", value);
+    // };
+
+    // const setUpdateValues = (task: Task) => {
+    //     form.setFieldValue("date", new Date(getTempDate(task.date)));
+    //     // form.setFieldValue("time", new Date(dayjs(task.date).tz(task.timezone).toString()));
+    //     form.setFieldValue("time", new Date(getTempDate(task.date)));
+    //     form.setFieldValue("name", task.name);
+    //     form.setFieldValue("leads", task.leadEmails);
+    //     form.setFieldValue("isActive", task.isActive);
+    //     form.setFieldValue("message", task.message);
+    //     form.setFieldValue("timezone", task.timezone);
+    //     setValue(task.message);
+    // };
 
     const onDeleteClickHandler = () => {
         axiosInstance
@@ -205,6 +220,7 @@ const SpecialDayTaskForm: FC = () => {
                         setErrors({ name: err.response.data.name });
                     }
                 });
+        console.log(values);
     };
 
     const dropDownlistOnChangeHandler = (values: string[]) => {
@@ -256,21 +272,24 @@ const SpecialDayTaskForm: FC = () => {
                 .catch((error) => {
                     console.log(error);
                 });
-        if (params.id) {
-            axiosInstance
-                .get(`tasks/${params.id}/`)
-                .then((response) => {
-                    if (response.status === 200) {
-                        setUpdateValues(response.data as Task);
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                    if (error.response.status == 404) {
-                        navigator("/tasks-workspace/special-day/");
-                    }
-                });
-        }
+
+        // if(props.fetchedData)
+        //     setUpdateValues(props.fetchedData)
+        // if (params.id) {
+        //     axiosInstance
+        //         .get(`tasks/${params.id}/`)
+        //         .then((response) => {
+        //             if (response.status === 200) {
+        //                 setUpdateValues(response.data as Task);
+        //             }
+        //         })
+        //         .catch((error) => {
+        //             console.log(error);
+        //             if (error.response.status == 404) {
+        //                 navigator("/tasks-workspace/special-day/");
+        //             }
+        //         });
+        // }
     }, []);
 
     return (
@@ -333,33 +352,17 @@ const SpecialDayTaskForm: FC = () => {
                         required
                     />
                     <InputWrapper label="Write your email" required>
-                        {/* RichTextEditor has a problem it will not change the value by calling form.setFormValue */}
-                        {params.id && form.values.message !== "" && (
-                            <RichTextEditor
-                                controls={[
-                                    ["bold", "italic", "underline", "link"],
-                                    ["unorderedList", "orderedList", "h1", "h2", "h3"],
-                                    ["sup", "sub"],
-                                    ["alignLeft", "alignCenter", "alignRight"],
-                                    ["blockquote", "codeBlock"],
-                                ]}
-                                mentions={mentions}
-                                {...form.getInputProps("message")}
-                            />
-                        )}
-                        {!params.id && (
-                            <RichTextEditor
-                                controls={[
-                                    ["bold", "italic", "underline", "link"],
-                                    ["unorderedList", "orderedList", "h1", "h2", "h3"],
-                                    ["sup", "sub"],
-                                    ["alignLeft", "alignCenter", "alignRight"],
-                                    ["blockquote", "codeBlock"],
-                                ]}
-                                mentions={mentions}
-                                {...form.getInputProps("message")}
-                            />
-                        )}
+                        <RichTextEditor
+                            controls={[
+                                ["bold", "italic", "underline", "link"],
+                                ["unorderedList", "orderedList", "h1", "h2", "h3"],
+                                ["sup", "sub"],
+                                ["alignLeft", "alignCenter", "alignRight"],
+                                ["blockquote", "codeBlock"],
+                            ]}
+                            mentions={mentions}
+                            {...form.getInputProps("message")}
+                        />
                     </InputWrapper>
                     <Checkbox label="Is active" {...form.getInputProps("isActive", { type: "checkbox" })} />
                     <Group position="right" mt="md">

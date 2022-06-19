@@ -11,6 +11,7 @@ import {
     Profile,
     BotsWrokspace,
     SpecialDayTaskList,
+    EmailTemplateEditor,
 } from "routes";
 import { apiUrl } from "helpers/settings";
 import { getCookie } from "helpers/utils";
@@ -55,11 +56,12 @@ const App: FC = () => {
             />
             <Route path="/tasks-workspace">
                 <Route path="special-day" element={<SpecialDayTaskForm />} />
-                <Route path="special-day-list" element={<SpecialDayTaskList />} />
                 <Route path="special-day/:id/" element={<SpecialDayTaskForm />} />
+                <Route path="special-day-list" element={<SpecialDayTaskList />} />
                 <Route index element={<TaskWorkspace />} />
             </Route>
             <Route path="/admin-template-create" element={<AdminInterface />} />
+            <Route path="/emaileditor" element={<EmailTemplateEditor />} />
             <Route path="/login" element={<Login />} />
             <Route path="/user/" element={<Profile />} />
         </Routes>

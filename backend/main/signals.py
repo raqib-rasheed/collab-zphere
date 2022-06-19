@@ -1,4 +1,5 @@
 from datetime import tzinfo
+import json
 import pytz
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -19,10 +20,14 @@ def create_celery_periodic_task(sender, instance, created, **kwargs):
         )
         periodic_task = PeriodicTask.objects.create(
             name = f"task {instance.workspace.user.email} - {instance.id}",
-            task = 'main.tasks.test_func',
+            task = 'main.tasks.send_email',
             clocked = clocked_schedule,
             enabled = True,
             one_off = True,
+            # args= json.dumps([instance.id, ]),
+            kwargs = json.dumps({
+                'task_id': instance.id,
+            })
         )
         instance.periodic_task = periodic_task
         instance.save()
