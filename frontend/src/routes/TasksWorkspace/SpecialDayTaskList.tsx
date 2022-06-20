@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { Table, Box } from "@mantine/core";
+import {RichTextEditor} from '@mantine/rte';
 import {useNavigate} from 'react-router-dom';
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -81,7 +82,10 @@ export const SpecialDayTaskList: FC = () => {
                                 ))}
                             </td>
                             <td>{task.subject}</td>
-                            <td>{task.message}</td>
+                            {/* <td>{task.message}</td> */}
+                            <td>
+                                <RichTextEditor readOnly value={task.message} onChange={() => {}} />
+                            </td>
                             <td>{task.timezone}</td>
                             <td>{task.isActive ? <img src={faIcons.faCheckSquare} width="20px" /> : null}</td>
                         </tr>
