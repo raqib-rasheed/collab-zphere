@@ -19,6 +19,7 @@ export type Task = {
     date: string;
     isActive: boolean;
     leadEmails: string[];
+    subject: string;
     message: string;
 };
 
@@ -59,6 +60,7 @@ export const SpecialDayTaskList: FC = () => {
                         <th>Task name</th>
                         <th>Date and time</th>
                         <th>Leads Email</th>
+                        <th>Subject</th>
                         <th>Message</th>
                         <th>Timezone</th>
                         <th>Is active</th>
@@ -78,6 +80,7 @@ export const SpecialDayTaskList: FC = () => {
                                     </>
                                 ))}
                             </td>
+                            <td>{task.subject}</td>
                             <td>{task.message}</td>
                             <td>{task.timezone}</td>
                             <td>{task.isActive ? <img src={faIcons.faCheckSquare} width="20px" /> : null}</td>

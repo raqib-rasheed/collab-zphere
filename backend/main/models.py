@@ -42,6 +42,7 @@ class Task(models.Model):
     timezone = models.CharField(max_length = 100, choices = settings.TIMEZONES)
     datetime = models.DateTimeField()
     is_active = models.BooleanField(default = True)
+    subject = models.CharField(max_length = 1000)
     message = models.TextField()
     leads_email = models.TextField() # leads list is stored as string separated by comma
     periodic_task = models.ForeignKey('django_celery_beat.periodictask', on_delete = models.SET_NULL, related_name = "tasks", null = True, blank = True)

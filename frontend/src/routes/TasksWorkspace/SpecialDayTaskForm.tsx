@@ -56,7 +56,7 @@ const SpecialDayTaskForm: FC = () => {
     const [leadList, setLeadLists] = useState<LeadList[]>([]);
     const [showAlert, setShowAlert] = useState<boolean>(false);
     const [errors, setErrors] = useState<Errors>(defaultErrors);
-    const [templateVariables, setTemplateVariables] = useState<TemplateVariable[]>([]); 
+    const [templateVariables, setTemplateVariables] = useState<TemplateVariable[]>([]);
 
     const form = useForm({
         initialValues: {
@@ -66,6 +66,7 @@ const SpecialDayTaskForm: FC = () => {
             isActive: true,
             message: "",
             name: "",
+            subject: "",
             leads: [] as string[],
         },
         validate: {
@@ -130,6 +131,7 @@ const SpecialDayTaskForm: FC = () => {
         form.setFieldValue("name", task.name);
         form.setFieldValue("leads", task.leadEmails);
         form.setFieldValue("isActive", task.isActive);
+        form.setFieldValue("subject", task.subject);
         form.setFieldValue("message", task.message);
         form.setFieldValue("timezone", task.timezone);
     };
@@ -331,6 +333,12 @@ const SpecialDayTaskForm: FC = () => {
                         clearable
                         searchable
                         required
+                    />
+                    <TextInput
+                        label="Subject"
+                        placeholder="Type the subject of mail"
+                        required
+                        {...form.getInputProps("subject")}
                     />
                     <InputWrapper label="Write your email" required>
                         {/* RichTextEditor has a problem it will not change the value by calling form.setFormValue */}

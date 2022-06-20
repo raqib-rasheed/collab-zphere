@@ -3,8 +3,6 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from rest_framework.exceptions import ValidationError
 
-no_of_template_variables = 3
-
 template_variables = {
     "name": {
         "data_index": 0,

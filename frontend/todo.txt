@@ -3,20 +3,9 @@
 - create a page of email template writing
     - live html Compiler
 
-// thuresday
-- timezone issue - 5 hours
-- form validation - 1 hour
 
-// friday
-- task saving 10 
-- form validation - validating date
+// task list view render the html in normal form
 
-// saturday
-- validate date in frontend also
-- validate leads in form
-- redirection afte successful submition
-- showing list of saved task
-- updating task details
 31384874878
 how
 - crm triggers
