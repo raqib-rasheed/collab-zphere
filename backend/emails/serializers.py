@@ -12,6 +12,9 @@ class EmailTemplateSerializer(serializers.ModelSerializer):
             'is_global',
             'pricing',
             'price',
-            'tags',
+            # 'tags',
             'category'
         )
+        # extra_kwargs = {
+        #     'tags': {"required": False, "allow_null": True},
+        # }

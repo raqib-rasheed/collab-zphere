@@ -17,6 +17,7 @@ mysqlclient = "*"
 pillow = "*"
 beautifulsoup4 = "*"
 lxml = "*"
+django-webpack-loader = "*"
 
 [dev-packages]
 ipython = "*"

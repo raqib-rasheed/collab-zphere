@@ -344,6 +344,18 @@ p {
   background: #26c4fc;
 }
 
+.quill {
+  min-height: 45vh;
+}
+
+.ql-editor {
+  min-height: 45vh;
+}
+
+.email-template-editor .button {
+  margin: 10px 0px;
+}
+
 body {
   font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 }

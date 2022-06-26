@@ -7,3 +7,20 @@ export interface DragableElements {
     conditions: Array<DragableElementsFields>;
     actions: Array<DragableElementsFields>;
 }
+
+// EmailTemplateEditor
+export enum emailTemplatePricing {
+    Free = "F",
+    Paid = "P",
+}
+export interface EmailTemplateFormValues {
+    name: string;
+    description: string;
+    isGlobal: boolean;
+    body: string;
+    // saveToDraft: boolean;
+    pricing: emailTemplatePricing,
+    price: number | null;
+    tags: string[],
+    category: string;
+}
