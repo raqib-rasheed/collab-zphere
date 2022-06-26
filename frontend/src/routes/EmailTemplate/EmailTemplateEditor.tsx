@@ -27,7 +27,6 @@ export const EmailTemplateEditor: FC = () => {
 
     const onSubmitHandler = (values: EmailTemplateFormValues, event: React.FormEvent<Element>) => {
         event.preventDefault();
-        console.log(values)
         axiosInstance.post('emails/', {
             ...values,
             is_global: values.isGlobal,
