@@ -19,6 +19,7 @@ beautifulsoup4 = "*"
 lxml = "*"
 django-webpack-loader = "*"
 python-decouple = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 ipython = "*"
