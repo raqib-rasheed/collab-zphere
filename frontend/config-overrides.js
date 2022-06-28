@@ -26,10 +26,10 @@ module.exports = {
             // config.entry.push(require.resolve("webpack/hot/dev-server"));
         } else if (env === "production") {
             // dev
-            config.output.publicPath = "http://localhost:8000/static/";
+            // config.output.publicPath = "http://localhost:8000/static/";
 
             // production
-            // config.output.publicPath = "https://texachat.sgp1.digitaloceanspaces.com/texa-static/";
+            config.output.publicPath = "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/";
             config.plugins.push(
                 new BundleTracker({
                     path: __dirname,
