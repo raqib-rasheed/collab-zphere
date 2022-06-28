@@ -29,6 +29,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "start-rewire": "react-app-rewired start",
+    "build-rewire": "react-app-rewired build",
+    "test-rewire": "react-app-rewired test",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -51,6 +54,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-draft-wysiwyg": "^1.13.4"
+    "react-app-rewired": "^2.2.1",
+    "webpack-bundle-tracker": "^1.6.0"
   }
 }

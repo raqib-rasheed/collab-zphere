@@ -1,0 +1,57 @@
+{
+  "status": "done",
+  "assets": {
+    "index.html": {
+      "name": "index.html",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/index.html",
+      "publicPath": "http://localhost:8000/static/index.html"
+    },
+    "static/js/main.ec063150.js.LICENSE.txt": {
+      "name": "static/js/main.ec063150.js.LICENSE.txt",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/js/main.ec063150.js.LICENSE.txt",
+      "publicPath": "http://localhost:8000/static/static/js/main.ec063150.js.LICENSE.txt"
+    },
+    "static/css/main.01a191c7.css": {
+      "name": "static/css/main.01a191c7.css",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/css/main.01a191c7.css",
+      "publicPath": "http://localhost:8000/static/static/css/main.01a191c7.css"
+    },
+    "static/js/main.ec063150.js": {
+      "name": "static/js/main.ec063150.js",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/js/main.ec063150.js",
+      "publicPath": "http://localhost:8000/static/static/js/main.ec063150.js"
+    },
+    "static/js/787.cda612ba.chunk.js": {
+      "name": "static/js/787.cda612ba.chunk.js",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/js/787.cda612ba.chunk.js",
+      "publicPath": "http://localhost:8000/static/static/js/787.cda612ba.chunk.js"
+    },
+    "static/css/main.01a191c7.css.map": {
+      "name": "static/css/main.01a191c7.css.map",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/css/main.01a191c7.css.map",
+      "publicPath": "http://localhost:8000/static/static/css/main.01a191c7.css.map"
+    },
+    "static/js/main.ec063150.js.map": {
+      "name": "static/js/main.ec063150.js.map",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/js/main.ec063150.js.map",
+      "publicPath": "http://localhost:8000/static/static/js/main.ec063150.js.map"
+    },
+    "static/js/787.cda612ba.chunk.js.map": {
+      "name": "static/js/787.cda612ba.chunk.js.map",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/js/787.cda612ba.chunk.js.map",
+      "publicPath": "http://localhost:8000/static/static/js/787.cda612ba.chunk.js.map"
+    },
+    "asset-manifest.json": {
+      "name": "asset-manifest.json",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/asset-manifest.json",
+      "publicPath": "http://localhost:8000/static/asset-manifest.json"
+    }
+  },
+  "chunks": {
+    "main": [
+      "static/css/main.01a191c7.css",
+      "static/js/main.ec063150.js"
+    ]
+  },
+  "publicPath": "http://localhost:8000/static/"
+}

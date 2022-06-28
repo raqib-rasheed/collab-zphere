@@ -18,6 +18,7 @@ pillow = "*"
 beautifulsoup4 = "*"
 lxml = "*"
 django-webpack-loader = "*"
+python-decouple = "*"
 
 [dev-packages]
 ipython = "*"

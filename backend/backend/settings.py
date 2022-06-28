@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_celery_beat',
     'rest_framework_simplejwt',
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -131,6 +132,7 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, '../frontend/build/'),
 ]
 
 
@@ -178,3 +180,13 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'arrowatomtrendy@gmail.com'
 EMAIL_HOST_PASSWORD = 'jbwezlimmtibbjgo'
+
+# webpack
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'build/',
+        # 'STATS_FILE': os.path.join(BASE_DIR, "./static/webpack-stats.prod.json"),
+        'STATS_FILE': os.path.join(BASE_DIR, "./static/webpack-stats.dev.json"),
+    },
+}

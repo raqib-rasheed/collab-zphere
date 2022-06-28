@@ -40,30 +40,32 @@ const App: FC = () => {
                     navigate("/login");
                 }
             })
-            .catch((e) => navigate("/login"));
+            .catch((e) => navigate("/app/login"));
     }, []);
 
     return (
         <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route
-                path="/bots-workspace"
-                element={
-                    <ReactFlowProvider>
-                        <BotsWrokspace />
-                    </ReactFlowProvider>
-                }
-            />
-            <Route path="/tasks-workspace">
-                <Route path="special-day" element={<SpecialDayTaskForm />} />
-                <Route path="special-day/:id/" element={<SpecialDayTaskForm />} />
-                <Route path="special-day-list" element={<SpecialDayTaskList />} />
-                <Route index element={<TaskWorkspace />} />
+            <Route path="/app">
+                <Route index element={<Home />}></Route>
+                <Route
+                    path="bots-workspace"
+                    element={
+                        <ReactFlowProvider>
+                            <BotsWrokspace />
+                        </ReactFlowProvider>
+                    }
+                />
+                <Route path="tasks-workspace">
+                    <Route path="special-day" element={<SpecialDayTaskForm />} />
+                    <Route path="special-day/:id/" element={<SpecialDayTaskForm />} />
+                    <Route path="special-day-list" element={<SpecialDayTaskList />} />
+                    <Route index element={<TaskWorkspace />} />
+                </Route>
+                <Route path="admin-template-create" element={<AdminInterface />} />
+                <Route path="emaileditor" element={<EmailTemplateEditor />} />
+                <Route path="login" element={<Login />} />
+                <Route path="user" element={<Profile />} />
             </Route>
-            <Route path="/admin-template-create" element={<AdminInterface />} />
-            <Route path="/emaileditor" element={<EmailTemplateEditor />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/user/" element={<Profile />} />
         </Routes>
     );
 };

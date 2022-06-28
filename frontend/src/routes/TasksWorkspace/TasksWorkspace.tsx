@@ -5,7 +5,7 @@ const TaskWorkspace: FC = () => {
     return (
         <div className="container">
             <h1>Tasks</h1>
-            <Link to="/tasks-workspace/special-day">Special Day Task</Link>
+            <Link to="/app/tasks-workspace/special-day">Special Day Task</Link>
             {/* <Outlet /> */}
         </div>
     );
