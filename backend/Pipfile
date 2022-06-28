@@ -20,6 +20,8 @@ lxml = "*"
 django-webpack-loader = "*"
 python-decouple = "*"
 psycopg2-binary = "*"
+django-storages = "*"
+boto3 = "*"
 
 [dev-packages]
 ipython = "*"
