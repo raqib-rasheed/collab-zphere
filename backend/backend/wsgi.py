@@ -15,5 +15,4 @@ from decouple import config
 os.environ['DJANGO_SETTINGS_MODULE'] = f'backend.{config("SETTINGS_FILE")}'
 
 application = get_wsgi_application()
-print(os.environ.get('DJANGO_SETTINGS_MODULE'))
 

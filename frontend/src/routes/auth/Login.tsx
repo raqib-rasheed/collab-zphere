@@ -52,7 +52,7 @@ const Login: FC = () => {
             <form onSubmit={onSubmitHandler}>
                 <div className="form-group">
                     <TextInput
-                        icon={<img src={loginIcons.emailIcon} className="w-13px"/>}
+                        icon={<img src={loginIcons.emailIcon} className="w-13px" alt="icon"/>}
                         name="email"
                         type="email"
                         id="email"
@@ -65,7 +65,7 @@ const Login: FC = () => {
 
                 <div className="form-group">
                     <PasswordInput
-                        icon={<img src={loginIcons.passwordIcon} className="w-13px"/>}
+                        icon={<img src={loginIcons.passwordIcon} className="w-13px" alt="icon"/>}
                         name="password"
                         value={formData.password}
                         onChange={onChangeHandler}

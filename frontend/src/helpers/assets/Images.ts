@@ -27,6 +27,7 @@ export const faFont = getUrl(isDevelopment, `${iconsPath}/fa-fa-font.svg`);
 export const faUserPlus = getUrl(isDevelopment, `${iconsPath}/fa-fa-user-plus.svg`);
 export const emailIcon = getUrl(isDevelopment, `${iconsPath}/email.svg`);
 export const passwordIcon = getUrl(isDevelopment, `${iconsPath}/password.svg`);
+export const zphereIcon = getUrl(isDevelopment, `${iconsPath}/zphere-logo.png`);
 
 
 export const faIcons = {
@@ -47,3 +48,4 @@ export const loginIcons = {
     emailIcon,
     passwordIcon,
 }
+

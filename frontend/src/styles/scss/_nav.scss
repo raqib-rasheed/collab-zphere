@@ -1,0 +1,306 @@
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .header__bottom {
+    padding: 20px 0;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .header__bottom {
+    padding: 20px 0;
+  }
+}
+@media (max-width: 575px) {
+  .header__bottom {
+    padding: 20px 0;
+  }
+}
+.header__bottom.sticky {
+  left: 0;
+  margin: auto;
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.07);
+  z-index: 9999;
+  -webkit-animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
+  animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
+  -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+  background: #ffffff;
+}
+.header__bottom.sticky .logo-gradient {
+  display: block;
+}
+.header__bottom.sticky .logo {
+  display: none;
+}
+.header__bottom.sticky .main-menu ul li a {
+  color: #1f1841;
+}
+.header__bottom.sticky .main-menu ul li:hover > a {
+  color: #6af1ac;
+}
+.header__bottom.sticky .header__btn a {
+  background: #6af1ac;
+  border-color: #6af1ac;
+  color: #ffffff;
+}
+.header__bottom.sticky .header__btn a:hover {
+  background: #ffffff;
+  color: #6af1ac;
+}
+.header__bottom.sticky .sidebar-toggle-btn .line {
+  background: #6af1ac;
+}
+.header__bottom-2 {
+  padding: 4px 0;
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .header__bottom-2 {
+    padding: 15px 0;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .header__bottom-2 {
+    padding: 15px 0;
+  }
+}
+@media (max-width: 575px) {
+  .header__bottom-2 {
+    padding: 15px 0;
+  }
+}
+
+
+.logo-gradient {
+  display: none;
+}
+
+
+/* MAIN MENU CSS START */
+.main-menu ul li {
+  display: inline-block;
+  margin-right: 40px;
+  position: relative;
+  /* submenu css start */
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .main-menu ul li {
+    margin-right: 25px;
+  }
+}
+.main-menu ul li:last-child {
+  margin-right: 0;
+}
+.main-menu ul li a {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: #808080;
+  display: inline-block;
+  padding: 20px 0;
+  padding-bottom: 25px;
+}
+.main-menu ul li:hover > a {
+  color: #ffffff;
+}
+.main-menu ul li:hover ul.submenu {
+  top: 100%;
+  visibility: visible;
+  opacity: 1;
+}
+.main-menu ul li ul.submenu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 200px;
+  padding: 15px 0;
+  background: #ffffff;
+  border-top: 4px solid #6af1ac;
+  z-index: 11;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+  box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.07);
+}
+.main-menu ul li ul.submenu li {
+  display: block;
+  margin-right: 0;
+  padding: 6px 25px 6px 25px;
+}
+.main-menu ul li ul.submenu li a {
+  font-size: 14px;
+  display: inline-block;
+  padding: 0;
+  color: #1f1841;
+  position: relative;
+}
+.main-menu ul li ul.submenu li a::before {
+  content: "";
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  position: absolute;
+  left: auto;
+  right: 0;
+  z-index: -1;
+  transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+  background: #6af1ac;
+}
+.main-menu ul li ul.submenu li:hover > a {
+  color: #6af1ac;
+}
+.main-menu ul li ul.submenu li:hover > a::before {
+  width: 100%;
+  left: 0;
+  right: auto;
+}
+.main-menu ul li ul.submenu li:hover > ul.submenu {
+  top: 0;
+  visibility: visible;
+  opacity: 1;
+}
+.main-menu ul li ul.submenu li ul.submenu {
+  top: 10%;
+  left: 100%;
+  visibility: hidden;
+  opacity: 0;
+}
+.main-menu.header__style-1-menu ul li a {
+  padding: 23px 0;
+  padding-bottom: 28px;
+}
+.main-menu.header__style-4-menu ul li a {
+  color: #686777;
+}
+.main-menu.header__style-4-menu ul li a:hover {
+  color: #6af1ac;
+}
+
+.main-menu-3 ul li a {
+  color: #2c234d;
+}
+.main-menu-3 ul li:hover > a {
+  color: #6af1ac;
+}
+
+.z-btn-white {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #1f1841;
+}
+.z-btn-white:hover {
+  background: #1f1841;
+  border-color: #1f1841;
+  color: #ffffff;
+}
+.z-btn-white-2 {
+  font-size: 15px;
+  height: 44px;
+  line-height: 40px;
+}
+.z-btn-white-3:hover {
+  background: #6af1ac;
+  border-color: #6af1ac;
+}
+
+/* btn */
+.z-btn {
+  display: inline-block;
+  height: 54px;
+  line-height: 48px;
+  border: 2px solid #6af1ac;
+  background: #6af1ac;
+  color: #ffffff;
+  padding: 0 30px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-transform: capitalize;
+  min-width: 160px;
+  text-align: center;
+}
+.z-btn i {
+  margin-left: 8px;
+}
+.z-btn:hover {
+  background: #ffffff;
+  color: #6af1ac;
+}
+.z-btn-transparent {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.z-btn-transparent:hover {
+  background: #ffffff;
+  color: #1f1841;
+  border-color: #ffffff;
+}
+.z-btn-transparent-2 {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.z-btn-border {
+  border-color: #e2e0eb;
+  color: #1f1841;
+  background: transparent;
+}
+.z-btn-border:hover {
+  background: #6af1ac;
+  color: #ffffff;
+  border-color: #6af1ac;
+}
+.z-btn-3 {
+  height: 44px;
+  line-height: 40px;
+}
+
+
+/* sidebar css start */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .sidebar-toggle-btn {
+    margin-left: 50px;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .sidebar-toggle-btn {
+    margin-left: 50px;
+  }
+}
+@media (max-width: 575px) {
+  .sidebar-toggle-btn {
+    margin-left: 50px;
+  }
+}
+.sidebar-toggle-btn .line {
+  width: 30px;
+  height: 3px;
+  background-color: #000;
+  display: block;
+  margin: 6px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar-toggle-btn:hover {
+  cursor: pointer;
+}
+.sidebar-toggle-btn:hover .line {
+  -webkit-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+  -o-transform: rotate(-30deg);
+  -moz-transform: rotate(-30deg);
+  transform: rotate(-30deg);
+}
+.sidebar-toggle-btn:hover .line:nth-child(1) {
+  width: 10px;
+}
+.sidebar-toggle-btn:hover .line:nth-child(2) {
+  width: 20px;
+}
+.sidebar-toggle-btn-3 .line {
+  background-color: #6af1ac;
+}

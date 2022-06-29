@@ -8,7 +8,7 @@ const Home: FC = () => {
             <br />
             <Link to="tasks-workspace">Task workspace</Link>
             <br />
-            <Link to="admin-template-create">Create email template</Link>
+            <Link to="emaileditor">Create email template</Link>
             <br />
         </div>
     );

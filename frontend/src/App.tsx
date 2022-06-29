@@ -15,8 +15,10 @@ import {
 } from "routes";
 import { apiUrl } from "helpers/settings";
 import { getCookie } from "helpers/utils";
+import { Layout } from "components";
 
 import "./styles/css/index.css";
+// import "./styles/css/otherstyles.css"
 
 const App: FC = () => {
     let navigate = useNavigate();
@@ -46,7 +48,14 @@ const App: FC = () => {
     return (
         <Routes>
             <Route path="/app">
-                <Route index element={<Home />}></Route>
+                <Route
+                    index
+                    element={
+                        <Layout>
+                            <Home />
+                        </Layout>
+                    }
+                ></Route>
                 <Route
                     path="bots-workspace"
                     element={
