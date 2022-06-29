@@ -24,3 +24,8 @@ export interface EmailTemplateFormValues {
     tags: string[],
     category: string;
 }
+
+export interface EmailTemplate extends EmailTemplateFormValues {
+    id: number;
+    updatedAt: string;
+} 

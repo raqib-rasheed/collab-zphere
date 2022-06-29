@@ -12,6 +12,7 @@ import {
     BotsWrokspace,
     SpecialDayTaskList,
     EmailTemplateEditor,
+    EmailTemplateList,
 } from "routes";
 import { apiUrl } from "helpers/settings";
 import { getCookie } from "helpers/utils";
@@ -72,6 +73,7 @@ const App: FC = () => {
                 </Route>
                 <Route path="admin-template-create" element={<AdminInterface />} />
                 <Route path="emaileditor" element={<EmailTemplateEditor />} />
+                <Route path="emailtemplate-list" element={<EmailTemplateList />} />
                 <Route path="login" element={<Login />} />
                 <Route path="user" element={<Profile />} />
             </Route>

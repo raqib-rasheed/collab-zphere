@@ -4,6 +4,7 @@ export { default as SpecialDayTaskForm } from "routes/TasksWorkspace/SpecialDayT
 export { default as SpecialDayTaskList } from "routes/TasksWorkspace/SpecialDayTaskList";
 export { default as SpecialDayTaskFormRoute } from "routes/TasksWorkspace/SpecialDayTaskFormRoute";
 export { default as EmailTemplateEditor } from "routes/EmailTemplate/EmailTemplateEditor";
+export { default as EmailTemplateList } from "routes/EmailTemplate/EmailTemplateList";
 export { default as Home } from "routes/home/Home";
 export { default as AdminInterface } from "routes/EmailTemplate/AdminInterface";
 export { default as Login } from "routes/auth/Login";

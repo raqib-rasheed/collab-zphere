@@ -3,12 +3,15 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from rest_framework import status
-from . import serializers
+from . import serializers, models
 
 class EmailTemplateViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated,]
     authentication_classes = [TokenAuthentication,]
     serializer_class = serializers.EmailTemplateSerializer
+
+    def get_queryset(self):
+        return models.EmailTemplate.objects.filter(user = self.request.user)
 
     def perform_create(self, serializer):
         # email_template.user = self.request.user

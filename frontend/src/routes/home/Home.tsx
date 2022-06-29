@@ -10,6 +10,8 @@ const Home: FC = () => {
             <br />
             <Link to="emaileditor">Create email template</Link>
             <br />
+            <Link to="emailtemplate-list">Template list</Link>
+            <br />
         </div>
     );
 };
