@@ -703,6 +703,14 @@ p {
   margin: 10px 0px;
 }
 
+.custom-node {
+  background-color: azure;
+  border-radius: 7px;
+  border-top-left-radius: 27px;
+  border-bottom-left-radius: 29px;
+  border: 1px solid lightblue;
+}
+
 body {
   font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 }

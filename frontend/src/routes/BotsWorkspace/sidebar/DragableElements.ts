@@ -1,5 +1,11 @@
 import {faIcons} from 'helpers/assets/Images';
-import {DragableElements} from 'helpers/types'
+import {DragableElements} from 'helpers/types';
+
+export enum dragableElementsColors {
+    triggers = "#ed2553",
+    conditions = "orange",
+    actions = "#26c4fc",
+}
 
 export const elements: DragableElements = {
     triggers: [

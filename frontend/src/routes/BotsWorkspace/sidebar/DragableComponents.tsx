@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
-import { elements } from "routes/BotsWorkspace/sidebar";
+import { elements, dragableElementsColors } from "./DragableElements";
 
-import { DragableElementsFields } from "helpers/types";
+import { DragableElements, DragableElementsFields } from "helpers/types";
 
 enum mainComponents {
     Triggers = "Triggers",
@@ -9,7 +9,12 @@ enum mainComponents {
     Actions = "Actions",
 }
 
-const onDragStart = (event: React.DragEvent<HTMLDivElement>, element: DragableElementsFields) => {
+const onDragStart = (
+    event: React.DragEvent<HTMLDivElement>,
+    element: DragableElementsFields,
+    type: keyof DragableElements
+) => {
+    event.dataTransfer.setData("color", dragableElementsColors[type]);
     event.dataTransfer.setData("nodeName", element.name);
     event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.setData("icon", element.icon);
@@ -24,7 +29,7 @@ const Triggers: FC = () => {
                         className="col-md-6 dragable-element trigger-element"
                         key={i}
                         draggable
-                        onDragStart={(e) => onDragStart(e, trigger)}
+                        onDragStart={(e) => onDragStart(e, trigger, "triggers")}
                     >
                         <div className="icon-container">
                             <img src={trigger.icon} alt="bell icon" />
@@ -46,7 +51,7 @@ const Conditions: FC = () => {
                         className="col-md-6 dragable-element condition-element"
                         key={i}
                         draggable
-                        onDragStart={(e) => onDragStart(e, condition)}
+                        onDragStart={(e) => onDragStart(e, condition, "conditions")}
                     >
                         <div className="icon-container">
                             <img src={condition.icon} alt="bell icon" />
@@ -68,7 +73,7 @@ const Actions: FC = () => {
                         className="col-md-6 dragable-element action-element"
                         key={i}
                         draggable
-                        onDragStart={(e) => onDragStart(e, action)}
+                        onDragStart={(e) => onDragStart(e, action, "actions")}
                     >
                         <div className="icon-container">
                             <img src={action.icon} alt="bell icon" />

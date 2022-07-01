@@ -11,10 +11,16 @@ import ReactFlow, {
     Connection,
     Edge,
     Node,
+    ConnectionMode,
 } from "react-flow-renderer";
 import Sidebar from "routes/BotsWorkspace/sidebar";
 import Action from "components/Actions";
+import CustomNode from 'components/CustomNode/CustomNode'
 import "styles/css/index.css";
+
+const nodeTypes = {
+    customNode: CustomNode,
+}
 
 const BotsWorkspace: FC = () => {
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -47,14 +53,17 @@ const BotsWorkspace: FC = () => {
         if (reactFlowInstance) {
             const name = event.dataTransfer.getData("nodeName");
             const icon = event.dataTransfer.getData("icon");
+            const color = event.dataTransfer.getData("color");
             const x = event.clientX;
             const y = event.clientY;
             const position = reactFlowInstance.project({ x, y });
             const newNode: Node = {
                 id: id,
                 position,
+                type: 'customNode',
                 data: {
                     label: `${name}`,
+                    color,
                     icon,
                 },
             };
@@ -76,8 +85,10 @@ const BotsWorkspace: FC = () => {
                 onConnect={onConnect}
                 onInit={onInit}
                 onDrop={onDrop}
+                nodeTypes={nodeTypes}
                 // onLoad={onLoad}
                 onDragOver={onDragOver}
+                connectionMode = {ConnectionMode.Loose}
                 fitView
                 attributionPosition="top-right"
             >
