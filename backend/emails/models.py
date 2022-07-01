@@ -24,6 +24,7 @@ class EmailTemplate(ModelWithUserAndDateTimes):
         (PAID, 'PAID')
     )
     name = models.CharField(max_length = 250)
+    subject = models.CharField(max_length = 1000)
     body = models.TextField()
     description = models.TextField()
     is_global = models.BooleanField(default = False)

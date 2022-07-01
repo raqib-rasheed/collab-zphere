@@ -17,6 +17,7 @@ export const EmailTemplateEditor: FC = () => {
             description: "",
             isGlobal: true,
             body: "",
+            subject: "",
             // saveToDraft: false,
             pricing: emailTemplatePricing.Free,
             price: null,
@@ -79,6 +80,7 @@ export const EmailTemplateEditor: FC = () => {
                         {...form.getInputProps("price")}
                     />
                 )}
+                <TextInput label="Subject" placeholder="Enter the subject of email" required {...form.getInputProps('subject')} />
                 <InputWrapper label="Template" required>
                     <RichTextEditor
                         controls={[

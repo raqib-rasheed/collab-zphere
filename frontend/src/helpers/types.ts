@@ -18,6 +18,7 @@ export interface EmailTemplateFormValues {
     description: string;
     isGlobal: boolean;
     body: string;
+    subject: string;
     // saveToDraft: boolean;
     pricing: emailTemplatePricing,
     price: number | null;

@@ -6,20 +6,21 @@ class EmailTemplateSerializer(serializers.ModelSerializer):
     updatedAt = serializers.DateTimeField(source = 'updated_at', read_only = True)
     class Meta:
         model = models.EmailTemplate
-        fields = (
-            'id',
-            'name',
-            'body',
-            'description',
-            'is_global',
-            'pricing',
-            'price',
-            # 'tags',
-            'category',
-            'isGlobal',
-            'updatedAt',
-            # 'updated_at',
-        )
-        # extra_kwargs = {
-        #     'updated_at': {"read_only": True},
-        # }
+        # fields = (
+        #     'id',
+        #     'name',
+        #     'body',
+        #     'description',
+        #     'is_global',
+        #     'pricing',
+        #     'price',
+        #     # 'tags',
+        #     'category',
+        #     'isGlobal',
+        #     'updatedAt',
+        #     # 'updated_at',
+        # )
+        exclude = ("draft", "tags", "user", 'updated_at')
+        extra_kwargs = {
+            'is_global': {"write_only": True},
+        }
