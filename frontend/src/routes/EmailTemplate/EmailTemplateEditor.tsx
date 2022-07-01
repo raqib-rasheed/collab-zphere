@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { TextInput, Textarea, Checkbox, Chips, Chip, NumberInput, InputWrapper } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { RichTextEditor } from "@mantine/rte";
+import { useNavigate } from "react-router-dom";
 
 import { EmailTemplateFormValues, emailTemplatePricing } from "helpers/types";
 import {getAxiosInstance} from 'helpers/AxiosInstance';
@@ -10,6 +11,7 @@ export const EmailTemplateEditor: FC = () => {
     const [showPriceField, setShowPriceField] = useState(false);
 
     const axiosInstance = getAxiosInstance();
+    const navigator = useNavigate();
 
     const form = useForm<EmailTemplateFormValues>({
         initialValues: {
@@ -32,7 +34,9 @@ export const EmailTemplateEditor: FC = () => {
             ...values,
             is_global: values.isGlobal,
         }).then((response) => {
-            console.log(response);
+            if(response.status === 201) {
+                navigator(`/app/email-templates`)
+            }
         }).catch((err) => {
             console.log(err);
         })

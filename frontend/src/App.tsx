@@ -1,27 +1,16 @@
-import React, { FC, useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { ReactFlowProvider } from "react-flow-renderer";
+import { FC, useEffect, useState } from "react";
+import { Routes, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {
-    TaskWorkspace,
-    SpecialDayTaskForm,
-    AdminInterface,
-    Home,
-    Login,
-    Profile,
-    BotsWrokspace,
-    SpecialDayTaskList,
-    EmailTemplateEditor,
-    EmailTemplateList,
-} from "routes";
 import { apiUrl } from "helpers/settings";
 import { getCookie } from "helpers/utils";
-import { Layout } from "components";
+import {makeRoutesFromObject, routes, getRoutePath, PathNames} from 'routes';
 
 import "./styles/css/index.css";
 // import "./styles/css/otherstyles.css"
 
 const App: FC = () => {
+    const [routesElements, setRoutes] = useState<JSX.Element[]>([]);
+
     let navigate = useNavigate();
     const token = getCookie("AUTHORIZATION");
     const axiosInstance = axios.create({
@@ -35,20 +24,22 @@ const App: FC = () => {
     });
 
     useEffect(() => {
-        console.log("called");
         axiosInstance
             .get("/user/")
             .then((response) => {
                 if (response.status !== 200) {
-                    navigate("/login");
+                    navigate(getRoutePath(PathNames.user, routes, null));
                 }
             })
-            .catch((e) => navigate("/app/login"));
+            .catch((e) => navigate(getRoutePath(PathNames.login, routes, null)));
+        setRoutes(makeRoutesFromObject(routes, null)) // store this routes to redux to avoid calling makeroutesfromobject
     }, []);
+
+    // console.log(getRoutePath('home', routes, null))
 
     return (
         <Routes>
-            <Route path="/app">
+            {/* <Route path="/app">
                 <Route
                     index
                     element={
@@ -72,11 +63,14 @@ const App: FC = () => {
                     <Route index element={<TaskWorkspace />} />
                 </Route>
                 <Route path="admin-template-create" element={<AdminInterface />} />
-                <Route path="emaileditor" element={<EmailTemplateEditor />} />
-                <Route path="emailtemplate-list" element={<EmailTemplateList />} />
+                <Route path="email-templates">
+                    <Route path="editor" element={<EmailTemplateEditor />} />
+                    <Route index element={<EmailTemplateList />} />
+                </Route>
                 <Route path="login" element={<Login />} />
                 <Route path="user" element={<Profile />} />
-            </Route>
+            </Route> */}
+            {routesElements}
         </Routes>
     );
 };
