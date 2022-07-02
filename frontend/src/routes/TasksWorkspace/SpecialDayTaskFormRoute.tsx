@@ -25,7 +25,7 @@ export const SpecialDayTaskFormRoute: FC = () => {
                 })
                 .catch((error) => {
                     console.log(error);
-                    if (error.response.status == 404) {
+                    if (error.response.status === 404) {
                         navigator("/tasks-workspace/special-day/");
                     }
                 });

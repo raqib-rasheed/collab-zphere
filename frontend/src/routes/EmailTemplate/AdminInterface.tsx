@@ -1,5 +1,5 @@
-import React, { FC, useState } from "react";
-import { RichTextEditor } from '@mantine/rte';
+import  { FC } from "react";
+// import { RichTextEditor } from '@mantine/rte';
 // import Editor from "@monaco-editor/react";
 // import { Editor as UIEditor } from "react-draft-wysiwyg";
 // import { EditorState } from "draft-js";
@@ -8,11 +8,11 @@ import { RichTextEditor } from '@mantine/rte';
 const AdminInterface: FC = () => {
     // const [editorState, setEditorState] = useState<EditorState>();
 
-    const [rawEditor, setRawEditor] = useState<boolean>(false);
+    // const [rawEditor, setRawEditor] = useState<boolean>(false);
 
-    const toggleEditorButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        setRawEditor(!rawEditor);
-    };
+    // const toggleEditorButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    //     setRawEditor(!rawEditor);
+    // };
 
     return (
         <>
