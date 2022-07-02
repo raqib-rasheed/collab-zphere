@@ -1,3 +1,5 @@
+import { StoreProvider } from "easy-peasy";
+import store from "helpers/store";
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -8,7 +10,9 @@ import { BrowserRouter } from "react-router-dom";
 ReactDOM.render(
     <BrowserRouter>
         <React.StrictMode>
-            <App />
+            <StoreProvider store={store}>
+                <App />
+            </StoreProvider>
         </React.StrictMode>
     </BrowserRouter>,
     document.getElementById("root")

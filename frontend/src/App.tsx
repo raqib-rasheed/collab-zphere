@@ -3,13 +3,18 @@ import { Routes, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { apiUrl } from "helpers/settings";
 import { getCookie } from "helpers/utils";
-import {makeRoutesFromObject, routes, getRoutePath, PathNames} from 'routes';
+import {useStoreState, useActions} from 'helpers/store';
+import { makeRoutesFromObject, routes, getRoutePath, PathNames } from "routes";
 
 import "./styles/css/index.css";
 // import "./styles/css/otherstyles.css"
 
 const App: FC = () => {
     const [routesElements, setRoutes] = useState<JSX.Element[]>([]);
+
+    const user = useStoreState((state) => state.userStore.user);
+    const setUser = useActions((actions) => actions.userStore.setUser);
+
 
     let navigate = useNavigate();
     const token = getCookie("AUTHORIZATION");
@@ -23,23 +28,33 @@ const App: FC = () => {
         },
     });
 
+
+
     useEffect(() => {
+        if(user === null) {
         axiosInstance
             .get("/user/")
             .then((response) => {
                 if (response.status !== 200) {
                     navigate(getRoutePath(PathNames.user, routes, null));
+                } else {
+                    setUser(response.data);
                 }
             })
             .catch((e) => navigate(getRoutePath(PathNames.login, routes, null)));
-        setRoutes(makeRoutesFromObject(routes, null)) // store this routes to redux to avoid calling makeroutesfromobject
-    }, []);
+        }
+    }, [user]);
+
+    useEffect(() => {
+
+        setRoutes(makeRoutesFromObject(routes, null)); // store this routes to redux to avoid calling makeroutesfromobject
+    }, [])
 
     // console.log(getRoutePath('home', routes, null))
 
     return (
-        <Routes>
-            {/* <Route path="/app">
+            <Routes>
+                {/* <Route path="/app">
                 <Route
                     index
                     element={
@@ -70,8 +85,8 @@ const App: FC = () => {
                 <Route path="login" element={<Login />} />
                 <Route path="user" element={<Profile />} />
             </Route> */}
-            {routesElements}
-        </Routes>
+                {routesElements}
+            </Routes>
     );
 };
 

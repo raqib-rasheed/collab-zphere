@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Table, Box } from "@mantine/core";
 import {RichTextEditor} from '@mantine/rte';
 import {useNavigate} from 'react-router-dom';
@@ -87,7 +87,7 @@ export const SpecialDayTaskList: FC = () => {
                                 <RichTextEditor readOnly value={task.message} onChange={() => {}} />
                             </td>
                             <td>{task.timezone}</td>
-                            <td>{task.isActive ? <img src={faIcons.faCheckSquare} width="20px" /> : null}</td>
+                            <td>{task.isActive ? <img src={faIcons.faCheckSquare} width="20px" alt="active-icon" /> : null}</td>
                         </tr>
                     ))}
                 </tbody>

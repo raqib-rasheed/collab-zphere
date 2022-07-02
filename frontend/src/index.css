@@ -12,10 +12,10 @@ code {
     monospace;
 }
 
-#root {
+/* #root {
   width: 70vw;
   height: 90vh;
-}
+} */
 
 .reactflow-container {
   width: 70vw;

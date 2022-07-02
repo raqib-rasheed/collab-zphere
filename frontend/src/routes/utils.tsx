@@ -13,30 +13,30 @@ import {
 } from "routes";
 import { Layout } from "components";
 
-export enum PathNames  {
-    home = 'home',
-    botsWorkspace = 'botsWorkspace',
-    taskWorkspace = 'taskWorkspace',
-    specialDayCreate = 'specialDayCreate',
-    specialDayUpdate = 'specialDayUpdate',
-    specialDayList = 'specialDayList',
-    emailTemplate = 'emailTemplate',
-    emailTemplateEditor = 'emailTemplateEditor',
-    login = 'login',
-    user = 'user',
+export enum PathNames {
+    home = "home",
+    botsWorkspace = "botsWorkspace",
+    taskWorkspace = "taskWorkspace",
+    specialDayCreate = "specialDayCreate",
+    specialDayUpdate = "specialDayUpdate",
+    specialDayList = "specialDayList",
+    emailTemplate = "emailTemplate",
+    emailTemplateEditor = "emailTemplateEditor",
+    login = "login",
+    user = "user",
 }
 
-export type Route = {
+export type TRoute = {
     path?: string;
     name?: PathNames;
     element?: JSX.Element;
     routes?: {
-        [key: string]: Route;
+        [key: string]: TRoute;
     };
 };
 
 export type Routes = {
-    [key: string]: Route;
+    [key: string]: TRoute;
 };
 
 export const routes: Routes = {
@@ -67,22 +67,38 @@ export const routes: Routes = {
                     index: {
                         path: "",
                         name: PathNames.taskWorkspace,
-                        element: <TaskWorkspace />,
+                        element: (
+                            <Layout>
+                                <TaskWorkspace />
+                            </Layout>
+                        ),
                     },
                     specialDayCreate: {
                         path: "special-day/",
                         name: PathNames.specialDayCreate,
-                        element: <SpecialDayTaskForm />,
+                        element: (
+                            <Layout>
+                                <SpecialDayTaskForm />
+                            </Layout>
+                        ),
                     },
                     specialDayUpdate: {
                         path: "special-day/:id/",
                         name: PathNames.specialDayUpdate,
-                        element: <SpecialDayTaskForm />,
+                        element: (
+                            <Layout>
+                                <SpecialDayTaskForm />
+                            </Layout>
+                        ),
                     },
                     specialDayList: {
                         path: "special-day-list/",
                         name: PathNames.specialDayList,
-                        element: <SpecialDayTaskList />,
+                        element: (
+                            <Layout>
+                                <SpecialDayTaskList />
+                            </Layout>
+                        ),
                     },
                 },
             },
@@ -104,7 +120,11 @@ export const routes: Routes = {
             login: {
                 path: "login/",
                 name: PathNames.login,
-                element: <Login />,
+                element: (
+                    <Layout>
+                        <Login />
+                    </Layout>
+                ),
             },
             user: {
                 path: "user/",
@@ -115,7 +135,7 @@ export const routes: Routes = {
     },
 };
 
-export const makeRoutesFromObject = (route: Route, rootRouteName: string | null) => {
+export const makeRoutesFromObject = (route: TRoute, rootRouteName: string | null) => {
     // console.log('make called')
     return Object.keys(route).map((r, i) => {
         const path = rootRouteName !== null ? rootRouteName + route[r].path : route[r].path;
@@ -133,12 +153,11 @@ export const makeRoutesFromObject = (route: Route, rootRouteName: string | null)
     });
 };
 
-export const getRoutePath = (name: PathNames, route: Route, rootRouteName: string | null) => {
+export const getRoutePath = (name: PathNames, route: TRoute, rootRouteName: string | null) => {
     const keys = Object.keys(route);
-    var path = '';
+    var path = "";
     for (var i = 0; i < keys.length; i++) {
         const newRootPath = rootRouteName !== null ? rootRouteName + route[keys[i]].path : route[keys[i]].path;
-        console.log(keys[i]);
         if (route[keys[i]].name === name) {
             path = newRootPath;
             console.log("founds");

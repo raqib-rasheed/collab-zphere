@@ -76,7 +76,7 @@ const BotsWorkspace: FC = () => {
     };
 
     return (
-        <>
+        <div className="botworkspace">
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
@@ -97,7 +97,7 @@ const BotsWorkspace: FC = () => {
             </ReactFlow>
             <Sidebar />
             <Action />
-        </>
+        </div>
     );
 };
 
