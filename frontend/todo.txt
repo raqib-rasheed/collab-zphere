@@ -7,6 +7,6 @@
 // task list view render the html in normal form
 
 31384874878
-how
-- crm triggers
-    - all except 'status change'
+
+- reset button added
+- type field added to backend

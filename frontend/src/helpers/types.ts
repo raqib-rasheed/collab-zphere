@@ -1,5 +1,7 @@
+import {iconsName} from 'helpers/assets/Images';
 export interface DragableElementsFields {
     name: string;
+    iconName: iconsName;
     icon: string;
 }
 export interface DragableElements {

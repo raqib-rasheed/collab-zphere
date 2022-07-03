@@ -14,8 +14,8 @@ import ReactFlow, {
     ConnectionMode,
 } from "react-flow-renderer";
 import Sidebar from "routes/BotsWorkspace/sidebar";
-import Action from "components/Actions";
-import CustomNode from 'components/CustomNode/CustomNode'
+import CustomNode from 'routes/BotsWorkspace/CustomNode/CustomNode';
+import {getAxiosInstance} from 'helpers/AxiosInstance';
 import "styles/css/index.css";
 
 const nodeTypes = {
@@ -27,33 +27,34 @@ const BotsWorkspace: FC = () => {
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance>();
 
+    const axiosInstance = getAxiosInstance();
+
     const onConnect = (params: Edge<any> | Connection) => setEdges((eds) => addEdge(params, eds));
 
     const onInit = async (_reactFlowInstance: ReactFlowInstance) => {
-        console.log("flow loaded:", reactFlowInstance);
-        // await axios
-        //   .get(url)
-        //   .then((res) => {
-        //     const savedNodes = res.data.nodes;
-        //     const savedEdges = res.data.edges;
-        //     console.log(savedNodes, savedEdges);
-        //     setNodes(savedNodes);
-        //     setEdges(savedEdges);
-        //   })
-        //   .catch((err) => console.log(err));
+        await axiosInstance
+          .get('/workspace/')
+          .then((res) => {
+            const savedNodes = res.data.nodes;
+            const savedEdges = res.data.edges;
+            setNodes(savedNodes);
+            setEdges(savedEdges);
+          })
+          .catch((err) => console.log(err));
         setReactFlowInstance(_reactFlowInstance);
     };
 
     const onDrop = (event: DragEvent) => {
+        event.preventDefault();
         let id;
         if (nodes.length === 0) id = "1";
         else id = `${Math.random()}`;
 
-        event.preventDefault();
         if (reactFlowInstance) {
             const name = event.dataTransfer.getData("nodeName");
             const icon = event.dataTransfer.getData("icon");
             const color = event.dataTransfer.getData("color");
+            const iconName = event.dataTransfer.getData("iconName");
             const x = event.clientX;
             const y = event.clientY;
             const position = reactFlowInstance.project({ x, y });
@@ -65,6 +66,7 @@ const BotsWorkspace: FC = () => {
                     label: `${name}`,
                     color,
                     icon,
+                    iconName,
                 },
             };
             setNodes([...nodes, newNode]);
@@ -96,7 +98,6 @@ const BotsWorkspace: FC = () => {
                 <Background color="#aaa" gap={16} />
             </ReactFlow>
             <Sidebar />
-            <Action />
         </div>
     );
 };
