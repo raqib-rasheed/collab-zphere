@@ -5,3 +5,12 @@
     border-bottom-left-radius: 29px;
     border: 1px solid lightblue;
 }
+
+.node-buttons {
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    top: 90%;
+    right: 0px;
+    width: 80px;
+}

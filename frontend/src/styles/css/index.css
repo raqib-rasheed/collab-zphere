@@ -397,6 +397,19 @@ p {
   border: 1px solid lightblue;
 }
 
+.node-buttons {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  top: 90%;
+  right: 0px;
+  width: 80px;
+}
+
 .botworkspace {
   width: 70vw;
   height: 95vh;
