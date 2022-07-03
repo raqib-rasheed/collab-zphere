@@ -21,7 +21,8 @@ class Node(AbstractReactFlowElement):
     data = models.JSONField(null=True, blank=True)
     caption = models.CharField("Caption", max_length=40, null=True) # just given not using
     position_x = models.FloatField(editable=False, default=0)
-    position_y = models.FloatField(editable=False, default=0)   
+    position_y = models.FloatField(editable=False, default=0)
+    type = models.CharField(max_length = 100)
 
 class Edge(AbstractReactFlowElement):
     edge_id = models.CharField(max_length=100)

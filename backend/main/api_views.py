@@ -81,7 +81,8 @@ class TaskViewSet(ModelViewSet):
 
 
 class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
-    
+    authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated, permissions.IsUserOwnerOfObject]
     node_serializer = serializers.NodeSerializer
     edge_serializer = serializers.EdgeSerializer
     serializer_class = serializers.WorkspaceSerializer

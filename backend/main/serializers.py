@@ -36,6 +36,7 @@ class NodeSerializer(serializers.ModelSerializer):
             "id",
             "position",
             "data",
+            'type',
             "saved_version",
             "position_x",
             "position_y",
