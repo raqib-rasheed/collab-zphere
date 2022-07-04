@@ -6,11 +6,21 @@
     border: 1px solid lightblue;
 }
 
+.react-flow__node:hover {
+    .node-buttons {
+        display: flex;
+    }
+}
+
 .node-buttons {
     position: absolute;
-    display: flex;
+    display: none;
     justify-content: space-evenly;
     top: 90%;
     right: 0px;
     width: 80px;
+}
+
+.node-button {
+    cursor: pointer;
 }

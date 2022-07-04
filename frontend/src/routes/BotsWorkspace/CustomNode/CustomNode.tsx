@@ -1,8 +1,11 @@
 import { FC, memo } from "react";
-import { Node, Handle, Position } from "react-flow-renderer";
+import { Node, Handle, Position, useStore } from "react-flow-renderer";
 import { getIconUrl } from "helpers/assets/Images";
+import {deleteNode} from 'routes/BotsWorkspace/utils'
 
 const CustomNode: FC<Node> = ({ data }) => {
+    const rfState = useStore()
+
     return (
         <div className="dragable-element custom-node">
             <div className="icon-container" style={{ backgroundColor: data.color }}>
@@ -11,9 +14,8 @@ const CustomNode: FC<Node> = ({ data }) => {
             </div>
             <p>{data.label}</p>
             <div className="node-buttons">
-                <>
                     <div className="node-button">
-                        <span className="fas fa-trash"></span>
+                        <span className="fas fa-trash" onClick={() => deleteNode(rfState)}></span>
                     </div>
                     <div className="node-button">
                         <span
@@ -24,7 +26,6 @@ const CustomNode: FC<Node> = ({ data }) => {
                             // }}
                         ></span>
                     </div>
-                </>
             </div>
             <Handle type="source" id="left" position={Position.Left} />
             <Handle type="source" id="right" position={Position.Right} />

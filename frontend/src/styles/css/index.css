@@ -397,17 +397,25 @@ p {
   border: 1px solid lightblue;
 }
 
-.node-buttons {
-  position: absolute;
+.react-flow__node:hover .node-buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.node-buttons {
+  position: absolute;
+  display: none;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   top: 90%;
   right: 0px;
   width: 80px;
+}
+
+.node-button {
+  cursor: pointer;
 }
 
 .botworkspace {

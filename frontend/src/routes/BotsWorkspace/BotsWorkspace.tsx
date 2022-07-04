@@ -6,6 +6,7 @@ import ReactFlow, {
     Controls,
     Background,
     useNodesState,
+    useStoreApi,
     useEdgesState,
     ReactFlowInstance,
     Connection,
@@ -28,6 +29,11 @@ const BotsWorkspace: FC = () => {
     const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance>();
 
     const axiosInstance = getAxiosInstance();
+
+    // just for debugging
+    // useStoreApi().subscribe((store) => {
+    //     console.log(store);
+    // })
 
     const onConnect = (params: Edge<any> | Connection) => setEdges((eds) => addEdge(params, eds));
 
