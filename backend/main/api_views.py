@@ -124,6 +124,7 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
                 "position_y": node["position"]["y"],
                 "saved_version": self.new_version,
                 "node_id": node["id"],
+                "type": node['type'],
             }
             if node_object:
                 s = self.get_node_serializer(data = data, instance = node_object, partial = True)
