@@ -1,15 +1,18 @@
 import { createStore, createTypedHooks } from 'easy-peasy';
 import {UserModel, userStore} from './userStore';
 import {LoadingModel, loadingStore} from './loadingStore';
+import {RfStateModel, rfstateStore} from './rfStore'
 
 
 export interface StoreModel {
     userStore: UserModel;
     loadingStore: LoadingModel;
+    rfstateStore: RfStateModel; 
 }
 export const model: StoreModel = {
     userStore,
     loadingStore,
+    rfstateStore,
 }
 
 const typedHook = createTypedHooks<StoreModel>();

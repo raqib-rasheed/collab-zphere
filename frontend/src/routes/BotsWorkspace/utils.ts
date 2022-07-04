@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { getConnectedEdges, Edge, Node, ReactFlowState } from "react-flow-renderer";
 
 const getIds = (element: (Node | Edge)[]): string[] => {
@@ -25,11 +26,29 @@ const getSelectedNodes = (nodes: Node[]): Node[] => {
     return nodes.filter(isSelected);
 };
 
+// export const deleteNode = (
+//     rfState: ReactFlowState,
+// ) => {
+//     const nodes = Array.from(rfState.nodeInternals.values()) as Node[];
+//     const edges = rfState.edges;
+//     const selectedNodes = getSelectedNodes(nodes);
+//     if (selectedNodes) {
+//         const connectedEdges = getConnectedEdges(selectedNodes, edges);
+//         const connectedEdgesIds = getIds(connectedEdges);
+//         const newEdges = filterWithId(edges, connectedEdgesIds);
+//         const selectedNodeIds = getIds(selectedNodes);
+//         const newNodes = filterWithId(nodes, selectedNodeIds);
+//         rfState.setNodes(newNodes);
+//         rfState.setEdges(newEdges);
+//     }
+// };
+
 export const deleteNode = (
-    rfState: ReactFlowState,
+    nodes: Node[],
+    edges: Edge[],
+    setNodes: Dispatch<SetStateAction<Node<any>[]>>,
+    setEdges: Dispatch<SetStateAction<Edge<any>[]>>
 ) => {
-    const nodes = Array.from(rfState.nodeInternals.values()) as Node[];
-    const edges = rfState.edges;
     const selectedNodes = getSelectedNodes(nodes);
     if (selectedNodes) {
         const connectedEdges = getConnectedEdges(selectedNodes, edges);
@@ -37,7 +56,7 @@ export const deleteNode = (
         const newEdges = filterWithId(edges, connectedEdgesIds);
         const selectedNodeIds = getIds(selectedNodes);
         const newNodes = filterWithId(nodes, selectedNodeIds);
-        rfState.setNodes(newNodes);
-        rfState.setEdges(newEdges);
+        setNodes(newNodes);
+        setEdges(newEdges);
     }
 };
