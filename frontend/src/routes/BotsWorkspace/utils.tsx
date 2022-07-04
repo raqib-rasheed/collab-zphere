@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { getConnectedEdges, Edge, Node, ReactFlowState } from "react-flow-renderer";
+import { getConnectedEdges, Edge, Node } from "react-flow-renderer";
+import { ElementNames } from "helpers/types";
 
 const getIds = (element: (Node | Edge)[]): string[] => {
     return element.reduce((result, current) => {
@@ -58,5 +59,22 @@ export const deleteNode = (
         const newNodes = filterWithId(nodes, selectedNodeIds);
         setNodes(newNodes);
         setEdges(newEdges);
+    }
+};
+
+export const getDrawerContent = (elementName: ElementNames) => {
+    switch (elementName) {
+        case ElementNames.statusChange:
+            return (
+                <form>
+                    <h1>Status Change form</h1>
+                </form>
+            );
+        default:
+            return (
+                <form>
+                    <h1>Status Change form</h1>
+                </form>
+            );
     }
 };

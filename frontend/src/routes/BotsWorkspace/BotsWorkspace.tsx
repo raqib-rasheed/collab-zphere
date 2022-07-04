@@ -1,4 +1,4 @@
-import React, { DragEvent, useState, FC, memo, useEffect } from "react";
+import { DragEvent, useState, FC, memo, useEffect } from "react";
 // import 'react-flow-renderer/dist/style.css';
 // import 'react-flow-renderer/dist/theme-default.css';
 import ReactFlow, {
@@ -6,7 +6,6 @@ import ReactFlow, {
     Controls,
     Background,
     useNodesState,
-    useStoreApi,
     useEdgesState,
     ReactFlowInstance,
     Connection,
@@ -14,10 +13,12 @@ import ReactFlow, {
     Node,
     ConnectionMode,
 } from "react-flow-renderer";
+import { Drawer } from "@mantine/core";
 import Sidebar from "routes/BotsWorkspace/sidebar";
 import CustomNode from "routes/BotsWorkspace/CustomNode/CustomNode";
 import { getAxiosInstance } from "helpers/AxiosInstance";
-import { useActions } from "helpers/store";
+import { useActions, useStoreState } from "helpers/store";
+import { getDrawerContent } from "routes/BotsWorkspace/utils";
 import "styles/css/index.css";
 
 const nodeTypes = {
@@ -31,8 +32,12 @@ const BotsWorkspace: FC = () => {
 
     const axiosInstance = getAxiosInstance();
 
+    const drawerState = useStoreState((state) => state.defaultStore.drawerState);
+    // rfstate actions
     const initNodeSetFunction = useActions((actions) => actions.rfstateStore.initNodeSetFunction);
     const initEdgeSetFunction = useActions((actions) => actions.rfstateStore.initEdgeSetFunction);
+    // default state actions
+    const setDrawerState = useActions((actions) => actions.defaultStore.setDrawerState);
 
     // just for debugging
     // useStoreApi().subscribe((store) => {
@@ -53,8 +58,6 @@ const BotsWorkspace: FC = () => {
             .catch((err) => console.log(err));
         setReactFlowInstance(_reactFlowInstance);
     };
-
-    console.log(nodes);
 
     const onDrop = (event: DragEvent) => {
         event.preventDefault();
@@ -92,7 +95,6 @@ const BotsWorkspace: FC = () => {
     useEffect(() => {
         // store setEdges and setNodes in state because the only way to update nodes in this view is by calling this function
         // so storing this in the store makes task much easy
-        console.log('udated')
         initEdgeSetFunction(setEdges);
         initNodeSetFunction(setNodes);
     }, [setEdges, setNodes]);
@@ -118,6 +120,12 @@ const BotsWorkspace: FC = () => {
                 <Background color="#aaa" gap={16} />
             </ReactFlow>
             <Sidebar />
+            <Drawer
+                opened={drawerState.isOpen}
+                onClose={() => setDrawerState({ isOpen: false, elementName: null })}
+            >
+                {getDrawerContent(drawerState.elementName)}
+            </Drawer>
         </div>
     );
 };

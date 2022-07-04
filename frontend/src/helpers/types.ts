@@ -1,6 +1,24 @@
 import {iconsName} from 'helpers/assets/Images';
+
+export enum ElementNames {
+    statusChange = "Status Change",
+    sendProposal = "Send Proposal",
+    newClient = "New Client",
+    handShake = "Hand Shake",
+    reminderEmail = "Reminder Email",
+    dateNTime = "Date & Time",
+    equalTo = "Equal to",
+    greaterThan = "Greater than",
+    createValue = "Create Value",
+    leadStatus = "Lead status",
+    dealStatus = "Deal status",
+    selectLeads = "Select Leads",
+    selectDeals = "Select Deals",
+    selectStaff = "Select Staff",
+    sendEmail = "Send Email",
+}
 export interface DragableElementsFields {
-    name: string;
+    name: ElementNames;
     iconName: iconsName;
     icon: string;
 }

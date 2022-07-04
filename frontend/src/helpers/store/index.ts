@@ -1,17 +1,17 @@
 import { createStore, createTypedHooks } from 'easy-peasy';
 import {UserModel, userStore} from './userStore';
-import {LoadingModel, loadingStore} from './loadingStore';
+import {DefalutStoreModel, defaultStore} from './defaultStore';
 import {RfStateModel, rfstateStore} from './rfStore'
 
 
 export interface StoreModel {
     userStore: UserModel;
-    loadingStore: LoadingModel;
+    defaultStore: DefalutStoreModel;
     rfstateStore: RfStateModel; 
 }
 export const model: StoreModel = {
     userStore,
-    loadingStore,
+    defaultStore,
     rfstateStore,
 }
 

@@ -1,5 +1,5 @@
 import {faIcons, iconsName} from 'helpers/assets/Images';
-import {DragableElements} from 'helpers/types';
+import {DragableElements, ElementNames} from 'helpers/types';
 
 export enum dragableElementsColors {
     triggers = "#ed2553",
@@ -11,86 +11,86 @@ export const elements: DragableElements = {
     triggers: [
         // triggers
         {
-            name: "Status Change",
+            name: ElementNames.statusChange,
             iconName: iconsName.faExchange,
             icon: faIcons.faExchange,
         },
         {
-            name: "Send Proposal",
+            name:  ElementNames.sendProposal,
             iconName: iconsName.faText,
             icon: faIcons.faText,
         },
         {
-            name: "New Client",
+            name:  ElementNames.newClient,
             iconName: iconsName.faEnvelope,
             icon: faIcons.faEnvelope,
         },
+        // {
+        //     name: "If proposal value more than",
+        //     iconName: iconsName.faPlayCircle,
+        //     icon: faIcons.faPlayCircle,
+        // },
         {
-            name: "If proposal value more than",
-            iconName: iconsName.faPlayCircle,
-            icon: faIcons.faPlayCircle,
-        },
-        {
-            name: "Hand shake",
+            name:  ElementNames.handShake,
             iconName: iconsName.faHandShake,
             icon: faIcons.faHandShake,
         },
         {
-            name: "Reminder email",
+            name:  ElementNames.reminderEmail,
             iconName: iconsName.faEnvelope,
             icon: faIcons.faEnvelope,
         },
     ],
     conditions: [
         {
-            name: "Date & Time",
+            name:  ElementNames.dateNTime,
             iconName: iconsName.faCalender,
             icon: faIcons.faCalender,
         },
         {
-            name: "Equal to",
+            name:  ElementNames.equalTo,
             iconName: iconsName.faBars,
             icon: faIcons.faBars,
         },
         {
-            name: "Greater than",
+            name:  ElementNames.greaterThan,
             iconName: iconsName.faPlayCircle,
             icon: faIcons.faPlayCircle,
         },
         {
-            name: "Create value",
+            name:  ElementNames.createValue,
             iconName: iconsName.faFont,
             icon: faIcons.faFont,
         },
         {
-            name: "Lead status",
+            name:  ElementNames.leadStatus,
             iconName: iconsName.faCheckSquare,
             icon: faIcons.faCheckSquare,
         },
         {
-            name: "Deal satus",
+            name:  ElementNames.dealStatus,
             iconName: iconsName.faCheckSquare,
             icon: faIcons.faCheckSquare,
         },
         {
-            name: "Select Leads",
+            name:  ElementNames.selectLeads,
             iconName: iconsName.faUserPlus,
             icon: faIcons.faUserPlus,
         },
         {
-            name: "Select Deals",
+            name:  ElementNames.selectDeals,
             iconName: iconsName.faUserPlus,
             icon: faIcons.faUserPlus,
         },
         {
-            name: "Select Staff",
+            name:  ElementNames.selectStaff,
             iconName: iconsName.faUserPlus,
             icon: faIcons.faUserPlus,
         },
     ],
     actions: [
         {
-            name: "Send Email",
+            name:  ElementNames.sendEmail,
             iconName: iconsName.faEnvelope,
             icon: faIcons.faEnvelope,
         }

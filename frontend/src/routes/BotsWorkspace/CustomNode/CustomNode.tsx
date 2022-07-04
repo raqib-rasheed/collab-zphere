@@ -2,14 +2,25 @@ import { FC, memo } from "react";
 import { Node, Handle, Position, useEdges, useNodes } from "react-flow-renderer";
 import { getIconUrl } from "helpers/assets/Images";
 import {deleteNode} from 'routes/BotsWorkspace/utils';
-import {useStoreState} from 'helpers/store';
+import {useStoreState, useActions} from 'helpers/store';
+import {ElementNames} from 'helpers/types';
 
 const CustomNode: FC<Node> = ({ data }) => {
+    const edges = useEdges()
+    const nodes = useNodes()
+    const drawerState = useStoreState((state) => state.defaultStore.drawerState);
 
     const setNodes = useStoreState((state) => state.rfstateStore.setNodes)
     const setEdges = useStoreState((state) => state.rfstateStore.setEdges);
-    const edges = useEdges()
-    const nodes = useNodes()
+
+    const setDrawerState = useActions((actions) => actions.defaultStore.setDrawerState);
+
+    const editClickHander = (elementName:ElementNames, drawerState) => {
+        setDrawerState({
+            isOpen: true,
+            elementName: elementName,
+        })
+    }
 
     return (
         <div className="dragable-element custom-node">
@@ -25,10 +36,9 @@ const CustomNode: FC<Node> = ({ data }) => {
                     <div className="node-button">
                         <span
                             className="fas fa-edit"
-                            // onClick={() => {
-                            //     props.data.drawSidebar(props.data.label, props.id);
-                            //     // tour?.show("model")
-                            // }}
+                            onClick={() => {
+                                editClickHander(data.label, drawerState)
+                            }}
                         ></span>
                     </div>
             </div>
