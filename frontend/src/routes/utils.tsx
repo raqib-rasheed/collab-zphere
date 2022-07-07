@@ -7,6 +7,7 @@ import {
     Login,
     Profile,
     BotsWrokspace,
+    BotsDashboard,
     SpecialDayTaskList,
     EmailTemplateEditor,
     EmailTemplateList,
@@ -55,6 +56,15 @@ export const routes: Routes = {
                     <ReactFlowProvider>
                         <BotsWrokspace />
                     </ReactFlowProvider>
+                ),
+            },
+            botsDashboard: {
+                path: "bots-dashboard/",
+                name: PathNames.botsDashboard,
+                element: (
+                    <Layout>
+                        <BotsDashboard />
+                    </Layout>
                 ),
             },
             taskWorkspace: {

@@ -1,5 +1,6 @@
 export { default as TaskWorkspace } from "routes/TasksWorkspace/TasksWorkspace";
 export { default as BotsWrokspace } from "routes/BotsWorkspace/BotsWorkspace";
+export { default as BotsDashboard } from "routes/BotsDashboard/BotsDashboard";
 export { default as SpecialDayTaskForm } from "routes/TasksWorkspace/SpecialDayTaskForm";
 export { default as SpecialDayTaskList } from "routes/TasksWorkspace/SpecialDayTaskList";
 export { default as SpecialDayTaskFormRoute } from "routes/TasksWorkspace/SpecialDayTaskFormRoute";

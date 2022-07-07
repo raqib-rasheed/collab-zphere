@@ -3,6 +3,7 @@ import {iconsName} from 'helpers/assets/Images';
 export enum PathNames {
     home = "home",
     botsWorkspace = "botsWorkspace",
+    botsDashboard = "botsDashboard",
     taskWorkspace = "taskWorkspace",
     specialDayCreate = "specialDayCreate",
     specialDayUpdate = "specialDayUpdate",

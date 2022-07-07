@@ -9,6 +9,8 @@ const Home: FC = () => {
             <div className="container">
                 <Link to={getRoutePath(PathNames.botsWorkspace)}>Bot workspace</Link>
                 <br />
+                <Link to={getRoutePath(PathNames.botsDashboard)}>bots Dashbaord</Link>
+                <br />
                 <Link to={getRoutePath(PathNames.taskWorkspace)}>Task workspace</Link>
                 <br />
                 <Link to={getRoutePath(PathNames.emailTemplateEditor)}>Create email template</Link>
