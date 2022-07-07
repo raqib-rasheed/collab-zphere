@@ -1,11 +1,12 @@
 import React, { FC, useState } from "react";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { PasswordInput, TextInput } from "@mantine/core";
 import axios from "axios";
 import { apiUrl, host, timezone } from "helpers/settings";
 import { setCookie } from "helpers/utils";
 import { loginIcons } from "helpers/assets/Images";
-import {getRoutePath, routes, PathNames} from 'routes';
+import { getRoutePath, routes } from "routes";
+import { PathNames } from "helpers/types";
 import "./login.css";
 interface LoginFormData {
     email: string;
@@ -83,7 +84,7 @@ const Login: FC = () => {
                                     // label="Type out your password"
                                     description="Password must include at least one letter, number and special character"
                                     size="lg"
-                                    style = {{marginBottom: '10px'}}
+                                    style={{ marginBottom: "10px" }}
                                     required
                                 />
                             </div>

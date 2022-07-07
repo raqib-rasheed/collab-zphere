@@ -1,5 +1,18 @@
 import {iconsName} from 'helpers/assets/Images';
 
+export enum PathNames {
+    home = "home",
+    botsWorkspace = "botsWorkspace",
+    taskWorkspace = "taskWorkspace",
+    specialDayCreate = "specialDayCreate",
+    specialDayUpdate = "specialDayUpdate",
+    specialDayList = "specialDayList",
+    emailTemplate = "emailTemplate",
+    emailTemplateEditor = "emailTemplateEditor",
+    login = "login",
+    user = "user",
+}
+
 export enum ElementNames {
     statusChange = "Status Change",
     sendProposal = "Send Proposal",

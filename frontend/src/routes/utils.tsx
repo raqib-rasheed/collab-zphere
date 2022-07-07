@@ -11,20 +11,16 @@ import {
     EmailTemplateEditor,
     EmailTemplateList,
 } from "routes";
+// import Home from 'routes/home/Home';
 import { Layout } from "components";
+import { PathNames } from "helpers/types";
 
-export enum PathNames {
-    home = "home",
-    botsWorkspace = "botsWorkspace",
-    taskWorkspace = "taskWorkspace",
-    specialDayCreate = "specialDayCreate",
-    specialDayUpdate = "specialDayUpdate",
-    specialDayList = "specialDayList",
-    emailTemplate = "emailTemplate",
-    emailTemplateEditor = "emailTemplateEditor",
-    login = "login",
-    user = "user",
-}
+/*
+    never import like 'routes/utils'
+    always import from 'routes'
+    else will hit error : Uncaught TypeError: Cannot read properties of undefined (reading 'default') | ReferenceError: Cannot access '__WEBPACK_DEFAULT_EXPORT__' before initialization
+    days wasted to find solution: 2 days
+ */
 
 export type TRoute = {
     path?: string;
@@ -135,7 +131,7 @@ export const routes: Routes = {
     },
 };
 
-export const makeRoutesFromObject = (route: TRoute, rootRouteName: string | null) => {
+export function makeRoutesFromObject(route: TRoute, rootRouteName: string | null) {
     // console.log('make called')
     return Object.keys(route).map((r, i) => {
         const path = rootRouteName !== null ? rootRouteName + route[r].path : route[r].path;
@@ -151,9 +147,13 @@ export const makeRoutesFromObject = (route: TRoute, rootRouteName: string | null
             </Route>
         );
     });
-};
+}
 
-export const getRoutePath = (name: PathNames, route: TRoute, rootRouteName: string | null) => {
+export function getRoutePath(
+    name: PathNames | string,
+    route: TRoute = routes,
+    rootRouteName: string | null = null
+) {
     const keys = Object.keys(route);
     var path = "";
     for (var i = 0; i < keys.length; i++) {
@@ -165,6 +165,6 @@ export const getRoutePath = (name: PathNames, route: TRoute, rootRouteName: stri
         } else if (route[keys[i]].routes) path = getRoutePath(name, route[keys[i]].routes, newRootPath);
     }
     return path;
-};
+}
 
 export default routes;

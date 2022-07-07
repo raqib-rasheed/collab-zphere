@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { zphereIcon } from "helpers/assets/Images";
-import { getRoutePath, routes, PathNames } from "routes";
+import { getRoutePath, routes } from "routes";
+import { PathNames } from "helpers/types";
 import { useStoreState } from "helpers/store";
 import { zphereBgImg } from "helpers/assets/Images";
 
