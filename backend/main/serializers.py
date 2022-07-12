@@ -109,3 +109,14 @@ class TaskSerializer(serializers.ModelSerializer):
             "is_active": {"write_only": True},
             "datetime": {"write_only": True},
         }
+
+class BotSerializer(serializers.ModelSerializer):
+    workspace = WorkspaceModelSerializer(read_only = True)
+    isActive = serializers.BooleanField(source = 'is_active', read_only = True)
+
+    class Meta:
+        exclude = ['updated_at', ]
+        model = models.Bot
+        extra_kwargs = {
+            "is_active": {"write_only": True},
+        }

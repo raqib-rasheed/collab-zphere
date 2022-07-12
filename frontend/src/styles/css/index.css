@@ -423,6 +423,31 @@ p {
   height: 95vh;
 }
 
+.bot {
+  border: 1px dotted lightblue;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-bottom: 2px;
+}
+
+.bot img {
+  border-radius: 10%;
+  margin-right: 5px;
+}
+
+.bot .details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.bot .options button {
+  margin-left: 5px;
+}
+
 .login-form-container {
   padding: 50px 100px;
   -webkit-box-shadow: 0px 30px 60px 0px rgba(8, 0, 46, 0.1);

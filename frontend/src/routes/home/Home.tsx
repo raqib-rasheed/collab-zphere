@@ -4,6 +4,7 @@ import { getRoutePath } from "routes";
 import { PathNames } from "helpers/types";
 
 const Home: FC = () => {
+    console.log(getRoutePath(PathNames.taskWorkspace))
     return (
         <>
             <div className="container">
@@ -11,7 +12,7 @@ const Home: FC = () => {
                 <br />
                 <Link to={getRoutePath(PathNames.botsDashboard)}>bots Dashbaord</Link>
                 <br />
-                <Link to={getRoutePath(PathNames.taskWorkspace)}>Task workspace</Link>
+                <Link to="/app/tasks-workspace/">Task workspace</Link>
                 <br />
                 <Link to={getRoutePath(PathNames.emailTemplateEditor)}>Create email template</Link>
                 <br />

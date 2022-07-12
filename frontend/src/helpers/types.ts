@@ -64,3 +64,30 @@ export interface EmailTemplate extends EmailTemplateFormValues {
     id: number;
     updatedAt: string;
 } 
+
+export interface Workspace {
+    name: string;
+    description: string;
+}
+
+export interface Bot {
+    id: string;
+    name: string;
+    workspace: Workspace;
+    isActive: boolean;
+    img: string;
+}
+
+export type TRoute = {
+    path?: string;
+    name?: PathNames;
+    element?: JSX.Element;
+    routes?: {
+        [key: string]: TRoute;
+    };
+};
+
+export type Routes = {
+    [key: string]: TRoute;
+};
+

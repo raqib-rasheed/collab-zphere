@@ -82,7 +82,7 @@ const App: FC = () => {
                 <Route path="login" element={<Login />} />
                 <Route path="user" element={<Profile />} />
             </Route> */}
-            {routesElements}
+            {makeRoutesFromObject(routes, null)}
         </Routes>
     );
 };

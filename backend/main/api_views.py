@@ -68,7 +68,8 @@ class TaskViewSet(ModelViewSet):
 
 
     def perform_create(self, serializer, timezone):
-        workspace, _ = models.Workspace.objects.get_or_create(user = self.request.user, name = models.Workspace.DEFAULT_NAME)
+        # workspace, _ = models.Workspace.objects.get_or_create(user = self.request.user, name = models.Workspace.DEFAULT_NAME)
+        workspace, _ = utils.get_or_create_workspace(self.request.user, name = models.Workspace.DEFAULT_NAME)
         # we need to change the timezone according to the user location
         if not timezone:
             timezone = self.reqeust.user.profile.timezone
@@ -256,3 +257,16 @@ class WebhookView(APIView):
         return Response({
             'value': response,
         }, status = status.HTTP_200_OK)
+
+class BotViewSet(ModelViewSet):
+    authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated, permissions.IsUserOwnerOfObject]
+    serializer_class = serializers.BotSerializer
+
+    def perform_create(self, serializer):
+        workspace, _ = utils.get_or_create_workspace(self.request.user, models.Workspace.DEFAULT_NAME)
+        serializer.save(workspace = workspace)
+    
+    def get_queryset(self):
+        return models.Bot.objects.all()
+    

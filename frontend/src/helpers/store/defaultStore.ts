@@ -1,5 +1,5 @@
 import { Action, action } from "easy-peasy";
-import { ElementNames } from "helpers/types";
+import { ElementNames, Bot } from "helpers/types";
 
 interface drawerState {
     isOpen: boolean;
@@ -11,6 +11,8 @@ export interface DefalutStoreModel {
     setLoading: Action<DefalutStoreModel, boolean>;
     drawerState: drawerState;
     setDrawerState: Action<DefalutStoreModel, drawerState>;
+    bots: Bot[];
+    setBots: Action<DefalutStoreModel, Bot[]>;
 }
 
 export const defaultStore: DefalutStoreModel = {
@@ -25,4 +27,8 @@ export const defaultStore: DefalutStoreModel = {
     setDrawerState: action((state, payload) => {
         state.drawerState = payload;
     }),
+    bots: [],
+    setBots: action((state, payload) => {
+        state.bots = payload;
+    })
 };

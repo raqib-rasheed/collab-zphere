@@ -10,4 +10,5 @@ export { default as Home } from "routes/home/Home";
 export { default as AdminInterface } from "routes/EmailTemplate/AdminInterface";
 export { default as Login } from "routes/auth/Login";
 export { default as Profile } from "routes/auth/Profile";
-export { default as routes, makeRoutesFromObject, getRoutePath } from "./utils";
+export { default as routes } from "routes/routes";
+export { makeRoutesFromObject, getRoutePath } from "./utils";

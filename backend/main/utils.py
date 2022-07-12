@@ -2,6 +2,7 @@ import pytz
 from bs4 import BeautifulSoup
 from datetime import datetime
 from rest_framework.exceptions import ValidationError
+from . import models
 
 template_variables = {
     "name": {
@@ -68,3 +69,6 @@ def convert_and_validate(datetime: datetime, timezone):
     datetime = localize_and_convert_to_utc(datetime, timezone)
     is_valid = validate_date(datetime)
     return datetime, is_valid
+
+def get_or_create_workspace(user, name):
+    return models.Workspace.objects.get_or_create(user = user, name = name)

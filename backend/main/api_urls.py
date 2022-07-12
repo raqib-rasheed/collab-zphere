@@ -5,6 +5,7 @@ from . import api_views
 router = DefaultRouter()
 router.register('workspace', api_views.WorkspaceViewSet, 'workspace')
 router.register('tasks', api_views.TaskViewSet, 'task')
+router.register('bots', api_views.BotViewSet, 'bot')
 
 
 urlpatterns = [
