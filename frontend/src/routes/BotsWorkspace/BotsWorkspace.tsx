@@ -14,6 +14,7 @@ import ReactFlow, {
     ConnectionMode,
 } from "react-flow-renderer";
 import { Drawer } from "@mantine/core";
+import {useParams} from 'react-router-dom';
 import Sidebar from "routes/BotsWorkspace/sidebar";
 import CustomNode from "routes/BotsWorkspace/CustomNode/CustomNode";
 import { getAxiosInstance } from "helpers/AxiosInstance";
@@ -26,11 +27,12 @@ const nodeTypes = {
 };
 
 const BotsWorkspace: FC = () => {
+    const axiosInstance = getAxiosInstance();
+    const params = useParams();
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance>();
 
-    const axiosInstance = getAxiosInstance();
 
     const drawerState = useStoreState((state) => state.defaultStore.drawerState);
     // rfstate actions
@@ -43,12 +45,11 @@ const BotsWorkspace: FC = () => {
     // useStoreApi().subscribe((store) => {
     //     console.log(store);
     // })
-
     const onConnect = (params: Edge<any> | Connection) => setEdges((eds) => addEdge(params, eds));
 
     const onInit = async (_reactFlowInstance: ReactFlowInstance) => {
         await axiosInstance
-            .get("/workspace/")
+            .get(`/workspace/${params['botId']}/`)
             .then((res) => {
                 const savedNodes = res.data.nodes;
                 const savedEdges = res.data.edges;

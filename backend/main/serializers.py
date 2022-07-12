@@ -5,8 +5,6 @@ from django.db import connections
 from backend import mysqlutils
 
 from . import utils
-
-
 class WorkspaceSerializer(serializers.Serializer):
     nodes = serializers.JSONField()
     edges = serializers.JSONField()
@@ -41,6 +39,7 @@ class NodeSerializer(serializers.ModelSerializer):
             "position_x",
             "position_y",
             "node_id",
+            'bot',
         ]
         extra_kwargs = {
             "saved_version": {"write_only": True},
@@ -63,6 +62,7 @@ class EdgeSerializer(serializers.ModelSerializer):
             "label",
             "edge_id",
             "saved_version",
+            'bot',
         ]
         extra_kwargs = {
             "edge_id": {"write_only": True},

@@ -100,7 +100,7 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
 
     def save_nodes(self, nodes):
         # models.Nodes.objects.filter(chatbot=cb).delete()
-        nodes_queryset = models.Node.objects.all()
+        nodes_queryset = models.Node.objects.filter(bot = self.bot)
         node_ids_before_save = nodes_queryset.values_list('node_id', flat = True)
         node_ids_after_save = []
 
@@ -126,6 +126,7 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
                 "saved_version": self.new_version,
                 "node_id": node["id"],
                 "type": node['type'],
+                "bot": self.bot.id,
             }
             if node_object:
                 s = self.get_node_serializer(data = data, instance = node_object, partial = True)
@@ -148,7 +149,7 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
 
     
     def save_edges(self, edges):
-        edge_queryset = models.Edge.objects.all()
+        edge_queryset = models.Edge.objects.filter(bot = self.bot)
         list_data = []
         for edge in edges:
             ed = None
@@ -169,6 +170,7 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
                 "targetHandle": edge["targetHandle"],
                 "animated": edge.get("animated", False),
                 "label": edge.get("label", None),
+                "bot": self.bot.id,
                 # "type": edge["type"],
                 "saved_version": self.new_version,
                 "edge_id": edge["id"],
@@ -186,6 +188,7 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
         edge_queryset.exclude(saved_version = self.new_version).delete()
 
     def create(self, request, *args, **kwargs):
+        self.bot = models.Bot.objects.get(id = kwargs.get('bot_id'))
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -205,8 +208,9 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
 
 
     def get(self, request, *args, **kwargs):
-        node_queryset = models.Node.objects.all()
-        edge_queryset = models.Edge.objects.all()
+        bot = models.Bot.objects.get(id = kwargs.get('bot_id'))
+        node_queryset = models.Node.objects.filter(bot = bot)
+        edge_queryset = models.Edge.objects.filter(bot = bot)
 
         nodes = self.get_node_serializer(node_queryset, many=True).data
         edges = self.get_edge_serializer(edge_queryset, many=True).data

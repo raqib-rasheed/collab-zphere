@@ -30,7 +30,7 @@ export const routes: Routes = {
                 ),
             },
             botsWorkspace: {
-                path: "bots-workspace/:id/",
+                path: "bots-workspace/:botId/",
                 name: PathNames.botsWorkspace,
                 element: (
                     <ReactFlowProvider>

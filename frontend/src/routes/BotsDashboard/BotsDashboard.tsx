@@ -23,7 +23,7 @@ export const BotsDashboard: FC = () => {
 
     const setBots = useActions((actions) => actions.defaultStore.setBots);
 
-    const botsWorkspacePath = (id: string) => getRoutePath(PathNames.botsWorkspace).replace(":id", id);
+    const botsWorkspacePath = (id: string) => getRoutePath(PathNames.botsWorkspace).replace(":botId", id);
 
     const onCreateClickHandler = (e) => {
         e.preventDefault();
@@ -56,6 +56,7 @@ export const BotsDashboard: FC = () => {
                         .catch((err) => {
                             console.log(err);
                         });
+                break;
         }
     };
 

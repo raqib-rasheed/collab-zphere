@@ -35,7 +35,7 @@ export const BotForm: FC<Props> = ({ botId, setIsOpened }) => {
                 .post("/bots/", values)
                 .then((response) => {
                     if (response.status === 201) {
-                        navigator(getRoutePath(PathNames.botsWorkspace));
+                        navigator(getRoutePath(PathNames.botsWorkspace).replace(":botId", response.data.id));
                     }
                 })
                 .catch((error) => console.log(error));

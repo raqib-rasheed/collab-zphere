@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from . import api_views
 
 router = DefaultRouter()
-router.register('workspace', api_views.WorkspaceViewSet, 'workspace')
+router.register('workspace/(?P<bot_id>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})', api_views.WorkspaceViewSet, 'workspace')
 router.register('tasks', api_views.TaskViewSet, 'task')
 router.register('bots', api_views.BotViewSet, 'bot')
 
