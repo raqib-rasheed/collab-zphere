@@ -248,6 +248,7 @@ const WithListChatPage = () => {
 									<Chat>
 										{getMessages(activeTab).map((msg) => (
 											<ChatGroup
+												key={msg.id}
 												messages={msg.messages}
 												user={msg.user}
 												isReply={msg.isReply}

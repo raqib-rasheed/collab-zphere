@@ -27,7 +27,7 @@ const Client = () => {
 			searchInput: '',
 			services: [],
 		},
-		// eslint-disable-next-line no-unused-vars
+		// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 		onSubmit: (values) => {
 			setFilterMenu(false);
 			// alert(JSON.stringify(values, null, 2));
