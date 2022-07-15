@@ -143,7 +143,6 @@ const EditBoxedPage = () => {
 	// Calendar Date Label
 	const calendarDateLabel = getLabel(date, viewMode);
 
-	// eslint-disable-next-line no-unused-vars
 	const eventStyleGetter = (event, start, end) => {
 		const isActiveEvent = start <= now && end >= now;
 		const isPastEvent = end < now;
@@ -207,7 +206,6 @@ const EditBoxedPage = () => {
 			eventUntilWhen: '',
 			eventEmployee: '',
 		},
-		// eslint-disable-next-line no-unused-vars
 		onSubmit: () => {
 			// console.log(JSON.stringify(values, null, 2));
 			setToggleInfoEventCanvas(false);

@@ -216,8 +216,7 @@ const CalendarPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [eventAdding]);
 
-	// eslint-disable-next-line no-unused-vars
-	const eventStyleGetter = (event, start, end, isSelected) => {
+	const eventStyleGetter = (event, start, end) => {
 		const isActiveEvent = start <= now && end >= now;
 		const isPastEvent = end < now;
 		const color = isActiveEvent ? 'success' : event.color;
