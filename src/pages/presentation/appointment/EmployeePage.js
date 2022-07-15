@@ -82,7 +82,6 @@ const EmployeePage = () => {
 				},
 				y: {
 					title: {
-						// eslint-disable-next-line no-unused-vars
 						formatter() {
 							return 'Hours';
 						},
