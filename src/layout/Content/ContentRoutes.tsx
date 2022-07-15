@@ -6,10 +6,11 @@ const PAGE_404 = lazy(() => import('../../pages/presentation/auth/Page404'));
 const ContentRoutes = () => {
 	return (
 		<Routes>
-			{contents.map((page) => (
+			{contents.map((page) => {
+				console.log(page.path);
 				// eslint-disable-next-line react/jsx-props-no-spreading
-				<Route key={page.path} {...page} />
-			))}
+				return <Route key={page.path} {...page} />;
+			})}
 			<Route path='*' element={<PAGE_404 />} />
 		</Routes>
 	);

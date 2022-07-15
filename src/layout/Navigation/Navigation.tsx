@@ -284,7 +284,7 @@ export const Item: FC<IItemProps> = ({
 					className={LINK_CLASS}
 					// data-bs-toggle='collapse'
 					// data-bs-target={`#${rootId}__${id}`}
-					aria-expanded={ACTIVE}
+					aria-expanded={ACTIVE || props?.activeItem?.includes(id ?? '')}
 					aria-controls={`${rootId}__${id}`}
 					role='button'
 					tabIndex={-1}
@@ -292,7 +292,7 @@ export const Item: FC<IItemProps> = ({
 					onKeyDown={handleClick}>
 					{INNER}
 				</span>
-				<Collapse isOpen={ACTIVE} isChildClone>
+				<Collapse isOpen={ACTIVE || props?.activeItem?.includes(id ?? '')} isChildClone>
 					<List
 						id={`${rootId}__${id}`}
 						ariaLabelledby={`${rootId}__${id}--link`}
@@ -422,8 +422,13 @@ const Navigation = forwardRef<HTMLElement, INavigationProps>(
 			isHorizontal: boolean | undefined,
 			isMore: boolean | undefined,
 		) {
-			return Object.keys(data).map((item) =>
-				data[item].path ? (
+			// TODO : Clean menu.js and generate dynamic ids
+			return Object.keys(data).map((item) => {
+				// const modifiedId = !!data[item]?.subMenu
+				// 	? parentId + '-' + data[item].id
+				// 	: data[item].id;
+				// console.log(modifiedId);
+				return data[item].path ? (
 					<Item
 						key={data[item].id}
 						rootId={rootId}
@@ -447,12 +452,11 @@ const Navigation = forwardRef<HTMLElement, INavigationProps>(
 							)}
 					</Item>
 				) : (
-					!isMore &&
-					!isHorizontal && (
+					!isMore && !isHorizontal && (
 						<NavigationTitle key={data[item].id}>{t(data[item].text)}</NavigationTitle>
 					)
-				),
-			);
+				);
+			});
 		}
 
 		return (

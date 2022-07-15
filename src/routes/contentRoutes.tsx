@@ -33,6 +33,31 @@ const APP = {
 	},
 	HRM_SYSTEM: {
 		EMPLOYEE_SETUP: lazy(() => import('../pages/presentation/hrm-system/EmployeeSetup')),
+		PAYROLL_SETUP: {
+			SET_SALARY: lazy(
+				() => import('../pages/presentation/hrm-system/payroll-setup/SetSalary'),
+			),
+			PAYSLIP: lazy(() => import('../pages/presentation/hrm-system/payroll-setup/Paysilp')),
+		},
+		LEAVE_MANAGEMENT: {
+			MANAGE_LEAVE: lazy(
+				() => import('../pages/presentation/hrm-system/leave-management-setup/ManageLeave'),
+			),
+			ATTENDANCE: {
+				MARK_ATTENDANCE: lazy(
+					() =>
+						import(
+							'../pages/presentation/hrm-system//leave-management-setup/attendance/MarkAttendance'
+						),
+				),
+				BULK_ATTENDANCE: lazy(
+					() =>
+						import(
+							'../pages/presentation/hrm-system//leave-management-setup/attendance/BulkAttendance'
+						),
+				),
+			},
+		},
 		EVENT_SETUP: lazy(() => import('../pages/presentation/hrm-system/EventSetup')),
 		MEETING: lazy(() => import('../pages/presentation/hrm-system/Meeting')),
 		EMPLOYEES_ASSET_SETUP: lazy(
@@ -84,8 +109,50 @@ const presentation = [
 	},
 	// App > HRM system
 	{
-		path: sidebarMenus.hrmSystem.subMenu.emplyeeSetup.path,
+		path: sidebarMenus.hrmSystem.subMenu.EmplyeeSetup.path,
 		element: <APP.HRM_SYSTEM.EMPLOYEE_SETUP />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.payrollSetup.subMenu.setSalary.path,
+		element: <APP.HRM_SYSTEM.PAYROLL_SETUP.SET_SALARY />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.payrollSetup.subMenu.paySlip.path,
+		element: <APP.HRM_SYSTEM.PAYROLL_SETUP.PAYSLIP />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.leaveManagementSetup.subMenu.manageLeave.path,
+		element: <APP.HRM_SYSTEM.LEAVE_MANAGEMENT.MANAGE_LEAVE />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.leaveManagementSetup.subMenu.attendance?.subMenu
+			.bulkAttendance.path,
+		element: <APP.HRM_SYSTEM.LEAVE_MANAGEMENT.ATTENDANCE.BULK_ATTENDANCE />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.leaveManagementSetup.subMenu.attendance?.subMenu
+			.markAttendance.path,
+		element: <APP.HRM_SYSTEM.LEAVE_MANAGEMENT.ATTENDANCE.MARK_ATTENDANCE />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.documentSetup.path,
+		element: <APP.HRM_SYSTEM.DOCUMENT_SETUP />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.companyPolicy.path,
+		element: <APP.HRM_SYSTEM.COMPANY_POLICY />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.hrmSystemSetup.path,
+		element: <APP.HRM_SYSTEM.HRM_SYSTEM_SETUP />,
 		exact: true,
 	},
 	{
