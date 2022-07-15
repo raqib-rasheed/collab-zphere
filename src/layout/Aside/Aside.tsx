@@ -11,7 +11,6 @@ import Card, { CardBody } from '../../components/bootstrap/Card';
 
 import Hand from '../../assets/img/hand.png';
 import HandWebp from '../../assets/img/hand.webp';
-import Icon from '../../components/icon/Icon';
 import Button from '../../components/bootstrap/Button';
 import Tooltips from '../../components/bootstrap/Tooltips';
 import useDarkMode from '../../hooks/useDarkMode';
@@ -79,40 +78,6 @@ const Aside = () => {
 					)}
 				</div>
 				<div className='aside-foot'>
-					<nav aria-label='aside-bottom-menu'>
-						<div className='navigation'>
-							<div
-								role='presentation'
-								className='navigation-item cursor-pointer'
-								onClick={() => {
-									setDoc(!doc);
-								}}
-								data-tour='documentation'>
-								<span className='navigation-link navigation-link-pill'>
-									<span className='navigation-link-info'>
-										<Icon
-											icon={doc ? 'ToggleOn' : 'ToggleOff'}
-											color={doc ? 'success' : undefined}
-											className='navigation-icon'
-										/>
-										<span className='navigation-text'>
-											{t('menu:Documentation')}
-										</span>
-									</span>
-									<span className='navigation-link-extra'>
-										<Icon
-											icon='Circle'
-											className={classNames(
-												'navigation-notification',
-												'text-success',
-												'animate__animated animate__heartBeat animate__infinite animate__slower',
-											)}
-										/>
-									</span>
-								</span>
-							</div>
-						</div>
-					</nav>
 					<User />
 				</div>
 			</motion.aside>
