@@ -4,7 +4,6 @@ import { useFormik } from 'formik';
 import Icon from './icon/Icon';
 import Input from './bootstrap/forms/Input';
 import Modal, { ModalBody, ModalHeader } from './bootstrap/Modal';
-import { componentsMenu } from '../menu';
 
 const Search = () => {
 	const refSearchInput = useRef<HTMLInputElement>(null);
@@ -14,8 +13,7 @@ const Search = () => {
 		initialValues: {
 			searchInput: '',
 		},
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		onSubmit: (values) => {
+		onSubmit: () => {
 			setSearchModalStatus(true);
 		},
 	});
