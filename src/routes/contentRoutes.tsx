@@ -58,6 +58,46 @@ const APP = {
 				),
 			},
 		},
+		PERFORMANCE_SETUP: {
+			INDICATOR: lazy(
+				() => import('../pages/presentation/hrm-system/performance-setup/Indicator'),
+			),
+			APPRAISAL: lazy(
+				() => import('../pages/presentation/hrm-system/performance-setup/Appraisal'),
+			),
+			GOAL_TRACKING: lazy(
+				() => import('../pages/presentation/hrm-system/performance-setup/GoalTracking'),
+			),
+		},
+		TRAINING_SETUP: {
+			TRAINING_LIST: lazy(
+				() => import('../pages/presentation/hrm-system/training-setup/TrainingList'),
+			),
+			TRAINER: lazy(() => import('../pages/presentation/hrm-system/training-setup/Trainer')),
+		},
+		RECRUITMENT_SETUP: {
+			JOB: lazy(() => import('../pages/presentation/hrm-system/recruitment-setup/Jobs')),
+			JOB_CREATE: lazy(
+				() => import('../pages/presentation/hrm-system/recruitment-setup/JobCreate'),
+			),
+			JOB_APPLICATION: lazy(
+				() => import('../pages/presentation/hrm-system/recruitment-setup/JobApplication'),
+			),
+			JOB_CANDIDATE: lazy(
+				() => import('../pages/presentation/hrm-system/recruitment-setup/JobCandidate'),
+			),
+			JOB_ONBOARDING: lazy(
+				() => import('../pages/presentation/hrm-system/recruitment-setup/JobOnBoarding'),
+			),
+			CUSTOM_QUESTION: lazy(
+				() => import('../pages/presentation/hrm-system/recruitment-setup/CustomQuestion'),
+			),
+			INTERVIEW_SCHEDULE: lazy(
+				() =>
+					import('../pages/presentation/hrm-system/recruitment-setup/InterviewSchedule'),
+			),
+			CAREER: lazy(() => import('../pages/presentation/hrm-system/recruitment-setup/Career')),
+		},
 		EVENT_SETUP: lazy(() => import('../pages/presentation/hrm-system/EventSetup')),
 		MEETING: lazy(() => import('../pages/presentation/hrm-system/Meeting')),
 		EMPLOYEES_ASSET_SETUP: lazy(
@@ -138,6 +178,76 @@ const presentation = [
 		path: sidebarMenus.hrmSystem.subMenu.leaveManagementSetup.subMenu.attendance?.subMenu
 			.markAttendance.path,
 		element: <APP.HRM_SYSTEM.LEAVE_MANAGEMENT.ATTENDANCE.MARK_ATTENDANCE />,
+		exact: true,
+	},
+
+	{
+		path: sidebarMenus.hrmSystem.subMenu.performanceSetup.subMenu.indicator.path,
+		element: <APP.HRM_SYSTEM.PERFORMANCE_SETUP.INDICATOR />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.performanceSetup.subMenu.appraisal.path,
+		element: <APP.HRM_SYSTEM.PERFORMANCE_SETUP.APPRAISAL />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.performanceSetup.subMenu.goalTracking.path,
+		element: <APP.HRM_SYSTEM.PERFORMANCE_SETUP.GOAL_TRACKING />,
+		exact: true,
+	},
+
+	{
+		path: sidebarMenus.hrmSystem.subMenu.trainingSetup.subMenu.trainingList.path,
+		element: <APP.HRM_SYSTEM.TRAINING_SETUP.TRAINING_LIST />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.trainingSetup.subMenu.trainer.path,
+		element: <APP.HRM_SYSTEM.TRAINING_SETUP.TRAINER />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.jobs.path,
+		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.JOB />,
+		exact: true,
+	},
+
+	{
+		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.jobCreate.path,
+		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.JOB_CREATE />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.jobApplication.path,
+		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.JOB_APPLICATION />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.jobCandidate.path,
+		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.JOB_CANDIDATE />,
+		exact: true,
+	},
+
+	{
+		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.jobOnBoarding.path,
+		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.JOB_ONBOARDING />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.customQuestion.path,
+		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.CUSTOM_QUESTION />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.interviewSchedule.path,
+		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.INTERVIEW_SCHEDULE />,
+		exact: true,
+	},
+
+	{
+		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.career.path,
+		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.CAREER />,
 		exact: true,
 	},
 	{

@@ -56,7 +56,6 @@ const ProjectSystemTasks = () => {
 			companyC: true,
 			companyD: true,
 		},
-		// eslint-disable-next-line no-unused-vars
 		onSubmit: () => {
 			setFilterMenu(false);
 			// alert(JSON.stringify(values, null, 2));
