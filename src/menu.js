@@ -612,7 +612,7 @@ export const sidebarMenus = {
 		},
 	},
 	supportSystem: {
-		id: 'support-system',
+		id: 'supportSystem',
 		text: 'Support System',
 		path: 'support-system',
 		icon: 'Headphones',
@@ -633,16 +633,66 @@ export const sidebarMenus = {
 		subMenu: null,
 	},
 	systemSetup: {
-		id: 'system-setup',
+		id: 'systemSetup',
 		text: 'System Setup',
 		path: 'system-setup',
 		icon: 'Gear',
 		subMenu: {
 			systemSettings: {
-				id: 'system-settings',
+				id: 'systemSetupSystemSettings',
 				text: 'System Settings',
 				path: 'system-setup/system-settings',
 				icon: 'ViewDay',
+				subMenu: {
+					businessSetting: {
+						id: 'systemSetupSystemSettingsBusinessSetting',
+						text: 'Business Setting',
+						path: 'system-setup/system-settings/business-setting',
+						icon: 'ViewDay',
+					},
+					systemSetting: {
+						id: 'systemSetupSystemSettingsSystemSetting',
+						text: 'System Setting',
+						path: 'system-setup/system-settings/system-setting',
+						icon: 'ViewDay',
+					},
+					companySetting: {
+						id: 'systemSetupSystemSettingsCompanySetting',
+						text: 'Company Setting',
+						path: 'system-setup/system-settings/company-setting',
+						icon: 'ViewDay',
+					},
+					paymentSetting: {
+						id: 'systemSetupSystemSettingsPaymentSetting',
+						text: 'Payment Setting',
+						path: 'system-setup/system-settings/payment-setting',
+						icon: 'ViewDay',
+					},
+					zoomMeetingSetting: {
+						id: 'systemSetupSystemSettingsZoomMeetingSetting',
+						text: 'Zoom-Meeting Setting',
+						path: 'system-setup/system-settings/zoom-meeting-setting',
+						icon: 'ViewDay',
+					},
+					slackSetting: {
+						id: 'systemSetupSystemSettingsSlackSetting',
+						text: 'Slack Setting',
+						path: 'system-setup/system-settings/slack-setting',
+						icon: 'ViewDay',
+					},
+					telegramSetting: {
+						id: 'systemSetupSystemSettingsTelegramSetting',
+						text: 'Telegram Setting',
+						path: 'system-setup/system-settings/telegram-setting',
+						icon: 'ViewDay',
+					},
+					twillioSetting: {
+						id: 'systemSetupSystemSettingsTwillioSetting',
+						text: 'Twillio Setting',
+						path: 'system-setup/system-settings/twillio-setting',
+						icon: 'ViewDay',
+					},
+				},
 			},
 			setupSubscriptionPlans: {
 				id: 'setup-subscription-plans',
