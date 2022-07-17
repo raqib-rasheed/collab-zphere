@@ -246,9 +246,9 @@ const WithListChatPage = () => {
 								</CardHeader>
 								<CardBody isScrollable>
 									<Chat>
-										{getMessages(activeTab).map((msg, index) => (
+										{getMessages(activeTab).map((msg) => (
 											<ChatGroup
-												key={index}
+												key={msg.id}
 												messages={msg.messages}
 												user={msg.user}
 												isReply={msg.isReply}
