@@ -98,6 +98,32 @@ const APP = {
 			),
 			CAREER: lazy(() => import('../pages/presentation/hrm-system/recruitment-setup/Career')),
 		},
+		HR_ADMIN_SETUP: {
+			AWARD: lazy(() => import('../pages/presentation/hrm-system/hr-admin-setup/Award')),
+			TRANSFER: lazy(
+				() => import('../pages/presentation/hrm-system/hr-admin-setup/Transfer'),
+			),
+			RESIGNATION: lazy(
+				() => import('../pages/presentation/hrm-system/hr-admin-setup/Resignation'),
+			),
+			TRIP: lazy(() => import('../pages/presentation/hrm-system/hr-admin-setup/Trip')),
+			PROMOTION: lazy(
+				() => import('../pages/presentation/hrm-system/hr-admin-setup/Promotion'),
+			),
+			COMPLAINTS: lazy(
+				() => import('../pages/presentation/hrm-system/hr-admin-setup/Complaints'),
+			),
+			WARNING: lazy(() => import('../pages/presentation/hrm-system/hr-admin-setup/Warning')),
+			TERMINATION: lazy(
+				() => import('../pages/presentation/hrm-system/hr-admin-setup/Termination'),
+			),
+			ANNOUNCEMENT: lazy(
+				() => import('../pages/presentation/hrm-system/hr-admin-setup/Announcement'),
+			),
+			HOLIDAYS: lazy(
+				() => import('../pages/presentation/hrm-system/hr-admin-setup/Holidays'),
+			),
+		},
 		EVENT_SETUP: lazy(() => import('../pages/presentation/hrm-system/EventSetup')),
 		MEETING: lazy(() => import('../pages/presentation/hrm-system/Meeting')),
 		EMPLOYEES_ASSET_SETUP: lazy(
@@ -139,15 +165,12 @@ const APP = {
 };
 
 const presentation = [
-	// 	/**
-	// 	 * Landing
-	// 	 */
 	{
 		path: sidebarMenus.dashboard.path,
 		element: <LANDING.DASHBOARD />,
 		exact: true,
 	},
-	// App > HRM system
+	//>>>>>>>>>> App > HRM system
 	{
 		path: sidebarMenus.hrmSystem.subMenu.EmplyeeSetup.path,
 		element: <APP.HRM_SYSTEM.EMPLOYEE_SETUP />,
@@ -244,6 +267,53 @@ const presentation = [
 		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.INTERVIEW_SCHEDULE />,
 		exact: true,
 	},
+	/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+	{
+		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.interviewSchedule.path,
+		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.INTERVIEW_SCHEDULE />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.award.path,
+		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.AWARD />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.transfer.path,
+		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.TRANSFER />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.resignation.path,
+		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.RESIGNATION />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.trip.path,
+		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.TRIP />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.promotion.path,
+		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.PROMOTION />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.complaints.path,
+		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.COMPLAINTS />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.warning.path,
+		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.WARNING />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.termination.path,
+		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.TERMINATION />,
+		exact: true,
+	},
+	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 	{
 		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.career.path,
