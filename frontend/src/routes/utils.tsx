@@ -34,7 +34,6 @@ export function getRoutePath(name: PathNames, route: TRoute = routes, rootRouteN
         const newRootPath = rootRouteName !== null ? rootRouteName + route[keys[i]].path : route[keys[i]].path;
         if (route[keys[i]].name === name) {
             path = newRootPath;
-            console.log(name, path)
             break;
         } else if (route[keys[i]].routes) path = getRoutePath(name, route[keys[i]].routes, newRootPath);
     }

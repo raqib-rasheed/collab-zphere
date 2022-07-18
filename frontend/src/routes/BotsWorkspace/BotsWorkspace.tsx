@@ -14,12 +14,13 @@ import ReactFlow, {
     ConnectionMode,
 } from "react-flow-renderer";
 import { Drawer } from "@mantine/core";
-import {useParams} from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import Sidebar from "routes/BotsWorkspace/sidebar";
 import CustomNode from "routes/BotsWorkspace/CustomNode/CustomNode";
 import { getAxiosInstance } from "helpers/AxiosInstance";
 import { useActions, useStoreState } from "helpers/store";
 import { getDrawerContent } from "routes/BotsWorkspace/utils";
+import OnDropListener from "./OnDropListener";
 import "styles/css/index.css";
 
 const nodeTypes = {
@@ -32,7 +33,10 @@ const BotsWorkspace: FC = () => {
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance>();
-
+    const [droppedNode, setDroppedNode] = useState<{ nodeId: string | null; componentName: string | null }>({
+        nodeId: null,
+        componentName: null,
+    });
 
     const drawerState = useStoreState((state) => state.defaultStore.drawerState);
     // rfstate actions
@@ -40,6 +44,7 @@ const BotsWorkspace: FC = () => {
     const initEdgeSetFunction = useActions((actions) => actions.rfstateStore.initEdgeSetFunction);
     // default state actions
     const setDrawerState = useActions((actions) => actions.defaultStore.setDrawerState);
+    const setDatas = useActions((actions) => actions.defaultStore.setNodeDatas);
 
     // just for debugging
     // useStoreApi().subscribe((store) => {
@@ -49,12 +54,14 @@ const BotsWorkspace: FC = () => {
 
     const onInit = async (_reactFlowInstance: ReactFlowInstance) => {
         await axiosInstance
-            .get(`/workspace/${params['botId']}/`)
+            .get(`/workspace/${params["botId"]}/`)
             .then((res) => {
                 const savedNodes = res.data.nodes;
                 const savedEdges = res.data.edges;
+                const datas = res.data.datas;
                 setNodes(savedNodes);
                 setEdges(savedEdges);
+                setDatas(datas);
             })
             .catch((err) => console.log(err));
         setReactFlowInstance(_reactFlowInstance);
@@ -68,6 +75,7 @@ const BotsWorkspace: FC = () => {
 
         if (reactFlowInstance) {
             const name = event.dataTransfer.getData("nodeName");
+            const componentType = event.dataTransfer.getData("componentType");
             const icon = event.dataTransfer.getData("icon");
             const color = event.dataTransfer.getData("color");
             const iconName = event.dataTransfer.getData("iconName");
@@ -80,12 +88,17 @@ const BotsWorkspace: FC = () => {
                 type: "customNode",
                 data: {
                     label: `${name}`,
+                    componentType,
                     color,
                     icon,
                     iconName,
                 },
             };
             setNodes([...nodes, newNode]);
+            setDroppedNode({
+                nodeId: newNode.id,
+                componentName: newNode.data.label,
+            });
         }
     };
 
@@ -113,7 +126,7 @@ const BotsWorkspace: FC = () => {
                 nodeTypes={nodeTypes}
                 // onLoad={onLoad}
                 onDragOver={onDragOver}
-                connectionMode={ConnectionMode.Loose}
+                // connectionMode={ConnectionMode.Loose}
                 fitView
                 attributionPosition="top-right"
             >
@@ -123,10 +136,12 @@ const BotsWorkspace: FC = () => {
             <Sidebar />
             <Drawer
                 opened={drawerState.isOpen}
-                onClose={() => setDrawerState({ isOpen: false, elementName: null })}
+                onClose={() => setDrawerState({ isOpen: false, elementName: null, nodeId: null })}
+                title={drawerState.elementName}
             >
-                {getDrawerContent(drawerState.elementName)}
+                {getDrawerContent(drawerState)}
             </Drawer>
+            <OnDropListener droppedNode={droppedNode} />
         </div>
     );
 };

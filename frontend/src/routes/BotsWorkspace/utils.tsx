@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { getConnectedEdges, Edge, Node } from "react-flow-renderer";
-import { ElementNames } from "helpers/types";
+import { ElementNames, DrawerState } from "helpers/types";
+import { StatusChange, NewClient, EqualTo } from "routes/BotsWorkspace/Drawer";
 
 const getIds = (element: (Node | Edge)[]): string[] => {
     return element.reduce((result, current) => {
@@ -48,7 +49,8 @@ export const deleteNode = (
     nodes: Node[],
     edges: Edge[],
     setNodes: Dispatch<SetStateAction<Node<any>[]>>,
-    setEdges: Dispatch<SetStateAction<Edge<any>[]>>
+    setEdges: Dispatch<SetStateAction<Edge<any>[]>>,
+    deleteDatas: Dispatch<SetStateAction<Array<string>>>
 ) => {
     const selectedNodes = getSelectedNodes(nodes);
     if (selectedNodes) {
@@ -59,22 +61,19 @@ export const deleteNode = (
         const newNodes = filterWithId(nodes, selectedNodeIds);
         setNodes(newNodes);
         setEdges(newEdges);
+        deleteDatas(selectedNodeIds);
     }
 };
 
-export const getDrawerContent = (elementName: ElementNames) => {
-    switch (elementName) {
+export const getDrawerContent = (drawerState: DrawerState) => {
+    switch (drawerState.elementName) {
         case ElementNames.statusChange:
-            return (
-                <form>
-                    <h1>Status Change form</h1>
-                </form>
-            );
+            return <StatusChange />;
+        case ElementNames.newClient:
+            return <NewClient />;
+        case ElementNames.equalTo:
+            return <EqualTo drawerState = {drawerState} />;
         default:
-            return (
-                <form>
-                    <h1>Status Change form</h1>
-                </form>
-            );
+            return <div></div>;
     }
 };

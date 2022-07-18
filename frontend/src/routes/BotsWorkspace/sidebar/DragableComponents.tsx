@@ -15,6 +15,7 @@ const onDragStart = (
     type: keyof DragableElements
 ) => {
     event.dataTransfer.setData("color", dragableElementsColors[type]);
+    event.dataTransfer.setData("componentType", type);
     event.dataTransfer.setData("nodeName", element.name);
     event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.setData("iconName", element.iconName);

@@ -1,7 +1,9 @@
 import React, { FC } from "react";
 import { useParams } from "react-router-dom";
-import { getAxiosInstance } from "helpers/AxiosInstance";
 import { Node, Edge, useEdges, useNodes, useStore } from "react-flow-renderer";
+import {NodeData} from 'helpers/types';
+import { getAxiosInstance } from "helpers/AxiosInstance";
+import {useStoreState} from 'helpers/store';
 
 const ActionButtons: FC = () => {
     const axiosInstance = getAxiosInstance();
@@ -9,13 +11,15 @@ const ActionButtons: FC = () => {
     const nodes = useNodes();
     const edges = useEdges();
 
+    const datas = useStoreState((state) => state.defaultStore.nodeDatas);
+
     const setNodes = useStore((store) => store.setNodes);
     const setEdges = useStore((store) => store.setEdges);
 
     const onSaveClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         console.log(nodes, edges);
-        await saveRequest(nodes, edges);
+        await saveRequest(nodes, edges, datas);
     };
 
     const onRestClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -24,9 +28,9 @@ const ActionButtons: FC = () => {
         setEdges([]);
     };
 
-    const saveRequest = async (nodes: Node[], edges: Edge[]) => {
+    const saveRequest = async (nodes: Node[], edges: Edge[], datas: NodeData[]) => {
         await axiosInstance
-            .post(`/workspace/${params["botId"]}/`, { nodes, edges })
+            .post(`/workspace/${params["botId"]}/`, { nodes, edges, datas })
             .then((response) => {
                 console.log(response);
             })

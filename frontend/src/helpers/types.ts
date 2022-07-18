@@ -1,4 +1,4 @@
-import {iconsName} from 'helpers/assets/Images';
+import { iconsName } from "helpers/assets/Images";
 
 export enum PathNames {
     home = "home",
@@ -54,16 +54,16 @@ export interface EmailTemplateFormValues {
     body: string;
     subject: string;
     // saveToDraft: boolean;
-    pricing: emailTemplatePricing,
+    pricing: emailTemplatePricing;
     price: number | null;
-    tags: string[],
+    tags: string[];
     category: string;
 }
 
 export interface EmailTemplate extends EmailTemplateFormValues {
     id: number;
     updatedAt: string;
-} 
+}
 
 export interface Workspace {
     name: string;
@@ -91,3 +91,16 @@ export type Routes = {
     [key: string]: TRoute;
 };
 
+export interface DrawerState {
+    isOpen: boolean;
+    elementName: ElementNames | null;
+    nodeId: string | null;
+}
+
+export interface NodeData {
+    componentName: ElementNames;
+    nodeId: string;
+    data: {
+        [key: string]: string;
+    };
+}
