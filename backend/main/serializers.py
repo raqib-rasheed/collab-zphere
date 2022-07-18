@@ -120,3 +120,11 @@ class BotSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "is_active": {"write_only": True},
         }
+
+class DataSerializer(serializers.ModelSerializer):
+    nodeId = serializers.CharField(source = 'node_id')
+
+    class Meta:
+        exclude = ['node_id', 'saved_version', ]
+        model = models.Data
+        

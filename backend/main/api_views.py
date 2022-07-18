@@ -87,6 +87,7 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
     node_serializer = serializers.NodeSerializer
     edge_serializer = serializers.EdgeSerializer
     serializer_class = serializers.WorkspaceSerializer
+    data_serializer = serializers.DataSerializer
 
     new_version = None
     
@@ -97,6 +98,10 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
     def get_edge_serializer(self, *args, **kwargs):
         kwargs.setdefault("context", self.get_serializer_context())
         return self.edge_serializer(*args, **kwargs)
+
+    def get_data_serializer(self, *args, **kwargs):
+        kwargs.setdefault("context", self.get_serializer_context())
+        return self.data_serializer(*args, **kwargs)
 
     def save_nodes(self, nodes):
         # models.Nodes.objects.filter(chatbot=cb).delete()
@@ -187,6 +192,34 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
 
         edge_queryset.exclude(saved_version = self.new_version).delete()
 
+    def save_datas(self, datas):
+        data_queryset = models.Data.objects.filter(bot = self.bot)
+        list_data = []
+        for data in datas:
+            assert "nodeId" in data, "You need to pass nodeId with data."
+            data_object = None
+            try:
+                data_object = data_queryset.get(node_id = data['nodeId'])
+            except models.Data.DoesNotExist:
+                pass
+            data = {
+                "node_id": data["nodeId"],
+                "data": data["data"],
+                "bot": self.bot.id,
+                "saved_version": self.new_version,
+            }
+            if data_object:
+                s = self.get_data_serializer(data = data, instance = data_object, partial = True)
+                s.is_valid(raise_exception = True)
+                s.save()
+            else:
+                list_data.append(data)
+        serializer = self.get_edge_serializer(data = list_data, many = True)
+        serializer.is_valid(raise_exception = True)
+        serializer.save()
+
+        data_queryset.exclude(saved_version = self.new_version).delete()
+
     def create(self, request, *args, **kwargs):
         self.bot = models.Bot.objects.get(id = kwargs.get('bot_id'))
         serializer = self.get_serializer(data=request.data)
@@ -196,6 +229,7 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
         try:
             self.save_nodes(serializer.data["nodes"])
             self.save_edges(serializer.data["edges"])
+            self.save_datas(serializer.data["datas"])
         except AssertionError as e:
             print(e)
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)

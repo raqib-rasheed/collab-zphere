@@ -45,6 +45,12 @@ class Edge(AbstractReactFlowElement):
     label = models.CharField(max_length=100, null=True)
     type = models.CharField(max_length=40)
 
+class Data(AbstractReactFlowElement):
+    node_id = models.CharField(max_length = 50)
+    component_name = models.CharField(max_length = 100)
+    data = models.JSONField()
+
+
 """
 also sent delete signal to task to delete periodic task 
 """

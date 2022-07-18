@@ -1,4 +1,3 @@
-from datetime import tzinfo
 import json
 import pytz
 from django.dispatch import receiver
