@@ -123,8 +123,13 @@ class BotSerializer(serializers.ModelSerializer):
 
 class DataSerializer(serializers.ModelSerializer):
     nodeId = serializers.CharField(source = 'node_id')
+    componentName = serializers.CharField(source = 'component_name')
 
     class Meta:
-        exclude = ['node_id', 'saved_version', ]
         model = models.Data
+        exclude = ['saved_version', ]
+        extra_kwargs = {
+            'node_id': {"write_only": True},
+            'component_name': {"write_only": True}
+        }
         

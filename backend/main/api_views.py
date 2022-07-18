@@ -197,6 +197,7 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
         list_data = []
         for data in datas:
             assert "nodeId" in data, "You need to pass nodeId with data."
+            assert "componentName" in data, "You need to pass component name with data."
             data_object = None
             try:
                 data_object = data_queryset.get(node_id = data['nodeId'])
@@ -204,6 +205,7 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
                 pass
             data = {
                 "node_id": data["nodeId"],
+                "component_name": data["componentName"],
                 "data": data["data"],
                 "bot": self.bot.id,
                 "saved_version": self.new_version,
