@@ -7,13 +7,13 @@ import SubHeader, {
 	SubHeaderLeft,
 	SubHeaderRight,
 	SubheaderSeparator,
-} from '../../../layout/SubHeader/SubHeader';
-import Avatar from '../../../components/Avatar';
-import UserImageWebp from '../../../assets/img/wanna/wanna1.webp';
-import UserImage from '../../../assets/img/wanna/wanna1.png';
-import Button from '../../../components/bootstrap/Button';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import Page from '../../../layout/Page/Page';
+} from '../layout/SubHeader/SubHeader';
+import Avatar from '../components/Avatar';
+import UserImageWebp from '../assets/img/wanna/wanna1.webp';
+import UserImage from '../assets/img/wanna/wanna1.png';
+import Button from '../components/bootstrap/Button';
+import PageWrapper from '../layout/PageWrapper/PageWrapper';
+import Page from '../layout/Page/Page';
 import Card, {
 	CardActions,
 	CardBody,
@@ -21,26 +21,26 @@ import Card, {
 	CardHeader,
 	CardLabel,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
+} from '../components/bootstrap/Card';
 import Dropdown, {
 	DropdownItem,
 	DropdownMenu,
 	DropdownToggle,
-} from '../../../components/bootstrap/Dropdown';
-import Checks, { ChecksGroup } from '../../../components/bootstrap/forms/Checks';
-import InputGroup, { InputGroupText } from '../../../components/bootstrap/forms/InputGroup';
-import Input from '../../../components/bootstrap/forms/Input';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Label from '../../../components/bootstrap/forms/Label';
-import CommonFilterTag from '../../common/CommonFilterTag';
-import CommonTableRow from '../../common/CommonTableRow';
-import Select from '../../../components/bootstrap/forms/Select';
-import Popovers from '../../../components/bootstrap/Popovers';
-import data from '../../../common/data/dummyProductData';
-import useSelectTable from '../../../hooks/useSelectTable';
-import useDarkMode from '../../../hooks/useDarkMode';
+} from '../components/bootstrap/Dropdown';
+import Checks, { ChecksGroup } from '../components/bootstrap/forms/Checks';
+import InputGroup, { InputGroupText } from '../components/bootstrap/forms/InputGroup';
+import Input from '../components/bootstrap/forms/Input';
+import FormGroup from '../components/bootstrap/forms/FormGroup';
+import Label from '../components/bootstrap/forms/Label';
+import CommonFilterTag from '../pages/common/CommonFilterTag';
+import CommonTableRow from '../pages/common/CommonTableRow';
+import Select from '../components/bootstrap/forms/Select';
+import Popovers from '../components/bootstrap/Popovers';
+import data from '../common/data/dummyProductData';
+import useSelectTable from '../hooks/useSelectTable';
+import useDarkMode from '../hooks/useDarkMode';
 
-const SalesListPage = () => {
+const TableWidget = () => {
 	const { themeStatus, darkModeStatus } = useDarkMode();
 
 	const [date, setDate] = useState(new Date());
@@ -67,8 +67,8 @@ const SalesListPage = () => {
 			// Category
 			f.category === formik.values.categoryName &&
 			// Price
-			(formik.values.minPrice === '' || f.price > formik.values.minPrice) &&
-			(formik.values.maxPrice === '' || f.price < formik.values.maxPrice) &&
+			formik.values.minPrice === '' &&
+			formik.values.maxPrice === '' &&
 			//	Company
 			((formik.values.companyA ? f.store === 'Company A' : false) ||
 				(formik.values.companyB ? f.store === 'Company B' : false) ||
@@ -76,7 +76,7 @@ const SalesListPage = () => {
 				(formik.values.companyD ? f.store === 'Company D' : false)),
 	);
 
-	const { selectTable, SelectAllCheck } = useSelectTable(filteredData);
+	const { selectTable } = useSelectTable(filteredData);
 
 	return (
 		<PageWrapper title=''>
@@ -311,7 +311,7 @@ const SalesListPage = () => {
 						<table className='table table-modern table-hover'>
 							<thead>
 								<tr>
-									<th scope='col'>{SelectAllCheck}</th>
+									<th scope='col'>afszzj</th>
 									<th scope='col'>#</th>
 									<th scope='col'>Image</th>
 									<th scope='col'>Name</th>
@@ -333,7 +333,7 @@ const SalesListPage = () => {
 										selectName='selectedList'
 										selectOnChange={selectTable.handleChange}
 										selectChecked={selectTable.values.selectedList.includes(
-											i.id.toString(),
+											i.id.toString() as never,
 										)}
 									/>
 								))}
@@ -351,4 +351,4 @@ const SalesListPage = () => {
 	);
 };
 
-export default SalesListPage;
+export default TableWidget;
