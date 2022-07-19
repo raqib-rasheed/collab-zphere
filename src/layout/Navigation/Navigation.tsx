@@ -78,7 +78,7 @@ interface IItemProps {
 	title?: string;
 	icon?: TIcons;
 	id?: string;
-	parentId?: string;
+	parentId?: string | null;
 	rootId: string;
 	isHorizontal?: boolean;
 	notification?: boolean | string;
@@ -111,7 +111,7 @@ export const Item: FC<IItemProps> = ({
 	const handleClick = () => {
 		if (typeof props.setActiveItem !== 'undefined') {
 			// eslint-disable-next-line react/prop-types, @typescript-eslint/no-unused-expressions
-			ACTIVE ? props.setActiveItem(null) : props.setActiveItem(id);
+			ACTIVE ? props.setActiveItem(parentId) : props.setActiveItem(id);
 		}
 	};
 
@@ -417,7 +417,7 @@ const Navigation = forwardRef<HTMLElement, INavigationProps>(
 							| undefined;
 				  }[]
 				| any,
-			parentId: string,
+			parentId: string | null,
 			rootId: string,
 			isHorizontal: boolean | undefined,
 			isMore: boolean | undefined,
@@ -464,7 +464,7 @@ const Navigation = forwardRef<HTMLElement, INavigationProps>(
 			// eslint-disable-next-line react/jsx-props-no-spreading
 			<nav ref={ref} aria-label={id} className={className} {...props}>
 				<List id={id} horizontal={horizontal}>
-					{fillMenu(menu, id, id, horizontal, undefined)}
+					{fillMenu(menu, null, id, horizontal, undefined)}
 					{horizontal && (
 						<Item
 							rootId={`other-${id}`}
