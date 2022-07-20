@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useParams } from "react-router-dom";
-import { Node, Edge, useEdges, useNodes, useStore } from "react-flow-renderer";
+import { Node, Edge, useEdges, useNodes } from "react-flow-renderer";
 import {NodeData} from 'helpers/types';
 import { getAxiosInstance } from "helpers/AxiosInstance";
 import {useStoreState} from 'helpers/store';
@@ -13,8 +13,8 @@ const ActionButtons: FC = () => {
 
     const datas = useStoreState((state) => state.defaultStore.nodeDatas);
 
-    const setNodes = useStore((store) => store.setNodes);
-    const setEdges = useStore((store) => store.setEdges);
+    const setNodes = useStoreState((state) => state.rfstateStore.setNodes);
+    const setEdges = useStoreState((state) => state.rfstateStore.setEdges);
 
     const onSaveClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
