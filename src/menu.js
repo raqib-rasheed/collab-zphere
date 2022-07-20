@@ -131,7 +131,7 @@ export const sidebarMenus = {
 			project: {
 				id: 'dashboardProject',
 				text: 'Project',
-				path: '/project',
+				path: '/',
 				icon: 'ViewDay',
 			},
 		},
