@@ -8,6 +8,7 @@ from . import utils
 class WorkspaceSerializer(serializers.Serializer):
     nodes = serializers.JSONField()
     edges = serializers.JSONField()
+    datas = serializers.JSONField()
 
 class NodeListSerializer(serializers.ListSerializer):
     def create(self, validated_data):
@@ -56,8 +57,8 @@ class EdgeSerializer(serializers.ModelSerializer):
             "id",
             "target",
             "source",
-            # "targetHandle",
-            # "sourceHandle",
+            "targetHandle",
+            "sourceHandle",
             "animated",
             "label",
             "edge_id",
@@ -122,14 +123,15 @@ class BotSerializer(serializers.ModelSerializer):
         }
 
 class DataSerializer(serializers.ModelSerializer):
-    nodeId = serializers.CharField(source = 'node_id')
-    componentName = serializers.CharField(source = 'component_name')
+    nodeId = serializers.CharField(source = 'node_id', read_only = True)
+    componentName = serializers.CharField(source = 'component_name', read_only = True)
 
     class Meta:
         model = models.Data
-        exclude = ['saved_version', ]
+        exclude = ['id', ]
         extra_kwargs = {
             'node_id': {"write_only": True},
-            'component_name': {"write_only": True}
+            'component_name': {"write_only": True},
+            'saved_version': {"write_only": True}
         }
         

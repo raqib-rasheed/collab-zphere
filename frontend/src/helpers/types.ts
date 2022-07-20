@@ -91,9 +91,15 @@ export type Routes = {
     [key: string]: TRoute;
 };
 
+export enum DrawerSize {
+    large = 'lg',
+    medium = 'md',
+}
+
 export interface DrawerState {
     isOpen: boolean;
     elementName: ElementNames | null;
+    size: DrawerSize;
     nodeId: string | null;
 }
 

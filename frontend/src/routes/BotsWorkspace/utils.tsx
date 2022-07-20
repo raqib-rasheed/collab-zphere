@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction } from "react";
-import { getConnectedEdges, Edge, Node } from "react-flow-renderer";
+import { Dispatch, SetStateAction, useState, useEffect } from "react";
+import { getConnectedEdges, Edge, Node, useEdges, useNodes } from "react-flow-renderer";
 import { ElementNames, DrawerState } from "helpers/types";
-import { StatusChange, NewClient, EqualTo } from "routes/BotsWorkspace/Drawer";
+import { StatusChange, NewClient, EqualToDrawer, EmailDrawer } from "routes/BotsWorkspace/Drawer";
 
 const getIds = (element: (Node | Edge)[]): string[] => {
     return element.reduce((result, current) => {
@@ -72,8 +72,31 @@ export const getDrawerContent = (drawerState: DrawerState) => {
         case ElementNames.newClient:
             return <NewClient />;
         case ElementNames.equalTo:
-            return <EqualTo drawerState = {drawerState} />;
+            return <EqualToDrawer/>;
+        case ElementNames.sendEmail:
+            return  <EmailDrawer />
         default:
             return <div></div>;
     }
 };
+
+export const useTargetNode = (drawerState: DrawerState) => {
+    /*
+    Custom Hook for getting target node of currently opened drawer
+    */
+
+    const nodes = useNodes();
+    const edges = useEdges();
+    const [targetNode, setTargetNode] = useState<Node | null>(null);
+
+    useEffect(() => {
+        const edge = edges.find((edge) => edge.source === drawerState.nodeId);
+        if (edge) {
+            const targetNode = nodes.find((node) => node.id === edge?.target);
+            setTargetNode(targetNode);
+        } else {
+            setTargetNode(null);
+        } // if the edge is deleted
+    }, [nodes, edges]);
+    return targetNode;
+}

@@ -9,15 +9,22 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin
 from . import serializers
-from .  import models
+from . import models
 from . import permissions
 from . import utils
+
+
 class LeadListView(GenericAPIView):
     """
     not tested
     """
-    authentication_classes = [TokenAuthentication, ]
-    permission_classes = [IsAuthenticated, ]
+
+    authentication_classes = [
+        TokenAuthentication,
+    ]
+    permission_classes = [
+        IsAuthenticated,
+    ]
     serializer_class = serializers.LeadsListSerializer
 
     def get(self, request, *args, **kwargs):
@@ -26,7 +33,8 @@ class LeadListView(GenericAPIView):
         data = serializer.validated_data
         return Response(data)
 
-'''
+
+"""
 test condictions
 pass invalid timezone
 pass past dates
@@ -34,55 +42,69 @@ check clockedschedule created
 check periodictask created
 check maintask creation
 check time is saved correctly 10:24 am in asia/calcutta == 4:54 in utc
-'''
+"""
+
+
 class TaskViewSet(ModelViewSet):
     """
     check the datetime if it is less than today dont save
     """
-    authentication_classes = [TokenAuthentication, ]
+
+    authentication_classes = [
+        TokenAuthentication,
+    ]
     permission_classes = [IsAuthenticated, permissions.IsUserOwnerOfObject]
     serializer_class = serializers.TaskSerializer
 
     def get_queryset(self):
-        return models.Task.objects.filter(workspace__user = self.request.user)
+        return models.Task.objects.filter(workspace__user=self.request.user)
 
     def create(self, request, *args, **kwargs):
         data = request.data.copy()
-        timezone = data.get('timezone', None) # if timezone is not passed then your profile time is taken
-        data.update({
-            'leads_email': ','.join(map(str,request.data.get('leads', [])))
-        })
+        timezone = data.get(
+            "timezone", None
+        )  # if timezone is not passed then your profile time is taken
+        data.update({"leads_email": ",".join(map(str, request.data.get("leads", [])))})
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer, timezone)
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )
 
     def perform_update(self, serializer):
-        timezone = serializer.validated_data['timezone']
-        utc_time, is_valid = utils.convert_and_validate(serializer.validated_data['datetime'], timezone)
+        timezone = serializer.validated_data["timezone"]
+        utc_time, is_valid = utils.convert_and_validate(
+            serializer.validated_data["datetime"], timezone
+        )
         if not is_valid:
-            raise ValidationError({'datetime': "You cannot set past date and time!"})
-        serializer.validated_data['datetime'] = utc_time
+            raise ValidationError({"datetime": "You cannot set past date and time!"})
+        serializer.validated_data["datetime"] = utc_time
         serializer.save()
-
 
     def perform_create(self, serializer, timezone):
         # workspace, _ = models.Workspace.objects.get_or_create(user = self.request.user, name = models.Workspace.DEFAULT_NAME)
-        workspace, _ = utils.get_or_create_workspace(self.request.user, name = models.Workspace.DEFAULT_NAME)
+        workspace, _ = utils.get_or_create_workspace(
+            self.request.user, name=models.Workspace.DEFAULT_NAME
+        )
         # we need to change the timezone according to the user location
         if not timezone:
             timezone = self.reqeust.user.profile.timezone
-        
-        utc_time, is_valid = utils.convert_and_validate(serializer.validated_data['datetime'], timezone)
+
+        utc_time, is_valid = utils.convert_and_validate(
+            serializer.validated_data["datetime"], timezone
+        )
         if not is_valid:
-            raise ValidationError({'datetime': "You cannot set past date and time!"})
-        serializer.validated_data['datetime'] = utc_time
-        serializer.save(workspace = workspace, timezone = timezone)
+            raise ValidationError({"datetime": "You cannot set past date and time!"})
+        serializer.validated_data["datetime"] = utc_time
+        serializer.save(workspace=workspace, timezone=timezone)
 
 
 class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
-    authentication_classes = [TokenAuthentication, ]
+    authentication_classes = [
+        TokenAuthentication,
+    ]
     permission_classes = [IsAuthenticated, permissions.IsUserOwnerOfObject]
     node_serializer = serializers.NodeSerializer
     edge_serializer = serializers.EdgeSerializer
@@ -90,11 +112,11 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
     data_serializer = serializers.DataSerializer
 
     new_version = None
-    
+
     def get_node_serializer(self, *args, **kwargs):
         kwargs.setdefault("context", self.get_serializer_context())
         return self.node_serializer(*args, **kwargs)
-        
+
     def get_edge_serializer(self, *args, **kwargs):
         kwargs.setdefault("context", self.get_serializer_context())
         return self.edge_serializer(*args, **kwargs)
@@ -105,8 +127,8 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
 
     def save_nodes(self, nodes):
         # models.Nodes.objects.filter(chatbot=cb).delete()
-        nodes_queryset = models.Node.objects.filter(bot = self.bot)
-        node_ids_before_save = nodes_queryset.values_list('node_id', flat = True)
+        nodes_queryset = models.Node.objects.filter(bot=self.bot)
+        node_ids_before_save = nodes_queryset.values_list("node_id", flat=True)
         node_ids_after_save = []
 
         list_datas = []
@@ -115,12 +137,12 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
             assert "id" in node, "You need to provide id in node."
             assert "position" in node, "You need to provide positio in node"
 
-            node_ids_after_save.append(node['id'])
+            node_ids_after_save.append(node["id"])
             node_object = None
             try:
-                id = node['id']
+                id = node["id"]
                 # if node_object is found we will update the data else we will create a new data
-                node_object = nodes_queryset.get(node_id = id)
+                node_object = nodes_queryset.get(node_id=id)
             except models.Node.DoesNotExist:
                 pass
             label = node["data"].get("label", None)
@@ -130,16 +152,17 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
                 "position_y": node["position"]["y"],
                 "saved_version": self.new_version,
                 "node_id": node["id"],
-                "type": node['type'],
+                "type": node["type"],
                 "bot": self.bot.id,
             }
             if node_object:
-                s = self.get_node_serializer(data = data, instance = node_object, partial = True)
-                s.is_valid(raise_exception = True)
+                s = self.get_node_serializer(
+                    data=data, instance=node_object, partial=True
+                )
+                s.is_valid(raise_exception=True)
                 s.save()
             else:
                 list_datas.append(data)
-
         s = self.get_node_serializer(data=list_datas, many=True)
         s.is_valid(raise_exception=True)
         s.save()
@@ -150,11 +173,10 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
                 deleted_node_ids.append(i)
         # delete old nodes
         for id in deleted_node_ids:
-            nodes_queryset.get(node_id = id).delete()
+            nodes_queryset.get(node_id=id).delete()
 
-    
     def save_edges(self, edges):
-        edge_queryset = models.Edge.objects.filter(bot = self.bot)
+        edge_queryset = models.Edge.objects.filter(bot=self.bot)
         list_data = []
         for edge in edges:
             ed = None
@@ -165,7 +187,7 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
             assert "targetHandle" in edge, "You need to provide targetHandle in Edge."
             data_object = None
             try:
-                data_object = edge_queryset.get(edge_id = edge['id'])
+                data_object = edge_queryset.get(edge_id=edge["id"])
             except models.Edge.DoesNotExist:
                 pass
             data = {
@@ -181,8 +203,10 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
                 "edge_id": edge["id"],
             }
             if data_object:
-                s = self.get_edge_serializer(data = data, instance = data_object, partial = True)
-                s.is_valid(raise_exception = True)
+                s = self.get_edge_serializer(
+                    data=data, instance=data_object, partial=True
+                )
+                s.is_valid(raise_exception=True)
                 s.save()
             else:
                 list_data.append(data)
@@ -190,17 +214,18 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
-        edge_queryset.exclude(saved_version = self.new_version).delete()
+        edge_queryset.exclude(saved_version=self.new_version).delete()
 
     def save_datas(self, datas):
-        data_queryset = models.Data.objects.filter(bot = self.bot)
+        data_queryset = models.Data.objects.filter(bot=self.bot)
         list_data = []
+        print(datas)
         for data in datas:
             assert "nodeId" in data, "You need to pass nodeId with data."
             assert "componentName" in data, "You need to pass component name with data."
             data_object = None
             try:
-                data_object = data_queryset.get(node_id = data['nodeId'])
+                data_object = data_queryset.get(node_id=data["nodeId"])
             except models.Data.DoesNotExist:
                 pass
             data = {
@@ -211,19 +236,20 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
                 "saved_version": self.new_version,
             }
             if data_object:
-                s = self.get_data_serializer(data = data, instance = data_object, partial = True)
-                s.is_valid(raise_exception = True)
+                s = self.get_data_serializer(
+                    data=data, instance=data_object, partial=True
+                )
+                s.is_valid(raise_exception=True)
                 s.save()
             else:
                 list_data.append(data)
-        serializer = self.get_edge_serializer(data = list_data, many = True)
-        serializer.is_valid(raise_exception = True)
+        serializer = self.get_data_serializer(data=list_data, many=True)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
-
-        data_queryset.exclude(saved_version = self.new_version).delete()
+        data_queryset.exclude(saved_version=self.new_version).delete()
 
     def create(self, request, *args, **kwargs):
-        self.bot = models.Bot.objects.get(id = kwargs.get('bot_id'))
+        self.bot = models.Bot.objects.get(id=kwargs.get("bot_id"))
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -242,20 +268,23 @@ class WorkspaceViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response("success", status=status.HTTP_200_OK, headers=headers)
 
-
     def get(self, request, *args, **kwargs):
-        bot = models.Bot.objects.get(id = kwargs.get('bot_id'))
-        node_queryset = models.Node.objects.filter(bot = bot)
-        edge_queryset = models.Edge.objects.filter(bot = bot)
+        bot = models.Bot.objects.get(id=kwargs.get("bot_id"))
+        node_queryset = models.Node.objects.filter(bot=bot)
+        edge_queryset = models.Edge.objects.filter(bot=bot)
+        data_queryset = models.Data.objects.filter(bot=bot)
 
         nodes = self.get_node_serializer(node_queryset, many=True).data
         edges = self.get_edge_serializer(edge_queryset, many=True).data
+        datas = self.get_data_serializer(data_queryset, many=True).data
 
         ResponseData = {
             "nodes": nodes,
             "edges": edges,
+            "datas": datas,
         }
         return Response(ResponseData)
+
 
 class TemplateVaribles(APIView):
     authentication_classes = []
@@ -264,11 +293,14 @@ class TemplateVaribles(APIView):
     def get(self, request, *args, **kwargs):
         temp_template_variables = []
         for key in utils.template_variables:
-            temp_template_variables.append({
-                'value': utils.template_variables[key]['data_value'],
-                'id': utils.template_variables[key]['data_id']
-            })
+            temp_template_variables.append(
+                {
+                    "value": utils.template_variables[key]["data_value"],
+                    "id": utils.template_variables[key]["data_id"],
+                }
+            )
         return Response(temp_template_variables)
+
 
 class WebhookView(APIView):
 
@@ -278,35 +310,41 @@ class WebhookView(APIView):
 
     def get_response(self):
         if self.prev_node:
-            edge = self.edges.get(source = self.prev_node.node_id)
+            edge = self.edges.get(source=self.prev_node.node_id)
         else:
-            edge = self.edges.get(source = "1")
-        
-        target_id = edge.target
-        target_node = self.nodes.get(node_id = target_id)
-        if target_node.data['label'] == "Send email":
-            print('an email is sent ')
-        return 'Success'
+            edge = self.edges.get(source="1")
 
+        target_id = edge.target
+        target_node = self.nodes.get(node_id=target_id)
+        if target_node.data["label"] == "Send email":
+            print("an email is sent ")
+        return "Success"
 
     def post(self, request, *args, **kwargs):
         self.edges = models.Edge.objects.all()
         self.nodes = models.Node.objects.all()
         response = self.get_response()
 
-        return Response({
-            'value': response,
-        }, status = status.HTTP_200_OK)
+        return Response(
+            {
+                "value": response,
+            },
+            status=status.HTTP_200_OK,
+        )
+
 
 class BotViewSet(ModelViewSet):
-    authentication_classes = [TokenAuthentication, ]
+    authentication_classes = [
+        TokenAuthentication,
+    ]
     permission_classes = [IsAuthenticated, permissions.IsUserOwnerOfObject]
     serializer_class = serializers.BotSerializer
 
     def perform_create(self, serializer):
-        workspace, _ = utils.get_or_create_workspace(self.request.user, models.Workspace.DEFAULT_NAME)
-        serializer.save(workspace = workspace)
-    
+        workspace, _ = utils.get_or_create_workspace(
+            self.request.user, models.Workspace.DEFAULT_NAME
+        )
+        serializer.save(workspace=workspace)
+
     def get_queryset(self):
         return models.Bot.objects.all()
-    

@@ -1,5 +1,5 @@
 import { Action, action } from "easy-peasy";
-import { ElementNames, Bot, DrawerState, NodeData } from "helpers/types";
+import { ElementNames, Bot, DrawerState, NodeData, DrawerSize } from "helpers/types";
 
 export interface DefalutStoreModel {
     loading: boolean;
@@ -15,16 +15,19 @@ export interface DefalutStoreModel {
     deleteDatas: Action<DefalutStoreModel, Array<string>>;
 }
 
+export const DefaultDrawerState:DrawerState = {
+    isOpen: false,
+    elementName: null,
+    nodeId: null,
+    size: DrawerSize.medium,
+}
+
 export const defaultStore: DefalutStoreModel = {
     loading: false,
     setLoading: action((state, payload) => {
         state.loading = payload;
     }),
-    drawerState: {
-        isOpen: false,
-        elementName: ElementNames.statusChange,
-        nodeId: null,
-    },
+    drawerState: DefaultDrawerState,
     setDrawerState: action((state, payload) => {
         state.drawerState = payload;
     }),

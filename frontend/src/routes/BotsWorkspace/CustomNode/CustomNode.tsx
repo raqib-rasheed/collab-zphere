@@ -3,7 +3,7 @@ import { Node, Edge, Handle, Position, useEdges, useNodes } from "react-flow-ren
 import { getIconUrl } from "helpers/assets/Images";
 import { deleteNode } from "routes/BotsWorkspace/utils";
 import { useStoreState, useActions } from "helpers/store";
-import { ElementNames } from "helpers/types";
+import { DrawerSize, ElementNames } from "helpers/types";
 
 const CustomNode: FC<Node> = ({ id, data }) => {
     const edges = useEdges();
@@ -17,10 +17,13 @@ const CustomNode: FC<Node> = ({ id, data }) => {
     const deleteDatas = useActions((actions) => actions.defaultStore.deleteDatas);
 
     const editClickHander = (elementName: ElementNames, nodeId: string) => {
+        let size = DrawerSize.medium;
+        if (elementName === ElementNames.sendEmail) size = DrawerSize.large;
         setDrawerState({
             isOpen: true,
             elementName: elementName,
             nodeId,
+            size,
         });
     };
 

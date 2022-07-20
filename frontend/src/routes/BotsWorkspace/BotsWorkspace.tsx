@@ -11,7 +11,6 @@ import ReactFlow, {
     Connection,
     Edge,
     Node,
-    ConnectionMode,
 } from "react-flow-renderer";
 import { Drawer } from "@mantine/core";
 import { useParams } from "react-router-dom";
@@ -19,6 +18,7 @@ import Sidebar from "routes/BotsWorkspace/sidebar";
 import CustomNode from "routes/BotsWorkspace/CustomNode/CustomNode";
 import { getAxiosInstance } from "helpers/AxiosInstance";
 import { useActions, useStoreState } from "helpers/store";
+import { DefaultDrawerState } from "helpers/store/defaultStore";
 import { getDrawerContent } from "routes/BotsWorkspace/utils";
 import OnDropListener from "./OnDropListener";
 import "styles/css/index.css";
@@ -136,8 +136,9 @@ const BotsWorkspace: FC = () => {
             <Sidebar />
             <Drawer
                 opened={drawerState.isOpen}
-                onClose={() => setDrawerState({ isOpen: false, elementName: null, nodeId: null })}
+                onClose={() => setDrawerState(DefaultDrawerState)}
                 title={drawerState.elementName}
+                size={drawerState.size}
             >
                 {getDrawerContent(drawerState)}
             </Drawer>
