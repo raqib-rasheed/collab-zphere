@@ -1,5 +1,5 @@
 import React from 'react';
-import TableWidget from '../../../widgets/Table';
+import TableWidget from '../../../../widgets/Table';
 
 const ProjectSystemTasks = () => {
 	return <TableWidget />;
