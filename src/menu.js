@@ -92,11 +92,11 @@ export const sidebarMenus = {
 				id: 'dashboardHrm',
 				text: 'HRM',
 				path: '/hrm',
-				icon: 'ViewArray',
+				icon: 'ViewDay',
 				subMenu: {
 					overView: {
 						id: 'dashboardHrmOverview',
-						text: 'Overview',
+						text: 'OverView',
 						path: '/hrm/overview',
 						icon: 'ViewArray',
 					},
@@ -104,7 +104,7 @@ export const sidebarMenus = {
 						id: 'dashboardHrmReports',
 						text: 'Reports',
 						path: '/hrm/reports',
-						icon: 'ViewDay',
+						icon: 'ViewArray',
 						subMenu: {
 							payroll: {
 								id: 'dashboardHrmReportsPayroll',
@@ -121,7 +121,7 @@ export const sidebarMenus = {
 							monthlyAttendance: {
 								id: 'dashboardHrmReportsMonthlyAttendance',
 								text: 'Monthly Attendance',
-								path: '/hrm/reports/monthly-attendance',
+								path: '/hrm/reports/monthlyAttendance',
 								icon: 'ViewArray',
 							},
 						},
@@ -129,7 +129,7 @@ export const sidebarMenus = {
 				},
 			},
 			project: {
-				id: 'project',
+				id: 'dashboardProject',
 				text: 'Project',
 				path: '/project',
 				icon: 'ViewDay',

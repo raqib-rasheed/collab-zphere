@@ -1,18 +1,18 @@
 import React, { lazy } from 'react';
 import { sidebarMenus } from '../menu';
-// import Login from '../pages/presentation/auth/Login';
-
-const LANDING = {
-	DASHBOARD: lazy(() => import('../pages/dashboard/DashboardPage')),
-	DASHBOARD_BOOKING: lazy(() => import('../pages/dashboard/DashboardBookingPage')),
-	SUMMARY: lazy(() => import('../pages/SummaryPage')),
-};
-
-// const AUTH = {
-// 	PAGE_404: lazy(() => import('../pages/presentation/auth/Page404')),
-// };
 
 const APP = {
+	DASHBOARD: {
+		PROJECT: lazy(() => import('../pages/presentation/dashboard/DashboardPage')),
+		OVERVIEW: lazy(() => import('../pages/presentation/dashboard/hrm/Overview')),
+		REPORTS: {
+			PAYROLL: lazy(() => import('../pages/presentation/dashboard/hrm/reports/Payroll')),
+			LEAVE: lazy(() => import('../pages/presentation/dashboard/hrm/reports/Leave')),
+			MONTHLY_ATTENDANCE: lazy(
+				() => import('../pages/presentation/dashboard/hrm/reports/MonthlyAttendance'),
+			),
+		},
+	},
 	ACCOUNTING_SYSTEM: {
 		CUSTOMER: lazy(() => import('../pages/presentation/accounting-system/Customer')),
 		VENDOR: lazy(() => import('../pages/presentation/accounting-system/Vendor')),
@@ -165,15 +165,31 @@ const APP = {
 };
 
 const presentation = [
+	// >>>>>>>>> Dashboard
 	{
 		path: sidebarMenus.dashboard.path,
-		element: <LANDING.DASHBOARD />,
+		element: <APP.HRM_SYSTEM.EMPLOYEE_SETUP />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.subMenu.hrm.subMenu.overView.path,
+		element: <APP.HRM_SYSTEM.EMPLOYEE_SETUP />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.path,
+		element: <APP.HRM_SYSTEM.EMPLOYEE_SETUP />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.path,
+		element: <APP.HRM_SYSTEM.EMPLOYEE_SETUP />,
 		exact: true,
 	},
 	//>>>>>>>>>> App > HRM system
 	{
 		path: sidebarMenus.hrmSystem.subMenu.EmplyeeSetup.path,
-		element: <APP.HRM_SYSTEM.EMPLOYEE_SETUP />,
+		element: <APP.DASHBOARD.PROJECT />,
 		exact: true,
 	},
 	{
