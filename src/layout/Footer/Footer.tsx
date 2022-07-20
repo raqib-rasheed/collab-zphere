@@ -16,7 +16,9 @@ const Footer = () => {
 			<div className='container-fluid'>
 				<div className='row'>
 					<div className='col'>
-						<span className='fw-light'>Copyright © 2022 - Version 3.0.2</span>
+						<span className='fw-light'>
+							Copyright © 2022 - <small className='fw-bold'>Zphere</small>
+						</span>
 					</div>
 					<div className='col-auto'>
 						<a
@@ -25,7 +27,7 @@ const Footer = () => {
 								'link-dark': !darkModeStatus,
 								'link-light': darkModeStatus,
 							})}>
-							<small className='fw-bold'>Facit Theme</small>
+							<small className='fw-bold'>Zphere</small>
 						</a>
 					</div>
 				</div>

@@ -4,13 +4,15 @@ import { sidebarMenus } from '../menu';
 const APP = {
 	DASHBOARD: {
 		PROJECT: lazy(() => import('../pages/presentation/dashboard/DashboardPage')),
-		OVERVIEW: lazy(() => import('../pages/presentation/dashboard/hrm/Overview')),
-		REPORTS: {
-			PAYROLL: lazy(() => import('../pages/presentation/dashboard/hrm/reports/Payroll')),
-			LEAVE: lazy(() => import('../pages/presentation/dashboard/hrm/reports/Leave')),
-			MONTHLY_ATTENDANCE: lazy(
-				() => import('../pages/presentation/dashboard/hrm/reports/MonthlyAttendance'),
-			),
+		HRM: {
+			OVERVIEW: lazy(() => import('../pages/presentation/dashboard/hrm/Overview')),
+			REPORTS: {
+				PAYROLL: lazy(() => import('../pages/presentation/dashboard/hrm/reports/Payroll')),
+				LEAVE: lazy(() => import('../pages/presentation/dashboard/hrm/reports/Leave')),
+				MONTHLY_ATTENDANCE: lazy(
+					() => import('../pages/presentation/dashboard/hrm/reports/MonthlyAttendance'),
+				),
+			},
 		},
 	},
 	ACCOUNTING_SYSTEM: {
@@ -139,9 +141,17 @@ const APP = {
 		BUG: lazy(() => import('../pages/presentation/project-system/Bug')),
 		TIMESHEET: lazy(() => import('../pages/presentation/project-system/Timesheet')),
 		TRACKER: lazy(() => import('../pages/presentation/project-system/Tracker')),
-		PROJECT_SYSTEM_SETUP: lazy(
-			() => import('../pages/presentation/project-system/ProjectSystemSetup'),
-		),
+		PROJECT_SYSTEM_SETUP: {
+			PROJECT_TASK_STAGES: lazy(
+				() =>
+					import(
+						'../pages/presentation/project-system/project-system-setup/ProjectTaskStages'
+					),
+			),
+			BUG_STATUS: lazy(
+				() => import('../pages/presentation/project-system/project-system-setup/BugStatus'),
+			),
+		},
 	},
 	USER_MANAGEMENT: {
 		USER: lazy(() => import('../pages/presentation/user-management/User')),
@@ -165,31 +175,36 @@ const APP = {
 };
 
 const presentation = [
-	// >>>>>>>>> Dashboard
+	//  >>>>>>>>> Dashboard
 	{
 		path: sidebarMenus.dashboard.path,
-		element: <APP.HRM_SYSTEM.EMPLOYEE_SETUP />,
+		element: <APP.DASHBOARD.PROJECT />,
 		exact: true,
 	},
 	{
 		path: sidebarMenus.dashboard.subMenu.hrm.subMenu.overView.path,
-		element: <APP.HRM_SYSTEM.EMPLOYEE_SETUP />,
+		element: <APP.DASHBOARD.HRM.OVERVIEW />,
 		exact: true,
 	},
 	{
-		path: sidebarMenus.dashboard.path,
-		element: <APP.HRM_SYSTEM.EMPLOYEE_SETUP />,
+		path: sidebarMenus.dashboard.subMenu.hrm.subMenu.reports.subMenu.payroll.path,
+		element: <APP.DASHBOARD.HRM.REPORTS.PAYROLL />,
 		exact: true,
 	},
 	{
-		path: sidebarMenus.dashboard.path,
-		element: <APP.HRM_SYSTEM.EMPLOYEE_SETUP />,
+		path: sidebarMenus.dashboard.subMenu.hrm.subMenu.reports.subMenu.leave.path,
+		element: <APP.DASHBOARD.HRM.REPORTS.LEAVE />,
 		exact: true,
 	},
-	//>>>>>>>>>> App > HRM system
+	{
+		path: sidebarMenus.dashboard.subMenu.hrm.subMenu.reports.subMenu.monthlyAttendance.path,
+		element: <APP.DASHBOARD.HRM.REPORTS.MONTHLY_ATTENDANCE />,
+		exact: true,
+	},
+	//  >>>>>>>>>> App > HRM system
 	{
 		path: sidebarMenus.hrmSystem.subMenu.EmplyeeSetup.path,
-		element: <APP.DASHBOARD.PROJECT />,
+		element: <APP.HRM_SYSTEM.EMPLOYEE_SETUP />,
 		exact: true,
 	},
 	{
@@ -283,7 +298,7 @@ const presentation = [
 		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.INTERVIEW_SCHEDULE />,
 		exact: true,
 	},
-	/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+	/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 	{
 		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.interviewSchedule.path,
 		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.INTERVIEW_SCHEDULE />,
@@ -327,6 +342,16 @@ const presentation = [
 	{
 		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.termination.path,
 		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.TERMINATION />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.announcement.path,
+		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.ANNOUNCEMENT />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.holidays.path,
+		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.HOLIDAYS />,
 		exact: true,
 	},
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -432,13 +457,13 @@ const presentation = [
 		exact: true,
 	},
 	{
-		path: sidebarMenus.projectSystem.subMenu.bug.path,
-		element: <APP.PROJECT_SYSTEM.BUG />,
+		path: sidebarMenus.projectSystem.subMenu.timesheet.path,
+		element: <APP.PROJECT_SYSTEM.TIMESHEET />,
 		exact: true,
 	},
 	{
-		path: sidebarMenus.projectSystem.subMenu.timesheet.path,
-		element: <APP.PROJECT_SYSTEM.TIMESHEET />,
+		path: sidebarMenus.projectSystem.subMenu.bug.path,
+		element: <APP.PROJECT_SYSTEM.BUG />,
 		exact: true,
 	},
 	{
@@ -447,8 +472,13 @@ const presentation = [
 		exact: true,
 	},
 	{
-		path: sidebarMenus.projectSystem.subMenu.setup.path,
-		element: <APP.PROJECT_SYSTEM.PROJECT_SYSTEM_SETUP />,
+		path: sidebarMenus.projectSystem.subMenu.projectSysytemSetup.subMenu.bugStatus.path,
+		element: <APP.PROJECT_SYSTEM.PROJECT_SYSTEM_SETUP.BUG_STATUS />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.projectSystem.subMenu.projectSysytemSetup.subMenu.projectTaskStages.path,
+		element: <APP.PROJECT_SYSTEM.PROJECT_SYSTEM_SETUP.PROJECT_TASK_STAGES />,
 		exact: true,
 	},
 
