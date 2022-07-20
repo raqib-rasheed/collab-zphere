@@ -293,42 +293,42 @@ const presentation = [
 		exact: true,
 	},
 	{
-		path: sidebarMenus.hrmSystem.subMenu.hrAdminSetup.subMenu.award.path,
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.award.path,
 		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.AWARD />,
 		exact: true,
 	},
 	{
-		path: sidebarMenus.hrmSystem.subMenu.hrAdminSetup.subMenu.transfer.path,
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.transfer.path,
 		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.TRANSFER />,
 		exact: true,
 	},
 	{
-		path: sidebarMenus.hrmSystem.subMenu.hrAdminSetup.subMenu.resignation.path,
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.resignation.path,
 		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.RESIGNATION />,
 		exact: true,
 	},
 	{
-		path: sidebarMenus.hrmSystem.subMenu.hrAdminSetup.subMenu.trip.path,
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.trip.path,
 		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.TRIP />,
 		exact: true,
 	},
 	{
-		path: sidebarMenus.hrmSystem.subMenu.hrAdminSetup.subMenu.promotion.path,
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.promotion.path,
 		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.PROMOTION />,
 		exact: true,
 	},
 	{
-		path: sidebarMenus.hrmSystem.subMenu.hrAdminSetup.subMenu.complaints.path,
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.complaints.path,
 		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.COMPLAINTS />,
 		exact: true,
 	},
 	{
-		path: sidebarMenus.hrmSystem.subMenu.hrAdminSetup.subMenu.warning.path,
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.warning.path,
 		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.WARNING />,
 		exact: true,
 	},
 	{
-		path: sidebarMenus.hrmSystem.subMenu.hrAdminSetup.subMenu.termination.path,
+		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.termination.path,
 		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.TERMINATION />,
 		exact: true,
 	},
@@ -387,41 +387,41 @@ const presentation = [
 
 	// App > Accounting system
 
-	{
-		path: sidebarMenus.accountingSystem.subMenu.customer.path,
-		element: <APP.ACCOUNTING_SYSTEM.CUSTOMER />,
-		exact: true,
-	},
-	{
-		path: sidebarMenus.accountingSystem.subMenu.vendor.path,
-		element: <APP.ACCOUNTING_SYSTEM.VENDOR />,
-		exact: true,
-	},
-	{
-		path: sidebarMenus.accountingSystem.subMenu.proposal.path,
-		element: <APP.ACCOUNTING_SYSTEM.PROPOSAL />,
-		exact: true,
-	},
-	{
-		path: sidebarMenus.accountingSystem.subMenu.budgetPlanner.path,
-		element: <APP.ACCOUNTING_SYSTEM.BUDGET_PLANNER />,
-		exact: true,
-	},
-	{
-		path: sidebarMenus.accountingSystem.subMenu.financialGoal.path,
-		element: <APP.ACCOUNTING_SYSTEM.FINANCIAL_GOAL />,
-		exact: true,
-	},
-	{
-		path: sidebarMenus.accountingSystem.subMenu.accountingSetup.path,
-		element: <APP.ACCOUNTING_SYSTEM.ACCOUNTING_SETUP />,
-		exact: true,
-	},
-	{
-		path: sidebarMenus.accountingSystem.subMenu.printSettings.path,
-		element: <APP.ACCOUNTING_SYSTEM.PRINT_SETTING />,
-		exact: true,
-	},
+	// {
+	// 	path: sidebarMenus.accountingSystem.subMenu.customer.path,
+	// 	element: <APP.ACCOUNTING_SYSTEM.CUSTOMER />,
+	// 	exact: true,
+	// },
+	// {
+	// 	path: sidebarMenus.accountingSystem.subMenu.vendor.path,
+	// 	element: <APP.ACCOUNTING_SYSTEM.VENDOR />,
+	// 	exact: true,
+	// },
+	// {
+	// 	path: sidebarMenus.accountingSystem.subMenu.proposal.path,
+	// 	element: <APP.ACCOUNTING_SYSTEM.PROPOSAL />,
+	// 	exact: true,
+	// },
+	// {
+	// 	path: sidebarMenus.accountingSystem.subMenu.budgetPlanner.path,
+	// 	element: <APP.ACCOUNTING_SYSTEM.BUDGET_PLANNER />,
+	// 	exact: true,
+	// },
+	// {
+	// 	path: sidebarMenus.accountingSystem.subMenu.financialGoal.path,
+	// 	element: <APP.ACCOUNTING_SYSTEM.FINANCIAL_GOAL />,
+	// 	exact: true,
+	// },
+	// {
+	// 	path: sidebarMenus.accountingSystem.subMenu.accountingSetup.path,
+	// 	element: <APP.ACCOUNTING_SYSTEM.ACCOUNTING_SETUP />,
+	// 	exact: true,
+	// },
+	// {
+	// 	path: sidebarMenus.accountingSystem.subMenu.printSettings.path,
+	// 	element: <APP.ACCOUNTING_SYSTEM.PRINT_SETTING />,
+	// 	exact: true,
+	// },
 
 	// App > Project system
 	{
@@ -450,7 +450,7 @@ const presentation = [
 		exact: true,
 	},
 	{
-		path: sidebarMenus.projectSystem.subMenu.projectSystemSetup.path,
+		path: sidebarMenus.projectSystem.subMenu.setup.path,
 		element: <APP.PROJECT_SYSTEM.PROJECT_SYSTEM_SETUP />,
 		exact: true,
 	},
@@ -516,7 +516,7 @@ const presentation = [
 	// 	exact: true,
 	// },
 	{
-		path: sidebarMenus.crmSystem.subMenu.crmSystemSetup.path,
+		path: sidebarMenus.crmSystem.subMenu.setup.path,
 		element: <APP.CRM_SYSTEM.CRM_SYSTEM_SETUP />,
 		exact: true,
 	},
@@ -540,12 +540,12 @@ const presentation = [
 
 	// App > Product System
 	{
-		path: sidebarMenus.productsSystem.subMenu.role.path,
+		path: sidebarMenus.productsSystem.subMenu.productAndServices.path,
 		element: <APP.PRODUCT_SYSTEM.ROLE />,
 		exact: true,
 	},
 	{
-		path: sidebarMenus.productsSystem.subMenu.client.path,
+		path: sidebarMenus.productsSystem.subMenu.productStock.path,
 		element: <APP.PRODUCT_SYSTEM.CLIENT />,
 		exact: true,
 	},
