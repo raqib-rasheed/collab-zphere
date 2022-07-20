@@ -6,20 +6,20 @@ import Card, {
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
+} from '../../../../components/bootstrap/Card';
 import Dropdown, {
 	DropdownItem,
 	DropdownMenu,
 	DropdownToggle,
-} from '../../../components/bootstrap/Dropdown';
-import Button from '../../../components/bootstrap/Button';
+} from '../../../../components/bootstrap/Dropdown';
+import Button from '../../../../components/bootstrap/Button';
 import classNames from 'classnames';
-import Chart, { IChartOptions } from '../../../components/extras/Chart';
-import Icon from '../../../components/icon/Icon';
-import { average, priceFormat } from '../../../helpers/helpers';
-import PercentComparison from '../../../components/extras/PercentComparison';
+import Chart, { IChartOptions } from '../../../../components/extras/Chart';
+import Icon from '../../../../components/icon/Icon';
+import { average, priceFormat } from '../../../../helpers/helpers';
+import PercentComparison from '../../../../components/extras/PercentComparison';
 import moment from 'moment';
-import useDarkMode from '../../../hooks/useDarkMode';
+import useDarkMode from '../../../../hooks/useDarkMode';
 import { TABS, TTabs } from './helper';
 
 interface ICommonDashboardIncomeProps {

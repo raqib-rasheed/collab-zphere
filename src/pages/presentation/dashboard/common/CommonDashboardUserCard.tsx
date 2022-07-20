@@ -1,6 +1,6 @@
 import React from 'react';
-import USERS from '../../../common/data/userDummyData';
-import UserContact from '../../../components/UserContact';
+import USERS from '../../../../common/data/userDummyData';
+import UserContact from '../../../../components/UserContact';
 import { useNavigate } from 'react-router-dom';
 
 const CommonDashboardUserCard = () => {

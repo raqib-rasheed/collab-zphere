@@ -9,17 +9,17 @@ import Card, {
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import Button from '../../../components/bootstrap/Button';
-import Modal, { ModalBody, ModalHeader, ModalTitle } from '../../../components/bootstrap/Modal';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Input from '../../../components/bootstrap/forms/Input';
-import Todo, { ITodoListItem } from '../../../components/extras/Todo';
-import Label from '../../../components/bootstrap/forms/Label';
-import Checks, { ChecksGroup } from '../../../components/bootstrap/forms/Checks';
-import Badge from '../../../components/bootstrap/Badge';
-import Progress from '../../../components/bootstrap/Progress';
-import { TColor } from '../../../type/color';
+} from '../../../../components/bootstrap/Card';
+import Button from '../../../../components/bootstrap/Button';
+import Modal, { ModalBody, ModalHeader, ModalTitle } from '../../../../components/bootstrap/Modal';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import Input from '../../../../components/bootstrap/forms/Input';
+import Todo, { ITodoListItem } from '../../../../components/extras/Todo';
+import Label from '../../../../components/bootstrap/forms/Label';
+import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
+import Badge from '../../../../components/bootstrap/Badge';
+import Progress from '../../../../components/bootstrap/Progress';
+import { TColor } from '../../../../type/color';
 
 const CommonDashboardUserIssue = () => {
 	const TODO_BADGES: {

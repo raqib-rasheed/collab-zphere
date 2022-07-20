@@ -6,12 +6,12 @@ import Card, {
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import Button from '../../../components/bootstrap/Button';
-import Avatar, { AvatarGroup } from '../../../components/Avatar';
-import USERS from '../../../common/data/userDummyData';
+} from '../../../../components/bootstrap/Card';
+import Button from '../../../../components/bootstrap/Button';
+import Avatar, { AvatarGroup } from '../../../../components/Avatar';
+import USERS from '../../../../common/data/userDummyData';
 import { useNavigate } from 'react-router-dom';
-import useDarkMode from '../../../hooks/useDarkMode';
+import useDarkMode from '../../../../hooks/useDarkMode';
 
 const CommonDashboardDesignTeam = () => {
 	const { darkModeStatus } = useDarkMode();

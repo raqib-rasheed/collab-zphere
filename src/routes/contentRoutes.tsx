@@ -1,19 +1,16 @@
 import React, { lazy } from 'react';
 import { sidebarMenus } from '../menu';
-// import Login from '../pages/presentation/auth/Login';
-
-// const AUTH = {
-// 	PAGE_404: lazy(() => import('../pages/presentation/auth/Page404')),
-// };
 
 const APP = {
 	DASHBOARD: {
 		PROJECT: lazy(() => import('../pages/presentation/dashboard/DashboardPage')),
 		OVERVIEW: lazy(() => import('../pages/presentation/dashboard/hrm/Overview')),
 		REPORTS: {
-			PAYROLL: lazy(() => import('../pages/presentation/dashboard/hrm/Overview')),
-			LEAVE: lazy(() => import('../pages/presentation/dashboard/hrm/Overview')),
-			MONTHLY_ATTENDANCE: lazy(() => import('../pages/presentation/dashboard/hrm/Overview')),
+			PAYROLL: lazy(() => import('../pages/presentation/dashboard/hrm/reports/Payroll')),
+			LEAVE: lazy(() => import('../pages/presentation/dashboard/hrm/reports/Leave')),
+			MONTHLY_ATTENDANCE: lazy(
+				() => import('../pages/presentation/dashboard/hrm/reports/MonthlyAttendance'),
+			),
 		},
 	},
 	ACCOUNTING_SYSTEM: {
@@ -175,7 +172,7 @@ const presentation = [
 		exact: true,
 	},
 	{
-		path: sidebarMenus.dashboard.subMenu.hrm.subMenu.overView,
+		path: sidebarMenus.dashboard.subMenu.hrm.subMenu.overView.path,
 		element: <APP.HRM_SYSTEM.EMPLOYEE_SETUP />,
 		exact: true,
 	},

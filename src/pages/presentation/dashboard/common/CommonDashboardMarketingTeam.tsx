@@ -6,11 +6,11 @@ import Card, {
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import Button from '../../../components/bootstrap/Button';
-import Avatar, { AvatarGroup } from '../../../components/Avatar';
-import USERS from '../../../common/data/userDummyData';
-import useDarkMode from '../../../hooks/useDarkMode';
+} from '../../../../components/bootstrap/Card';
+import Button from '../../../../components/bootstrap/Button';
+import Avatar, { AvatarGroup } from '../../../../components/Avatar';
+import USERS from '../../../../common/data/userDummyData';
+import useDarkMode from '../../../../hooks/useDarkMode';
 import { useNavigate } from 'react-router-dom';
 
 const CommonDashboardMarketingTeam = () => {

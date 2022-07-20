@@ -1,5 +1,5 @@
 import React from 'react';
-import Alert, { AlertHeading } from '../../../components/bootstrap/Alert';
+import Alert, { AlertHeading } from '../../../../components/bootstrap/Alert';
 
 const CommonDashboardAlert = () => {
 	return (
