@@ -5,7 +5,7 @@ export const sidebarMenus = {
 		path: '/',
 		icon: 'Dashboard',
 		subMenu: {
-			dashboardAccounting: {
+			accounting: {
 				id: 'dashboardAccounting',
 				text: 'Accounting',
 				path: '/accounting',
@@ -17,13 +17,13 @@ export const sidebarMenus = {
 						path: '/accounting',
 						icon: 'ViewArray',
 					},
-					dashboardAccountingReports: {
+					reports: {
 						id: 'dashboardAccountingReports',
 						text: 'Reports',
 						path: '/accounting/reports',
 						icon: 'ViewDay',
 						subMenu: {
-							dashboardAccountingReportsExpenseSummary: {
+							expenseSummary: {
 								id: 'expenseSummary',
 								text: 'Expense Summary',
 								path: '',
@@ -88,13 +88,47 @@ export const sidebarMenus = {
 					},
 				},
 			},
-			dashboardHrm: {
+			hrm: {
 				id: 'dashboardHrm',
 				text: 'HRM',
 				path: '/hrm',
 				icon: 'ViewDay',
+				subMenu: {
+					overView: {
+						id: 'dashboardHrmOverview',
+						text: 'OverView',
+						path: '/hrm/overview',
+						icon: 'ViewArray',
+					},
+					reports: {
+						id: 'dashboardHrmReports',
+						text: 'Reports',
+						path: '/hrm/reports',
+						icon: 'ViewArray',
+						subMenu: {
+							payroll: {
+								id: 'dashboardHrmReportsPayroll',
+								text: 'Payroll',
+								path: '/hrm/reports/payroll',
+								icon: 'ViewArray',
+							},
+							leave: {
+								id: 'dashboardHrmReportsLeave',
+								text: 'Leave',
+								path: '/hrm/reports/leave',
+								icon: 'ViewArray',
+							},
+							monthlyAttendance: {
+								id: 'dashboardHrmReportsMonthlyAttendance',
+								text: 'Monthly Attendance',
+								path: '/hrm/reports/monthlyAttendance',
+								icon: 'ViewArray',
+							},
+						},
+					},
+				},
 			},
-			dashboardProject: {
+			project: {
 				id: 'dashboardProject',
 				text: 'Project',
 				path: '/',
