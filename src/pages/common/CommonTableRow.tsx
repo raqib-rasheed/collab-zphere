@@ -60,7 +60,7 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 				title: {
 					// eslint-disable-next-line @typescript-eslint/no-unused-vars
 					formatter(seriesName: string) {
-						return '';
+						return seriesName;
 					},
 				},
 			},
@@ -89,12 +89,12 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 			</td>
 			<td>
 				<div>
-					<Link to={'demo text'}>
-						className=
-						{classNames('fw-bold', {
+					<Link
+						className={classNames('fw-bold', {
 							'link-dark': !darkModeStatus,
 							'link-light': darkModeStatus,
 						})}
+						to={'demo text'}>
 						{name}
 					</Link>
 					<div className='text-muted'>
