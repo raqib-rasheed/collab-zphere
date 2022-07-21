@@ -5,11 +5,11 @@ import Card, {
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import Timeline, { TimelineItem } from '../../../components/extras/Timeline';
+} from '../../../../components/bootstrap/Card';
+import Timeline, { TimelineItem } from '../../../../components/extras/Timeline';
 import moment from 'moment';
-import Popovers from '../../../components/bootstrap/Popovers';
-import Icon from '../../../components/icon/Icon';
+import Popovers from '../../../../components/bootstrap/Popovers';
+import Icon from '../../../../components/icon/Icon';
 
 const CommonDashboardRecentActivities = () => {
 	return (

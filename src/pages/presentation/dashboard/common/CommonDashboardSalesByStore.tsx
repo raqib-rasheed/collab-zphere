@@ -6,16 +6,16 @@ import Card, {
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import Button, { ButtonGroup } from '../../../components/bootstrap/Button';
-import Chart from '../../../components/extras/Chart';
+} from '../../../../components/bootstrap/Card';
+import Button, { ButtonGroup } from '../../../../components/bootstrap/Button';
+import Chart from '../../../../components/extras/Chart';
 import moment from 'moment';
-import Company1 from '../../../assets/logos/company1.png';
-import Company2 from '../../../assets/logos/company2.png';
-import Company3 from '../../../assets/logos/company3.png';
-import Company4 from '../../../assets/logos/company4.png';
+import Company1 from '../../../../assets/logos/company1.png';
+import Company2 from '../../../../assets/logos/company2.png';
+import Company3 from '../../../../assets/logos/company3.png';
+import Company4 from '../../../../assets/logos/company4.png';
 import { ApexOptions } from 'apexcharts';
-import useDarkMode from '../../../hooks/useDarkMode';
+import useDarkMode from '../../../../hooks/useDarkMode';
 
 const CommonDashboardSalesByStore = () => {
 	const { themeStatus } = useDarkMode();

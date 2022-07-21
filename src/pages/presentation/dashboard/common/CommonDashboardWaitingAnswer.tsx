@@ -6,21 +6,21 @@ import Card, {
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
+} from '../../../../components/bootstrap/Card';
 import Dropdown, {
 	DropdownItem,
 	DropdownMenu,
 	DropdownToggle,
-} from '../../../components/bootstrap/Dropdown';
-import Button from '../../../components/bootstrap/Button';
-import USERS from '../../../common/data/userDummyData';
-import useDarkMode from '../../../hooks/useDarkMode';
-import { TColor } from '../../../type/color';
-import Chart, { IChartOptions } from '../../../components/extras/Chart';
-import Avatar from '../../../components/Avatar';
+} from '../../../../components/bootstrap/Dropdown';
+import Button from '../../../../components/bootstrap/Button';
+import USERS from '../../../../common/data/userDummyData';
+import useDarkMode from '../../../../hooks/useDarkMode';
+import { TColor } from '../../../../type/color';
+import Chart, { IChartOptions } from '../../../../components/extras/Chart';
+import Avatar from '../../../../components/Avatar';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import Popovers from '../../../components/bootstrap/Popovers';
+import Popovers from '../../../../components/bootstrap/Popovers';
 
 interface IAnswerCustomerProps {
 	id: string | number;

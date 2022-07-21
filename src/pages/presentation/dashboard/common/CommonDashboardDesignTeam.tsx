@@ -6,28 +6,28 @@ import Card, {
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import Button from '../../../components/bootstrap/Button';
-import Avatar, { AvatarGroup } from '../../../components/Avatar';
-import USERS from '../../../common/data/userDummyData';
-import useDarkMode from '../../../hooks/useDarkMode';
+} from '../../../../components/bootstrap/Card';
+import Button from '../../../../components/bootstrap/Button';
+import Avatar, { AvatarGroup } from '../../../../components/Avatar';
+import USERS from '../../../../common/data/userDummyData';
 import { useNavigate } from 'react-router-dom';
+import useDarkMode from '../../../../hooks/useDarkMode';
 
-const CommonDashboardMarketingTeam = () => {
+const CommonDashboardDesignTeam = () => {
 	const { darkModeStatus } = useDarkMode();
 
 	const navigate = useNavigate();
-	const handleOnClickToEmployeeListPage = useCallback(() => navigate('demo text'), [navigate]);
+	const handleOnClickToEmployeeListPage = useCallback(() => navigate(``), [navigate]);
 
 	return (
 		<Card stretch>
 			<CardHeader className='bg-transparent'>
 				<CardLabel>
 					<CardTitle tag='h4' className='h5'>
-						Marketing Team
+						Design Team
 					</CardTitle>
 					<CardSubTitle tag='h5' className='h6 text-muted'>
-						There is a meeting at 12 o'clock.
+						There is a meeting at 15 o'clock.
 					</CardSubTitle>
 				</CardLabel>
 				<CardActions>
@@ -43,25 +43,6 @@ const CommonDashboardMarketingTeam = () => {
 			<CardBody>
 				<AvatarGroup>
 					<Avatar
-						srcSet={USERS.GRACE.srcSet}
-						src={USERS.GRACE.src}
-						userName={`${USERS.GRACE.name} ${USERS.GRACE.surname}`}
-						color={USERS.GRACE.color}
-					/>
-					<Avatar
-						srcSet={USERS.SAM.srcSet}
-						src={USERS.SAM.src}
-						userName={`${USERS.SAM.name} ${USERS.SAM.surname}`}
-						color={USERS.SAM.color}
-					/>
-					<Avatar
-						srcSet={USERS.CHLOE.srcSet}
-						src={USERS.CHLOE.src}
-						userName={`${USERS.CHLOE.name} ${USERS.CHLOE.surname}`}
-						color={USERS.CHLOE.color}
-					/>
-
-					<Avatar
 						srcSet={USERS.JANE.srcSet}
 						src={USERS.JANE.src}
 						userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
@@ -72,6 +53,12 @@ const CommonDashboardMarketingTeam = () => {
 						src={USERS.JOHN.src}
 						userName={`${USERS.JOHN.name} ${USERS.JOHN.surname}`}
 						color={USERS.JOHN.color}
+					/>
+					<Avatar
+						srcSet={USERS.ELLA.srcSet}
+						src={USERS.ELLA.src}
+						userName={`${USERS.ELLA.name} ${USERS.ELLA.surname}`}
+						color={USERS.ELLA.color}
 					/>
 					<Avatar
 						srcSet={USERS.RYAN.srcSet}
@@ -85,4 +72,4 @@ const CommonDashboardMarketingTeam = () => {
 	);
 };
 
-export default CommonDashboardMarketingTeam;
+export default CommonDashboardDesignTeam;

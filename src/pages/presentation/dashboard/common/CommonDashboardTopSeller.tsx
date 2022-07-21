@@ -5,27 +5,27 @@ import Card, {
 	CardHeader,
 	CardLabel,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
+} from '../../../../components/bootstrap/Card';
 import Dropdown, {
 	DropdownItem,
 	DropdownMenu,
 	DropdownToggle,
-} from '../../../components/bootstrap/Dropdown';
-import Button from '../../../components/bootstrap/Button';
+} from '../../../../components/bootstrap/Dropdown';
+import Button from '../../../../components/bootstrap/Button';
 import moment from 'moment';
-import Icon from '../../../components/icon/Icon';
+import Icon from '../../../../components/icon/Icon';
 import PaginationButtons, {
 	dataPagination,
 	PER_COUNT,
-} from '../../../components/PaginationButtons';
-import data from '../../../common/data/dummyProductData';
-import useSortableData from '../../../hooks/useSortableData';
+} from '../../../../components/PaginationButtons';
+import data from '../../../../common/data/dummyProductData';
+import useSortableData from '../../../../hooks/useSortableData';
 import { ApexOptions } from 'apexcharts';
-import useDarkMode from '../../../hooks/useDarkMode';
+import useDarkMode from '../../../../hooks/useDarkMode';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import Chart from '../../../components/extras/Chart';
-import Badge from '../../../components/bootstrap/Badge';
+import Chart from '../../../../components/extras/Chart';
+import Badge from '../../../../components/bootstrap/Badge';
 
 interface ITableRowProps {
 	id: string;

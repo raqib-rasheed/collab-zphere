@@ -8,10 +8,10 @@ import SubHeader, {
 	SubHeaderLeft,
 	SubHeaderRight,
 	SubheaderSeparator,
-} from '../../../layout/SubHeader/SubHeader';
-import Button, { ButtonGroup } from '../../../components/bootstrap/Button';
-import Page from '../../../layout/Page/Page';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
+} from '../../../../layout/SubHeader/SubHeader';
+import Button, { ButtonGroup } from '../../../../components/bootstrap/Button';
+import Page from '../../../../layout/Page/Page';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
 import Card, {
 	CardActions,
 	CardBody,
@@ -22,37 +22,36 @@ import Card, {
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
-} from '../../../components/bootstrap/Card';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Input from '../../../components/bootstrap/forms/Input';
-import CommonDesc from '../../../common/other/CommonDesc';
-import Avatar from '../../../components/Avatar';
-import Breadcrumb from '../../../components/bootstrap/Breadcrumb';
-import Select from '../../../components/bootstrap/forms/Select';
-import CommonMyWallet from '../../common/CommonMyWallet';
-import USERS from '../../../common/data/userDummyData';
+} from '../../../../components/bootstrap/Card';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import Input from '../../../../components/bootstrap/forms/Input';
+import Avatar from '../../../../components/Avatar';
+import Breadcrumb from '../../../../components/bootstrap/Breadcrumb';
+import Select from '../../../../components/bootstrap/forms/Select';
+import CommonMyWallet from '../../../common/CommonMyWallet';
+import USERS from '../../../../common/data/userDummyData';
 import {
 	CalendarTodayButton,
 	CalendarViewModeButtons,
 	getLabel,
 	getUnitType,
 	getViews,
-} from '../../../components/extras/calendarHelper';
-import eventList from '../../../common/data/events';
-import Icon from '../../../components/icon/Icon';
+} from '../../../../components/extras/calendarHelper';
+import eventList from '../../../../common/data/events';
+import Icon from '../../../../components/icon/Icon';
 import OffCanvas, {
 	OffCanvasBody,
 	OffCanvasHeader,
 	OffCanvasTitle,
-} from '../../../components/bootstrap/OffCanvas';
-import Checks from '../../../components/bootstrap/forms/Checks';
-import Popovers from '../../../components/bootstrap/Popovers';
-import showNotification from '../../../components/extras/showNotification';
+} from '../../../../components/bootstrap/OffCanvas';
+import Checks from '../../../../components/bootstrap/forms/Checks';
+import Popovers from '../../../../components/bootstrap/Popovers';
+import showNotification from '../../../../components/extras/showNotification';
 
 const localizer = momentLocalizer(moment);
 const now = new Date();
 
-const MyEvent = (data) => {
+const MyEvent = (data: any) => {
 	const { event } = data;
 	return (
 		<div className='row g-2'>
@@ -64,7 +63,7 @@ const MyEvent = (data) => {
 	);
 };
 
-const MyWeekEvent = (data) => {
+const MyWeekEvent = (data: any) => {
 	const { event } = data;
 	return (
 		<div className='row g-2'>
@@ -78,12 +77,16 @@ const MyWeekEvent = (data) => {
 
 const EditBoxedPage = () => {
 	const TABS = {
-		ACCOUNT_DETAIL: 'Account Details',
-		ADDRESS: 'Address',
-		MY_WALLET: 'My Wallet',
-		APPOINTMENT: 'Appointment',
+		BUSINESS_SETTING: 'Business setting',
+		SYSTEM_SETTING: 'System Setting',
+		COMPANY_SETTING: 'Company Setting',
+		PAYMENT_SETTING: 'Company Setting',
+		ZOOM_MEETING_SETTING: 'Company Setting',
+		SLACK_SETTING: 'Company Setting',
+		TELEGRAM_SETTING: 'Company Setting',
+		TWILLO_SETTING: 'Company Setting',
 	};
-	const [activeTab, setActiveTab] = useState(TABS.ACCOUNT_DETAIL);
+	const [activeTab, setActiveTab] = useState(TABS.BUSINESS_SETTING);
 
 	const formik = useFormik({
 		initialValues: {
@@ -143,7 +146,8 @@ const EditBoxedPage = () => {
 	// Calendar Date Label
 	const calendarDateLabel = getLabel(date, viewMode);
 
-	const eventStyleGetter = (event, start, end) => {
+	// eslint-disable-next-line no-unused-vars
+	const eventStyleGetter = (event: any, start: any, end: any, isSelected: any) => {
 		const isActiveEvent = start <= now && end >= now;
 		const isPastEvent = end < now;
 		const color = isActiveEvent ? 'success' : event.color;
@@ -157,16 +161,13 @@ const EditBoxedPage = () => {
 		};
 	};
 
-	const handleViewMode = (e) => {
-		setDate(moment(e)._d);
-		setViewMode(Views.DAY);
-	};
+	const handleViewMode = (e: any) => {};
 
 	// View modes; Month, Week, Work Week, Day and Agenda
 	const views = getViews();
 
 	// New Event
-	const handleSelect = ({ start, end }) => {
+	const handleSelect = ({ start, end }: any) => {
 		// eslint-disable-next-line no-alert
 		const title = window.prompt('New Event name');
 		if (title)
@@ -184,12 +185,6 @@ const EditBoxedPage = () => {
 		if (eventItem)
 			formik.setValues({
 				...formik.values,
-				eventId: eventItem.id || null,
-				eventName: eventItem.name,
-				eventStart: moment(eventItem.start)._d,
-				eventEnd: moment(eventItem.end)._d,
-				eventAllDay: eventItem.allDay,
-				eventEmployee: `${eventItem?.user?.name} ${eventItem?.user?.surname}`,
 			});
 		return () => {};
 		//	eslint-disable-next-line react-hooks/exhaustive-deps
@@ -206,7 +201,8 @@ const EditBoxedPage = () => {
 			eventUntilWhen: '',
 			eventEmployee: '',
 		},
-		onSubmit: () => {
+		// eslint-disable-next-line no-unused-vars
+		onSubmit: (values) => {
 			// console.log(JSON.stringify(values, null, 2));
 			setToggleInfoEventCanvas(false);
 			setEventItem(null);
@@ -214,7 +210,7 @@ const EditBoxedPage = () => {
 	});
 
 	return (
-		<PageWrapper title='System Settings'>
+		<PageWrapper title='Demo title'>
 			<SubHeader>
 				<SubHeaderLeft>
 					<Breadcrumb
@@ -232,7 +228,7 @@ const EditBoxedPage = () => {
 						isLight
 						icon='Add'
 						onClick={() => {
-							setActiveTab(TABS.ACCOUNT_DETAIL);
+							setActiveTab(TABS.BUSINESS_SETTING);
 							formik.setValues({
 								firstName: '',
 								lastName: '',
@@ -252,12 +248,12 @@ const EditBoxedPage = () => {
 						}}>
 						Add New
 					</Button>
-					{TABS.ACCOUNT_DETAIL === activeTab && (
+					{TABS.BUSINESS_SETTING === activeTab && (
 						<Button color='info' isOutline icon='Save' onClick={formik.handleSubmit}>
 							Save
 						</Button>
 					)}
-					{TABS.ADDRESS === activeTab && (
+					{TABS.SLACK_SETTING === activeTab && (
 						<Button
 							color='info'
 							isOutline
@@ -285,9 +281,9 @@ const EditBoxedPage = () => {
 											icon='Contacts'
 											color='info'
 											className='w-100 p-3'
-											isLight={TABS.ACCOUNT_DETAIL !== activeTab}
-											onClick={() => setActiveTab(TABS.ACCOUNT_DETAIL)}>
-											{TABS.ACCOUNT_DETAIL}
+											isLight={TABS.BUSINESS_SETTING !== activeTab}
+											onClick={() => setActiveTab(TABS.BUSINESS_SETTING)}>
+											{TABS.BUSINESS_SETTING}
 										</Button>
 									</div>
 									<div className='col-12'>
@@ -295,9 +291,9 @@ const EditBoxedPage = () => {
 											icon='Place'
 											color='info'
 											className='w-100 p-3'
-											isLight={TABS.ADDRESS !== activeTab}
-											onClick={() => setActiveTab(TABS.ADDRESS)}>
-											{TABS.ADDRESS}
+											isLight={TABS.COMPANY_SETTING !== activeTab}
+											onClick={() => setActiveTab(TABS.COMPANY_SETTING)}>
+											{TABS.COMPANY_SETTING}
 										</Button>
 									</div>
 									<div className='col-12'>
@@ -305,9 +301,39 @@ const EditBoxedPage = () => {
 											icon='Style'
 											color='info'
 											className='w-100 p-3'
-											isLight={TABS.MY_WALLET !== activeTab}
-											onClick={() => setActiveTab(TABS.MY_WALLET)}>
-											{TABS.MY_WALLET}
+											isLight={TABS.SYSTEM_SETTING !== activeTab}
+											onClick={() => setActiveTab(TABS.SYSTEM_SETTING)}>
+											{TABS.SYSTEM_SETTING}
+										</Button>
+									</div>
+									<div className='col-12'>
+										<Button
+											icon='Style'
+											color='info'
+											className='w-100 p-3'
+											isLight={TABS.TELEGRAM_SETTING !== activeTab}
+											onClick={() => setActiveTab(TABS.TELEGRAM_SETTING)}>
+											{TABS.TELEGRAM_SETTING}
+										</Button>
+									</div>
+									<div className='col-12'>
+										<Button
+											icon='Style'
+											color='info'
+											className='w-100 p-3'
+											isLight={TABS.TWILLO_SETTING !== activeTab}
+											onClick={() => setActiveTab(TABS.TWILLO_SETTING)}>
+											{TABS.TWILLO_SETTING}
+										</Button>
+									</div>
+									<div className='col-12'>
+										<Button
+											icon='Style'
+											color='info'
+											className='w-100 p-3'
+											isLight={TABS.ZOOM_MEETING_SETTING !== activeTab}
+											onClick={() => setActiveTab(TABS.ZOOM_MEETING_SETTING)}>
+											{TABS.ZOOM_MEETING_SETTING}
 										</Button>
 									</div>
 									<div className='col-12 border-bottom' />
@@ -316,9 +342,9 @@ const EditBoxedPage = () => {
 											icon='Notifications'
 											color='success'
 											className='w-100 p-3'
-											isLight={TABS.APPOINTMENT !== activeTab}
-											onClick={() => setActiveTab(TABS.APPOINTMENT)}>
-											{TABS.APPOINTMENT}
+											isLight={TABS.SLACK_SETTING !== activeTab}
+											onClick={() => setActiveTab(TABS.SLACK_SETTING)}>
+											{TABS.SLACK_SETTING}
 										</Button>
 									</div>
 								</div>
@@ -337,7 +363,7 @@ const EditBoxedPage = () => {
 						</Card>
 					</div>
 					<div className='col-xl-9 col-lg-8 col-md-6'>
-						{TABS.ACCOUNT_DETAIL === activeTab && (
+						{TABS.BUSINESS_SETTING === activeTab && (
 							<Card stretch tag='form' noValidate onSubmit={formik.handleSubmit}>
 								<CardHeader>
 									<CardLabel icon='Contacts' iconColor='info'>
@@ -533,11 +559,6 @@ const EditBoxedPage = () => {
 														</div>
 													</div>
 												</CardBody>
-												<CardFooter>
-													<CommonDesc>
-														Leave blank to leave unchanged.
-													</CommonDesc>
-												</CardFooter>
 											</Card>
 										</div>
 									</div>
@@ -565,7 +586,7 @@ const EditBoxedPage = () => {
 								</CardFooter>
 							</Card>
 						)}
-						{TABS.ADDRESS === activeTab && (
+						{TABS.COMPANY_SETTING === activeTab && (
 							<Card
 								stretch
 								tag='form'
@@ -573,7 +594,7 @@ const EditBoxedPage = () => {
 								onSubmit={formikAddress.handleSubmit}>
 								<CardHeader>
 									<CardLabel icon='Place' iconColor='info'>
-										<CardTitle>{TABS.ADDRESS}</CardTitle>
+										<CardTitle>{TABS.COMPANY_SETTING}</CardTitle>
 									</CardLabel>
 								</CardHeader>
 								<CardBody className='pb-0' isScrollable>
@@ -679,8 +700,8 @@ const EditBoxedPage = () => {
 								</CardFooter>
 							</Card>
 						)}
-						{TABS.MY_WALLET === activeTab && <CommonMyWallet />}
-						{TABS.APPOINTMENT === activeTab && (
+						{TABS.PAYMENT_SETTING === activeTab && <CommonMyWallet />}
+						{TABS.SLACK_SETTING === activeTab && (
 							<Card stretch style={{ minHeight: 600 }}>
 								<CardHeader>
 									<CardActions>
@@ -728,7 +749,6 @@ const EditBoxedPage = () => {
 										defaultDate={new Date()}
 										onSelectEvent={(event) => {
 											setInfoEvent();
-											setEventItem(event);
 										}}
 										onSelectSlot={handleSelect}
 										onView={handleViewMode}
@@ -935,40 +955,6 @@ const EditBoxedPage = () => {
 													</CardBody>
 												</Card>
 											</div>
-											{eventItem?.user && (
-												<div className='col-12'>
-													<Card className='mb-0 bg-l10-dark' shadow='sm'>
-														<CardHeader className='bg-l25-dark'>
-															<CardLabel
-																icon='Person Add'
-																iconColor='dark'>
-																<CardTitle>
-																	Employee Options
-																</CardTitle>
-															</CardLabel>
-														</CardHeader>
-														<CardBody>
-															<FormGroup
-																id='eventEmployee'
-																label='Employee'>
-																<Input
-																	value={
-																		formikEvent.values
-																			.eventEmployee
-																	}
-																	onChange={
-																		formikEvent.handleChange
-																	}
-																	list={Object.keys(USERS).map(
-																		(u) =>
-																			`${USERS[u].name} ${USERS[u].surname}`,
-																	)}
-																/>
-															</FormGroup>
-														</CardBody>
-													</Card>
-												</div>
-											)}
 											<div className='col'>
 												<Button color='info' type='submit'>
 													Save

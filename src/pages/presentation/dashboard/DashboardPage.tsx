@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useTour } from '@reactour/tour';
-import useDarkMode from '../../hooks/useDarkMode';
-import PageWrapper from '../../layout/PageWrapper/PageWrapper';
+import useDarkMode from '../../../hooks/useDarkMode';
+import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import SubHeader, {
 	SubHeaderLeft,
 	SubHeaderRight,
 	SubheaderSeparator,
-} from '../../layout/SubHeader/SubHeader';
-import Page from '../../layout/Page/Page';
+} from '../../../layout/SubHeader/SubHeader';
+import Page from '../../../layout/Page/Page';
 import { TABS, TTabs } from './common/helper';
-import Button, { ButtonGroup } from '../../components/bootstrap/Button';
+import Button, { ButtonGroup } from '../../../components/bootstrap/Button';
 
-import CommonAvatarTeam from '../../common/other/CommonAvatarTeam';
+import CommonAvatarTeam from '../../../common/other/CommonAvatarTeam';
 
 import CommonDashboardAlert from './common/CommonDashboardAlert';
 import CommonDashboardUserCard from './common/CommonDashboardUserCard';
@@ -22,7 +22,7 @@ import CommonDashboardRecentActivities from './common/CommonDashboardRecentActiv
 import CommonDashboardUserIssue from './common/CommonDashboardUserIssue';
 import CommonDashboardSalesByStore from './common/CommonDashboardSalesByStore';
 import CommonDashboardWaitingAnswer from './common/CommonDashboardWaitingAnswer';
-import CommonMyWallet from '../common/CommonMyWallet';
+import CommonMyWallet from '../../common/CommonMyWallet';
 import CommonDashboardTopSeller from './common/CommonDashboardTopSeller';
 
 const DashboardPage = () => {
