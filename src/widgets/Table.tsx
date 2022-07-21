@@ -2,15 +2,6 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import { useFormik } from 'formik';
 import { Calendar as DatePicker } from 'react-date-range';
-import classNames from 'classnames';
-import SubHeader, {
-	SubHeaderLeft,
-	SubHeaderRight,
-	SubheaderSeparator,
-} from '../layout/SubHeader/SubHeader';
-import Avatar from '../components/Avatar';
-import UserImageWebp from '../assets/img/wanna/wanna1.webp';
-import UserImage from '../assets/img/wanna/wanna1.png';
 import Button from '../components/bootstrap/Button';
 import PageWrapper from '../layout/PageWrapper/PageWrapper';
 import Page from '../layout/Page/Page';
@@ -27,25 +18,17 @@ import Dropdown, {
 	DropdownMenu,
 	DropdownToggle,
 } from '../components/bootstrap/Dropdown';
-import Checks, { ChecksGroup } from '../components/bootstrap/forms/Checks';
-import InputGroup, { InputGroupText } from '../components/bootstrap/forms/InputGroup';
-import Input from '../components/bootstrap/forms/Input';
-import FormGroup from '../components/bootstrap/forms/FormGroup';
-import Label from '../components/bootstrap/forms/Label';
-import CommonFilterTag from '../pages/common/CommonFilterTag';
 import CommonTableRow from '../pages/common/CommonTableRow';
-import Select from '../components/bootstrap/forms/Select';
 import Popovers from '../components/bootstrap/Popovers';
 import data from '../common/data/dummyProductData';
 import useSelectTable from '../hooks/useSelectTable';
 import useDarkMode from '../hooks/useDarkMode';
 
 const TableWidget = () => {
-	const { themeStatus, darkModeStatus } = useDarkMode();
+	const { themeStatus } = useDarkMode();
 
 	const [date, setDate] = useState(new Date());
 
-	const [filterMenu, setFilterMenu] = useState(false);
 	const formik = useFormik({
 		initialValues: {
 			minPrice: '',
@@ -57,7 +40,6 @@ const TableWidget = () => {
 			companyD: true,
 		},
 		onSubmit: () => {
-			setFilterMenu(false);
 			// alert(JSON.stringify(values, null, 2));
 		},
 	});
@@ -78,163 +60,24 @@ const TableWidget = () => {
 
 	const { selectTable } = useSelectTable(filteredData);
 
+	const tableNames = [
+		{ name: '-' },
+		{ name: '-' },
+		{ name: 'Image' },
+		{ name: 'Name' },
+		{ name: 'Sales' },
+		{ name: 'Stock' },
+		{ name: 'Price' },
+		{ name: 'Store' },
+		{ name: 'Actions' },
+	];
+
 	return (
-		<PageWrapper title=''>
-			<SubHeader>
-				<SubHeaderLeft>
-					<Avatar srcSet={UserImageWebp} src={UserImage} size={32} />
-					<span>
-						<strong>Report by</strong> Timothy J. Doe
-					</span>
-				</SubHeaderLeft>
-				<SubHeaderRight>
-					{(!!formik.values.minPrice || !!formik.values.maxPrice) && (
-						<CommonFilterTag
-							title='Price'
-							text={`${formik.values.minPrice || '0'} to ${
-								formik.values.maxPrice || 'no limit'
-							}`}
-						/>
-					)}
-
-					{!!formik.values.categoryName && (
-						<CommonFilterTag title='Category' text={formik.values.categoryName} />
-					)}
-
-					{(formik.values.companyA ||
-						formik.values.companyB ||
-						formik.values.companyC ||
-						formik.values.companyD) && (
-						<CommonFilterTag
-							title='Store'
-							text={
-								(formik.values.companyA ? 'Company A, ' : '') +
-								(formik.values.companyB ? 'Company B, ' : '') +
-								(formik.values.companyC ? 'Company C, ' : '') +
-								(formik.values.companyD ? 'Company D ' : '')
-							}
-						/>
-					)}
-					<SubheaderSeparator />
-					<Dropdown isOpen={filterMenu} setIsOpen={setFilterMenu}>
-						<DropdownToggle hasIcon={false}>
-							<Button icon='Filter' color='primary' isLight>
-								Filter
-								<span
-									className={classNames(
-										'position-absolute',
-										'top-0 start-95',
-										'translate-middle',
-										'badge',
-										'rounded-pill',
-										'bg-danger',
-										'border border-2',
-										{
-											'border-white': !darkModeStatus,
-											'border-dark': darkModeStatus,
-										},
-									)}>
-									2/3
-									<span className='visually-hidden'>filter</span>
-								</span>
-							</Button>
-						</DropdownToggle>
-						<DropdownMenu isAlignmentEnd size='lg' isCloseAfterLeave={false}>
-							<div className='container py-2'>
-								<form className='row g-3' onSubmit={formik.handleSubmit}>
-									<div className='col-12'>
-										<FormGroup>
-											<Label htmlFor='minPrice'>Price</Label>
-											<InputGroup>
-												<Input
-													id='minPrice'
-													ariaLabel='Minimum price'
-													placeholder='Min.'
-													onChange={formik.handleChange}
-													value={formik.values.minPrice}
-												/>
-												<InputGroupText>to</InputGroupText>
-												<Input
-													id='maxPrice'
-													ariaLabel='Maximum price'
-													placeholder='Max.'
-													onChange={formik.handleChange}
-													value={formik.values.maxPrice}
-												/>
-											</InputGroup>
-										</FormGroup>
-									</div>
-									<div className='col-12'>
-										<FormGroup>
-											<Label htmlFor='categoryName'>Category</Label>
-											<Select
-												id='categoryName'
-												ariaLabel='Category'
-												placeholder='Category Name'
-												list={[
-													{ value: '3D Shapes', text: '3D Shapes' },
-													{ value: 'Illustrator', text: 'Illustrator' },
-													{ value: 'Photo', text: 'Photo' },
-												]}
-												onChange={formik.handleChange}
-												value={formik.values.categoryName}
-											/>
-										</FormGroup>
-									</div>
-									<div className='col-12'>
-										<FormGroup>
-											<Label>Store</Label>
-											<ChecksGroup>
-												<Checks
-													id='companyA'
-													label='Company A'
-													onChange={formik.handleChange}
-													checked={formik.values.companyA}
-												/>
-												<Checks
-													id='companyB'
-													label='Company B'
-													onChange={formik.handleChange}
-													checked={formik.values.companyB}
-												/>
-												<Checks
-													id='companyC'
-													label='Company C'
-													onChange={formik.handleChange}
-													checked={formik.values.companyC}
-												/>
-												<Checks
-													id='companyD'
-													label='Company D'
-													onChange={formik.handleChange}
-													checked={formik.values.companyD}
-												/>
-											</ChecksGroup>
-										</FormGroup>
-									</div>
-									<div className='col-6'>
-										<Button
-											color='primary'
-											isOutline
-											className='w-100'
-											onClick={formik.resetForm}>
-											Reset
-										</Button>
-									</div>
-									<div className='col-6'>
-										<Button color='primary' className='w-100' type='submit'>
-											Filter
-										</Button>
-									</div>
-								</form>
-							</div>
-						</DropdownMenu>
-					</Dropdown>
-				</SubHeaderRight>
-			</SubHeader>
-			<Page container='fluid'>
-				<Card stretch>
-					<CardHeader>
+		<>
+			<PageWrapper title=''>
+				{/*<Page container='fluid'>
+		 		<Card stretch>
+			<CardHeader>
 						<CardLabel icon='ShoppingCart' iconColor='info'>
 							<CardTitle>
 								Top Seller{' '}
@@ -306,48 +149,46 @@ const TableWidget = () => {
 								</DropdownMenu>
 							</Dropdown>
 						</CardActions>
-					</CardHeader>
-					<CardBody className='table-responsive' isScrollable>
-						<table className='table table-modern table-hover'>
-							<thead>
-								<tr>
-									<th scope='col'>afszzj</th>
-									<th scope='col'>#</th>
-									<th scope='col'>Image</th>
-									<th scope='col'>Name</th>
-									<th scope='col'>Sales</th>
-									<th scope='col'>Stock</th>
-									<th scope='col'>Price</th>
-									<th scope='col'>Store</th>
-									<th scope='col' className='text-end'>
+								</CardHeader> */}
+				<CardBody className='table-responsive' isScrollable>
+					<table className='table table-modern table-hover'>
+						<thead>
+							{/* <th scope='col' className='text-end'>
 										Actions
+									</th> */}
+							<tr className='table-body-row'>
+								{tableNames.map((i) => (
+									<th scope='col' key={i.name}>
+										{i.name}
 									</th>
-								</tr>
-							</thead>
-							<tbody>
-								{filteredData.map((i) => (
-									<CommonTableRow
-										key={i.id}
-										// eslint-disable-next-line react/jsx-props-no-spreading
-										{...i}
-										selectName='selectedList'
-										selectOnChange={selectTable.handleChange}
-										selectChecked={selectTable.values.selectedList.includes(
-											i.id.toString() as never,
-										)}
-									/>
 								))}
-							</tbody>
-						</table>
-					</CardBody>
-					<CardFooter className='justify-content-center'>
+							</tr>
+						</thead>
+						<tbody>
+							{filteredData.map((i) => (
+								<CommonTableRow
+									key={i.id}
+									// eslint-disable-next-line react/jsx-props-no-spreading
+									{...i}
+									selectName='selectedList'
+									selectOnChange={selectTable.handleChange}
+									selectChecked={selectTable.values.selectedList.includes(
+										i.id.toString() as never,
+									)}
+								/>
+							))}
+						</tbody>
+					</table>
+				</CardBody>
+				{/*					<CardFooter className='justify-content-center'>
 						<Button color='dark' className='px-5 py-3'>
 							Load More
 						</Button>
 					</CardFooter>
 				</Card>
-			</Page>
-		</PageWrapper>
+			</Page>*/}
+			</PageWrapper>
+		</>
 	);
 };
 
