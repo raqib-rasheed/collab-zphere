@@ -10,17 +10,17 @@ import { ApexOptions } from 'apexcharts';
 
 interface ICommonTableRowProps {
 	id: string | number;
-	image: string;
-	name: string;
-	category: string;
-	series: ApexOptions['series'];
-	color: string;
-	stock: string | number;
-	price: number;
-	store: string;
-	selectOnChange: any;
-	selectChecked: any;
-	selectName: string;
+	image?: string;
+	name?: string;
+	category?: string;
+	series?: ApexOptions['series'];
+	color?: string;
+	stock?: string | number;
+	price?: number;
+	store?: string;
+	selectOnChange?: any;
+	selectChecked?: any;
+	selectName?: string;
 }
 const CommonTableRow: FC<ICommonTableRowProps> = ({
 	id,
@@ -118,7 +118,7 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 			</td>
 			<td>
 				<span>
-					{price.toLocaleString('en-US', {
+					{price?.toLocaleString('en-US', {
 						style: 'currency',
 						currency: 'USD',
 					})}
