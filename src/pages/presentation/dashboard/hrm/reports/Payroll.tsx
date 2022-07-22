@@ -266,7 +266,7 @@ const Payroll = () => {
 					</div>
 				</div>
 			</div>
-			<TableWidget title='Payroll Reports' />
+			<TableWidget data={[{ id: 'dummy data' }]} title='Payroll Reports' />
 		</PageWrapper>
 	);
 };

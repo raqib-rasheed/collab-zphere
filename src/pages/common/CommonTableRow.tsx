@@ -82,11 +82,13 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 				/>
 			</th>
 			<th scope='row'>{id}</th>
-			<td>
-				<Link to={`afs`}>
-					<img src={image} alt={name} width={54} height={54} />
-				</Link>
-			</td>
+			{image && (
+				<td>
+					<Link to={`afs`}>
+						<img src={image} alt={name} width={54} height={54} />
+					</Link>
+				</td>
+			)}
 			<td>
 				<div>
 					<Link
