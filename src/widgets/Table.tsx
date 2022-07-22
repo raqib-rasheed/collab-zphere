@@ -3,8 +3,6 @@ import moment from 'moment';
 import { useFormik } from 'formik';
 import { Calendar as DatePicker } from 'react-date-range';
 import Button from '../components/bootstrap/Button';
-import PageWrapper from '../layout/PageWrapper/PageWrapper';
-import Page from '../layout/Page/Page';
 import Card, {
 	CardActions,
 	CardBody,
@@ -24,7 +22,12 @@ import data from '../common/data/dummyProductData';
 import useSelectTable from '../hooks/useSelectTable';
 import useDarkMode from '../hooks/useDarkMode';
 
-const TableWidget = () => {
+interface ITableProps {
+	title?: string;
+	tableColumns?: { name: string }[];
+}
+
+const TableWidget = ({ title, tableColumns }: ITableProps) => {
 	const { themeStatus } = useDarkMode();
 
 	const [date, setDate] = useState(new Date());
@@ -60,9 +63,9 @@ const TableWidget = () => {
 
 	const { selectTable } = useSelectTable(filteredData);
 
-	const tableNames = [
+	const tableNames = tableColumns ?? [
 		{ name: '-' },
-		{ name: '-' },
+		{ name: '#' },
 		{ name: 'Image' },
 		{ name: 'Name' },
 		{ name: 'Sales' },
@@ -74,82 +77,80 @@ const TableWidget = () => {
 
 	return (
 		<>
-			<PageWrapper title=''>
-				{/*<Page container='fluid'>
-		 		<Card stretch>
-			<CardHeader>
-						<CardLabel icon='ShoppingCart' iconColor='info'>
-							<CardTitle>
-								Top Seller{' '}
-								<small className='ms-2'>
-									Item:{' '}
-									{selectTable.values.selectedList.length
-										? `${selectTable.values.selectedList.length} / `
-										: null}
-									{filteredData.length}
-								</small>
-							</CardTitle>
-						</CardLabel>
-						<CardActions>
-							<Dropdown isButtonGroup>
-								<Popovers
-									desc={
-										<DatePicker
-											onChange={(item) => setDate(item)}
-											date={date}
-											color={process.env.REACT_APP_PRIMARY_COLOR}
-										/>
-									}
-									placement='bottom-end'
-									className='mw-100'
-									trigger='click'>
-									<Button color='success' isLight icon='WaterfallChart'>
-										{moment(date).format('MMM Do')}
-									</Button>
-								</Popovers>
-								<DropdownToggle>
-									<Button color='success' isLight />
-								</DropdownToggle>
-								<DropdownMenu isAlignmentEnd>
-									<DropdownItem>
-										<span>Last Hour</span>
-									</DropdownItem>
-									<DropdownItem>
-										<span>Last Day</span>
-									</DropdownItem>
-									<DropdownItem>
-										<span>Last Week</span>
-									</DropdownItem>
-									<DropdownItem>
-										<span>Last Month</span>
-									</DropdownItem>
-								</DropdownMenu>
-							</Dropdown>
-							<Button
-								color='info'
-								icon='CloudDownload'
-								isLight
-								tag='a'
-								to='/somefile.txt'
-								target='_blank'
-								download>
-								Export
-							</Button>
-							<Dropdown className='d-inline'>
-								<DropdownToggle hasIcon={false}>
-									<Button color={themeStatus} icon='MoreHoriz' />
-								</DropdownToggle>
-								<DropdownMenu isAlignmentEnd>
-									<DropdownItem>
-										<Button icon='Edit'>Edit</Button>
-									</DropdownItem>
-									<DropdownItem>
-										<Button icon='Delete'>Delete</Button>
-									</DropdownItem>
-								</DropdownMenu>
-							</Dropdown>
-						</CardActions>
-								</CardHeader> */}
+			<Card stretch>
+				<CardHeader>
+					<CardLabel icon='ShoppingCart' iconColor='info'>
+						<CardTitle>
+							{title ?? 'Top Seller'}
+							<small className='ms-2'>
+								Item:{' '}
+								{selectTable.values.selectedList.length
+									? `${selectTable.values.selectedList.length} / `
+									: null}
+								{filteredData.length}
+							</small>
+						</CardTitle>
+					</CardLabel>
+					<CardActions>
+						<Dropdown isButtonGroup>
+							<Popovers
+								desc={
+									<DatePicker
+										onChange={(item) => setDate(item)}
+										date={date}
+										color={process.env.REACT_APP_PRIMARY_COLOR}
+									/>
+								}
+								placement='bottom-end'
+								className='mw-100'
+								trigger='click'>
+								<Button color='success' isLight icon='WaterfallChart'>
+									{moment(date).format('MMM Do')}
+								</Button>
+							</Popovers>
+							<DropdownToggle>
+								<Button color='success' isLight />
+							</DropdownToggle>
+							<DropdownMenu isAlignmentEnd>
+								<DropdownItem>
+									<span>Last Hour</span>
+								</DropdownItem>
+								<DropdownItem>
+									<span>Last Day</span>
+								</DropdownItem>
+								<DropdownItem>
+									<span>Last Week</span>
+								</DropdownItem>
+								<DropdownItem>
+									<span>Last Month</span>
+								</DropdownItem>
+							</DropdownMenu>
+						</Dropdown>
+						<Button
+							color='info'
+							icon='CloudDownload'
+							isLight
+							tag='a'
+							to='/somefile.txt'
+							target='_blank'
+							download>
+							Export
+						</Button>
+						<Dropdown className='d-inline'>
+							<DropdownToggle hasIcon={false}>
+								<Button color={themeStatus} icon='MoreHoriz' />
+							</DropdownToggle>
+							<DropdownMenu isAlignmentEnd>
+								<DropdownItem>
+									<Button icon='Edit'>Edit</Button>
+								</DropdownItem>
+								<DropdownItem>
+									<Button icon='Delete'>Delete</Button>
+								</DropdownItem>
+							</DropdownMenu>
+						</Dropdown>
+					</CardActions>
+				</CardHeader>
 				<CardBody className='table-responsive' isScrollable>
 					<table className='table table-modern table-hover'>
 						<thead>
@@ -180,14 +181,12 @@ const TableWidget = () => {
 						</tbody>
 					</table>
 				</CardBody>
-				{/*					<CardFooter className='justify-content-center'>
-						<Button color='dark' className='px-5 py-3'>
-							Load More
-						</Button>
-					</CardFooter>
-				</Card>
-			</Page>*/}
-			</PageWrapper>
+				<CardFooter className='justify-content-center'>
+					<Button color='dark' className='px-5 py-3'>
+						Load More
+					</Button>
+				</CardFooter>
+			</Card>
 		</>
 	);
 };
