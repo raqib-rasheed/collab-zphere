@@ -18,16 +18,17 @@ import Dropdown, {
 } from '../components/bootstrap/Dropdown';
 import CommonTableRow from '../pages/common/CommonTableRow';
 import Popovers from '../components/bootstrap/Popovers';
-import data from '../common/data/dummyProductData';
+import dummyData, { ITableData } from '../common/data/dummyProductData';
 import useSelectTable from '../hooks/useSelectTable';
 import useDarkMode from '../hooks/useDarkMode';
 
 interface ITableProps {
 	title?: string;
 	tableColumns?: { name: string }[];
+	data?: ITableData[] | { id: string }[];
 }
 
-const TableWidget = ({ title, tableColumns }: ITableProps) => {
+const TableWidget = ({ title, tableColumns, data }: ITableProps) => {
 	const { themeStatus } = useDarkMode();
 
 	const [date, setDate] = useState(new Date());
@@ -47,19 +48,20 @@ const TableWidget = ({ title, tableColumns }: ITableProps) => {
 		},
 	});
 
-	const filteredData = data.filter(
-		(f) =>
-			// Category
-			f.category === formik.values.categoryName &&
-			// Price
-			formik.values.minPrice === '' &&
-			formik.values.maxPrice === '' &&
-			//	Company
-			((formik.values.companyA ? f.store === 'Company A' : false) ||
-				(formik.values.companyB ? f.store === 'Company B' : false) ||
-				(formik.values.companyC ? f.store === 'Company C' : false) ||
-				(formik.values.companyD ? f.store === 'Company D' : false)),
-	);
+	const filteredData = data ?? dummyData;
+	// .filter(
+	// 	(f) => f,
+	// // Category
+	// f.category === formik.values.categoryName &&
+	// // Price
+	// formik.values.minPrice === '' &&
+	// formik.values.maxPrice === '' &&
+	// //	Company
+	// ((formik.values.companyA ? f.store === 'Company A' : false) ||
+	// 	(formik.values.companyB ? f.store === 'Company B' : false) ||
+	// 	(formik.values.companyC ? f.store === 'Company C' : false) ||
+	// 	(formik.values.companyD ? f.store === 'Company D' : false)),
+	// );
 
 	const { selectTable } = useSelectTable(filteredData);
 
