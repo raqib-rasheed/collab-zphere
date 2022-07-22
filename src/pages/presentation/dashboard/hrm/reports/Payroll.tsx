@@ -14,6 +14,7 @@ import { TABS } from '../../common/helper';
 import { useFormik } from 'formik';
 import showNotification from '../../../../../components/extras/showNotification';
 import useSubHeaderBreadCrumpList from '../../../../../hooks/useSubHeaderBreadCrumpList';
+import TableWidget from '../../../../../widgets/Table';
 
 const Payroll = () => {
 	const breadcrumbLists = useSubHeaderBreadCrumpList();
@@ -265,6 +266,7 @@ const Payroll = () => {
 					</div>
 				</div>
 			</div>
+			<TableWidget title='Payroll Reports' />
 		</PageWrapper>
 	);
 };
