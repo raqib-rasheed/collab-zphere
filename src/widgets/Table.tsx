@@ -24,9 +24,10 @@ import useDarkMode from '../hooks/useDarkMode';
 
 interface ITableProps {
 	title?: string;
+	tableColumns?: { name: string }[];
 }
 
-const TableWidget = ({ title }: ITableProps) => {
+const TableWidget = ({ title, tableColumns }: ITableProps) => {
 	const { themeStatus } = useDarkMode();
 
 	const [date, setDate] = useState(new Date());
@@ -62,7 +63,7 @@ const TableWidget = ({ title }: ITableProps) => {
 
 	const { selectTable } = useSelectTable(filteredData);
 
-	const tableNames = [
+	const tableNames = tableColumns ?? [
 		{ name: '-' },
 		{ name: '#' },
 		{ name: 'Image' },
