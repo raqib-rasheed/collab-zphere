@@ -1,5 +1,4 @@
 import React from 'react';
-import Icon from '../../../components/icon/Icon';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import TableWidget from '../../../widgets/Table';
@@ -7,17 +6,12 @@ import TableWidget from '../../../widgets/Table';
 const EmployeeAssetSetup = () => {
 	function generateDummyData(count: number) {
 		const dummyData = {
-			id: 'China',
-			Name: ' DemoTese DemoTese DemoTese Demo',
-			actions: (
-				<div>
-					<Icon size='lg' className='mx-2' icon='Verified' color='info' />
-					<Icon size='lg' className='mx-2' icon='Copy' color='info' />
-					<Icon size='lg' className='mx-2' icon='Edit' color='info' />
-					<Icon size='lg' className='mx-2' icon='Delete' color='info' />
-					<Icon size='lg' className='mx-2' icon='Verified' color='info' />
-				</div>
-			),
+			id: 'demo text',
+			Name: 'Richard Atkinson',
+			EMAIL: 'keanu2006@gmail.com	',
+			BRANCH: 'India',
+			BRAaCH: 'Tese DemoTese DemoTese DemoTese DemoTese Demo',
+			BRAaCaa: 'Actions',
 		};
 
 		const data = [];
@@ -28,7 +22,14 @@ const EmployeeAssetSetup = () => {
 		return data;
 	}
 
-	const columns = [{ name: 'NAME' }, { name: 'RESPONSE' }, { name: 'ACTIONS' }];
+	const columns = [
+		{ name: 'NAME' },
+		{ name: 'PURCHASE DATE' },
+		{ name: 'SUPPORTED DATE' },
+		{ name: 'AMOUNT' },
+		{ name: 'DESCRIPTION' },
+		{ name: 'ACTION' },
+	];
 	return (
 		<PageWrapper title=''>
 			<Page container='fluid'>

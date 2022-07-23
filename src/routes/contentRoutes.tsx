@@ -132,7 +132,7 @@ const APP = {
 			() => import('../pages/presentation/hrm-system/EmployeesAssetSetup'),
 		),
 		DOCUMENT_SETUP: lazy(() => import('../pages/presentation/hrm-system/DocumentSetup')),
-		COMPANY_POLICY: lazy(() => import('../pages/presentation/hrm-system/DocumentSetup')),
+		COMPANY_POLICY: lazy(() => import('../pages/presentation/hrm-system/CompanyPolicy')),
 		HRM_SYSTEM_SETUP: lazy(() => import('../pages/presentation/hrm-system/HrmSystemSetup')),
 	},
 	PROJECT_SYSTEM: {
