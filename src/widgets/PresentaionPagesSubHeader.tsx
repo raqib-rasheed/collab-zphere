@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../layout/SubHeader/SubHeader';
 import Button from '../components/bootstrap/Button';
 import Breadcrumb from '../components/bootstrap/Breadcrumb';
-import { TABS } from '../pages/presentation/dashboard/common/helper';
 import useSubHeaderBreadCrumpList from '../hooks/useSubHeaderBreadCrumpList';
 import { useFormik } from 'formik';
 import showNotification from '../components/extras/showNotification';
@@ -12,14 +11,15 @@ import classNames from 'classnames';
 interface IPresentaionPagesSubHeaderProps {
 	showSubHeaderRight?: boolean;
 	title?: string;
+	customSubHeaderRightActions?: any;
 }
 
 const PresentaionPagesSubHeader = ({
 	showSubHeaderRight,
 	title,
+	customSubHeaderRightActions,
 }: IPresentaionPagesSubHeaderProps) => {
 	const breadcrumbLists = useSubHeaderBreadCrumpList();
-	const [activeTab, setActiveTab] = useState(TABS.BUSINESS_SETTING);
 	const formik = useFormik({
 		initialValues: {
 			firstName: 'John',
@@ -68,34 +68,30 @@ const PresentaionPagesSubHeader = ({
 			</SubHeaderLeft>
 			{showSubHeaderRight && (
 				<SubHeaderRight>
-					<Button
-						color='dark'
-						isLight
-						icon='Add'
-						onClick={() => {
-							setActiveTab(TABS.BUSINESS_SETTING);
-							formik.setValues({
-								firstName: '',
-								lastName: '',
-								displayName: '',
-								emailAddress: '',
-								currentPassword: '',
-								newPassword: '',
-								confirmPassword: '',
-							});
-							formikAddress.setValues({
-								addressLine: '',
-								addressLine2: '',
-								city: '',
-								state: '',
-								zip: '',
-							});
-						}}>
-						Add New
-					</Button>
-					{TABS.BUSINESS_SETTING === activeTab && (
-						<Button color='info' isOutline icon='Save' onClick={formik.handleSubmit}>
-							Save
+					{customSubHeaderRightActions ?? (
+						<Button
+							color='dark'
+							isLight
+							icon='Add'
+							onClick={() => {
+								formik.setValues({
+									firstName: '',
+									lastName: '',
+									displayName: '',
+									emailAddress: '',
+									currentPassword: '',
+									newPassword: '',
+									confirmPassword: '',
+								});
+								formikAddress.setValues({
+									addressLine: '',
+									addressLine2: '',
+									city: '',
+									state: '',
+									zip: '',
+								});
+							}}>
+							Add New
 						</Button>
 					)}
 				</SubHeaderRight>

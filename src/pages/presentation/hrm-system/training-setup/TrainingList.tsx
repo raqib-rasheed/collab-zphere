@@ -1,57 +1,64 @@
-import React, { useState } from 'react';
-import moment from 'moment';
-import { Calendar as DatePicker } from 'react-date-range';
-import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../../../../layout/SubHeader/SubHeader';
-import Icon from '../../../../components/icon/Icon';
+import React from 'react';
 import Button from '../../../../components/bootstrap/Button';
+import Icon from '../../../../components/icon/Icon';
 import Page from '../../../../layout/Page/Page';
 import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
-import CommonUpcomingEvents from '../../../common/CommonUpcomingEvents';
-import Popovers from '../../../../components/bootstrap/Popovers';
-import useDarkMode from '../../../../hooks/useDarkMode';
+import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
+import TableWidget from '../../../../widgets/Table';
 
-const ListFluidPage = () => {
-	const { themeStatus } = useDarkMode();
+const Indicator = () => {
+	function generateDummyData(count: number) {
+		const dummyData = (index: number) => ({
+			Name: 'India',
+			EMAIL: 'Job Training',
+			asas: (
+				<Button color={index % 2 === 0 ? 'success' : 'warning'}>
+					{index % 2 === 0 ? 'Started' : 'pending'}
+				</Button>
+			),
+			BRANCH: 'Richard Atkinson',
+			asasas: 'Anabel',
+			id: 'Jul 21, 2021 to Jul 21, 2021',
+			idasfa: '$5,000.00',
+			actions: (
+				<div>
+					<Icon size='lg' className='mx-1' icon='Eye' color='info' />
+					<Icon size='lg' className='mx-1' icon='Edit' color='success' />
+					<Icon size='lg' className='mx-1' icon='Trash' color='danger' />
+				</div>
+			),
+		});
 
-	const [date, setDate] = useState(new Date());
+		const data = [];
+		while (count > 0) {
+			data?.push(dummyData(count));
+			count--;
+		}
+		return data;
+	}
 
+	const columns = [
+		{ name: 'BRANCH' },
+		{ name: 'TRAINING TYPE' },
+		{ name: 'STATUS' },
+		{ name: 'EMPLOYEE' },
+		{ name: 'TRAINER' },
+		{ name: 'TRAINING DURATION' },
+		{ name: 'COST' },
+		{ name: 'ACTION' },
+	];
 	return (
-		<PageWrapper title='demo title'>
-			<SubHeader>
-				<SubHeaderLeft>
-					<Icon icon='Info' className='me-2' size='2x' />
-					<span className='text-muted'>
-						You have <Icon icon='TaskAlt' color='success' className='mx-1' size='lg' />{' '}
-						3 approved appointments and{' '}
-						<Icon icon='Alarm' color='warning' className='mx-1' size='lg' /> 4 pending
-						appointments for today.
-					</span>
-				</SubHeaderLeft>
-				<SubHeaderRight>
-					<Popovers
-						desc={
-							<DatePicker
-								onChange={(item) => setDate(item)}
-								date={date}
-								color={process.env.REACT_APP_PRIMARY_COLOR}
-							/>
-						}
-						placement='bottom-end'
-						className='mw-100'
-						trigger='click'>
-						<Button color={themeStatus}>
-							{`${moment(date).startOf('weeks').format('MMM Do')} - ${moment(date)
-								.endOf('weeks')
-								.format('MMM Do')}`}
-						</Button>
-					</Popovers>
-				</SubHeaderRight>
-			</SubHeader>
+		<PageWrapper title=''>
+			<PresentaionPagesSubHeader
+				showSubHeaderRight
+				title='Manage Training'
+				customSubHeaderRightActions={<Icon size='2x' icon='Plus' color='success' />}
+			/>
 			<Page container='fluid'>
-				<CommonUpcomingEvents isFluid />
+				<TableWidget data={generateDummyData(6)} tableColumns={columns} />
 			</Page>
 		</PageWrapper>
 	);
 };
 
-export default ListFluidPage;
+export default Indicator;

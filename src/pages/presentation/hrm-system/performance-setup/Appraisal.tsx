@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from '../../../../components/icon/Icon';
 import Page from '../../../../layout/Page/Page';
 import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
 import TableWidget from '../../../../widgets/Table';
 
 const Indicator = () => {
@@ -47,6 +48,11 @@ const Indicator = () => {
 	];
 	return (
 		<PageWrapper title=''>
+			<PresentaionPagesSubHeader
+				showSubHeaderRight
+				title='Manage Appraisal'
+				customSubHeaderRightActions={<Icon size='2x' icon='Plus' color='success' />}
+			/>
 			<Page container='fluid'>
 				<TableWidget data={generateDummyData(3)} tableColumns={columns} />
 			</Page>
