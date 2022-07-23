@@ -125,6 +125,7 @@ const PaginationButtons: FC<IPaginationButtonsProps> = ({
 				)}
 
 				<Select
+					className='mx-2'
 					size='sm'
 					ariaLabel='Per'
 					onChange={(e: { target: { value: string } }) => {
