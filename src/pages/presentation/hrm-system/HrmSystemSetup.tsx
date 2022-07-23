@@ -1,9 +1,9 @@
 import React from 'react';
-import Page from '../../../../layout/Page/Page';
-import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
-import TableWidget from '../../../../widgets/Table';
+import Page from '../../../layout/Page/Page';
+import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
+import TableWidget from '../../../widgets/Table';
 
-const SetSalary = () => {
+const EmployeeAssetSetup = () => {
 	function generateDummyData(count: number) {
 		const dummyData = {
 			id: 'China',
@@ -37,4 +37,4 @@ const SetSalary = () => {
 	);
 };
 
-export default SetSalary;
+export default EmployeeAssetSetup;

@@ -10,17 +10,18 @@ import { ApexOptions } from 'apexcharts';
 
 interface ICommonTableRowProps {
 	id: string | number;
-	image: string;
-	name: string;
-	category: string;
-	series: ApexOptions['series'];
-	color: string;
-	stock: string | number;
-	price: number;
-	store: string;
-	selectOnChange: any;
-	selectChecked: any;
-	selectName: string;
+	image?: string;
+	name?: string;
+	category?: string;
+	series?: ApexOptions['series'];
+	color?: string;
+	stock?: string | number;
+	price?: number;
+	store?: string;
+	selectOnChange?: any;
+	selectChecked?: any;
+	selectName?: string;
+	data?: {};
 }
 const CommonTableRow: FC<ICommonTableRowProps> = ({
 	id,
@@ -35,6 +36,7 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 	selectOnChange,
 	selectChecked,
 	selectName,
+	data,
 }) => {
 	const { darkModeStatus } = useDarkMode();
 
@@ -60,7 +62,7 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 				title: {
 					// eslint-disable-next-line @typescript-eslint/no-unused-vars
 					formatter(seriesName: string) {
-						return '';
+						return seriesName;
 					},
 				},
 			},
@@ -72,29 +74,30 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 	};
 	return (
 		<tr>
-			<th scope='row'>
-				<Checks
-					id={id.toString()}
-					name={selectName}
-					value={id}
-					onChange={selectOnChange}
-					checked={selectChecked}
-				/>
-			</th>
-			<th scope='row'>{id}</th>
-			<td>
-				<Link to={`afs`}>
-					<img src={image} alt={name} width={54} height={54} />
-				</Link>
-			</td>
+			{data &&
+				Object?.entries(data)?.map((item: any) => {
+					return (
+						<td key={id} scope='row'>
+							<span>{item[1]}</span>
+						</td>
+					);
+				})}
+			{/* <th scope='row'>{id}</th>
+			{image && (
+				<td>
+					<Link to={`afs`}>
+						<img src={image} alt={name} width={54} height={54} />
+					</Link>
+				</td>
+			)}
 			<td>
 				<div>
-					<Link to={'demo text'}>
-						className=
-						{classNames('fw-bold', {
+					<Link
+						className={classNames('fw-bold', {
 							'link-dark': !darkModeStatus,
 							'link-light': darkModeStatus,
 						})}
+						to={'demo text'}>
 						{name}
 					</Link>
 					<div className='text-muted'>
@@ -116,7 +119,7 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 			</td>
 			<td>
 				<span>
-					{price.toLocaleString('en-US', {
+					{price?.toLocaleString('en-US', {
 						style: 'currency',
 						currency: 'USD',
 					})}
@@ -135,7 +138,7 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 			</td>
 			<td className='text-end'>
 				<Button color='dark' isLight icon='Edit' tag='a' to={'demo text'} />
-			</td>
+			</td> */}
 		</tr>
 	);
 };

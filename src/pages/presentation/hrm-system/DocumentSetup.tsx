@@ -1,15 +1,15 @@
 import React from 'react';
-import Page from '../../../../layout/Page/Page';
-import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
-import TableWidget from '../../../../widgets/Table';
+import Page from '../../../layout/Page/Page';
+import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
+import TableWidget from '../../../widgets/Table';
 
-const SetSalary = () => {
+const DocumentSetup = () => {
 	function generateDummyData(count: number) {
 		const dummyData = {
-			id: 'China',
-			Name: ' DemoTese DemoTese DemoTese Demo',
-			EMAIL: 'Employment Contracts.Employment Contracts.	',
-			BRANCH: 'No Attachement',
+			id: 'demo text',
+			Name: 'Richard Atkinson',
+			EMAIL: 'keanu2006@gmail.com	',
+			BRANCH: 'India',
 			BRAaCaa: 'Actions',
 		};
 
@@ -22,10 +22,10 @@ const SetSalary = () => {
 	}
 
 	const columns = [
-		{ name: 'BRANCH' },
-		{ name: 'TITLE' },
+		{ name: 'NAME' },
+		{ name: 'DOCUMENT' },
+		{ name: 'ROLE' },
 		{ name: 'DESCRIPTION' },
-		{ name: 'ATTACHMENT' },
 		{ name: 'ACTION' },
 	];
 	return (
@@ -37,4 +37,4 @@ const SetSalary = () => {
 	);
 };
 
-export default SetSalary;
+export default DocumentSetup;
