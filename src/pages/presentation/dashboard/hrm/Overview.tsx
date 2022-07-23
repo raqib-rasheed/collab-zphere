@@ -24,7 +24,7 @@ import {
 } from '../../../../components/extras/calendarHelper';
 import { Calendar, momentLocalizer, Views } from 'react-big-calendar';
 import PaginationButtons from '../../../../components/PaginationButtons';
-import useMinimizeAside from '../../../../hooks/useMinimizeAside';
+// import useMinimizeAside from '../../../../hooks/useMinimizeAside';
 import useSortableData from '../../../../hooks/useSortableData';
 import Page from '../../../../layout/Page/Page';
 import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
@@ -125,7 +125,7 @@ const ProjectSystemTasks = () => {
 		toggleRightPanel,
 		// setToggleRightPanel
 	] = useState(true);
-	useMinimizeAside();
+	// useMinimizeAside();
 
 	const [
 		employeeList,

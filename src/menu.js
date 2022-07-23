@@ -139,19 +139,19 @@ export const sidebarMenus = {
 	hrmSystem: {
 		id: 'hrmSystem',
 		text: 'HRM System',
-		path: 'hrm-system/',
+		path: 'hrm-system',
 		icon: 'Person',
 		subMenu: {
 			EmplyeeSetup: {
 				id: 'hrmSystemEmplyeeSetup',
 				text: 'Emplyee Setup',
-				path: 'hrm-system/emplyee-setup',
+				path: '/hrm-system/emplyee-setup',
 				icon: 'Dot',
 			},
 			payrollSetup: {
 				id: 'hrmSystemPayrollSetup',
 				text: 'Payroll Setup',
-				path: 'hrm-system/payroll-setup',
+				path: '/hrm-system/payroll-setup',
 				icon: 'ViewDay',
 				subMenu: {
 					setSalary: {

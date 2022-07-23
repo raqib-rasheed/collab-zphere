@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
-import moment from 'moment';
-import { useFormik } from 'formik';
-import { Calendar as DatePicker } from 'react-date-range';
+// import moment from 'moment';
+// import { useFormik } from 'formik';
+// import { Calendar as DatePicker } from 'react-date-range';
 import Button from '../components/bootstrap/Button';
 import Card, {
 	CardActions,
 	CardBody,
 	CardFooter,
 	CardHeader,
-	CardLabel,
+	// CardLabel,
 	CardTitle,
 } from '../components/bootstrap/Card';
-import Dropdown, {
-	DropdownItem,
-	DropdownMenu,
-	DropdownToggle,
-} from '../components/bootstrap/Dropdown';
+// import Dropdown, {
+// 	DropdownItem,
+// 	DropdownMenu,
+// 	DropdownToggle,
+// } from '../components/bootstrap/Dropdown';
 import CommonTableRow from '../pages/common/CommonTableRow';
-import Popovers from '../components/bootstrap/Popovers';
+// import Popovers from '../components/bootstrap/Popovers';
 import dummyData, { ITableData } from '../common/data/dummyProductData';
 import useSelectTable from '../hooks/useSelectTable';
-import useDarkMode from '../hooks/useDarkMode';
+// import useDarkMode from '../hooks/useDarkMode';
 import PaginationButtons from '../components/PaginationButtons';
 import Input from '../components/bootstrap/forms/Input';
 
@@ -31,26 +31,26 @@ interface ITableProps {
 }
 
 const TableWidget = ({ title, tableColumns, data }: ITableProps) => {
-	const { themeStatus } = useDarkMode();
+	// const { themeStatus } = useDarkMode();
 
-	const [date, setDate] = useState(new Date());
+	// const [date, setDate] = useState(new Date());
 	const [currentPage, setCurrentPage] = useState(1);
 	const [perPage, setPerPage] = useState(10);
 
-	const formik = useFormik({
-		initialValues: {
-			minPrice: '',
-			maxPrice: '',
-			categoryName: '3D Shapes',
-			companyA: true,
-			companyB: true,
-			companyC: true,
-			companyD: true,
-		},
-		onSubmit: () => {
-			// alert(JSON.stringify(values, null, 2));
-		},
-	});
+	// const formik = useFormik({
+	// 	initialValues: {
+	// 		minPrice: '',
+	// 		maxPrice: '',
+	// 		categoryName: '3D Shapes',
+	// 		companyA: true,
+	// 		companyB: true,
+	// 		companyC: true,
+	// 		companyD: true,
+	// 	},
+	// 	onSubmit: () => {
+	// 		// alert(JSON.stringify(values, null, 2));
+	// 	},
+	// });
 
 	const filteredData = data ?? dummyData;
 	// .filter(
@@ -85,20 +85,7 @@ const TableWidget = ({ title, tableColumns, data }: ITableProps) => {
 		<>
 			<Card stretch>
 				<CardHeader>
-					{title && (
-						<CardLabel icon='ShoppingCart' iconColor='info'>
-							<CardTitle>
-								{title}
-								<small className='ms-2'>
-									Item:{' '}
-									{selectTable.values.selectedList.length
-										? `${selectTable.values.selectedList.length} / `
-										: null}
-									{filteredData.length}
-								</small>
-							</CardTitle>
-						</CardLabel>
-					)}
+					{title && <CardTitle>{title}</CardTitle>}
 					<CardActions className='d-flex justify-content-between align-items-center w-100'>
 						{/* <Dropdown isButtonGroup>
 							<Popovers

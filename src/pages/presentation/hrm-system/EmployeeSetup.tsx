@@ -3,7 +3,7 @@ import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import TableWidget from '../../../widgets/Table';
 
-const ProjectSystemTasks = () => {
+const EmployeeSetup = () => {
 	function generateDummyData(count: number) {
 		const dummyData = {
 			id: 'demo text',
@@ -45,4 +45,4 @@ const ProjectSystemTasks = () => {
 	);
 };
 
-export default ProjectSystemTasks;
+export default EmployeeSetup;

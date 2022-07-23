@@ -1,57 +1,64 @@
-import React, { useState } from 'react';
-import moment from 'moment';
-import { Calendar as DatePicker } from 'react-date-range';
-import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../../../../layout/SubHeader/SubHeader';
-import Icon from '../../../../components/icon/Icon';
+import React from 'react';
 import Button from '../../../../components/bootstrap/Button';
+import Icon from '../../../../components/icon/Icon';
 import Page from '../../../../layout/Page/Page';
 import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
-import CommonUpcomingEvents from '../../../common/CommonUpcomingEvents';
-import Popovers from '../../../../components/bootstrap/Popovers';
-import useDarkMode from '../../../../hooks/useDarkMode';
+import TableWidget from '../../../../widgets/Table';
 
-const ListFluidPage = () => {
-	const { themeStatus } = useDarkMode();
+const SetSalary = () => {
+	function generateDummyData(count: number) {
+		const dummyData = {
+			Name: ' Richard Atkinson',
+			EMAIL: 'Medical Leave',
+			BRANCH: 'Jul 21, 2021',
+			asas: 'Jul 21, 2021',
+			asasas: 'Jul 11, 2021',
+			id: '1',
+			idasas: 'Emergency medical procedure',
+			employeeid: (
+				<Button color='success' isOutline>
+					Approved
+				</Button>
+			),
+			actions: (
+				<div>
+					<Icon size='lg' className='mx-1' icon='Play' color='info' />
+					<Icon size='lg' className='mx-1' icon='Edit' color='success' />
+					<Icon size='lg' className='mx-1' icon='Trash' color='danger' />
+				</div>
+			),
+		};
 
-	const [date, setDate] = useState(new Date());
+		const data = [];
+		while (count > 0) {
+			data?.push(dummyData);
+			count--;
+		}
+		return data;
+	}
 
+	const columns = [
+		{ name: 'EMPLOYEE' },
+		{ name: 'LEAVE TYPE' },
+		{ name: 'APPLIED ON' },
+		{ name: 'START DATE' },
+		{ name: 'END DATE' },
+		{ name: 'TOTAL DAYS' },
+		{ name: 'LEAVE REASON' },
+		{ name: 'STATUS' },
+		{ name: 'ACTION' },
+	];
 	return (
-		<PageWrapper title='demo title'>
-			<SubHeader>
-				<SubHeaderLeft>
-					<Icon icon='Info' className='me-2' size='2x' />
-					<span className='text-muted'>
-						You have <Icon icon='TaskAlt' color='success' className='mx-1' size='lg' />{' '}
-						3 approved appointments and{' '}
-						<Icon icon='Alarm' color='warning' className='mx-1' size='lg' /> 4 pending
-						appointments for today.
-					</span>
-				</SubHeaderLeft>
-				<SubHeaderRight>
-					<Popovers
-						desc={
-							<DatePicker
-								onChange={(item) => setDate(item)}
-								date={date}
-								color={process.env.REACT_APP_PRIMARY_COLOR}
-							/>
-						}
-						placement='bottom-end'
-						className='mw-100'
-						trigger='click'>
-						<Button color={themeStatus}>
-							{`${moment(date).startOf('weeks').format('MMM Do')} - ${moment(date)
-								.endOf('weeks')
-								.format('MMM Do')}`}
-						</Button>
-					</Popovers>
-				</SubHeaderRight>
-			</SubHeader>
+		<PageWrapper title=''>
 			<Page container='fluid'>
-				<CommonUpcomingEvents isFluid />
+				<TableWidget
+					data={generateDummyData(8)}
+					tableColumns={columns}
+					title='Find Employee Payslip'
+				/>
 			</Page>
 		</PageWrapper>
 	);
 };
 
-export default ListFluidPage;
+export default SetSalary;

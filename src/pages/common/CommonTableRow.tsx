@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames';
-import Checks from '../../components/bootstrap/forms/Checks';
-import Chart from '../../components/extras/Chart';
-import Badge from '../../components/bootstrap/Badge';
-import Button from '../../components/bootstrap/Button';
-import useDarkMode from '../../hooks/useDarkMode';
+// import { Link } from 'react-router-dom';
+// import classNames from 'classnames';
+// import Checks from '../../components/bootstrap/forms/Checks';
+// import Chart from '../../components/extras/Chart';
+// import Badge from '../../components/bootstrap/Badge';
+// import Button from '../../components/bootstrap/Button';
+// import useDarkMode from '../../hooks/useDarkMode';
 import { ApexOptions } from 'apexcharts';
 
 interface ICommonTableRowProps {
@@ -38,46 +38,46 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 	selectName,
 	data,
 }) => {
-	const { darkModeStatus } = useDarkMode();
+	// const { darkModeStatus } = useDarkMode();
 
-	const dummyOptions: ApexOptions = {
-		colors: [color],
-		chart: {
-			type: 'line',
-			width: 100,
-			height: 35,
-			sparkline: {
-				enabled: true,
-			},
-		},
-		tooltip: {
-			theme: 'dark',
-			fixed: {
-				enabled: false,
-			},
-			x: {
-				show: false,
-			},
-			y: {
-				title: {
-					// eslint-disable-next-line @typescript-eslint/no-unused-vars
-					formatter(seriesName: string) {
-						return seriesName;
-					},
-				},
-			},
-		},
-		stroke: {
-			curve: 'smooth',
-			width: 2,
-		},
-	};
+	// const dummyOptions: ApexOptions = {
+	// 	colors: [color],
+	// 	chart: {
+	// 		type: 'line',
+	// 		width: 100,
+	// 		height: 35,
+	// 		sparkline: {
+	// 			enabled: true,
+	// 		},
+	// 	},
+	// 	tooltip: {
+	// 		theme: 'dark',
+	// 		fixed: {
+	// 			enabled: false,
+	// 		},
+	// 		x: {
+	// 			show: false,
+	// 		},
+	// 		y: {
+	// 			title: {
+	// 				// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	// 				formatter(seriesName: string) {
+	// 					return seriesName;
+	// 				},
+	// 			},
+	// 		},
+	// 	},
+	// 	stroke: {
+	// 		curve: 'smooth',
+	// 		width: 2,
+	// 	},
+	// };
 	return (
 		<tr>
 			{data &&
 				Object?.entries(data)?.map((item: any) => {
 					return (
-						<td key={id} scope='row'>
+						<td key={id}>
 							<span>{item[1]}</span>
 						</td>
 					);
