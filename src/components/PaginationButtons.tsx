@@ -87,10 +87,6 @@ const PaginationButtons: FC<IPaginationButtonsProps> = ({
 
 	return (
 		<CardFooter>
-			<CardFooterLeft>
-				<span className='text-muted'>{getInfo()}</span>
-			</CardFooterLeft>
-
 			<CardFooterRight className='d-flex'>
 				{totalPage > 1 && (
 					<Pagination ariaLabel={label}>
@@ -143,6 +139,9 @@ const PaginationButtons: FC<IPaginationButtonsProps> = ({
 					))}
 				</Select>
 			</CardFooterRight>
+			<CardFooterLeft>
+				<span className='text-muted'>{getInfo()}</span>
+			</CardFooterLeft>
 		</CardFooter>
 	);
 };

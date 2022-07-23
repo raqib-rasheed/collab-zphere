@@ -21,6 +21,7 @@ interface ICommonTableRowProps {
 	selectOnChange?: any;
 	selectChecked?: any;
 	selectName?: string;
+	data?: {};
 }
 const CommonTableRow: FC<ICommonTableRowProps> = ({
 	id,
@@ -35,6 +36,7 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 	selectOnChange,
 	selectChecked,
 	selectName,
+	data,
 }) => {
 	const { darkModeStatus } = useDarkMode();
 
@@ -72,16 +74,15 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 	};
 	return (
 		<tr>
-			<th scope='row'>
-				<Checks
-					id={id.toString()}
-					name={selectName}
-					value={id}
-					onChange={selectOnChange}
-					checked={selectChecked}
-				/>
-			</th>
-			<th scope='row'>{id}</th>
+			{data &&
+				Object?.entries(data)?.map((item: any) => {
+					return (
+						<td key={id} scope='row'>
+							<span>{item[1]}</span>
+						</td>
+					);
+				})}
+			{/* <th scope='row'>{id}</th>
 			{image && (
 				<td>
 					<Link to={`afs`}>
@@ -137,7 +138,7 @@ const CommonTableRow: FC<ICommonTableRowProps> = ({
 			</td>
 			<td className='text-end'>
 				<Button color='dark' isLight icon='Edit' tag='a' to={'demo text'} />
-			</td>
+			</td> */}
 		</tr>
 	);
 };

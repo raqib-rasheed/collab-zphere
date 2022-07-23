@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Card from '../../../../../components/bootstrap/Card';
 import PageWrapper from '../../../../../layout/PageWrapper/PageWrapper';
 import Icon from '../../../../../components/icon/Icon';
@@ -60,6 +60,19 @@ const Payroll = () => {
 		},
 	});
 
+	const tablecolumns = useMemo(() => {
+		return [
+			{ name: 'EMPLOYEE ID' },
+			{ name: 'EMPLOYEE' },
+			{ name: 'SALARY' },
+			{ name: 'NET SALARY' },
+			{ name: 'MONTH' },
+			{ name: 'STATUS' },
+			{ name: '-' },
+			{ name: '-' },
+		];
+	}, []);
+
 	return (
 		<PageWrapper title=''>
 			<SubHeader>
@@ -96,15 +109,6 @@ const Payroll = () => {
 					</Button>
 					{TABS.BUSINESS_SETTING === activeTab && (
 						<Button color='info' isOutline icon='Save' onClick={formik.handleSubmit}>
-							Save
-						</Button>
-					)}
-					{TABS.SLACK_SETTING === activeTab && (
-						<Button
-							color='info'
-							isOutline
-							icon='Save'
-							onClick={formikAddress.handleSubmit}>
 							Save
 						</Button>
 					)}
@@ -253,20 +257,24 @@ const Payroll = () => {
 					</div>
 				</div>
 				<div className='w-50 mx-3'>
-					<Card className='p-4'>Report :</Card>
+					<Card className='p-4'>Duration :</Card>
 					<div className='d-flex justify-content-between'>
 						<div style={{ width: '48%' }}>
-							<Card className='p-4'>Total Basic Salary :</Card>
-							<Card className='p-4'>Total Net Salary :</Card>
+							<Card className='p-4'>Total Allowance :</Card>
+							<Card className='p-4'>Total Commission :</Card>
 						</div>
 						<div style={{ width: '48%' }}>
-							<Card className='p-4'>Total Loan :</Card>
-							<Card className='p-4'>Total Saturation Deduction :</Card>
+							<Card className='p-4'>Total Other Payment :</Card>
+							<Card className='p-4'>Total Overtime :</Card>
 						</div>
 					</div>
 				</div>
 			</div>
-			<TableWidget data={[{ id: 'dummy data' }]} title='Payroll Reports' />
+			<TableWidget
+				tableColumns={tablecolumns}
+				data={[{ id: 'dummy data' }]}
+				title='Payroll Reports'
+			/>
 		</PageWrapper>
 	);
 };

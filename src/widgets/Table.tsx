@@ -21,6 +21,8 @@ import Popovers from '../components/bootstrap/Popovers';
 import dummyData, { ITableData } from '../common/data/dummyProductData';
 import useSelectTable from '../hooks/useSelectTable';
 import useDarkMode from '../hooks/useDarkMode';
+import PaginationButtons from '../components/PaginationButtons';
+import Input from '../components/bootstrap/forms/Input';
 
 interface ITableProps {
 	title?: string;
@@ -32,6 +34,8 @@ const TableWidget = ({ title, tableColumns, data }: ITableProps) => {
 	const { themeStatus } = useDarkMode();
 
 	const [date, setDate] = useState(new Date());
+	const [currentPage, setCurrentPage] = useState(1);
+	const [perPage, setPerPage] = useState(10);
 
 	const formik = useFormik({
 		initialValues: {
@@ -81,20 +85,22 @@ const TableWidget = ({ title, tableColumns, data }: ITableProps) => {
 		<>
 			<Card stretch>
 				<CardHeader>
-					<CardLabel icon='ShoppingCart' iconColor='info'>
-						<CardTitle>
-							{title ?? 'Top Seller'}
-							<small className='ms-2'>
-								Item:{' '}
-								{selectTable.values.selectedList.length
-									? `${selectTable.values.selectedList.length} / `
-									: null}
-								{filteredData.length}
-							</small>
-						</CardTitle>
-					</CardLabel>
-					<CardActions>
-						<Dropdown isButtonGroup>
+					{title && (
+						<CardLabel icon='ShoppingCart' iconColor='info'>
+							<CardTitle>
+								{title}
+								<small className='ms-2'>
+									Item:{' '}
+									{selectTable.values.selectedList.length
+										? `${selectTable.values.selectedList.length} / `
+										: null}
+									{filteredData.length}
+								</small>
+							</CardTitle>
+						</CardLabel>
+					)}
+					<CardActions className='d-flex justify-content-between align-items-center w-100'>
+						{/* <Dropdown isButtonGroup>
 							<Popovers
 								desc={
 									<DatePicker
@@ -113,21 +119,7 @@ const TableWidget = ({ title, tableColumns, data }: ITableProps) => {
 							<DropdownToggle>
 								<Button color='success' isLight />
 							</DropdownToggle>
-							<DropdownMenu isAlignmentEnd>
-								<DropdownItem>
-									<span>Last Hour</span>
-								</DropdownItem>
-								<DropdownItem>
-									<span>Last Day</span>
-								</DropdownItem>
-								<DropdownItem>
-									<span>Last Week</span>
-								</DropdownItem>
-								<DropdownItem>
-									<span>Last Month</span>
-								</DropdownItem>
-							</DropdownMenu>
-						</Dropdown>
+						</Dropdown> 
 						<Button
 							color='info'
 							icon='CloudDownload'
@@ -137,8 +129,21 @@ const TableWidget = ({ title, tableColumns, data }: ITableProps) => {
 							target='_blank'
 							download>
 							Export
-						</Button>
-						<Dropdown className='d-inline'>
+						</Button> */}
+						<div>
+							<PaginationButtons
+								data={filteredData}
+								label='items'
+								setCurrentPage={setCurrentPage}
+								currentPage={currentPage}
+								perPage={perPage}
+								setPerPage={setPerPage}
+							/>
+						</div>
+						<div>
+							<Input placeholder='Search' />
+						</div>
+						{/* <Dropdown className='d-inline'>
 							<DropdownToggle hasIcon={false}>
 								<Button color={themeStatus} icon='MoreHoriz' />
 							</DropdownToggle>
@@ -150,7 +155,7 @@ const TableWidget = ({ title, tableColumns, data }: ITableProps) => {
 									<Button icon='Delete'>Delete</Button>
 								</DropdownItem>
 							</DropdownMenu>
-						</Dropdown>
+						</Dropdown> */}
 					</CardActions>
 				</CardHeader>
 				<CardBody className='table-responsive' isScrollable>
@@ -173,6 +178,7 @@ const TableWidget = ({ title, tableColumns, data }: ITableProps) => {
 									key={i.id}
 									// eslint-disable-next-line react/jsx-props-no-spreading
 									{...i}
+									data={i}
 									selectName='selectedList'
 									selectOnChange={selectTable.handleChange}
 									selectChecked={selectTable.values.selectedList.includes(
