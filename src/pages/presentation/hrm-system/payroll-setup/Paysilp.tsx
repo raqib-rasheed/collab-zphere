@@ -5,6 +5,7 @@ import Card from '../../../../components/bootstrap/Card';
 import Icon from '../../../../components/icon/Icon';
 import Page from '../../../../layout/Page/Page';
 import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
 import TableWidget from '../../../../widgets/Table';
 
 const SetSalary = () => {
@@ -40,6 +41,7 @@ const SetSalary = () => {
 	];
 	return (
 		<PageWrapper title=''>
+			<PresentaionPagesSubHeader title='Find Employee Payslip' />
 			<Card className='py-4 px-2'>
 				<div className='d-flex justify-content-end align-items-center'>
 					<div className='btn-box mx-1'>
@@ -74,11 +76,7 @@ const SetSalary = () => {
 				</div>
 			</Card>
 			<Page container='fluid'>
-				<TableWidget
-					data={generateDummyData(8)}
-					tableColumns={columns}
-					title='Find Employee Payslip'
-				/>
+				<TableWidget data={generateDummyData(8)} tableColumns={columns} />
 			</Page>
 		</PageWrapper>
 	);

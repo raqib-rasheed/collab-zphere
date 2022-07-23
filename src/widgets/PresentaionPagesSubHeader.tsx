@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import SubHeader, {
-	SubHeaderLeft,
-	SubHeaderRight,
-	SubheaderSeparator,
-} from '../layout/SubHeader/SubHeader';
+import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../layout/SubHeader/SubHeader';
 import Button from '../components/bootstrap/Button';
 import Breadcrumb from '../components/bootstrap/Breadcrumb';
 import { TABS } from '../pages/presentation/dashboard/common/helper';
@@ -11,8 +7,17 @@ import useSubHeaderBreadCrumpList from '../hooks/useSubHeaderBreadCrumpList';
 import { useFormik } from 'formik';
 import showNotification from '../components/extras/showNotification';
 import Icon from '../components/icon/Icon';
+import classNames from 'classnames';
 
-const PresentaionPagesSubHeader = () => {
+interface IPresentaionPagesSubHeaderProps {
+	showSubHeaderRight?: boolean;
+	title?: string;
+}
+
+const PresentaionPagesSubHeader = ({
+	showSubHeaderRight,
+	title,
+}: IPresentaionPagesSubHeaderProps) => {
 	const breadcrumbLists = useSubHeaderBreadCrumpList();
 	const [activeTab, setActiveTab] = useState(TABS.BUSINESS_SETTING);
 	const formik = useFormik({
@@ -56,43 +61,45 @@ const PresentaionPagesSubHeader = () => {
 	});
 	return (
 		<SubHeader>
-			<SubHeaderLeft>
+			<SubHeaderLeft
+				className={classNames({ 'd-flex flex-column align-items-start': title }, 'p-3')}>
+				{title && <h4>{title}</h4>}
 				<Breadcrumb list={breadcrumbLists} />
-				<SubheaderSeparator />
-				<span className='text-muted'>John Doe</span>
 			</SubHeaderLeft>
-			<SubHeaderRight>
-				<Button
-					color='dark'
-					isLight
-					icon='Add'
-					onClick={() => {
-						setActiveTab(TABS.BUSINESS_SETTING);
-						formik.setValues({
-							firstName: '',
-							lastName: '',
-							displayName: '',
-							emailAddress: '',
-							currentPassword: '',
-							newPassword: '',
-							confirmPassword: '',
-						});
-						formikAddress.setValues({
-							addressLine: '',
-							addressLine2: '',
-							city: '',
-							state: '',
-							zip: '',
-						});
-					}}>
-					Add New
-				</Button>
-				{TABS.BUSINESS_SETTING === activeTab && (
-					<Button color='info' isOutline icon='Save' onClick={formik.handleSubmit}>
-						Save
+			{showSubHeaderRight && (
+				<SubHeaderRight>
+					<Button
+						color='dark'
+						isLight
+						icon='Add'
+						onClick={() => {
+							setActiveTab(TABS.BUSINESS_SETTING);
+							formik.setValues({
+								firstName: '',
+								lastName: '',
+								displayName: '',
+								emailAddress: '',
+								currentPassword: '',
+								newPassword: '',
+								confirmPassword: '',
+							});
+							formikAddress.setValues({
+								addressLine: '',
+								addressLine2: '',
+								city: '',
+								state: '',
+								zip: '',
+							});
+						}}>
+						Add New
 					</Button>
-				)}
-			</SubHeaderRight>
+					{TABS.BUSINESS_SETTING === activeTab && (
+						<Button color='info' isOutline icon='Save' onClick={formik.handleSubmit}>
+							Save
+						</Button>
+					)}
+				</SubHeaderRight>
+			)}
 		</SubHeader>
 	);
 };
