@@ -8,7 +8,7 @@ const Home: FC = () => {
     return (
         <>
             <div className="container">
-                <Link to={getRoutePath(PathNames.botsWorkspace)}>Bot workspace</Link>
+                {/* <Link to={getRoutePath(PathNames.botsWorkspace)}>Bot workspace</Link> */}
                 <br />
                 <Link to={getRoutePath(PathNames.botsDashboard)}>bots Dashbaord</Link>
                 <br />

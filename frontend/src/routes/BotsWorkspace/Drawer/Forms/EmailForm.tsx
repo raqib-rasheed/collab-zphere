@@ -16,7 +16,7 @@ const Email: FC = () => {
     });
 
     const [dataList, setDataList] = useState<string[]>([]);
-    const [emailBody, setEmailBody] = useState<string>(""); // this just fixes the richtext data loading when the compoenent renders
+    const [emailBody, setEmailBody] = useState<string>("<p></p>"); // this just fixes the richtext data loading when the compoenent renders
 
     const datas = useStoreState((state) => state.defaultStore.nodeDatas);
     const drawerState = useStoreState((state) => state.defaultStore.drawerState);
@@ -35,6 +35,7 @@ const Email: FC = () => {
     }, [form.values]);
 
     useEffect(() => {
+        console.log('called')
         const data = datas.find((data) => data.nodeId === drawerState.nodeId);
         if (data) {
             form.setFieldValue("to", data.data.to);
@@ -64,6 +65,19 @@ const Email: FC = () => {
                 />
                 <TextInput label="Subject" {...form.getInputProps("subject")} />
                 {emailBody && (
+                    <RichTextEditor
+                        placeholder="Type your email"
+                        controls={[
+                            ["bold", "italic", "underline", "link"],
+                            ["unorderedList", "orderedList", "h1", "h2", "h3"],
+                            ["sup", "sub"],
+                            ["alignLeft", "alignCenter", "alignRight"],
+                            ["blockquote", "codeBlock"],
+                        ]}
+                        {...form.getInputProps("emailBody")}
+                    />
+                )}
+                {!emailBody && (
                     <RichTextEditor
                         placeholder="Type your email"
                         controls={[
