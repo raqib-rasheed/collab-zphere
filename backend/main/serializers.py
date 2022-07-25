@@ -134,4 +134,7 @@ class DataSerializer(serializers.ModelSerializer):
             'component_name': {"write_only": True},
             'saved_version': {"write_only": True}
         }
-        
+
+class WebhookSerializer(serializers.Serializer):
+    trigger_label = serializers.CharField()
+    data = serializers.JSONField()

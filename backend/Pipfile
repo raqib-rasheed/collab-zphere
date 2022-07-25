@@ -23,6 +23,7 @@ psycopg2-binary = "*"
 django-storages = "*"
 boto3 = "*"
 gunicorn = "*"
+djangorestframework-api-key = "==2.*"
 
 [dev-packages]
 ipython = "*"

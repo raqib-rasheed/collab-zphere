@@ -9,7 +9,7 @@ class Profile(models.Model):
     pic = models.ImageField(blank = True, null = True)
     created_by = models.IntegerField(blank = True, null = True) # used for storing created user, used in leads
     timezone = models.CharField(max_length=32, choices=settings.TIMEZONES, default= 'UTC')
-
+    api_key = models.ForeignKey('rest_framework_api_key.APIKey', null = True, blank = True, on_delete = models.SET_NULL)
 
 class User(AbstractUser):
     email = models.EmailField('email address', unique = True)

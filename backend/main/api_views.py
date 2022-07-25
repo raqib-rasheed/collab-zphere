@@ -1,4 +1,5 @@
 import random
+from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -8,10 +9,15 @@ from rest_framework.viewsets import GenericViewSet, ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin
+from rest_framework_api_key.permissions import HasAPIKey, KeyParser
+from rest_framework_api_key.models import APIKey
+from user import models as user_models
 from . import serializers
 from . import models
 from . import permissions
 from . import utils
+
+User = get_user_model()
 
 
 class LeadListView(GenericAPIView):
@@ -301,12 +307,35 @@ class TemplateVaribles(APIView):
             )
         return Response(temp_template_variables)
 
+class WebhookView(GenericAPIView):
+    permission_classes = [HasAPIKey, ]
+    STATUSCHANGE = "Status Change"
+    SENDPROPOSAL = "Send Proposal"
+    NEWCLIENT = "New Client"
+    #conditions
+    EQUALTO="Equal to"
 
-class WebhookView(APIView):
+    #actions
+    SENDEMAIL="Send Email"
 
     prev_node = None
     edges = None
     prev_node = None
+
+    keyparser = KeyParser()
+    serializer_class = serializers.WebhookSerializer
+
+    def check_if_condition(self, value):
+        return value in [self.EQUALTO, ]
+    
+    def check_if_trigger(self, value):
+        return value in [self.STATUSCHANGE, self.SENDPROPOSAL, self.NEWCLIENT]
+    
+    def check_if_action(self, value):
+        return value in (self.SENDEMAIL, )
+
+    def get_key(self, request):
+        return self.keyparser.get(request)
 
     def get_response(self):
         if self.prev_node:
@@ -320,14 +349,93 @@ class WebhookView(APIView):
             print("an email is sent ")
         return "Success"
 
+    def get_next_node(self, source_node, nodes):
+        '''
+        this function returns the next target node
+        '''
+        # i'm using target here becaue left is source and right is target
+        # so if a trigger node connects to a condition from right side of trigger node we can say that the trigger node is target
+        # and the next node is source
+        edge = models.Edge.objects.get(target = source_node.node_id)
+        target_node = nodes.get(node_id = edge.source) # we need to get the source node
+        return target_node
+
+    def trigger_function(self, node, nodes):
+        """
+        trigger function job is to return the next connected node
+        """
+        target_node = self.get_next_node(node, nodes)
+        return target_node
+
+    def condition_function(self, node, nodes, data):
+        '''
+        this function will always returns an action node else none
+        '''
+        node_data = models.Data.objects.get(node_id = node.node_id)
+        if node.data['label'] == self.EQUALTO:
+            if node_data.data['value'] == data['data'][node_data.data['parameter']]:
+                target_node = self.get_next_node(node, nodes)
+                if self.check_if_action(target_node.data['label']):
+                    try:
+                        self.get_next_node(target_node, nodes)
+                    except models.Edge.DoesNotExist:
+                        return target_node 
+                elif self.check_if_condition(target_node.data['label']):
+                    return self.condition_function(target_node, nodes, data)
+        return None
+    
+    def action_function(self, node):
+        if node.data['label'] == self.SENDEMAIL:
+            print('email is sending')
+
+    def run_bot(self, bots, data):
+        for bot in bots:
+            nodes = bot.node_set.all()
+            for node in nodes:
+                if self.check_if_trigger(node.data['label']):
+                    if node.data['label'] == data['trigger_label']:
+                        target_node = self.trigger_function(node, nodes)
+                        if self.check_if_condition(target_node.data['label']):
+                            target_node = self.condition_function(target_node, nodes, data)
+                            if target_node:
+                                self.action_function(target_node)
+                        elif self.check_if_action(target_node.data['label']):
+                            self.action_function(target_node)
+
+
     def post(self, request, *args, **kwargs):
+        key = self.get_key(request)
+        api_key_object = APIKey.objects.get_from_key(key)
+        profile = user_models.Profile.objects.get(api_key = api_key_object)
+        user = User.objects.get(profile = profile)
+        workspace = models.Workspace.objects.get(user = user)
+        bots = workspace.bot_set.all()
+        serializer = self.get_serializer(data = request.data)
+        serializer.is_valid(raise_exception = True)
+        self.run_bot(bots, serializer.data)
+        # for bot in bots:
+        #     nodes = bot.node_set.all()
+        #     for node in nodes:
+        #         if node.data['label'] == serializer.trigger_label:
+        #             edge = models.Edge.objects.get(source = node.node_id)
+        #             target_node = nodes.get(node_id = edge.target)
+        #             target_node_datas = models.Data.objects.get(node_id = target_node.node_id)
+        #             if target_node.data['label'] == self.EQUALTO:
+        #                 if target_node_datas.data['parameter'] == 'name':
+        #                     if target_node_datas.data['value'] == serializer.data['data']['name']:
+        #                         next_edge = models.Edge.objects.get(source = target_node.node_id)
+        #                         next_node = nodes.get(node_id = next_edge.target)
+        #                         if next_node.data['label'] == self.SENDEMAIL:
+        #                             print('email sending')
+
+
         self.edges = models.Edge.objects.all()
         self.nodes = models.Node.objects.all()
-        response = self.get_response()
+        # response = self.get_response()
 
         return Response(
             {
-                "value": response,
+                "status": "done",
             },
             status=status.HTTP_200_OK,
         )

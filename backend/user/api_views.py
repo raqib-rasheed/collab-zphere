@@ -1,9 +1,11 @@
 
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
+from rest_framework_api_key.models import APIKey
 from django.contrib.auth import login, get_user_model
 from . import auth
 from . import serializers
@@ -12,6 +14,9 @@ from . import serializers
 - Test
 - Test user creation and profile creation
 """
+
+User = get_user_model()
+
 class LoginView(GenericAPIView):
     authentication_classes = [auth.CsrfExemptSessionAuthentication, ]
     serializer_class = serializers.LoginSerializer
@@ -39,3 +44,17 @@ class ProfileView(RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+class GenerateAPIKeyView(GenericAPIView):
+    permission_classes = [IsAuthenticated, ]
+    authentication_classes = [TokenAuthentication, ]
+
+    def post(self, request, *args, **kwargs):
+        if self.request.user.profile.api_key:
+            self.request.user.profile.api_key.delete()
+        api_key, key = APIKey.objects.create_key(name = f'{self.request.user.username}-key')
+        self.request.user.profile.api_key = api_key
+        self.request.user.profile.save()
+        return Response({
+            'key': key,
+        }, status = status.HTTP_200_OK)
