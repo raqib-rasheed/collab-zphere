@@ -61,8 +61,8 @@ const CustomNode: FC<Node> = ({ id, data }) => {
                     )}
                 </div>
             </div>
-            <Handle type="target" id="right" position={Position.Right} />
             <Handle type="source" id="left" position={Position.Left} />
+            <Handle type="target" id="right" position={Position.Right} />
         </div>
     );
 };

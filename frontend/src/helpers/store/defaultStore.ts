@@ -1,5 +1,5 @@
 import { Action, action } from "easy-peasy";
-import { ElementNames, Bot, DrawerState, NodeData, DrawerSize } from "helpers/types";
+import { Bot, DrawerState, NodeData, DrawerSize } from "helpers/types";
 
 export interface DefalutStoreModel {
     loading: boolean;

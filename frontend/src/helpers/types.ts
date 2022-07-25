@@ -12,6 +12,7 @@ export enum PathNames {
     emailTemplateEditor = "emailTemplateEditor",
     login = "login",
     user = "user",
+    apiKey = "apiKey",
 }
 
 export enum ElementNames {

@@ -10,5 +10,7 @@ export { default as Home } from "routes/home/Home";
 export { default as AdminInterface } from "routes/EmailTemplate/AdminInterface";
 export { default as Login } from "routes/auth/Login";
 export { default as Profile } from "routes/auth/Profile";
+export { default as APIKey} from "routes/APIKey/APIKey";
+// always export routes about routes
 export { default as routes } from "routes/routes";
 export { makeRoutesFromObject, getRoutePath } from "./utils";

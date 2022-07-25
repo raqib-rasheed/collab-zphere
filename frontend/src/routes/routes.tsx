@@ -11,6 +11,7 @@ import {
     SpecialDayTaskList,
     EmailTemplateEditor,
     EmailTemplateList,
+    APIKey,
 } from "routes";
 // import Home from 'routes/home/Home';
 import { Layout } from "components";
@@ -117,6 +118,15 @@ export const routes: Routes = {
                 name: PathNames.user,
                 element: <Profile />,
             },
+            apiKey: {
+                path: "generate-api-key/",
+                name: PathNames.apiKey,
+                element: (
+                    <Layout>
+                        <APIKey />
+                    </Layout>
+                )
+            }
         },
     },
 };

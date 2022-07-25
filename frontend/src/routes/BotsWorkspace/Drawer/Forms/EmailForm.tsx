@@ -25,13 +25,13 @@ const Email: FC = () => {
     const addData = useActions((actions) => actions.defaultStore.setData);
 
     useEffect(() => {
-        // updateData({
-        //     componentName: drawerState.elementName,
-        //     nodeId: drawerState.nodeId,
-        //     data: {
-        //         ...form.values,
-        //     },
-        // });
+        updateData({
+            componentName: drawerState.elementName,
+            nodeId: drawerState.nodeId,
+            data: {
+                ...form.values,
+            },
+        });
     }, [form.values]);
 
     useEffect(() => {

@@ -23,6 +23,7 @@ export const Nav: FC<Props> = ({ showBottomSection }) => {
                     </div>
                     <div className="navbar-right">
                         {user === null && <Link to={getRoutePath(PathNames.login, routes, null)}>Login</Link>}
+                        {user !== null && <Link to={getRoutePath(PathNames.apiKey)}>Api key</Link>}
                         {user !== null && <a href="#">Logout</a>}
                     </div>
                 </div>
