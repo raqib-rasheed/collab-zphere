@@ -18,6 +18,7 @@ import useDarkMode from '../../../hooks/useDarkMode';
 import TableWidget from '../../../widgets/Table';
 import Icon from '../../../components/icon/Icon';
 import Avatar from '../../../components/Avatar';
+import Card from '../../../components/bootstrap/Card';
 
 const ProjectManagementsProject = () => {
 	const [isListView, setIsListView] = useState(false);
@@ -246,6 +247,12 @@ const ProjectManagementsProject = () => {
 				</SubHeaderRight>
 			</SubHeader>
 			<Page container='fluid'>
+				<div className='d-flex justify-ceontent-between'>
+					<Card style={{ width: '24%' }}>asfas</Card>
+					<Card style={{ width: '24%' }}>asfas</Card>
+					<Card style={{ width: '24%' }}>asfas</Card>
+					<Card style={{ width: '24%' }}>asfas</Card>
+				</div>
 				{isListView ? (
 					<TableWidget data={generateDummyData(7)} tableColumns={columns} title='' />
 				) : (

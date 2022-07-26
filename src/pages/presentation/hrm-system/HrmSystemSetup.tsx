@@ -1,30 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useFormik } from 'formik';
-import { Calendar, momentLocalizer, Views } from 'react-big-calendar';
-import classNames from 'classnames';
-import moment from 'moment';
-import { Calendar as DatePicker } from 'react-date-range';
-import Button, { ButtonGroup } from '../../../components/bootstrap/Button';
+import React, { useCallback, useMemo, useState } from 'react';
+import Button from '../../../components/bootstrap/Button';
 import Page from '../../../layout/Page/Page';
-import Card, {
-	CardActions,
-	CardBody,
-	CardFooter,
-	CardFooterLeft,
-	CardFooterRight,
-	CardHeader,
-	CardLabel,
-	CardTitle,
-} from '../../../components/bootstrap/Card';
-// import CommonDesc from '../../../components/common/CommonDesc';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import Icon from '../../../components/icon/Icon';
-// import validate from './helper/editPagesValidate';
-// import validateAddress from './helper/editPageAddressValidate';
-import showNotification from '../../../components/extras/showNotification';
-// import { demoPages } from '../../../menu';
 import TableWidget from '../../../widgets/Table';
 import PresentaionPagesSubHeader from '../../../widgets/PresentaionPagesSubHeader';
+import Card, { CardBody } from '../../../components/bootstrap/Card';
 
 type TColumnTitles =
 	| 'Branch'
