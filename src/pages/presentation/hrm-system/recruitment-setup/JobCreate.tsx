@@ -9,8 +9,11 @@ import Page from '../../../../layout/Page/Page';
 import showNotification from '../../../../components/extras/showNotification';
 import Icon from '../../../../components/icon/Icon';
 import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
+import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-const EditWizardPage = () => {
+const JobsCreate = () => {
 	const formik = useFormik({
 		initialValues: {
 			firstName: 'John',
@@ -133,7 +136,61 @@ const EditWizardPage = () => {
 						</Card>
 					</div>
 					<div className='w-50 mx-3'>
-						<Card className='p-4'>Duration :</Card>
+						<Card className='p-4'>
+							<div className='row my-4'>
+								<div className='w-50'>
+									<h6>Need to ask ?</h6>
+									<ChecksGroup id={' kaukaf'}>
+										<Checks label='Gender' />
+										<Checks label='Date Of Birth' />
+										<Checks label='Country' />
+									</ChecksGroup>
+								</div>
+								<div className='w-50'>
+									<h6>Need to show option ?</h6>
+									<ChecksGroup id={' kaukafasaf'}>
+										<Checks label='Profile Image' />
+										<Checks label='Resume' />
+										<Checks label='Cover Letter' />
+										<Checks label='Terms And Conditions' />
+									</ChecksGroup>
+								</div>
+							</div>
+							<div className='row my-4'>
+								<div className='w-50'>
+									<h6>Custom Question</h6>
+									<ChecksGroup id='asfkaukaf'>
+										<Checks label='What Do You Consider to Be Your Weaknesses?' />
+										<Checks label='Why Do You Want This Job?' />
+										<Checks label='Why Do You Want to Work at This Company?' />
+									</ChecksGroup>
+								</div>
+							</div>
+						</Card>
+					</div>
+				</div>
+				<div className='d-flex'>
+					<div className='w-50 mx-3'>
+						<Card className='p-4'>
+							<Editor
+								editorState={undefined}
+								toolbarClassName='toolbarClassName'
+								wrapperClassName='wrapperClassName'
+								editorClassName='editorClassName'
+								onEditorStateChange={() => {}}
+							/>
+						</Card>
+					</div>
+					<div className='w-50 mx-3'>
+						<Card className='p-4'>
+							<Editor
+								editorState={undefined}
+								toolbarClassName='toolbarClassName'
+								wrapperClassName='wrapperClassName'
+								editorClassName='editorClassName'
+								onEditorStateChange={() => {}}
+							/>
+						</Card>
 					</div>
 				</div>
 			</Page>
@@ -141,4 +198,4 @@ const EditWizardPage = () => {
 	);
 };
 
-export default EditWizardPage;
+export default JobsCreate;

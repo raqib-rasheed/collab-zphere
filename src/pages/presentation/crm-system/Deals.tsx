@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import DatePicker from 'react-modern-calendar-datepicker';
-// import { Dropdown } from 'bootstrap';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import SubHeader, {
 	SubHeaderLeft,
@@ -14,35 +11,70 @@ import COLORS from '../../../common/data/enumColors';
 import Board from '../../../components/Board/Board';
 import USERS from '../../../common/data/userDummyData';
 
-import Slide2 from '../../../assets/img/wanna/slide/scene-2.png';
-import Slide4 from '../../../assets/img/wanna/slide/scene-4.png';
-import Slide6 from '../../../assets/img/wanna/slide/scene-6.png';
 import TAGS from '../../../common/data/boardTagsData';
 import CommonAvatarTeam from '../../../common/other/CommonAvatarTeam';
 import Button from '../../../components/bootstrap/Button';
 import useDarkMode from '../../../hooks/useDarkMode';
-import Card, {
-	CardActions,
-	CardBody,
-	CardFooter,
-	CardHeader,
-	CardLabel,
-	CardTitle,
-} from '../../../components/bootstrap/Card';
-// import Popovers from '../../../components/bootstrap/Popovers';
-// import { DropdownItem, DropdownMenu, DropdownToggle } from '../../../components/bootstrap/Dropdown';
+import TableWidget from '../../../widgets/Table';
+import Icon from '../../../components/icon/Icon';
+import Avatar from '../../../components/Avatar';
 
 const ProjectManagementsProject = () => {
 	const [isListView, setIsListView] = useState(false);
 	const { darkModeStatus } = useDarkMode();
-	// const navigate = useNavigate();
+
+	function generateDummyData(count: number) {
+		const dummyData = {
+			id: 'Starburst',
+			Name: 'Laborum Iste aute c',
+			Namaase: 'Revised',
+			Namaaase: (
+				<>
+					<Avatar
+						size={25}
+						srcSet={USERS.JOHN.srcSet}
+						src={USERS.JOHN.src}
+						color={USERS.JOHN.color}
+					/>
+					<Avatar
+						size={25}
+						srcSet={USERS.GRACE.srcSet}
+						src={USERS.GRACE.src}
+						color={USERS.GRACE.color}
+					/>
+				</>
+			),
+			actions: (
+				<div>
+					<Icon size='lg' className='mx-2' icon='Eye' color='info' />
+					<Icon size='lg' className='mx-2' icon='Edit' color='info' />
+					<Icon size='lg' className='mx-2' icon='Delete' color='info' />
+				</div>
+			),
+		};
+
+		const data = [];
+		while (count > 0) {
+			data?.push(dummyData);
+			count--;
+		}
+		return data;
+	}
+
+	const columns = [
+		{ name: 'NAME' },
+		{ name: 'SUBJECT' },
+		{ name: 'STAGE' },
+		{ name: 'USERS' },
+		{ name: 'ACTION' },
+	];
 
 	const data = [
 		{
 			id: 'lane1',
-			title: 'Backlog',
+			title: 'Initial Contact',
 			color: darkModeStatus ? COLORS.LIGHT.name : COLORS.DARK.name,
-			icon: 'RateReview',
+			icon: '',
 			cards: [
 				{
 					id: 'Card1',
@@ -51,7 +83,6 @@ const ProjectManagementsProject = () => {
 					description: 'Mail application and screens will be added',
 					label: '7 day left',
 					user: USERS.JOHN,
-					img: Slide2,
 					tags: [TAGS.critical, TAGS.design, TAGS.code],
 					tasks: [
 						{ id: 1, text: 'Page UI & UX design', status: true },
@@ -81,9 +112,9 @@ const ProjectManagementsProject = () => {
 		},
 		{
 			id: 'lane2',
-			title: 'To Do',
+			title: 'Qualification',
 			color: COLORS.INFO.name,
-			icon: 'DoneOutline',
+			icon: '',
 			cards: [
 				{
 					id: 'Card3',
@@ -107,7 +138,17 @@ const ProjectManagementsProject = () => {
 					description: 'Explain why it should be chosen',
 					label: '7 day left',
 					user: USERS.JOHN,
-					img: Slide4,
+					tags: [TAGS.design],
+					tasks: [{ id: 1, text: 'Lorem ipsum dolor', status: true }],
+					attachments: [{ id: 1, path: 'somefile.txt', file: 'TXT' }],
+				},
+				{
+					id: 'Card7',
+					title: 'Write Blog',
+					subtitle: 'Facit Themes',
+					description: 'Explain why it should be chosen',
+					label: '7 day left',
+					user: USERS.JOHN,
 					tags: [TAGS.design],
 					tasks: [{ id: 1, text: 'Lorem ipsum dolor', status: true }],
 					attachments: [{ id: 1, path: 'somefile.txt', file: 'TXT' }],
@@ -116,16 +157,16 @@ const ProjectManagementsProject = () => {
 		},
 		{
 			id: 'lane3',
-			title: 'Pending',
+			title: 'Meeting',
 			color: COLORS.INFO.name,
-			icon: 'PendingActions',
+			icon: '',
 			cards: [],
 		},
 		{
 			id: 'lane4',
-			title: 'Run',
+			title: 'Proposal',
 			color: COLORS.INFO.name,
-			icon: 'DirectionsRun',
+			icon: '',
 			cards: [
 				{
 					id: 'Card5',
@@ -150,29 +191,24 @@ const ProjectManagementsProject = () => {
 		},
 		{
 			id: 'lane5',
-			title: 'Done',
+			title: 'Close',
 			color: COLORS.SUCCESS.name,
-			icon: 'Verified',
+			icon: '',
 			cards: [
 				{
-					id: 'Card6',
-					title: 'Project App',
-					subtitle: 'Facit Themes',
-					description: 'Project tracking screen will be added',
-					label: '1 day ago',
-					user: USERS.JOHN,
-					img: Slide6,
-					tags: [TAGS.critical, TAGS.design],
+					id: 'Card9',
+					title: 'Landing Page Update',
+					subtitle: 'Omtanke Team',
+					description: 'Will be redesigned',
+					label: '5 day left',
+					user: USERS.GRACE,
+					tags: [TAGS.design, TAGS.code],
 					tasks: [
-						{ id: 1, text: 'Lorem ipsum dolor', status: true },
-						{ id: 2, text: 'Sit amet.', status: false },
-						{ id: 3, text: 'Aliquam quis varius turpis.', status: false },
+						{ id: 1, text: 'Draft drawings will be made', status: true },
+						{ id: 2, text: 'Page will be updated', status: false },
+						{ id: 3, text: 'Will be sent for review.', status: false },
 					],
-					attachments: [
-						{ id: 1, path: 'somefile.txt', file: 'TXT' },
-						{ id: 2, path: 'somefile.txt', file: 'WORD' },
-						{ id: 3, path: 'somefile.txt', file: 'PSD' },
-					],
+					attachments: [{ id: 2, path: 'somefile.txt', file: 'WORD' }],
 				},
 			],
 		},
@@ -211,110 +247,7 @@ const ProjectManagementsProject = () => {
 			</SubHeader>
 			<Page container='fluid'>
 				{isListView ? (
-					<Card stretch>
-						<CardHeader>
-							<CardLabel icon='ShoppingCart' iconColor='info'>
-								<CardTitle>Top Seller </CardTitle>
-							</CardLabel>
-							<CardActions>
-								{/* <Dropdown isButtonGroup>
-									<Popovers
-										desc={
-											<DatePicker
-												onChange={() => {}}
-												date='a'
-												color={process.env.REACT_APP_PRIMARY_COLOR}
-											/>
-										}
-										placement='bottom-end'
-										className='mw-100'
-										trigger='click'>
-										<Button color='success' isLight icon='WaterfallChart'>
-											""
-										</Button>
-									</Popovers>
-									<DropdownToggle>
-										<Button color='success' isLight />
-									</DropdownToggle>
-									<DropdownMenu isAlignmentEnd>
-										<DropdownItem>
-											<span>Last Hour</span>
-										</DropdownItem>
-										<DropdownItem>
-											<span>Last Day</span>
-										</DropdownItem>
-										<DropdownItem>
-											<span>Last Week</span>
-										</DropdownItem>
-										<DropdownItem>
-											<span>Last Month</span>
-										</DropdownItem>
-									</DropdownMenu>
-								</Dropdown> */}
-								<Button
-									color='info'
-									icon='CloudDownload'
-									isLight
-									tag='a'
-									to='/somefile.txt'
-									target='_blank'
-									download>
-									Export
-								</Button>
-								{/* <Dropdown className='d-inline'>
-									<DropdownToggle hasIcon={false}>
-										<Button color='primary' icon='MoreHoriz' />
-									</DropdownToggle>
-									<DropdownMenu isAlignmentEnd>
-										<DropdownItem>
-											<Button icon='Edit'>Edit</Button>
-										</DropdownItem>
-										<DropdownItem>
-											<Button icon='Delete'>Delete</Button>
-										</DropdownItem>
-									</DropdownMenu>
-								</Dropdown> */}
-							</CardActions>
-						</CardHeader>
-						<CardBody className='table-responsive' isScrollable>
-							<table className='table table-modern table-hover'>
-								<thead>
-									<tr>
-										<th scope='col'>afszzj</th>
-										<th scope='col'>#</th>
-										<th scope='col'>Image</th>
-										<th scope='col'>Name</th>
-										<th scope='col'>Sales</th>
-										<th scope='col'>Stock</th>
-										<th scope='col'>Price</th>
-										<th scope='col'>Store</th>
-										<th scope='col' className='text-end'>
-											Actions
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									{/* {filteredData.map((i) => (
-										<CommonTableRow
-											key={i.id}
-											// eslint-disable-next-line react/jsx-props-no-spreading
-											{...i}
-											selectName='selectedList'
-											selectOnChange={selectTable.handleChange}
-											selectChecked={selectTable.values.selectedList.includes(
-												i.id.toString(),
-											)}
-										/>
-									))} */}
-								</tbody>
-							</table>
-						</CardBody>
-						<CardFooter className='justify-content-center'>
-							<Button color='dark' className='px-5 py-3'>
-								Load More
-							</Button>
-						</CardFooter>
-					</Card>
+					<TableWidget data={generateDummyData(7)} tableColumns={columns} title='' />
 				) : (
 					<Board data={boardData} setData={setBoardData} />
 				)}

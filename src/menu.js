@@ -306,7 +306,7 @@ export const sidebarMenus = {
 			},
 			adminSetup: {
 				id: 'hrmSystemAdminSetup',
-				text: 'Leave Management Setup',
+				text: 'HR Admin Setup',
 				path: 'hrm-system/admin-setup',
 				icon: 'ViewDay',
 				subMenu: {

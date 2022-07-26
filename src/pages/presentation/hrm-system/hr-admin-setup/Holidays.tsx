@@ -1,57 +1,79 @@
-import React, { useState } from 'react';
-import moment from 'moment';
-import { Calendar as DatePicker } from 'react-date-range';
-import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../../../../layout/SubHeader/SubHeader';
+import React from 'react';
+import Card from '../../../../components/bootstrap/Card';
 import Icon from '../../../../components/icon/Icon';
-import Button from '../../../../components/bootstrap/Button';
 import Page from '../../../../layout/Page/Page';
 import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
-import CommonUpcomingEvents from '../../../common/CommonUpcomingEvents';
-import Popovers from '../../../../components/bootstrap/Popovers';
-import useDarkMode from '../../../../hooks/useDarkMode';
+import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
+import TableWidget from '../../../../widgets/Table';
 
-const ListFluidPage = () => {
-	const { themeStatus } = useDarkMode();
+const Holidays = () => {
+	function generateDummyData(count: number) {
+		const dummyData = {
+			employeeid: 'From Company',
+			Name: ' Feb 10, 2021',
+			id: 'Jan 1, 1970',
+			actions: (
+				<>
+					<Icon size='lg' className='mx-2' icon='Edit' color='success' />
+					<Icon size='lg' className='mx-2' icon='Trash' color='danger' />
+				</>
+			),
+		};
 
-	const [date, setDate] = useState(new Date());
+		const data = [];
+		while (count > 0) {
+			data?.push(dummyData);
+			count--;
+		}
+		return data;
+	}
 
+	const columns = [
+		{ name: 'OCASSION' },
+		{ name: 'START DATE' },
+		{ name: 'END DATE' },
+		{ name: 'ACTION' },
+	];
 	return (
-		<PageWrapper title='demo title'>
-			<SubHeader>
-				<SubHeaderLeft>
-					<Icon icon='Info' className='me-2' size='2x' />
-					<span className='text-muted'>
-						You have <Icon icon='TaskAlt' color='success' className='mx-1' size='lg' />{' '}
-						3 approved appointments and{' '}
-						<Icon icon='Alarm' color='warning' className='mx-1' size='lg' /> 4 pending
-						appointments for today.
-					</span>
-				</SubHeaderLeft>
-				<SubHeaderRight>
-					<Popovers
-						desc={
-							<DatePicker
-								onChange={(item) => setDate(item)}
-								date={date}
-								color={process.env.REACT_APP_PRIMARY_COLOR}
-							/>
-						}
-						placement='bottom-end'
-						className='mw-100'
-						trigger='click'>
-						<Button color={themeStatus}>
-							{`${moment(date).startOf('weeks').format('MMM Do')} - ${moment(date)
-								.endOf('weeks')
-								.format('MMM Do')}`}
-						</Button>
-					</Popovers>
-				</SubHeaderRight>
-			</SubHeader>
+		<PageWrapper title=''>
+			<PresentaionPagesSubHeader title='Find Employee Payslip' />
+			<Card className='py-4 px-2'>
+				<div className='d-flex justify-content-end align-items-center'>
+					<div className='btn-box mx-1'>
+						<label htmlFor='month' className='form-label'>
+							Select Date
+						</label>
+						<input
+							className='month-btn form-control'
+							name='month'
+							type='month'
+							value='2022-07'
+							id='month'
+						/>
+					</div>
+					<div className='btn-box mx-1'>
+						<label htmlFor='month' className='form-label'>
+							End Date
+						</label>
+						<input
+							className='month-btn form-control'
+							name='month'
+							type='month'
+							value='2022-07'
+							id='month'
+						/>
+					</div>
+					<div style={{ margin: '0 1rem', marginTop: '1.5rem' }}>
+						<Icon size='lg' className='mx-1' icon='search' />
+						<Icon size='lg' className='mx-1' icon='trash' />
+					</div>
+				</div>
+			</Card>
 			<Page container='fluid'>
-				<CommonUpcomingEvents isFluid />
+				<TableWidget data={generateDummyData(8)} tableColumns={columns} />
 			</Page>
 		</PageWrapper>
 	);
 };
 
-export default ListFluidPage;
+export default Holidays;

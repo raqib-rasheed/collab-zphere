@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 // import moment from 'moment';
 // import { useFormik } from 'formik';
 // import { Calendar as DatePicker } from 'react-date-range';
-import Button from '../components/bootstrap/Button';
+// import Button from '../components/bootstrap/Button';
 import Card, {
 	CardActions,
 	CardBody,
-	CardFooter,
+	// CardFooter,
 	CardHeader,
 	// CardLabel,
 	CardTitle,
@@ -176,11 +176,11 @@ const TableWidget = ({ title, tableColumns, data }: ITableProps) => {
 						</tbody>
 					</table>
 				</CardBody>
-				<CardFooter className='justify-content-center'>
+				{/* <CardFooter className='justify-content-center'>
 					<Button color='dark' className='px-5 py-3'>
 						Load More
 					</Button>
-				</CardFooter>
+				</CardFooter> */}
 			</Card>
 		</>
 	);
