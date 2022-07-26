@@ -27,8 +27,9 @@ const ProjectManagementsProject = () => {
 	function generateDummyData(count: number) {
 		const dummyData = {
 			id: 'Starburst',
-			Name: 'Laborum Iste aute c',
-			Namaase: 'Revised',
+			Name: '$40,000.00',
+			Namaase: 'Close',
+			Namasase: '3/1',
 			Namaaase: (
 				<>
 					<Avatar
@@ -49,7 +50,7 @@ const ProjectManagementsProject = () => {
 				<div>
 					<Icon size='lg' className='mx-2' icon='Eye' color='info' />
 					<Icon size='lg' className='mx-2' icon='Edit' color='info' />
-					<Icon size='lg' className='mx-2' icon='Delete' color='info' />
+					<Icon size='lg' className='mx-2' icon='Delete' color='danger' />
 				</div>
 			),
 		};
@@ -64,8 +65,9 @@ const ProjectManagementsProject = () => {
 
 	const columns = [
 		{ name: 'NAME' },
-		{ name: 'SUBJECT' },
+		{ name: 'PRICE' },
 		{ name: 'STAGE' },
+		{ name: 'TASKS' },
 		{ name: 'USERS' },
 		{ name: 'ACTION' },
 	];
@@ -247,11 +249,27 @@ const ProjectManagementsProject = () => {
 				</SubHeaderRight>
 			</SubHeader>
 			<Page container='fluid'>
-				<div className='d-flex justify-ceontent-between'>
-					<Card style={{ width: '24%' }}>asfas</Card>
-					<Card style={{ width: '24%' }}>asfas</Card>
-					<Card style={{ width: '24%' }}>asfas</Card>
-					<Card style={{ width: '24%' }}>asfas</Card>
+				<div className='d-flex justify-content-between'>
+					<Card className='p-4' style={{ width: '22.5%' }}>
+						<span>Total Deals</span>
+						<h5>$1,331,527.99</h5>
+						<Icon color='info' icon='Back' size={'lg'} />
+					</Card>
+					<Card className='p-4' style={{ width: '22.5%' }}>
+						<span>Total Deals</span>
+						<h5>$1,331,527.99</h5>
+						<Icon color='info' icon='Back' size={'lg'} />
+					</Card>
+					<Card className='p-4' style={{ width: '22.5%' }}>
+						<span>Total Deals</span>
+						<h5>$1,331,527.99</h5>
+						<Icon color='info' icon='Back' size={'lg'} />
+					</Card>
+					<Card className='p-4' style={{ width: '22.5%' }}>
+						<span>Total Deals</span>
+						<h5>$1,331,527.99</h5>
+						<Icon color='info' icon='Back' size={'lg'} />
+					</Card>
 				</div>
 				{isListView ? (
 					<TableWidget data={generateDummyData(7)} tableColumns={columns} title='' />

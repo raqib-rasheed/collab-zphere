@@ -5,19 +5,21 @@ import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import PresentaionPagesSubHeader from '../../../widgets/PresentaionPagesSubHeader';
 import TableWidget from '../../../widgets/Table';
 
-const EmployeeAssetSetup = () => {
+const Contract = () => {
 	function generateDummyData(count: number) {
 		const dummyData = {
-			id: 'China',
-			Name: ' DemoTese DemoTese DemoTese Demo',
+			id: 'Install The Product',
+			Naame: 'Mick Aston',
+			Naaame: 'Marketing',
+			Namase: '$4,400.00',
+			asa: 'Aug 5, 1978',
+			aasa: 'Aug 5, 1978',
+			adsfssa: <Icon size='lg' className='mx-2' icon='ChatFill' color='info' />,
 			actions: (
-				<div>
-					<Icon size='lg' className='mx-2' icon='Verified' color='info' />
-					<Icon size='lg' className='mx-2' icon='Copy' color='info' />
+				<>
 					<Icon size='lg' className='mx-2' icon='Edit' color='info' />
 					<Icon size='lg' className='mx-2' icon='Delete' color='info' />
-					<Icon size='lg' className='mx-2' icon='Verified' color='info' />
-				</div>
+				</>
 			),
 		};
 
@@ -29,7 +31,16 @@ const EmployeeAssetSetup = () => {
 		return data;
 	}
 
-	const columns = [{ name: 'NAME' }, { name: 'RESPONSE' }, { name: 'ACTIONS' }];
+	const columns = [
+		{ name: 'SUBJECT' },
+		{ name: 'CLIENT' },
+		{ name: 'CONTRACT TYPE' },
+		{ name: 'CONTRACT VALUE' },
+		{ name: 'START DATE' },
+		{ name: 'END DATE' },
+		{ name: 'DESCRIPTION' },
+		{ name: 'ACTION' },
+	];
 	return (
 		<PageWrapper title=''>
 			<PresentaionPagesSubHeader title='Manage Form Builder' />
@@ -40,4 +51,4 @@ const EmployeeAssetSetup = () => {
 	);
 };
 
-export default EmployeeAssetSetup;
+export default Contract;
