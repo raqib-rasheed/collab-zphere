@@ -59,6 +59,7 @@ const PresentaionPagesSubHeader = ({
 			);
 		},
 	});
+	console.log(customSubHeaderRightActions);
 	return (
 		<SubHeader>
 			<SubHeaderLeft
@@ -68,7 +69,8 @@ const PresentaionPagesSubHeader = ({
 			</SubHeaderLeft>
 			{showSubHeaderRight && (
 				<SubHeaderRight>
-					{customSubHeaderRightActions ?? (
+					<>
+						{customSubHeaderRightActions && customSubHeaderRightActions()}
 						<Button
 							color='dark'
 							isLight
@@ -91,9 +93,9 @@ const PresentaionPagesSubHeader = ({
 									zip: '',
 								});
 							}}>
-							Add New
+							{!customSubHeaderRightActions ? 'Add New' : ''}
 						</Button>
-					)}
+					</>
 				</SubHeaderRight>
 			)}
 		</SubHeader>

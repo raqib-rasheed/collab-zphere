@@ -8,6 +8,15 @@ import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import PresentaionPagesSubHeader from '../../../widgets/PresentaionPagesSubHeader';
 import TableWidget from '../../../widgets/Table';
 
+const SubHeaderActions = () => {
+	return (
+		<>
+			<Button color='dark'>Status</Button>
+			<Button icon='Grid1X2Fill' size='lg'></Button>
+		</>
+	);
+};
+
 const ProjectSystemTasks = () => {
 	function generateDummyData(count: number) {
 		const dummyData = {
@@ -41,7 +50,11 @@ const ProjectSystemTasks = () => {
 	];
 	return (
 		<PageWrapper title=''>
-			<PresentaionPagesSubHeader title='Find Employee Payslip' />
+			<PresentaionPagesSubHeader
+				showSubHeaderRight
+				customSubHeaderRightActions={SubHeaderActions}
+				title='Find Employee Payslip'
+			/>
 			<Card className='py-4 px-2'>
 				<div className='d-flex justify-content-end align-items-center'>
 					<div className='btn-box mx-1'>
