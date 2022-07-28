@@ -137,6 +137,9 @@ const APP = {
 	},
 	PROJECT_SYSTEM: {
 		PROJECT: lazy(() => import('../pages/presentation/project-system/Projects')),
+		PROJECTDETAILS: lazy(
+			() => import('../pages/presentation/project-system/project-details/ProjectDetails'),
+		),
 		TASKS: lazy(() => import('../pages/presentation/project-system/Tasks')),
 		BUG: lazy(() => import('../pages/presentation/project-system/Bug')),
 		TIMESHEET: lazy(() => import('../pages/presentation/project-system/Timesheet')),
@@ -298,12 +301,13 @@ const presentation = [
 		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.INTERVIEW_SCHEDULE />,
 		exact: true,
 	},
-	/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 	{
-		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.interviewSchedule.path,
-		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.INTERVIEW_SCHEDULE />,
+		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.career.path,
+		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.CAREER />,
 		exact: true,
 	},
+	/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
 	{
 		path: sidebarMenus.hrmSystem.subMenu.adminSetup.subMenu.award.path,
 		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.AWARD />,
@@ -356,11 +360,6 @@ const presentation = [
 	},
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-	{
-		path: sidebarMenus.hrmSystem.subMenu.recruitmentSetup.subMenu.career.path,
-		element: <APP.HRM_SYSTEM.RECRUITMENT_SETUP.CAREER />,
-		exact: true,
-	},
 	{
 		path: sidebarMenus.hrmSystem.subMenu.documentSetup.path,
 		element: <APP.HRM_SYSTEM.DOCUMENT_SETUP />,
@@ -479,6 +478,11 @@ const presentation = [
 	{
 		path: sidebarMenus.projectSystem.subMenu.projectSysytemSetup.subMenu.projectTaskStages.path,
 		element: <APP.PROJECT_SYSTEM.PROJECT_SYSTEM_SETUP.PROJECT_TASK_STAGES />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.projectSystem.subMenu.projects.path + '/id',
+		element: <APP.PROJECT_SYSTEM.PROJECTDETAILS />,
 		exact: true,
 	},
 

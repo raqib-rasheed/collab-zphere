@@ -1,35 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import USERS from '../../../common/data/userDummyData';
+import Avatar, { AvatarGroup } from '../../../components/Avatar';
 import Button from '../../../components/bootstrap/Button';
-import Card from '../../../components/bootstrap/Card';
-// import Input from '../../../components/bootstrap/forms/Input';
+import Dropdown, {
+	DropdownItem,
+	DropdownMenu,
+	DropdownToggle,
+} from '../../../components/bootstrap/Dropdown';
+import Progress from '../../../components/bootstrap/Progress';
 import Icon from '../../../components/icon/Icon';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import PresentaionPagesSubHeader from '../../../widgets/PresentaionPagesSubHeader';
 import TableWidget from '../../../widgets/Table';
+import TableGridView from '../../../widgets/TableGridView';
 
-const SubHeaderActions = () => {
-	return (
-		<>
-			<Button color='dark'>Status</Button>
-			<Button icon='Grid1X2Fill' size='lg'></Button>
-		</>
-	);
-};
+enum EProjectSystemTasksView {
+	LIST = 'list',
+	GRID = 'grid',
+}
 
 const ProjectSystemTasks = () => {
+	const [view, handleView] = useState<EProjectSystemTasksView>(EProjectSystemTasksView.GRID);
 	function generateDummyData(count: number) {
 		const dummyData = {
-			employeeid: (
-				<Button color='success' isOutline>
-					#6t3723t
-				</Button>
+			id: <Link to='/project-system/projects/id#1'>Newsletter Templates</Link>,
+			Name: <Button color='secondary'>On Hold</Button>,
+			EMAIL: (
+				<AvatarGroup>
+					<Avatar
+						src={USERS.GRACE.src}
+						srcSet={USERS.GRACE.srcSet}
+						// @ts-ignore
+						color={USERS.GRACE.color}
+						userName={`${USERS.GRACE.name} ${USERS.GRACE.surname}`}
+					/>
+					<Avatar
+						src={USERS.JANE.src}
+						srcSet={USERS.JANE.srcSet}
+						// @ts-ignore
+						color={USERS.JANE.color}
+						userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
+					/>
+				</AvatarGroup>
 			),
-			Name: ' DemoTese',
-			EMAIL: 'Hourly Payslip',
-			BRANCH: '$100,000.00',
-			id: '$113,410.00',
-			actions: <Icon size='lg' className='mx-2' icon='Eye' color='info' />,
+			BRANCH: (
+				<Progress
+					isStriped
+					className='flex-grow-1'
+					isAutoColor
+					value={34}
+					style={{
+						height: 5,
+					}}
+				/>
+			),
+			actions: (
+				<>
+					<Button size='sm' className='mx-2' icon='Send' color='info' />
+					<Button size='sm' className='mx-2' icon='Edit' color='info' />
+					<Button size='sm' className='mx-2' icon='Trash' color='info' />
+				</>
+			),
 		};
 
 		const data = [];
@@ -41,13 +74,74 @@ const ProjectSystemTasks = () => {
 	}
 
 	const columns = [
-		{ name: 'EMPLOYEE ID' },
-		{ name: 'NAME' },
-		{ name: 'PAYROLL TYPE' },
-		{ name: 'SALARY' },
-		{ name: 'NET SALARY' },
+		{ name: 'PROJECT' },
+		{ name: 'STATUS' },
+		{ name: 'USERS' },
+		{ name: 'COMPLETION' },
 		{ name: 'ACTION' },
 	];
+
+	const SubHeaderActions = () => (
+		<>
+			<Button
+				onClick={() =>
+					handleView((prevState) =>
+						prevState === EProjectSystemTasksView.LIST
+							? EProjectSystemTasksView.GRID
+							: EProjectSystemTasksView.LIST,
+					)
+				}
+				color='dark'
+				icon={view === EProjectSystemTasksView.LIST ? 'Grid1X2Fill' : 'CardList'}></Button>
+			<Dropdown direction='down'>
+				<DropdownToggle hasIcon={false}>
+					<Button color='dark'>Status</Button>
+				</DropdownToggle>
+				<DropdownMenu>
+					<DropdownItem>
+						<span>Show All</span>
+					</DropdownItem>
+					<DropdownItem>
+						<span>On Hold</span>
+					</DropdownItem>
+					<DropdownItem>
+						<span>In Progress</span>
+					</DropdownItem>
+					<DropdownItem>
+						<span>Completed</span>
+					</DropdownItem>
+					<DropdownItem>
+						<span>Cancelled</span>
+					</DropdownItem>
+				</DropdownMenu>
+			</Dropdown>
+			<Dropdown direction='start'>
+				<DropdownToggle hasIcon={false}>
+					<Button color='dark' icon='Funnel'></Button>
+				</DropdownToggle>
+				<DropdownMenu>
+					<DropdownItem>
+						<span>
+							<Icon icon='Edit' />
+							Edit
+						</span>
+					</DropdownItem>
+					<DropdownItem>
+						<span>
+							<Icon icon='Trash' />
+							Delete
+						</span>
+					</DropdownItem>
+					<DropdownItem>
+						<span>
+							<Icon icon='Send' />
+							Invite User
+						</span>
+					</DropdownItem>
+				</DropdownMenu>
+			</Dropdown>
+		</>
+	);
 	return (
 		<PageWrapper title=''>
 			<PresentaionPagesSubHeader
@@ -55,41 +149,16 @@ const ProjectSystemTasks = () => {
 				customSubHeaderRightActions={SubHeaderActions}
 				title='Find Employee Payslip'
 			/>
-			<Card className='py-4 px-2'>
-				<div className='d-flex justify-content-end align-items-center'>
-					<div className='btn-box mx-1'>
-						<label htmlFor='month' className='form-label'>
-							Select Month
-						</label>
-						<input
-							className='month-btn form-control'
-							name='month'
-							type='month'
-							value='2022-07'
-							id='month'
-						/>
-					</div>
-					<div className='btn-box mx-1'>
-						<label htmlFor='month' className='form-label'>
-							Select Year
-						</label>
-						<input
-							className='month-btn form-control'
-							name='month'
-							type='month'
-							value='2022-07'
-							id='month'
-						/>
-					</div>
-					<div>
-						<Button className='mt-4' color='success'>
-							Generate Payslip
-						</Button>
-					</div>
-				</div>
-			</Card>
 			<Page container='fluid'>
-				<TableWidget data={generateDummyData(8)} tableColumns={columns} />
+				{view === EProjectSystemTasksView?.LIST ? (
+					<TableWidget
+						displaySearch={false}
+						data={generateDummyData(8) as any}
+						tableColumns={columns}
+					/>
+				) : (
+					<TableGridView data={generateDummyData(8) as any} />
+				)}
 			</Page>
 		</PageWrapper>
 	);
