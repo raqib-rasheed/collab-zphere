@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { useFormik } from 'formik';
-import SubHeader, { SubHeaderLeft, SubHeaderRight } from '../../../layout/SubHeader/SubHeader';
 import Icon from '../../../components/icon/Icon';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
@@ -9,18 +8,16 @@ import Card, { CardBody } from '../../../components/bootstrap/Card';
 import USERS from '../../../common/data/userDummyData';
 import Badge from '../../../components/bootstrap/Badge';
 import Button from '../../../components/bootstrap/Button';
-import Dropdown, { DropdownMenu, DropdownToggle } from '../../../components/bootstrap/Dropdown';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Label from '../../../components/bootstrap/forms/Label';
-import Input from '../../../components/bootstrap/forms/Input';
-import Checks, { ChecksGroup } from '../../../components/bootstrap/forms/Checks';
-import SERVICES from '../../../common/data/serviceDummyData';
+import Dropdown, {
+	DropdownItem,
+	DropdownMenu,
+	DropdownToggle,
+} from '../../../components/bootstrap/Dropdown';
 import useTourStep from '../../../hooks/useTourStep';
+import PresentaionPagesSubHeader from '../../../widgets/PresentaionPagesSubHeader';
 
 const User = () => {
 	useTourStep(18);
-	const [filterMenu, setFilterMenu] = useState(false);
-
 	const formik = useFormik({
 		initialValues: {
 			available: false,
@@ -28,7 +25,7 @@ const User = () => {
 			services: [],
 		},
 		onSubmit: () => {
-			setFilterMenu(false);
+			// setFilterMenu(false);
 			// alert(JSON.stringify(values, null, 2));
 		},
 	});
@@ -49,105 +46,7 @@ const User = () => {
 		.map((i) => USERS[i]);
 	return (
 		<PageWrapper title='Users Page'>
-			<SubHeader>
-				<SubHeaderLeft>
-					<label
-						className='border-0 bg-transparent cursor-pointer me-0'
-						htmlFor='searchInput'>
-						<Icon icon='Search' size='2x' color='primary' />
-					</label>
-					<Input
-						id='searchInput'
-						type='search'
-						className='border-0 shadow-none bg-transparent'
-						placeholder='Search...'
-						onChange={formik.handleChange}
-						value={formik.values.searchInput}
-					/>
-				</SubHeaderLeft>
-				<SubHeaderRight>
-					<Dropdown isOpen={filterMenu} setIsOpen={setFilterMenu}>
-						<DropdownToggle hasIcon={false}>
-							<Button icon='FilterAlt' color='primary' isLight />
-						</DropdownToggle>
-						<DropdownMenu isAlignmentEnd size='lg' isCloseAfterLeave={false}>
-							<div className='container py-2'>
-								<form className='row g-3' onSubmit={formik.handleSubmit}>
-									<div className='col-12'>
-										<FormGroup>
-											<Label htmlFor='available'>Available employee</Label>
-											<Checks
-												id='available'
-												type='switch'
-												label='Available'
-												onChange={formik.handleChange}
-												checked={formik.values.available}
-												ariaLabel='Available status'
-											/>
-										</FormGroup>
-									</div>
-									<div className='col-12'>
-										<FormGroup>
-											<Label htmlFor='name'>Name</Label>
-											<Input
-												id='searchInput2'
-												name='searchInput'
-												ariaLabel='name'
-												placeholder='Employee Name'
-												list={[
-													...Object.keys(USERS).map(
-														(u) =>
-															`${USERS[u].name} ${USERS[u].surname}`,
-													),
-												]}
-												onChange={formik.handleChange}
-												value={formik.values.searchInput}
-											/>
-										</FormGroup>
-									</div>
-									<div className='col-12'>
-										<FormGroup>
-											<Label>Services</Label>
-											<ChecksGroup>
-												{Object.keys(SERVICES).map((service) => (
-													<Checks
-														key={SERVICES[service].name}
-														id={SERVICES[service].name}
-														label={SERVICES[service].name}
-														name='services'
-														value={SERVICES[service].name}
-														onChange={formik.handleChange}
-														checked={formik.values.services.includes(
-															SERVICES[service].name,
-														)}
-													/>
-												))}
-											</ChecksGroup>
-										</FormGroup>
-									</div>
-									<div className='col-6'>
-										<Button
-											color='primary'
-											isOutline
-											className='w-100'
-											onClick={formik.resetForm}>
-											Reset
-										</Button>
-									</div>
-									<div className='col-6'>
-										<Button color='primary' className='w-100' type='submit'>
-											Filter
-										</Button>
-									</div>
-								</form>
-							</div>
-						</DropdownMenu>
-					</Dropdown>
-					<Button icon='PersonAdd' color='info' isLight tag='a' to=''>
-						New Employee
-					</Button>
-				</SubHeaderRight>
-			</SubHeader>
+			<PresentaionPagesSubHeader showSubHeaderRight title='Find Employee Payslip' />
 			<Page container='fluid'>
 				<div className='row row-cols-xxl-3 row-cols-lg-3 row-cols-md-2'>
 					{searchUsers.map((user) => (
@@ -203,15 +102,48 @@ const User = () => {
 															</div>
 														</div>
 														<div className='col-auto'>
-															<Button
-																icon='Info'
-																color='dark'
-																isLight
-																hoverShadow='sm'
-																tag='a'
-																to='../'
-																data-tour={user.name}
-															/>
+															<Dropdown direction='start'>
+																<DropdownToggle hasIcon={false}>
+																	<Button
+																		icon='ThreeDotsVertical'
+																		color='dark'
+																		isLight
+																		hoverShadow='sm'
+																		data-tour={user.name}
+																	/>
+																</DropdownToggle>
+																<DropdownMenu>
+																	<DropdownItem className='p-2'>
+																		<div>
+																			<Icon
+																				size='lg'
+																				icon='edit'
+																			/>
+																			<span>Edit</span>
+																		</div>
+																	</DropdownItem>
+																	<DropdownItem className='p-2'>
+																		<div>
+																			<Icon
+																				size='lg'
+																				icon='trash'
+																			/>
+																			<span>Delete</span>
+																		</div>
+																	</DropdownItem>
+																	<DropdownItem className='p-2'>
+																		<div>
+																			<Icon
+																				size='lg'
+																				icon='settings'
+																			/>
+																			<span>
+																				Reset Password
+																			</span>
+																		</div>
+																	</DropdownItem>
+																</DropdownMenu>
+															</Dropdown>
 														</div>
 													</div>
 													{!!user?.services && (

@@ -25,7 +25,11 @@ const ProjectSystemTasks = () => {
 	const [view, handleView] = useState<EProjectSystemTasksView>(EProjectSystemTasksView.GRID);
 	function generateDummyData(count: number) {
 		const dummyData = {
-			id: <Link to='/project-system/projects/id#1'>Newsletter Templates</Link>,
+			id: (
+				<Link to='/project-system/projects/id#1'>
+					<span className='text-dark'>Newsletter Templates</span>
+				</Link>
+			),
 			Name: <Button color='secondary'>On Hold</Button>,
 			EMAIL: (
 				<AvatarGroup>
@@ -56,6 +60,7 @@ const ProjectSystemTasks = () => {
 					}}
 				/>
 			),
+			actionsas: <span className='text-info fs-5'>34%</span>,
 			actions: (
 				<>
 					<Button size='sm' className='mx-2' icon='Send' color='info' />
@@ -78,6 +83,7 @@ const ProjectSystemTasks = () => {
 		{ name: 'STATUS' },
 		{ name: 'USERS' },
 		{ name: 'COMPLETION' },
+		{ name: ' ' },
 		{ name: 'ACTION' },
 	];
 

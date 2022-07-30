@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import USERS from '../../../../common/data/userDummyData';
 import Avatar from '../../../../components/Avatar';
 import Button from '../../../../components/bootstrap/Button';
@@ -11,9 +12,49 @@ import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
 import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
 
 const ProjectDetails = () => {
+	const customSubHeaderRightActions = () => (
+		<div>
+			<Link to='/project-system/projects/id#1/gnatt-chart'>
+				<Button color='dark' className='mx-1'>
+					Gantt Chart
+				</Button>
+			</Link>
+			<Link to='/project-system/projects/id#1/tracker'>
+				<Button color='dark' className='mx-1'>
+					Tracker
+				</Button>
+			</Link>
+			<Link to='/project-system/projects/id#1/expense'>
+				<Button color='dark' className='mx-1'>
+					Expense
+				</Button>
+			</Link>
+			<Link to='/project-system/projects/id#1/timesheet'>
+				<Button color='dark' className='mx-1'>
+					Timesheet
+				</Button>
+			</Link>
+			<Link to='/project-system/projects/id#1/bug-report'>
+				<Button color='dark' className='mx-1'>
+					Bug Report
+				</Button>
+			</Link>
+			<Link to='/project-system/tasks/id#1'>
+				<Button color='dark' className='mx-1'>
+					Task
+				</Button>
+			</Link>
+			<Button color='dark' className='mx-1' icon='Edit' />
+		</div>
+	);
 	return (
-		<PageWrapper title=''>
-			<PresentaionPagesSubHeader showSubHeaderRight title='Find Employee Payslip' />
+		<PageWrapper title='project-1'>
+			<PresentaionPagesSubHeader
+				customSubHeaderRightActions={customSubHeaderRightActions}
+				showSubHeaderRight
+				showAddNewButton={false}
+				title='Find Employee Payslip'
+			/>
 			<Page container='fluid'>
 				<div className='w-100 d-flex justify-content-between'>
 					<Card className='p-4' style={{ width: '31%' }}>
@@ -206,6 +247,322 @@ const ProjectDetails = () => {
 						</ListGroup>
 					</Card>
 				</div>
+				<Card className='p-4'>
+					<h5>Activity Log</h5>
+					<ListGroup>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-2'>
+									<Avatar
+										src={USERS.JANE.src}
+										srcSet={USERS.JANE.srcSet}
+										// @ts-ignore
+										color={USERS.JANE.color}
+										size={40}
+										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
+									/>
+								</div>
+								<div>
+									<h6>Move Task</h6>
+									<p className='text-muted'>
+										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
+										In Progress
+									</p>
+								</div>
+							</div>
+							<span className='text-muted'>2 months ago</span>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-2'>
+									<Avatar
+										src={USERS.JANE.src}
+										srcSet={USERS.JANE.srcSet}
+										// @ts-ignore
+										color={USERS.JANE.color}
+										size={40}
+										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
+									/>
+								</div>
+								<div>
+									<h6>Move Task</h6>
+									<p className='text-muted'>
+										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
+										In Progress
+									</p>
+								</div>
+							</div>
+							<span className='text-muted'>2 months ago</span>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-2'>
+									<Avatar
+										src={USERS.JANE.src}
+										srcSet={USERS.JANE.srcSet}
+										// @ts-ignore
+										color={USERS.JANE.color}
+										size={40}
+										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
+									/>
+								</div>
+								<div>
+									<h6>Move Task</h6>
+									<p className='text-muted'>
+										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
+										In Progress
+									</p>
+								</div>
+							</div>
+							<span className='text-muted'>2 months ago</span>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-2'>
+									<Avatar
+										src={USERS.JANE.src}
+										srcSet={USERS.JANE.srcSet}
+										// @ts-ignore
+										color={USERS.JANE.color}
+										size={40}
+										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
+									/>
+								</div>
+								<div>
+									<h6>Move Task</h6>
+									<p className='text-muted'>
+										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
+										In Progress
+									</p>
+								</div>
+							</div>
+							<span className='text-muted'>2 months ago</span>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-2'>
+									<Avatar
+										src={USERS.JANE.src}
+										srcSet={USERS.JANE.srcSet}
+										// @ts-ignore
+										color={USERS.JANE.color}
+										size={40}
+										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
+									/>
+								</div>
+								<div>
+									<h6>Move Task</h6>
+									<p className='text-muted'>
+										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
+										In Progress
+									</p>
+								</div>
+							</div>
+							<span className='text-muted'>2 months ago</span>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-2'>
+									<Avatar
+										src={USERS.JANE.src}
+										srcSet={USERS.JANE.srcSet}
+										// @ts-ignore
+										color={USERS.JANE.color}
+										size={40}
+										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
+									/>
+								</div>
+								<div>
+									<h6>Move Task</h6>
+									<p className='text-muted'>
+										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
+										In Progress
+									</p>
+								</div>
+							</div>
+							<span className='text-muted'>2 months ago</span>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-2'>
+									<Avatar
+										src={USERS.JANE.src}
+										srcSet={USERS.JANE.srcSet}
+										// @ts-ignore
+										color={USERS.JANE.color}
+										size={40}
+										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
+									/>
+								</div>
+								<div>
+									<h6>Move Task</h6>
+									<p className='text-muted'>
+										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
+										In Progress
+									</p>
+								</div>
+							</div>
+							<span className='text-muted'>2 months ago</span>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-2'>
+									<Avatar
+										src={USERS.JANE.src}
+										srcSet={USERS.JANE.srcSet}
+										// @ts-ignore
+										color={USERS.JANE.color}
+										size={40}
+										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
+									/>
+								</div>
+								<div>
+									<h6>Move Task</h6>
+									<p className='text-muted'>
+										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
+										In Progress
+									</p>
+								</div>
+							</div>
+							<span className='text-muted'>2 months ago</span>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-2'>
+									<Avatar
+										src={USERS.JANE.src}
+										srcSet={USERS.JANE.srcSet}
+										// @ts-ignore
+										color={USERS.JANE.color}
+										size={40}
+										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
+									/>
+								</div>
+								<div>
+									<h6>Move Task</h6>
+									<p className='text-muted'>
+										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
+										In Progress
+									</p>
+								</div>
+							</div>
+							<span className='text-muted'>2 months ago</span>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-2'>
+									<Avatar
+										src={USERS.JANE.src}
+										srcSet={USERS.JANE.srcSet}
+										// @ts-ignore
+										color={USERS.JANE.color}
+										size={40}
+										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
+									/>
+								</div>
+								<div>
+									<h6>Move Task</h6>
+									<p className='text-muted'>
+										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
+										In Progress
+									</p>
+								</div>
+							</div>
+							<span className='text-muted'>2 months ago</span>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-2'>
+									<Avatar
+										src={USERS.JANE.src}
+										srcSet={USERS.JANE.srcSet}
+										// @ts-ignore
+										color={USERS.JANE.color}
+										size={40}
+										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
+									/>
+								</div>
+								<div>
+									<h6>Move Task</h6>
+									<p className='text-muted'>
+										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
+										In Progress
+									</p>
+								</div>
+							</div>
+							<span className='text-muted'>2 months ago</span>
+						</ListGroupItem>
+					</ListGroup>
+				</Card>
+				<Card className='p-4'>
+					<h5>Attachments</h5>
+					<span className='text-muted'>Activity Log of this project</span>
+					<ListGroup>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div>
+									<h6>41594448981_large.jpg</h6>
+									<p className='text-muted'>0.39 MB</p>
+								</div>
+							</div>
+							<Button color='info' icon='Download'></Button>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div>
+									<h6>41594448981_large.jpg</h6>
+									<p className='text-muted'>0.39 MB</p>
+								</div>
+							</div>
+							<Button color='info' icon='Download'></Button>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div>
+									<h6>41594448981_large.jpg</h6>
+									<p className='text-muted'>0.39 MB</p>
+								</div>
+							</div>
+							<Button color='info' icon='Download'></Button>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div>
+									<h6>41594448981_large.jpg</h6>
+									<p className='text-muted'>0.39 MB</p>
+								</div>
+							</div>
+							<Button color='info' icon='Download'></Button>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div>
+									<h6>41594448981_large.jpg</h6>
+									<p className='text-muted'>0.39 MB</p>
+								</div>
+							</div>
+							<Button color='info' icon='Download'></Button>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div>
+									<h6>41594448981_large.jpg</h6>
+									<p className='text-muted'>0.39 MB</p>
+								</div>
+							</div>
+							<Button color='info' icon='Download'></Button>
+						</ListGroupItem>
+						<ListGroupItem className='py-4 d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div>
+									<h6>41594448981_large.jpg</h6>
+									<p className='text-muted'>0.39 MB</p>
+								</div>
+							</div>
+							<Button color='info' icon='Download'></Button>
+						</ListGroupItem>
+					</ListGroup>
+				</Card>
 			</Page>
 		</PageWrapper>
 	);
