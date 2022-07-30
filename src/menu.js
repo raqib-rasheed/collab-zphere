@@ -668,7 +668,7 @@ export const sidebarMenus = {
 	zoomMeeting: {
 		id: 'zoomMeeting',
 		text: 'Zoom Meeting',
-		path: 'summary',
+		path: '/zoom-meeting',
 		icon: 'CameraVideoFill',
 		subMenu: null,
 	},
