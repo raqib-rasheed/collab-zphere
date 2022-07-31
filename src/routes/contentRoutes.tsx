@@ -141,7 +141,13 @@ const APP = {
 			() => import('../pages/presentation/project-system/project-details/ProjectDetails'),
 		),
 		TASKS: lazy(() => import('../pages/presentation/project-system/Tasks')),
+		TASKS_DETAILS: lazy(
+			() => import('../pages/presentation/project-system/Task-details/TaskDetails'),
+		),
 		BUG: lazy(() => import('../pages/presentation/project-system/Bug')),
+		BUG_DETAILS: lazy(
+			() => import('../pages/presentation/project-system/bug-details/BugDetails'),
+		),
 		TIMESHEET: lazy(() => import('../pages/presentation/project-system/Timesheet')),
 		TRACKER: lazy(() => import('../pages/presentation/project-system/Tracker')),
 		PROJECT_SYSTEM_SETUP: {
@@ -159,11 +165,11 @@ const APP = {
 	USER_MANAGEMENT: {
 		USER: lazy(() => import('../pages/presentation/user-management/User')),
 		ROLE: lazy(() => import('../pages/presentation/user-management/Role')),
-		CLIENT: lazy(() => import('../pages/presentation/user-management/Client')),
+		CLIENT: lazy(() => import('../pages/presentation/user-management/clients/Client')),
 	},
 	PRODUCT_SYSTEM: {
-		ROLE: lazy(() => import('../pages/presentation/product-system/Role')),
-		CLIENT: lazy(() => import('../pages/presentation/product-system/Client')),
+		ROLE: lazy(() => import('../pages/presentation/product-system/ProductAndServices')),
+		CLIENT: lazy(() => import('../pages/presentation/product-system/ProductStock')),
 	},
 	SYSTEM_SETUP: {
 		SYSTEM_SETTINGS: lazy(() => import('../pages/presentation/system-setup/SystemSettings')),
@@ -175,6 +181,9 @@ const APP = {
 	MESSENGER: lazy(() => import('../pages/presentation/messenger/Messenger')),
 	ZOOM_MEETING: lazy(() => import('../pages/presentation/zoom-meeting/ZoomMeeting')),
 	SUPPORT_SYSTEM: lazy(() => import('../pages/presentation/support-system/SupportSystem')),
+	SUPPORT_SYSTEM_TICKETS: lazy(
+		() => import('../pages/presentation/support-system/SupportTickets'),
+	),
 };
 
 const presentation = [
@@ -456,6 +465,11 @@ const presentation = [
 		exact: true,
 	},
 	{
+		path: sidebarMenus.projectSystem.subMenu.tasks.path + '/:id',
+		element: <APP.PROJECT_SYSTEM.TASKS_DETAILS />,
+		exact: true,
+	},
+	{
 		path: sidebarMenus.projectSystem.subMenu.timesheet.path,
 		element: <APP.PROJECT_SYSTEM.TIMESHEET />,
 		exact: true,
@@ -463,6 +477,11 @@ const presentation = [
 	{
 		path: sidebarMenus.projectSystem.subMenu.bug.path,
 		element: <APP.PROJECT_SYSTEM.BUG />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.projectSystem.subMenu.bug.path + '/:id',
+		element: <APP.PROJECT_SYSTEM.BUG_DETAILS />,
 		exact: true,
 	},
 	{
@@ -612,6 +631,11 @@ const presentation = [
 	{
 		path: sidebarMenus.supportSystem.path,
 		element: <APP.SUPPORT_SYSTEM />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.supportSystem.path + '/ticket/:id',
+		element: <APP.SUPPORT_SYSTEM_TICKETS />,
 		exact: true,
 	},
 ];

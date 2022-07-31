@@ -1,25 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import USERS from '../../../common/data/userDummyData';
+import Avatar from '../../../components/Avatar';
+import Badge from '../../../components/bootstrap/Badge';
 import Button from '../../../components/bootstrap/Button';
-import Card from '../../../components/bootstrap/Card';
-import Icon from '../../../components/icon/Icon';
+import Dropdown, {
+	DropdownItem,
+	DropdownMenu,
+	DropdownToggle,
+} from '../../../components/bootstrap/Dropdown';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import PresentaionPagesSubHeader from '../../../widgets/PresentaionPagesSubHeader';
 import TableWidget from '../../../widgets/Table';
+import TableGridView from '../../../widgets/TableGridView';
 
-const ProjectSystemTasks = () => {
+enum EProjectSystemTasksView {
+	LIST = 'list',
+	GRID = 'grid',
+}
+
+const Tasks = () => {
+	const [view, handleView] = useState<EProjectSystemTasksView>(EProjectSystemTasksView.LIST);
 	function generateDummyData(count: number) {
 		const dummyData = {
-			employeeid: (
-				<Button color='success' isOutline>
-					#6t3723t
-				</Button>
+			id: (
+				<Link
+					className='text-dark text-decoration-underline'
+					to='/project-system/tasks/id#1'>
+					<h6>task 3 Website Launch</h6>
+					<span className='text-muted'>Website Launch</span>
+				</Link>
 			),
-			Name: ' DemoTese',
-			EMAIL: 'Hourly Payslip',
-			BRANCH: '$100,000.00',
-			id: '$113,410.00',
-			actions: <Icon size='lg' className='mx-2' icon='Eye' color='info' />,
+			Namase: (
+				<Badge className='my-2 py-2' style={{ width: '6rem' }} color='success'>
+					Owner
+				</Badge>
+			),
+			Name: 'To Do',
+			EMAIL: 'Critical',
+			BRANCH: <span className='text-danger'>21 Jul 2021</span>,
+			BRANCaaH: <Avatar size={25} src={USERS.CHLOE.src} />,
+			EMAILas: '0%',
+			actions: (
+				<>
+					<Button size='sm' className='mx-2' icon='Paperclip' />0
+					<Button size='sm' className='mx-2' icon='Message' />1
+					<Button size='sm' className='mx-2' icon='ListCheck' />
+					0/0
+				</>
+			),
 		};
 
 		const data = [];
@@ -31,54 +61,109 @@ const ProjectSystemTasks = () => {
 	}
 
 	const columns = [
-		{ name: 'EMPLOYEE ID' },
 		{ name: 'NAME' },
-		{ name: 'PAYROLL TYPE' },
-		{ name: 'SALARY' },
-		{ name: 'NET SALARY' },
-		{ name: 'ACTION' },
+		{ name: ' ' },
+		{ name: 'STAGE' },
+		{ name: 'PRIORITY' },
+		{ name: 'END DATE' },
+		{ name: 'ASSIGNED TO' },
+		{ name: 'COMPLETION' },
+		{ name: ' ' },
 	];
+
+	const SubHeaderActions = () => (
+		<>
+			<Dropdown direction='start'>
+				<DropdownToggle hasIcon={false}>
+					<Button color='dark' icon='Funnel'></Button>
+				</DropdownToggle>
+				<DropdownMenu>
+					<DropdownItem>
+						<span>Newest</span>
+					</DropdownItem>
+					<DropdownItem>
+						<span>Oldest</span>
+					</DropdownItem>
+					<DropdownItem>
+						<span>From A-Z</span>
+					</DropdownItem>
+					<DropdownItem>
+						<span>From Z-A</span>
+					</DropdownItem>
+				</DropdownMenu>
+			</Dropdown>
+			<Dropdown direction='start'>
+				<DropdownToggle hasIcon={false}>
+					<Button color='dark'>Status</Button>
+				</DropdownToggle>
+				<DropdownMenu>
+					<DropdownItem>
+						<span>Show All</span>
+					</DropdownItem>
+					<DropdownItem>
+						<span>See My Tasks</span>
+					</DropdownItem>
+					<DropdownItem>
+						<span>Critical</span>
+					</DropdownItem>
+					<DropdownItem>
+						<span>High</span>
+					</DropdownItem>
+					<DropdownItem>
+						<span>Medium</span>
+					</DropdownItem>
+
+					<DropdownItem>
+						<span>Low</span>
+					</DropdownItem>
+
+					<DropdownItem>
+						<span>Due Today</span>
+					</DropdownItem>
+
+					<DropdownItem>
+						<span>Over Due</span>
+					</DropdownItem>
+
+					<DropdownItem>
+						<span>Starred</span>
+					</DropdownItem>
+				</DropdownMenu>
+			</Dropdown>
+
+			<Button
+				onClick={() =>
+					handleView((prevState) =>
+						prevState === EProjectSystemTasksView.LIST
+							? EProjectSystemTasksView.GRID
+							: EProjectSystemTasksView.LIST,
+					)
+				}
+				color='dark'
+				icon={view === EProjectSystemTasksView.LIST ? 'Grid1X2Fill' : 'CardList'}></Button>
+		</>
+	);
 	return (
 		<PageWrapper title=''>
-			<PresentaionPagesSubHeader title='Find Employee Payslip' />
-			<Card className='py-4 px-2'>
-				<div className='d-flex justify-content-end align-items-center'>
-					<div className='btn-box mx-1'>
-						<label htmlFor='month' className='form-label'>
-							Select Month
-						</label>
-						<input
-							className='month-btn form-control'
-							name='month'
-							type='month'
-							value='2022-07'
-							id='month'
-						/>
-					</div>
-					<div className='btn-box mx-1'>
-						<label htmlFor='month' className='form-label'>
-							Select Year
-						</label>
-						<input
-							className='month-btn form-control'
-							name='month'
-							type='month'
-							value='2022-07'
-							id='month'
-						/>
-					</div>
-					<div>
-						<Button className='mt-4' color='success'>
-							Generate Payslip
-						</Button>
-					</div>
-				</div>
-			</Card>
+			<PresentaionPagesSubHeader
+				showAddNewButton={false}
+				showSubHeaderRight
+				customSubHeaderRightActions={SubHeaderActions}
+				title='Find Employee Payslip'
+			/>
 			<Page container='fluid'>
-				<TableWidget data={generateDummyData(8)} tableColumns={columns} />
+				{view === EProjectSystemTasksView?.LIST ? (
+					<TableWidget
+						displaySearch={false}
+						data={generateDummyData(8) as any}
+						tableColumns={columns}
+					/>
+				) : (
+					<TableGridView data={generateDummyData(8) as any} />
+				)}
 			</Page>
 		</PageWrapper>
 	);
 };
 
-export default ProjectSystemTasks;
+export default Tasks;

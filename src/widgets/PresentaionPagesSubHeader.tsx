@@ -12,12 +12,14 @@ interface IPresentaionPagesSubHeaderProps {
 	showSubHeaderRight?: boolean;
 	title?: string;
 	customSubHeaderRightActions?: any;
+	showAddNewButton?: boolean;
 }
 
 const PresentaionPagesSubHeader = ({
 	showSubHeaderRight,
 	title,
 	customSubHeaderRightActions,
+	showAddNewButton = true,
 }: IPresentaionPagesSubHeaderProps) => {
 	const breadcrumbLists = useSubHeaderBreadCrumpList();
 	const formik = useFormik({
@@ -59,7 +61,6 @@ const PresentaionPagesSubHeader = ({
 			);
 		},
 	});
-	console.log(customSubHeaderRightActions);
 	return (
 		<SubHeader>
 			<SubHeaderLeft
@@ -71,30 +72,32 @@ const PresentaionPagesSubHeader = ({
 				<SubHeaderRight>
 					<>
 						{customSubHeaderRightActions && customSubHeaderRightActions()}
-						<Button
-							color='dark'
-							isLight
-							icon='Add'
-							onClick={() => {
-								formik.setValues({
-									firstName: '',
-									lastName: '',
-									displayName: '',
-									emailAddress: '',
-									currentPassword: '',
-									newPassword: '',
-									confirmPassword: '',
-								});
-								formikAddress.setValues({
-									addressLine: '',
-									addressLine2: '',
-									city: '',
-									state: '',
-									zip: '',
-								});
-							}}>
-							{!customSubHeaderRightActions ? 'Add New' : ''}
-						</Button>
+						{showAddNewButton && (
+							<Button
+								color='dark'
+								isLight
+								icon='Add'
+								onClick={() => {
+									formik.setValues({
+										firstName: '',
+										lastName: '',
+										displayName: '',
+										emailAddress: '',
+										currentPassword: '',
+										newPassword: '',
+										confirmPassword: '',
+									});
+									formikAddress.setValues({
+										addressLine: '',
+										addressLine2: '',
+										city: '',
+										state: '',
+										zip: '',
+									});
+								}}>
+								{!customSubHeaderRightActions ? 'Add New' : ''}
+							</Button>
+						)}
 					</>
 				</SubHeaderRight>
 			)}

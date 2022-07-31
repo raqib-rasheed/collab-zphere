@@ -27,7 +27,7 @@ const TableWidget = ({
 	title,
 	tableColumns,
 	data,
-	displayPagintaion,
+	displayPagintaion = true,
 	displaySearch = true,
 	customTableActions,
 }: ITableProps) => {
