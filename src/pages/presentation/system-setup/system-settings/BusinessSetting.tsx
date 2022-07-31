@@ -4,7 +4,7 @@ import Card, { CardBody, CardHeader } from '../../../../components/bootstrap/Car
 import Button from '../../../../components/bootstrap/Button';
 import Icon from '../../../../components/icon/Icon';
 import Input from '../../../../components/bootstrap/forms/Input';
-import Checks from '../../../../components/bootstrap/forms/Checks';
+import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
 
 const BusinessSetting = () => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -16,7 +16,7 @@ const BusinessSetting = () => {
 				<div className='fw-bold fs-5'>Business Setting</div>
 				<div className='fs-6'>Edit details about your Company</div>
 			</CardHeader>
-			<CardBody>
+			<CardBody isScrollable>
 				<div className='d-flex justify-content-around'>
 					<Card className='w-25'>
 						<CardHeader size={'sm'} borderSize={1} className='d-block'>
@@ -104,29 +104,74 @@ const BusinessSetting = () => {
 						/>
 					</div>
 					<div className='d-flex flex-column ms-5'>
-						<b>RTL</b>
+						<b className='ms-1'>RTL</b>
 
-						<Checks id='rtl' name='rtll' type='switch' className='mt-3' />
+						<Checks
+							id='rtl'
+							name='rtll'
+							type='switch'
+							className='mt-2'
+							style={{ height: '25px', width: '50px' }}
+						/>
 					</div>
 				</div>
 				<div className='mt-4'>
 					<p className='h5'>Theme Customizer</p>
 					<div className='d-flex mt-3'>
-						<div className='w-25'>
-							<div>
-								<Icon icon='LayoutSidebar' />
-								<b className='ms-1'>Primary color settings</b>
+						<div style={{ width: '30%' }}>
+							<div
+								style={{ borderBottom: '2px solid #E9E9E9', paddingBottom: '6px' }}>
+								<Icon icon='LayoutSidebar' style={{ fontSize: '20px' }} />
+								<b className='ms-2'>Primary color settings</b>
 							</div>
-							<div>----------------------</div>
-							<div></div>
+							<div className='mt-3'>
+								<ChecksGroup id={'ttt'} isInline>
+									<Checks
+										type='radio'
+										style={{
+											borderRadius: '10%',
+											backgroundColor: '#784392',
+											height: '25px',
+											width: '32px',
+										}}
+									/>
+									<Checks
+										type='radio'
+										style={{
+											borderRadius: '10%',
+											backgroundColor: '#3676B3',
+											height: '25px',
+											width: '32px',
+										}}
+									/>
+									<Checks
+										type='radio'
+										style={{
+											borderRadius: '10%',
+											backgroundColor: '#6FD943',
+											height: '25px',
+											width: '32px',
+										}}
+									/>
+									<Checks
+										type='radio'
+										style={{
+											borderRadius: '10%',
+											backgroundColor: '#6056DC',
+											height: '25px',
+											width: '32px',
+										}}
+									/>
+								</ChecksGroup>
+							</div>
 						</div>
 						<div className='ms-5 w-25'>
-							<div>
-								<Icon icon='LayoutTextWindowReverse' />
-								<b className='ms-1'>Sidebar settings</b>
+							<div
+								style={{ borderBottom: '2px solid #E9E9E9', paddingBottom: '6px' }}>
+								<Icon icon='LayoutTextWindowReverse' style={{ fontSize: '20px' }} />
+								<b className='ms-2'>Sidebar settings</b>
 							</div>
-							<div>----------------------</div>
-							<div className='d-flex'>
+							<div className='d-flex mt-3'>
 								<Checks
 									id='rtl'
 									name='rtll'
@@ -137,12 +182,12 @@ const BusinessSetting = () => {
 							</div>
 						</div>
 						<div className='ms-5 w-25'>
-							<div>
-								<Icon icon='Sun' />
-								<b className='ms-1'>Layout settings</b>
+							<div
+								style={{ borderBottom: '2px solid #E9E9E9', paddingBottom: '6px' }}>
+								<Icon icon='Sun' style={{ fontSize: '20px' }} />
+								<b className='ms-2'>Layout settings</b>
 							</div>
-							<div>----------------------</div>
-							<div className='d-flex'>
+							<div className='d-flex mt-3'>
 								<Checks
 									id='rtl'
 									name='rtll'
@@ -152,6 +197,9 @@ const BusinessSetting = () => {
 								<div className='ms-2 mt-1'>Dark Layout</div>
 							</div>
 						</div>
+					</div>
+					<div className='d-flex justify-content-end mt-4'>
+						<Button color='info'>Save Changes</Button>
 					</div>
 				</div>
 			</CardBody>
