@@ -50,11 +50,7 @@ const Indicator = () => {
 	];
 	return (
 		<PageWrapper title=''>
-			<PresentaionPagesSubHeader
-				showSubHeaderRight
-				title='Manage Job'
-				customSubHeaderRightActions={<Icon size='2x' icon='Plus' color='success' />}
-			/>
+			<PresentaionPagesSubHeader showSubHeaderRight title='Manage Job' />
 			<Page container='fluid'>
 				<TableWidget data={generateDummyData(6)} tableColumns={columns} />
 			</Page>

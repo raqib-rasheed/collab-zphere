@@ -48,11 +48,7 @@ const Indicator = () => {
 	];
 	return (
 		<PageWrapper title=''>
-			<PresentaionPagesSubHeader
-				showSubHeaderRight
-				title='Manage Appraisal'
-				customSubHeaderRightActions={<Icon size='2x' icon='Plus' color='success' />}
-			/>
+			<PresentaionPagesSubHeader showSubHeaderRight title='Manage Appraisal' />
 			<Page container='fluid'>
 				<TableWidget data={generateDummyData(3)} tableColumns={columns} />
 			</Page>

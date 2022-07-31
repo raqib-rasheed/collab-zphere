@@ -181,6 +181,9 @@ const APP = {
 	MESSENGER: lazy(() => import('../pages/presentation/messenger/Messenger')),
 	ZOOM_MEETING: lazy(() => import('../pages/presentation/zoom-meeting/ZoomMeeting')),
 	SUPPORT_SYSTEM: lazy(() => import('../pages/presentation/support-system/SupportSystem')),
+	SUPPORT_SYSTEM_TICKETS: lazy(
+		() => import('../pages/presentation/support-system/SupportTickets'),
+	),
 };
 
 const presentation = [
@@ -628,6 +631,11 @@ const presentation = [
 	{
 		path: sidebarMenus.supportSystem.path,
 		element: <APP.SUPPORT_SYSTEM />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.supportSystem.path + '/ticket/:id',
+		element: <APP.SUPPORT_SYSTEM_TICKETS />,
 		exact: true,
 	},
 ];

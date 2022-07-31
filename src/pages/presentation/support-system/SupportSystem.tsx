@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import Card from '../../../components/bootstrap/Card';
@@ -7,24 +7,41 @@ import Badge from '../../../components/bootstrap/Badge';
 import PresentaionPagesSubHeader from '../../../widgets/PresentaionPagesSubHeader';
 import TableWidget from '../../../widgets/Table';
 import Button from '../../../components/bootstrap/Button';
+import { Link } from 'react-router-dom';
+import TableGridView from '../../../widgets/TableGridView';
+import { EProjectSystemTasksView } from '../../../type/globalTypes';
 
 const ListFluidPage = () => {
+	const [view, setView] = useState(EProjectSystemTasksView.LIST);
 	function generateDummyData(count: number) {
 		const dummyData = {
-			employeeid: 'meeting 2',
-			Name: 'Website Testing',
-			EMAIL: 'saf',
-			BRANCH: 'Emilia Fox',
-			iad: '2021-12-28 12:00:00',
-			id: '60 Minutes',
-			asid: '-',
-			asasid: (
-				<Badge className='py-2 px-3' color='danger'>
-					End
+			employeeid: 'Rajodiya Infotech',
+			Name: (
+				<div>
+					<Link className='text-decoration-none text-dark' to='/support-system/ticket/1'>
+						<h6>Rerum molestiae volue</h6>
+					</Link>
+					<Badge className='py-2 px-3'>Low</Badge>
+				</div>
+			),
+			EMAIL: '090117',
+			BRANCH: (
+				<>
+					<Button className='mx-2' icon='Download' color='success' />
+					<Button className='mx-2' icon='BoxArrowUpRight' color='light' />
+				</>
+			),
+			id: 'Mick Aston',
+			iad: (
+				<Badge color='success' className='py-2 px-3'>
+					Open
 				</Badge>
 			),
+			asid: 'Jan 10, 2022',
 			actions: (
 				<>
+					<Button className='mx-2' icon='Arrow90DegLeft' color='warning' />
+					<Button className='mx-2' icon='Edit' color='success' />
 					<Button className='mx-2' icon='trash' color='danger' />
 				</>
 			),
@@ -39,18 +56,36 @@ const ListFluidPage = () => {
 	}
 
 	const columns = [
-		{ name: 'TITLE' },
-		{ name: 'PROJECT' },
-		{ name: 'USER' },
-		{ name: 'CLIENT' },
-		{ name: 'MEETING TIME' },
-		{ name: 'DURATION' },
-		{ name: 'JOIN URL' },
+		{ name: 'CREATED BY' },
+		{ name: 'TICKET' },
+		{ name: 'CODE' },
+		{ name: 'ATTACHEMENT' },
+		{ name: 'ASSIGN USER' },
 		{ name: 'STATUS' },
+		{ name: 'CREATED AT' },
 		{ name: 'ACTION' },
 	];
 	return (
 		<PageWrapper title='demo title'>
+			<PresentaionPagesSubHeader
+				showSubHeaderRight
+				showAddNewButton
+				customSubHeaderRightActions={() => (
+					<Button
+						onClick={() =>
+							setView((prevState) =>
+								prevState === EProjectSystemTasksView.LIST
+									? EProjectSystemTasksView.GRID
+									: EProjectSystemTasksView.LIST,
+							)
+						}
+						color='dark'
+						icon={
+							view === EProjectSystemTasksView.LIST ? 'Grid1X2Fill' : 'CardList'
+						}></Button>
+				)}
+				title='Find Employee Payslip'
+			/>
 			<Page container='fluid'>
 				<div className='row'>
 					<div className='d-flex justify-content-between px-4'>
@@ -116,12 +151,11 @@ const ListFluidPage = () => {
 						</Card>
 					</div>
 				</div>
-				<PresentaionPagesSubHeader
-					showSubHeaderRight
-					showAddNewButton
-					title='Find Employee Payslip'
-				/>
-				<TableWidget data={generateDummyData(8)} tableColumns={columns} />
+				{view === EProjectSystemTasksView?.LIST ? (
+					<TableWidget data={generateDummyData(7)} tableColumns={columns} title='' />
+				) : (
+					<TableGridView data={generateDummyData(8) as any} />
+				)}
 			</Page>
 		</PageWrapper>
 	);

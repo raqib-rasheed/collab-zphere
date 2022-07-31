@@ -51,11 +51,7 @@ const Indicator = () => {
 	];
 	return (
 		<PageWrapper title=''>
-			<PresentaionPagesSubHeader
-				showSubHeaderRight
-				title='Manage  Goal Tracking'
-				customSubHeaderRightActions={<Icon size='2x' icon='Plus' color='success' />}
-			/>
+			<PresentaionPagesSubHeader showSubHeaderRight title='Manage  Goal Tracking' />
 			<Page container='fluid'>
 				<TableWidget data={generateDummyData(5)} tableColumns={columns} />
 			</Page>

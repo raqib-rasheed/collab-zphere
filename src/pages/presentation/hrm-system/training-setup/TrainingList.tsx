@@ -49,11 +49,7 @@ const Indicator = () => {
 	];
 	return (
 		<PageWrapper title=''>
-			<PresentaionPagesSubHeader
-				showSubHeaderRight
-				title='Manage Training'
-				customSubHeaderRightActions={<Icon size='2x' icon='Plus' color='success' />}
-			/>
+			<PresentaionPagesSubHeader showSubHeaderRight title='Manage Training' />
 			<Page container='fluid'>
 				<TableWidget data={generateDummyData(6)} tableColumns={columns} />
 			</Page>
