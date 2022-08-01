@@ -410,112 +410,167 @@ export const sidebarMenus = {
 			},
 		},
 	},
-	// accountingSystem: {
-	// 	id: 'accountingSystem',
-	// 	text: 'Accounting System',
-	// 	path: 'accounting-system',
-	// 	icon: 'Box',
-	// 	subMenu: {
-	// 		customer: {
-	// 			id: 'accountingSystemCustomer',
-	// 			text: 'Customer',
-	// 			path: 'accounting-system/customer',
-	// 			icon: 'ViewArray',
-	// 		},
-	// 		vendor: {
-	// 			id: 'accountingSystemVendor',
-	// 			text: 'Vendor',
-	// 			path: 'accounting-system/vendor',
-	// 			icon: 'ViewDay',
-	// 		},
-	// 		proposal: {
-	// 			id: 'accountingSystemProposal',
-	// 			text: 'Proposal',
-	// 			path: 'accounting-system/proposal',
-	// 			icon: 'ViewDay',
-	// 		},
-	// 		banking: {
-	// 			id: 'accountingSystemBanking',
-	// 			text: 'Banking',
-	// 			path: 'accounting-system/banking',
-	// 			icon: 'ViewArray',
-	// 			subMenu: {
-	// 				customer: {
-	// 					id: 'accountingSystemBankingCustomer',
-	// 					text: 'Customer',
-	// 					path: 'accounting-system/customer',
-	// 					icon: 'ViewArray',
-	// 				},
-	// 			},
-	// 		},
-	// 		income: {
-	// 			id: 'accountingSystemIncome',
-	// 			text: 'Income',
-	// 			path: 'accounting-system/income',
-	// 			icon: 'ViewDay',
-	// 			subMenu: {
-	// 				customer: {
-	// 					id: 'accountingSystemIncomeCustomer',
-	// 					text: 'Customer',
-	// 					path: 'accounting-system/customer',
-	// 					icon: 'ViewArray',
-	// 				},
-	// 			},
-	// 		},
-	// 		expense: {
-	// 			id: 'accountingSystemExpense',
-	// 			text: 'Expense',
-	// 			path: 'accounting-system/expense',
-	// 			icon: 'ViewDay',
-	// 			subMenu: {
-	// 				customer: {
-	// 					id: 'accountingSystemExpenseCustomer',
-	// 					text: 'Customer',
-	// 					path: 'accounting-system/customer',
-	// 					icon: 'ViewArray',
-	// 				},
-	// 			},
-	// 		},
-	// 		doubleEntry: {
-	// 			id: 'accountingSystemDoubleEntry',
-	// 			text: 'Double Entry',
-	// 			path: 'accounting-system/doubleEntry',
-	// 			icon: 'ViewDay',
-	// 			subMenu: {
-	// 				customer: {
-	// 					id: 'accountingSystemDoubleEntryCustomer',
-	// 					text: 'Customer',
-	// 					path: 'accounting-system/customer',
-	// 					icon: 'ViewArray',
-	// 				},
-	// 			},
-	// 		},
-	// 		budgetPlanner: {
-	// 			id: 'accountingSystemBudgetPlanner',
-	// 			text: 'Budget Planner',
-	// 			path: 'accounting-system/budgetPlanner',
-	// 			icon: 'ViewDay',
-	// 		},
-	// 		financialGoal: {
-	// 			id: 'accountingSystemFinancialGoal',
-	// 			text: 'Financial Goal',
-	// 			path: 'accounting-system/financialGoal',
-	// 			icon: 'ViewDay',
-	// 		},
-	// 		accountingSetup: {
-	// 			id: 'accountingSystemAccountingSetup',
-	// 			text: 'Accounting Setup',
-	// 			path: 'accounting-system/accountingSetup',
-	// 			icon: 'ViewDay',
-	// 		},
-	// 		printSettings: {
-	// 			id: 'accountingSystemPrintSettings',
-	// 			text: 'Print Settings',
-	// 			path: 'accounting-system/printSettings',
-	// 			icon: 'ViewDay',
-	// 		},
-	// 	},
-	// },
+	accountingSystem: {
+		id: 'accountingSystem',
+		text: 'Accounting System',
+		path: 'accounting-system',
+		icon: 'Box',
+		subMenu: {
+			customer: {
+				id: 'accountingSystemCustomer',
+				text: 'Customer',
+				path: 'accounting-system/customer',
+				icon: 'ViewArray',
+			},
+			vendor: {
+				id: 'accountingSystemVendor',
+				text: 'Vendor',
+				path: 'accounting-system/vendor',
+				icon: 'ViewArray',
+			},
+			proposal: {
+				id: 'accountingSystemProposal',
+				text: 'Proposal',
+				path: 'accounting-system/proposal',
+				icon: 'ViewDay',
+			},
+			banking: {
+				id: 'accountingSystemBanking',
+				text: 'Banking',
+				path: 'accounting-system/banking',
+				icon: 'ViewDay',
+				subMenu: {
+					account: {
+						id: 'accountingSystemBankingAccount',
+						text: 'Account',
+						path: 'accounting-system/banking/account',
+						icon: 'ViewArray',
+					},
+					transfer: {
+						id: 'accountingSystemVoucherTransfer',
+						text: 'Transfer',
+						path: 'accounting-system/ledger/transfer',
+						icon: 'ViewArray',
+					},
+				},
+			},
+
+			income: {
+				id: 'accountingSystemIncome',
+				text: 'Income',
+				path: 'accounting-system/income',
+				icon: 'ViewDay',
+				subMenu: {
+					invoice: {
+						id: 'accountingSystemIncomeInvoice',
+						text: 'Invoice',
+						path: 'accounting-system/income/invoice',
+						icon: 'ViewArray',
+					},
+					revenue: {
+						id: 'accountingSystemIncomeRevenue',
+						text: 'Revenue',
+						path: 'accounting-system/income/revenue',
+						icon: 'ViewArray',
+					},
+					creditnote: {
+						id: 'accountingSystemInvoiceCreditnote',
+						text: 'Creditnote',
+						path: 'accounting-system/Income/creditnote',
+						icon: 'ViewArray',
+					},
+				},
+			},
+			expense: {
+				id: 'accountingSystemExpense',
+				text: 'Expense',
+				path: 'accounting-system/expense',
+				icon: 'ViewDay',
+				subMenu: {
+					bill: {
+						id: 'accountingSystemExpenseeRequisition',
+						text: 'Requisition',
+						path: 'accounting-system/expense/requisition',
+						icon: 'ViewArray',
+					},
+					payment: {
+						id: 'accountingSystemExpensePayment',
+						text: 'Payment',
+						path: 'accounting-system/expense/payment',
+						icon: 'ViewArray',
+					},
+					debitnote: {
+						id: 'accountingSystemExpenseDebitnote',
+						text: 'Debitnote',
+						path: 'accounting-system/expense/debitnote',
+						icon: 'ViewArray',
+					},
+				},
+			},
+			doubleentry: {
+				id: 'accountingSystemDoubleentry',
+				text: 'Double Entry',
+				path: 'accounting-system/doubleentry',
+				icon: 'ViewDay',
+				subMenu: {
+					chartofaccounts: {
+						id: 'accountingSystemDoubleentryChartofaccounts',
+						text: 'Chart of accounts',
+						path: 'accounting-system/doubleentry/chartofaccounts',
+						icon: 'ViewArray',
+					},
+					journalaccount: {
+						id: 'accountingSystemDoubleentryJournalaccount',
+						text: 'Journal Account',
+						path: 'accounting-system/doubleentry/journalaccount',
+						icon: 'ViewArray',
+					},
+					ledgersummary: {
+						id: 'accountingSystemDoubleentryLedgersummary',
+						text: 'Ledger Summary',
+						path: 'accounting-system/doubleentry/ledgersummary',
+						icon: 'ViewArray',
+					},
+					balancesheet: {
+						id: 'accountingSystemDoubleentryBalancesheet',
+						text: 'Balance Sheet',
+						path: 'accounting-system/doubleentry/balancesheet',
+						icon: 'ViewArray',
+					},
+					trialbalance: {
+						id: 'accountingSystemDoubleentryTrialbalance',
+						text: 'Trial Balance',
+						path: 'accounting-system/doubleentry/trialbalance',
+						icon: 'ViewArray',
+					},
+				},
+			},
+			budgetplanner: {
+				id: 'accountingSystemBudgetplanner',
+				text: 'Budget Planner',
+				path: 'accounting-system/budgetplanner',
+				icon: 'ViewArray',
+			},
+			financialgoal: {
+				id: 'accountingSystemFinancialgoal',
+				text: 'Financial Goal',
+				path: 'accounting-system/financialgoal',
+				icon: 'ViewArray',
+			},
+			accountingsetup: {
+				id: 'accountingSystemAccountingsetup',
+				text: 'Accounting Setup',
+				path: 'accounting-system/accountingsetup',
+				icon: 'ViewArray',
+			},
+			printsetup: {
+				id: 'accountingSystemPrintsetup',
+				text: 'Print setup',
+				path: 'accounting-system/printsetup',
+				icon: 'ViewArray',
+			},
+		},
+	},
 	crmSystem: {
 		id: 'crmSystem',
 		text: 'CRM',

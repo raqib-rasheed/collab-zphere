@@ -18,13 +18,57 @@ const APP = {
 	ACCOUNTING_SYSTEM: {
 		CUSTOMER: lazy(() => import('../pages/presentation/accounting-system/Customer')),
 		VENDOR: lazy(() => import('../pages/presentation/accounting-system/Vendor')),
+
 		PROPOSAL: lazy(() => import('../pages/presentation/accounting-system/Proposal')),
-		BUDGET_PLANNER: lazy(() => import('../pages/presentation/accounting-system/BudgetPlanner')),
-		FINANCIAL_GOAL: lazy(() => import('../pages/presentation/accounting-system/FinancialGoal')),
-		ACCOUNTING_SETUP: lazy(
-			() => import('../pages/presentation/accounting-system/AccountingSetup'),
+		ACCOUNTINGSETUP: lazy(
+			() => import('../pages/presentation/accounting-system/Accountingsetup'),
 		),
-		PRINT_SETTING: lazy(() => import('../pages/presentation/accounting-system/PrintSetting')),
+		PRINTSETUP: lazy(() => import('../pages/presentation/accounting-system/Printsetup')),
+
+		FINANCIALGOAL: lazy(() => import('../pages/presentation/accounting-system/Financialgoal')),
+
+		BUDGETPLANNER: lazy(() => import('../pages/presentation/accounting-system/Budgetplanner')),
+
+		BANKING: {
+			ACCOUNT: lazy(() => import('../pages/presentation/accounting-system/banking/Account')),
+			TRANSFER: lazy(
+				() => import('../pages/presentation/accounting-system/banking/Transfer'),
+			),
+		},
+
+		INCOME: {
+			INVOICE: lazy(() => import('../pages/presentation/accounting-system/income/Invoice')),
+			REVENUE: lazy(() => import('../pages/presentation/accounting-system/income/Revenue')),
+			CREDITNOTE: lazy(
+				() => import('../pages/presentation/accounting-system/income/Creditnote'),
+			),
+		},
+
+		EXPENSE: {
+			BILL: lazy(() => import('../pages/presentation/accounting-system/expense/Bill')),
+			PAYMENT: lazy(() => import('../pages/presentation/accounting-system/expense/Payment')),
+			DEBITNOTE: lazy(
+				() => import('../pages/presentation/accounting-system/expense/Debitnote'),
+			),
+		},
+
+		DOUBLEENTRY: {
+			CHARTOFACCOUNTS: lazy(
+				() => import('../pages/presentation/accounting-system/doubleentry/Chartofaccounts'),
+			),
+			JOURNALACCOUNT: lazy(
+				() => import('../pages/presentation/accounting-system/doubleentry/Journalaccount'),
+			),
+			LEDGERSUMMARY: lazy(
+				() => import('../pages/presentation/accounting-system/doubleentry/Ledgersummary'),
+			),
+			BALANCESHEET: lazy(
+				() => import('../pages/presentation/accounting-system/doubleentry/Balancesheet'),
+			),
+			TRIALBALANCE: lazy(
+				() => import('../pages/presentation/accounting-system/doubleentry/Trialbalance'),
+			),
+		},
 	},
 	CRM_SYSTEM: {
 		LEADS: lazy(() => import('../pages/presentation/crm-system/Leads')),
@@ -417,41 +461,106 @@ const presentation = [
 
 	// App > Accounting system
 
-	// {
-	// 	path: sidebarMenus.accountingSystem.subMenu.customer.path,
-	// 	element: <APP.ACCOUNTING_SYSTEM.CUSTOMER />,
-	// 	exact: true,
-	// },
-	// {
-	// 	path: sidebarMenus.accountingSystem.subMenu.vendor.path,
-	// 	element: <APP.ACCOUNTING_SYSTEM.VENDOR />,
-	// 	exact: true,
-	// },
-	// {
-	// 	path: sidebarMenus.accountingSystem.subMenu.proposal.path,
-	// 	element: <APP.ACCOUNTING_SYSTEM.PROPOSAL />,
-	// 	exact: true,
-	// },
-	// {
-	// 	path: sidebarMenus.accountingSystem.subMenu.budgetPlanner.path,
-	// 	element: <APP.ACCOUNTING_SYSTEM.BUDGET_PLANNER />,
-	// 	exact: true,
-	// },
-	// {
-	// 	path: sidebarMenus.accountingSystem.subMenu.financialGoal.path,
-	// 	element: <APP.ACCOUNTING_SYSTEM.FINANCIAL_GOAL />,
-	// 	exact: true,
-	// },
-	// {
-	// 	path: sidebarMenus.accountingSystem.subMenu.accountingSetup.path,
-	// 	element: <APP.ACCOUNTING_SYSTEM.ACCOUNTING_SETUP />,
-	// 	exact: true,
-	// },
-	// {
-	// 	path: sidebarMenus.accountingSystem.subMenu.printSettings.path,
-	// 	element: <APP.ACCOUNTING_SYSTEM.PRINT_SETTING />,
-	// 	exact: true,
-	// },
+	{
+		path: sidebarMenus.accountingSystem.subMenu.customer.path,
+		element: <APP.ACCOUNTING_SYSTEM.CUSTOMER />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.vendor.path,
+		element: <APP.ACCOUNTING_SYSTEM.VENDOR />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.budgetplanner.path,
+		element: <APP.ACCOUNTING_SYSTEM.BUDGETPLANNER />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.accountingsetup.path,
+		element: <APP.ACCOUNTING_SYSTEM.ACCOUNTINGSETUP />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.printsetup.path,
+		element: <APP.ACCOUNTING_SYSTEM.PRINTSETUP />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.financialgoal.path,
+		element: <APP.ACCOUNTING_SYSTEM.FINANCIALGOAL />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.income.subMenu.invoice.path,
+		element: <APP.ACCOUNTING_SYSTEM.INCOME.INVOICE />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.income.subMenu.revenue.path,
+		element: <APP.ACCOUNTING_SYSTEM.INCOME.REVENUE />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.income.subMenu.creditnote.path,
+		element: <APP.ACCOUNTING_SYSTEM.INCOME.CREDITNOTE />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.expense.subMenu.bill.path,
+		element: <APP.ACCOUNTING_SYSTEM.EXPENSE.BILL />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.expense.subMenu.payment.path,
+		element: <APP.ACCOUNTING_SYSTEM.EXPENSE.PAYMENT />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.expense.subMenu.debitnote.path,
+		element: <APP.ACCOUNTING_SYSTEM.EXPENSE.DEBITNOTE />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.proposal.path,
+		element: <APP.ACCOUNTING_SYSTEM.PROPOSAL />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.banking.subMenu.account.path,
+		element: <APP.ACCOUNTING_SYSTEM.BANKING.ACCOUNT />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.banking.subMenu.transfer.path,
+		element: <APP.ACCOUNTING_SYSTEM.BANKING.TRANSFER />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.doubleentry.subMenu.chartofaccounts.path,
+		element: <APP.ACCOUNTING_SYSTEM.DOUBLEENTRY.CHARTOFACCOUNTS />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.doubleentry.subMenu.journalaccount.path,
+		element: <APP.ACCOUNTING_SYSTEM.DOUBLEENTRY.JOURNALACCOUNT />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.doubleentry.subMenu.ledgersummary.path,
+		element: <APP.ACCOUNTING_SYSTEM.DOUBLEENTRY.LEDGERSUMMARY />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.doubleentry.subMenu.balancesheet.path,
+		element: <APP.ACCOUNTING_SYSTEM.DOUBLEENTRY.BALANCESHEET />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.accountingSystem.subMenu.doubleentry.subMenu.trialbalance.path,
+		element: <APP.ACCOUNTING_SYSTEM.DOUBLEENTRY.TRIALBALANCE />,
+		exact: true,
+	},
 
 	// App > Project system
 	{
