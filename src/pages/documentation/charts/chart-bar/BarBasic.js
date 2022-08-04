@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
-import Card, {
-	CardActions,
-	CardBody,
-	CardHeader,
-	CardLabel,
-	CardSubTitle,
-	CardTitle,
-} from '../../../../components/bootstrap/Card';
+import Card, { CardBody } from '../../../../components/bootstrap/Card';
 import Chart from '../../../../components/extras/Chart';
-import CommonStoryBtn from '../../../../common/other/CommonStoryBtn';
 
 const BarBasic = () => {
 	const [state] = useState({
@@ -20,51 +12,30 @@ const BarBasic = () => {
 		options: {
 			chart: {
 				type: 'bar',
-				height: 350,
+				height: '100%',
+				toolbar: {
+					show: false,
+				},
 			},
 			plotOptions: {
 				bar: {
-					horizontal: true,
+					horizontal: false,
 				},
 			},
 			dataLabels: {
 				enabled: false,
 			},
 			xaxis: {
-				categories: [
-					'South Korea',
-					'Canada',
-					'United Kingdom',
-					'Netherlands',
-					'Italy',
-					'France',
-					'Japan',
-					'United States',
-					'China',
-					'Germany',
-				],
+				categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
 			},
 		},
 	});
 	return (
-		<div className='col-lg-6'>
-			<Card stretch>
-				<CardHeader>
-					<CardLabel icon='StackedBarChart'>
-						<CardTitle>
-							type <small>bar</small>
-						</CardTitle>
-						<CardSubTitle>Chart</CardSubTitle>
-					</CardLabel>
-					<CardActions>
-						<CommonStoryBtn to='/story/extra-chart-bar--bar-basic' />
-					</CardActions>
-				</CardHeader>
-				<CardBody>
-					<Chart series={state.series} options={state.options} type='bar' height={350} />
-				</CardBody>
-			</Card>
-		</div>
+		<Card stretch>
+			<CardBody>
+				<Chart series={state.series} options={state.options} type='bar' height={350} />
+			</CardBody>
+		</Card>
 	);
 };
 

@@ -1,8 +1,12 @@
 import React from 'react';
-import Card, { CardHeader } from '../../../components/bootstrap/Card';
+import Card, { CardHeader } from '../components/bootstrap/Card';
 const { default: ReactApexChart } = require('react-apexcharts');
 
-const TasksOverview = () => {
+interface IAreaGraphProps {
+	title?: string;
+	colors?: string[];
+}
+const AreacChart = ({ title, colors }: IAreaGraphProps) => {
 	const data = [
 		{
 			category: 'twitter',
@@ -70,14 +74,14 @@ const TasksOverview = () => {
 			width: 1,
 			curve: 'smooth',
 		},
-		colors: ['rgba(62, 201, 214, 0.85)', 'rgba(62, 201, 214, 0.85)'],
+		colors: colors ?? ['rgba(62, 201, 214, 0.85)', 'rgba(62, 201, 214, 0.85)'],
 		fill: {
 			type: 'gradient',
 			gradient: {
 				shade: 'light',
 				type: 'horizontal',
 				shadeIntensity: 0.5,
-				gradientToColors: ['#B0DFFF', '#4AB6FF'],
+				gradientToColors: colors ?? ['#B0DFFF', '#4AB6FF'],
 				inverseColors: true,
 				opacityFrom: 1.5,
 				opacityTo: 1,
@@ -129,9 +133,7 @@ const TasksOverview = () => {
 
 	return (
 		<Card>
-			<CardHeader>
-				<h4>Tasks Overview</h4>
-			</CardHeader>
+			<CardHeader>{title && <h4>{title}</h4>}</CardHeader>
 			<ReactApexChart
 				options={options}
 				series={series}
@@ -143,4 +145,4 @@ const TasksOverview = () => {
 	);
 };
 
-export default TasksOverview;
+export default AreacChart;

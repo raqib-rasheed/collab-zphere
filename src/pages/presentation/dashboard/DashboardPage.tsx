@@ -18,7 +18,7 @@ import Card, { CardBody, CardFooter, CardHeader } from '../../../components/boot
 import Badge from '../../../components/bootstrap/Badge';
 import Icon from '../../../components/icon/Icon';
 import Progress from '../../../components/bootstrap/Progress';
-import TasksOverview from './TasksOverview';
+import TasksOverview from '../../../widgets/TasksOverview';
 import TimesheetLoggedHours from './TimesheetLoggedHours';
 import ListGroup, { ListGroupItem } from '../../../components/bootstrap/ListGroup';
 import TableWidget from '../../../widgets/Table';

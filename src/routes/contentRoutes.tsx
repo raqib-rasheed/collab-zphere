@@ -14,6 +14,51 @@ const APP = {
 				),
 			},
 		},
+		ACCOUNTING: {
+			OVERVIEW: lazy(() => import('../pages/presentation/dashboard/accounting/Overview')),
+			REPORTS: {
+				EXPENSE_SUMMARY: lazy(
+					() =>
+						import('../pages/presentation/dashboard/accounting/reports/ExpenseSummary'),
+				),
+				INCOME_VS_EXPENSE: lazy(
+					() =>
+						import(
+							'../pages/presentation/dashboard/accounting/reports/IncomeVsExpense'
+						),
+				),
+				ACCOUNT_STATEMENT: lazy(
+					() =>
+						import(
+							'../pages/presentation/dashboard/accounting/reports/AccountStatement'
+						),
+				),
+				INVOICE_SUMMARY: lazy(
+					() =>
+						import('../pages/presentation/dashboard/accounting/reports/InvoiceSummary'),
+				),
+				BILL_SUMMARY: lazy(
+					() => import('../pages/presentation/dashboard/accounting/reports/BillSummary'),
+				),
+				PRODUCT_STOCK: lazy(
+					() => import('../pages/presentation/dashboard/accounting/reports/ProductStock'),
+				),
+				PROFIT_AND_LOSS: lazy(
+					() =>
+						import('../pages/presentation/dashboard/accounting/reports/ProfitAndLoss'),
+				),
+				TRANSACTION: lazy(
+					() => import('../pages/presentation/dashboard/accounting/reports/Transaction'),
+				),
+				INCOME_SUMMARY: lazy(
+					() =>
+						import('../pages/presentation/dashboard/accounting/reports/IncomeSummary'),
+				),
+				TAX_SUMMARY: lazy(
+					() => import('../pages/presentation/dashboard/accounting/reports/TaxSummary'),
+				),
+			},
+		},
 	},
 	ACCOUNTING_SYSTEM: {
 		CUSTOMER: lazy(() => import('../pages/presentation/accounting-system/Customer')),
@@ -257,6 +302,74 @@ const presentation = [
 		element: <APP.DASHBOARD.HRM.REPORTS.MONTHLY_ATTENDANCE />,
 		exact: true,
 	},
+
+	//  >>>>>>>>> Dashboard > Accounting
+
+	{
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.overView.path,
+		element: <APP.DASHBOARD.ACCOUNTING.OVERVIEW />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.accountStatement
+			.path,
+		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.ACCOUNT_STATEMENT />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.expenseSummary.path,
+		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.EXPENSE_SUMMARY />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.incomeVsExpense
+			.path,
+		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.INCOME_VS_EXPENSE />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.accountStatement
+			.path,
+		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.ACCOUNT_STATEMENT />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.accountStatement
+			.path,
+		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.ACCOUNT_STATEMENT />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.invoiceSummary.path,
+		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.INVOICE_SUMMARY />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.billSummary.path,
+		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.PRODUCT_STOCK />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.profitAndLoss.path,
+		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.PROFIT_AND_LOSS />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.transaction.path,
+		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.TRANSACTION />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.incomeSummary.path,
+		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.INCOME_SUMMARY />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.taxSummary.path,
+		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.TAX_SUMMARY />,
+		exact: true,
+	},
+
 	//  >>>>>>>>>> App > HRM system
 	{
 		path: sidebarMenus.hrmSystem.subMenu.EmplyeeSetup.path,
