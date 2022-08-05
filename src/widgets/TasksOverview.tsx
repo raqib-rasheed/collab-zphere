@@ -1,148 +1,89 @@
 import React from 'react';
+import ReactApexChart from 'react-apexcharts';
 import Card, { CardHeader } from '../components/bootstrap/Card';
-const { default: ReactApexChart } = require('react-apexcharts');
-
-interface IAreaGraphProps {
-	title?: string;
+interface IAreaChartProps {
 	colors?: string[];
+	title?: string;
 }
-const AreacChart = ({ title, colors }: IAreaGraphProps) => {
-	const data = [
+const AreaChart = (props: IAreaChartProps) => {
+	const data = [1, 2.4, 2, 3, 2, 6, 5, 2, 4, 3, 7, 3];
+	const series = [
 		{
-			category: 'twitter',
-			data: [
-				{
-					date: '2022-04-04',
-					count: 568,
-				},
-				{
-					date: '2022-04-03',
-					count: 2199,
-				},
-				{
-					date: '2022-04-02',
-					count: 2442,
-				},
-				{
-					date: '2022-04-01',
-					count: 2405,
-				},
-				{
-					date: '2022-03-31',
-					count: 1181,
-				},
-			],
-		},
-		{
-			category: 'reddit',
-			data: [
-				{
-					date: '2022-03-31',
-					count: 113,
-				},
-				{
-					date: '2022-04-01',
-					count: 134,
-				},
-				{
-					date: '2022-04-02',
-					count: 99,
-				},
-				{
-					date: '2022-04-03',
-					count: 115,
-				},
-				{
-					date: '2022-04-04',
-					count: 127,
-				},
-			],
+			name: 'Popularity ',
+			data,
 		},
 	];
 	const options = {
+		// title: getChartTitle("Google search popularity over time"),
 		chart: {
-			type: 'area',
-			fillOpacity: 3,
+			type: 'line',
 			toolbar: {
+				autoSelected: 'pan',
 				show: false,
 			},
 		},
-		grid: {
-			show: false,
-		},
-		stroke: {
-			width: 1,
-			curve: 'smooth',
-		},
-		colors: colors ?? ['rgba(62, 201, 214, 0.85)', 'rgba(62, 201, 214, 0.85)'],
-		fill: {
-			type: 'gradient',
-			gradient: {
-				shade: 'light',
-				type: 'horizontal',
-				shadeIntensity: 0.5,
-				gradientToColors: colors ?? ['#B0DFFF', '#4AB6FF'],
-				inverseColors: true,
-				opacityFrom: 1.5,
-				opacityTo: 1,
-				stops: [0, 50, 100],
-				colorStops: [],
-			},
-		},
-		dataLabels: {
-			enabled: false,
-		},
+		labels: [
+			'01 Jan 21',
+			'02 Jan 21',
+			'03 Jan 21',
+			'04 Jan 21',
+			'05 Jan 21',
+			'06 Jan 21',
+			'07 Jan 21',
+			'08 Jan 21',
+			'09 Jan 21',
+			'10 Jan 21',
+			'11 Jan 21',
+			'12 Jan 21',
+		],
 		xaxis: {
 			type: 'datetime',
-			categories: data[0]?.data.map((item) => item?.date),
 			axisBorder: {
 				show: false,
 			},
 			axisTicks: { show: false },
-			labels: {
-				style: {
-					fontSize: '12px',
-				},
-				datetimeFormatter: {
-					year: 'yy',
-					month: "MMM 'yy",
-					day: 'dd MMM',
-					hour: 'HH:mm',
-				},
-			},
 		},
-		yaxis: {
-			min: 0,
-			logarithmic: true,
-		},
-		legend: {
+		grid: {
 			show: false,
 		},
+		dataLabels: {
+			enabled: false,
+		},
+		markers: {
+			size: 4,
+			colors: undefined,
+			strokeColors: '#fff',
+			strokeWidth: 0,
+			strokeOpacity: 0,
+			strokeDashArray: 0,
+			fillOpacity: 1,
+			discrete: [],
+			shape: 'circle',
+			radius: 2,
+			showNullDataPoints: true,
+		},
+		stroke: {
+			width: 2,
+			curve: 'smooth',
+		},
+		colors: props?.colors ?? ['#3E8EF7'],
 	};
-
-	const series = [
-		{
-			name: 'Twitter',
-			data: data[0]?.data.map((item) => item?.count),
-		},
-		{
-			name: 'Reddit',
-			data: data[1]?.data.map((item) => item?.count),
-		},
-	];
-
 	return (
-		<Card>
-			<CardHeader>{title && <h4>{title}</h4>}</CardHeader>
+		<Card className='p-2'>
+			{props?.title && (
+				<CardHeader>
+					<h4>{props?.title}</h4>
+				</CardHeader>
+			)}
 			<ReactApexChart
-				options={options}
+				options={options as any}
 				series={series}
 				type='area'
-				height='300px'
+				height='350px'
 				width='100%'
 			/>
 		</Card>
 	);
 };
 
-export default AreacChart;
+export default AreaChart;

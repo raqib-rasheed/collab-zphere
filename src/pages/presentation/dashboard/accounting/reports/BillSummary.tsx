@@ -1,52 +1,56 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import USERS from '../../../../../common/data/userDummyData';
-import Avatar from '../../../../../components/Avatar';
+import classNames from 'classnames';
+import React, { useMemo, useState } from 'react';
 import Button from '../../../../../components/bootstrap/Button';
-import Card from '../../../../../components/bootstrap/Card';
-import ListGroup, { ListGroupItem } from '../../../../../components/bootstrap/ListGroup';
-import Progress from '../../../../../components/bootstrap/Progress';
+import Card, { CardBody, CardHeader } from '../../../../../components/bootstrap/Card';
+import Input from '../../../../../components/bootstrap/forms/Input';
+import Select from '../../../../../components/bootstrap/forms/Select';
 import Icon from '../../../../../components/icon/Icon';
 import Page from '../../../../../layout/Page/Page';
 import PageWrapper from '../../../../../layout/PageWrapper/PageWrapper';
 import PresentaionPagesSubHeader from '../../../../../widgets/PresentaionPagesSubHeader';
+import TableWidget from '../../../../../widgets/Table';
+import BarBasic from '../../../../documentation/charts/chart-bar/BarBasic';
 
-const ProjectDetails = () => {
+const InvoiceSummary = () => {
+	const [activeButton, setactiveButton] = useState('Summary');
 	const customSubHeaderRightActions = () => (
-		<div>
-			<Link to='/project-system/projects/id#1/gnatt-chart'>
-				<Button color='dark' className='mx-1'>
-					Gantt Chart
-				</Button>
-			</Link>
-			<Link to='/project-system/projects/id#1/tracker'>
-				<Button color='dark' className='mx-1'>
-					Tracker
-				</Button>
-			</Link>
-			<Link to='/project-system/projects/id#1/expense'>
-				<Button color='dark' className='mx-1'>
-					Expense
-				</Button>
-			</Link>
-			<Link to='/project-system/projects/id#1/timesheet'>
-				<Button color='dark' className='mx-1'>
-					Timesheet
-				</Button>
-			</Link>
-			<Link to='/project-system/projects/id#1/bug-report'>
-				<Button color='dark' className='mx-1'>
-					Bug Report
-				</Button>
-			</Link>
-			<Link to='/project-system/tasks/id#1'>
-				<Button color='dark' className='mx-1'>
-					Task
-				</Button>
-			</Link>
-			<Button color='dark' className='mx-1' icon='Edit' />
-		</div>
+		<Button color='dark' className='mx-1' icon='Download' />
 	);
+	const columns = [
+		{ name: 'BILL' },
+		{ name: 'DATE' },
+		{ name: 'CUSTOMER' },
+		{ name: 'CATEGORY' },
+		{ name: 'STATUS' },
+		{ name: 'PAID AMOUNT' },
+		{ name: 'DUE AMOUNT	' },
+		{ name: 'PAYMENT DATE' },
+		{ name: 'AMOUNT' },
+	];
+
+	const CardCustomHeader = useMemo(
+		() => (
+			<div>
+				<Button
+					onClick={() => setactiveButton('Summary')}
+					className={classNames('text-success', {
+						'bg-success text-white': activeButton === 'Summary',
+					})}>
+					{' '}
+					Summary
+				</Button>
+				<Button
+					onClick={() => setactiveButton('Invoices')}
+					className={classNames('text-success', {
+						'bg-success text-white': activeButton === 'Invoices',
+					})}>
+					Bills
+				</Button>
+			</div>
+		),
+		[activeButton],
+	);
+
 	return (
 		<PageWrapper title='project-1'>
 			<PresentaionPagesSubHeader
@@ -56,516 +60,129 @@ const ProjectDetails = () => {
 				title='Find Employee Payslip'
 			/>
 			<Page container='fluid'>
-				<div className='w-100 d-flex justify-content-between'>
-					<Card className='p-4' style={{ width: '31%' }}>
-						<div className='d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-4'>
-									<Icon size='2x' icon='CardList' />
-								</div>
-								<div>
-									<h6 className='text-muted'>Total Task</h6>
-									<h6>8</h6>
-								</div>
-							</div>
-							<div className=''>
-								<h6>6</h6>
-								<h6 className='text-muted'>Done Task</h6>
-							</div>
+				<Card className='p-3'>
+					<div className='d-flex justify-content-end'>
+						<div className='mx-4'>
+							<label htmlFor='start month'>Start Month</label>
+							<Input name='start month' type='month' />
 						</div>
-					</Card>
-					<Card className='p-4' style={{ width: '31%' }}>
-						<div className='d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-4'>
-									<Icon size='2x' icon='CashCoin' />
-								</div>
-								<div>
-									<h6 className='text-muted'>Total Task</h6>
-									<h6>8</h6>
-								</div>
-							</div>
-							<div className=''>
-								<h6>6</h6>
-								<h6 className='text-muted'>Done Task</h6>
-							</div>
-						</div>{' '}
-					</Card>
-					<Card className='p-4' style={{ width: '31%' }}>
+						<div className='mx-4'>
+							<label htmlFor='end month'>End Month</label>
+							<Input name='end month' type='month' />
+						</div>
+						<div className='mx-4'>
+							<label htmlFor='End date'>Vendor</label>
+							<Select
+								ariaLabel='Select Vendor'
+								placeholder='Select Vendor'
+								name='End date'
+							/>
+						</div>
+						<div className='mx-4'>
+							<label htmlFor='End date'>Status</label>
+							<Select
+								ariaLabel='Select Status'
+								placeholder='Select Status'
+								name='End date'
+							/>
+						</div>
+
+						<div>
+							<Button className='mx-1 my-4' color='success' icon='search' />
+							<Button className='mx-1 my-4' color='danger' icon='Trash' />
+						</div>
+					</div>
+				</Card>
+				<div className='w-100 d-flex justify-content-between'>
+					<Card className='p-4' style={{ width: '48.75%' }}>
 						<div className='d-flex justify-content-between'>
 							<div className='d-flex'>
 								<div className='mx-4'>
 									<Icon size='2x' icon='ClipboardX' />
 								</div>
 								<div>
-									<h6 className='text-muted'>Total Task</h6>
-									<h6>8</h6>
+									<h6 className='text-muted'>Report :</h6>
+									<h6>Bill Summary</h6>
 								</div>
 							</div>
-							<div className=''>
-								<h6>6</h6>
-								<h6 className='text-muted'>Done Task</h6>
+						</div>
+					</Card>
+					<Card className='p-4' style={{ width: '48.75%' }}>
+						<div className='d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-4'>
+									<Icon size='2x' icon='Clock' />
+								</div>
+								<div>
+									<h6 className='text-muted'>Duration :</h6>
+									<h6>Jan-2022 to Dec-2022</h6>
+								</div>
 							</div>
-						</div>{' '}
+						</div>
 					</Card>
 				</div>
 				<div className='w-100 d-flex justify-content-between'>
-					<Card className='p-4' style={{ width: '31%' }}>
-						<div className='justify-content-between'>
-							<h5>Newsletter Templates</h5>
-							<h6>Completed: : 75%</h6>
-							<Progress
-								className='flex-grow-1'
-								isAutoColor
-								value={75}
-								style={{
-									height: 5,
-								}}
-							/>
-							<p className='my-4'>Test description</p>
-						</div>
-					</Card>
-					<Card className='p-4' style={{ width: '31%' }}>
-						<div className='d-flex'>
-							<Icon className='mx-4' size='2x' icon='ClipboardData' />
-							<div>
-								<h6 className='text-muted'>Last 7 days task done</h6>
-								<h4>0</h4>
+					<Card className='p-4' style={{ width: '31.75%' }}>
+						<div className='d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-4'>
+									<Icon size='2x' icon='CardList' />
+								</div>
+								<div>
+									<h6 className='text-muted'>Total Invoice</h6>
+									<h6>47,565.00$</h6>
+								</div>
 							</div>
 						</div>
-						<Progress
-							className='flex-grow-1 my-2'
-							isAutoColor
-							value={95}
-							style={{
-								height: 5,
-							}}
-						/>
-						<Progress
-							className='flex-grow-1 my-2'
-							isAutoColor
-							value={25}
-							style={{
-								height: 5,
-							}}
-						/>
-						<Progress
-							className='flex-grow-1 my-2'
-							isAutoColor
-							value={35}
-							style={{
-								height: 5,
-							}}
-						/>
 					</Card>
-					<Card className='p-4' style={{ width: '31%' }}>
-						<div className='d-flex'>
-							<Icon className='mx-4' size='2x' icon='ClipboardData' />
-							<div>
-								<h6 className='text-muted'>Last 7 days hours spent</h6>
-								<h4>0</h4>
+					<Card className='p-4' style={{ width: '31.75%' }}>
+						<div className='d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-4'>
+									<Icon size='2x' icon='CashCoin' />
+								</div>
+								<div>
+									<h6 className='text-muted'>Total Paid</h6>
+									<h6>0.00$</h6>
+								</div>
 							</div>
 						</div>
-						<Progress
-							className='flex-grow-1 my-2'
-							isAutoColor
-							value={95}
-							style={{
-								height: 5,
-							}}
-						/>
-						<Progress
-							className='flex-grow-1 my-2'
-							isAutoColor
-							value={85}
-							style={{
-								height: 5,
-							}}
-						/>
-						<Progress
-							className='flex-grow-1 my-2'
-							isAutoColor
-							value={75}
-							style={{
-								height: 5,
-							}}
-						/>
+					</Card>
+					<Card className='p-4' style={{ width: '31.75%' }}>
+						<div className='d-flex justify-content-between'>
+							<div className='d-flex'>
+								<div className='mx-4'>
+									<Icon size='2x' icon='ClipboardX' />
+								</div>
+								<div>
+									<h6 className='text-muted'>Total Due</h6>
+									<h6>17,250.00$</h6>
+								</div>
+							</div>
+						</div>
 					</Card>
 				</div>
-				<div className='d-flex justify-content-between'>
-					<Card className='p-4' style={{ width: '48%' }}>
-						<h5>Members</h5>
-						<ListGroup>
-							<ListGroupItem className='py-4 d-flex justify-content-between'>
-								<div className='d-flex'>
-									<div className='mx-2'>
-										<Avatar
-											src={USERS.GRACE.src}
-											srcSet={USERS.GRACE.srcSet}
-											// @ts-ignore
-											color={USERS.GRACE.color}
-											size={40}
-											userName={`${USERS.GRACE.name} ${USERS.GRACE.surname}`}
-										/>
-									</div>
-									<div>
-										<h6>Rajodiya Infotech</h6>
-										<span className='text-muted'>company@example.com</span>
-									</div>
-								</div>
-								<Button icon='trash' color='danger' />
-							</ListGroupItem>
-							<ListGroupItem className='py-4 d-flex justify-content-between'>
-								<div className='d-flex'>
-									<div className='mx-2'>
-										<Avatar
-											src={USERS.JANE.src}
-											srcSet={USERS.JANE.srcSet}
-											// @ts-ignore
-											color={USERS.JANE.color}
-											size={40}
-											userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
-										/>
-									</div>
-									<div>
-										<h6>Richard Atkinson</h6>
-										<span className='text-muted'>keanu2006@gmail.com</span>
-									</div>
-								</div>
-								<Button icon='trash' color='danger' />
-							</ListGroupItem>
-						</ListGroup>
+				{activeButton === 'Summary' ? (
+					<Card>
+						<CardHeader>{CardCustomHeader}</CardHeader>
+						<CardBody>
+							<BarBasic customChartHeader={CardCustomHeader} colors={['#46ecaa']} />
+						</CardBody>
 					</Card>
-					<Card className='p-4' style={{ width: '48%' }}>
-						<h5>Milestones (5)</h5>
-						<ListGroup>
-							<ListGroupItem>An item</ListGroupItem>
-							<ListGroupItem>A second item</ListGroupItem>
-							<ListGroupItem>A third item</ListGroupItem>
-							<ListGroupItem>A fourth item</ListGroupItem>
-							<ListGroupItem>A fifth item</ListGroupItem>
-						</ListGroup>
-					</Card>
-				</div>
-				<Card className='p-4'>
-					<h5>Activity Log</h5>
-					<ListGroup>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-2'>
-									<Avatar
-										src={USERS.JANE.src}
-										srcSet={USERS.JANE.srcSet}
-										// @ts-ignore
-										color={USERS.JANE.color}
-										size={40}
-										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
-									/>
-								</div>
-								<div>
-									<h6>Move Task</h6>
-									<p className='text-muted'>
-										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
-										In Progress
-									</p>
-								</div>
-							</div>
-							<span className='text-muted'>2 months ago</span>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-2'>
-									<Avatar
-										src={USERS.JANE.src}
-										srcSet={USERS.JANE.srcSet}
-										// @ts-ignore
-										color={USERS.JANE.color}
-										size={40}
-										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
-									/>
-								</div>
-								<div>
-									<h6>Move Task</h6>
-									<p className='text-muted'>
-										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
-										In Progress
-									</p>
-								</div>
-							</div>
-							<span className='text-muted'>2 months ago</span>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-2'>
-									<Avatar
-										src={USERS.JANE.src}
-										srcSet={USERS.JANE.srcSet}
-										// @ts-ignore
-										color={USERS.JANE.color}
-										size={40}
-										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
-									/>
-								</div>
-								<div>
-									<h6>Move Task</h6>
-									<p className='text-muted'>
-										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
-										In Progress
-									</p>
-								</div>
-							</div>
-							<span className='text-muted'>2 months ago</span>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-2'>
-									<Avatar
-										src={USERS.JANE.src}
-										srcSet={USERS.JANE.srcSet}
-										// @ts-ignore
-										color={USERS.JANE.color}
-										size={40}
-										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
-									/>
-								</div>
-								<div>
-									<h6>Move Task</h6>
-									<p className='text-muted'>
-										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
-										In Progress
-									</p>
-								</div>
-							</div>
-							<span className='text-muted'>2 months ago</span>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-2'>
-									<Avatar
-										src={USERS.JANE.src}
-										srcSet={USERS.JANE.srcSet}
-										// @ts-ignore
-										color={USERS.JANE.color}
-										size={40}
-										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
-									/>
-								</div>
-								<div>
-									<h6>Move Task</h6>
-									<p className='text-muted'>
-										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
-										In Progress
-									</p>
-								</div>
-							</div>
-							<span className='text-muted'>2 months ago</span>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-2'>
-									<Avatar
-										src={USERS.JANE.src}
-										srcSet={USERS.JANE.srcSet}
-										// @ts-ignore
-										color={USERS.JANE.color}
-										size={40}
-										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
-									/>
-								</div>
-								<div>
-									<h6>Move Task</h6>
-									<p className='text-muted'>
-										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
-										In Progress
-									</p>
-								</div>
-							</div>
-							<span className='text-muted'>2 months ago</span>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-2'>
-									<Avatar
-										src={USERS.JANE.src}
-										srcSet={USERS.JANE.srcSet}
-										// @ts-ignore
-										color={USERS.JANE.color}
-										size={40}
-										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
-									/>
-								</div>
-								<div>
-									<h6>Move Task</h6>
-									<p className='text-muted'>
-										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
-										In Progress
-									</p>
-								</div>
-							</div>
-							<span className='text-muted'>2 months ago</span>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-2'>
-									<Avatar
-										src={USERS.JANE.src}
-										srcSet={USERS.JANE.srcSet}
-										// @ts-ignore
-										color={USERS.JANE.color}
-										size={40}
-										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
-									/>
-								</div>
-								<div>
-									<h6>Move Task</h6>
-									<p className='text-muted'>
-										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
-										In Progress
-									</p>
-								</div>
-							</div>
-							<span className='text-muted'>2 months ago</span>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-2'>
-									<Avatar
-										src={USERS.JANE.src}
-										srcSet={USERS.JANE.srcSet}
-										// @ts-ignore
-										color={USERS.JANE.color}
-										size={40}
-										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
-									/>
-								</div>
-								<div>
-									<h6>Move Task</h6>
-									<p className='text-muted'>
-										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
-										In Progress
-									</p>
-								</div>
-							</div>
-							<span className='text-muted'>2 months ago</span>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-2'>
-									<Avatar
-										src={USERS.JANE.src}
-										srcSet={USERS.JANE.srcSet}
-										// @ts-ignore
-										color={USERS.JANE.color}
-										size={40}
-										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
-									/>
-								</div>
-								<div>
-									<h6>Move Task</h6>
-									<p className='text-muted'>
-										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
-										In Progress
-									</p>
-								</div>
-							</div>
-							<span className='text-muted'>2 months ago</span>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-2'>
-									<Avatar
-										src={USERS.JANE.src}
-										srcSet={USERS.JANE.srcSet}
-										// @ts-ignore
-										color={USERS.JANE.color}
-										size={40}
-										userName={`${USERS.JANE.name} ${USERS.JANE.surname}`}
-									/>
-								</div>
-								<div>
-									<h6>Move Task</h6>
-									<p className='text-muted'>
-										Rajodiya Infotech Moved the Task Lunch meeting from To Do to
-										In Progress
-									</p>
-								</div>
-							</div>
-							<span className='text-muted'>2 months ago</span>
-						</ListGroupItem>
-					</ListGroup>
-				</Card>
-				<Card className='p-4'>
-					<h5>Attachments</h5>
-					<span className='text-muted'>Activity Log of this project</span>
-					<ListGroup>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div>
-									<h6>41594448981_large.jpg</h6>
-									<p className='text-muted'>0.39 MB</p>
-								</div>
-							</div>
-							<Button color='info' icon='Download'></Button>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div>
-									<h6>41594448981_large.jpg</h6>
-									<p className='text-muted'>0.39 MB</p>
-								</div>
-							</div>
-							<Button color='info' icon='Download'></Button>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div>
-									<h6>41594448981_large.jpg</h6>
-									<p className='text-muted'>0.39 MB</p>
-								</div>
-							</div>
-							<Button color='info' icon='Download'></Button>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div>
-									<h6>41594448981_large.jpg</h6>
-									<p className='text-muted'>0.39 MB</p>
-								</div>
-							</div>
-							<Button color='info' icon='Download'></Button>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div>
-									<h6>41594448981_large.jpg</h6>
-									<p className='text-muted'>0.39 MB</p>
-								</div>
-							</div>
-							<Button color='info' icon='Download'></Button>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div>
-									<h6>41594448981_large.jpg</h6>
-									<p className='text-muted'>0.39 MB</p>
-								</div>
-							</div>
-							<Button color='info' icon='Download'></Button>
-						</ListGroupItem>
-						<ListGroupItem className='py-4 d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div>
-									<h6>41594448981_large.jpg</h6>
-									<p className='text-muted'>0.39 MB</p>
-								</div>
-							</div>
-							<Button color='info' icon='Download'></Button>
-						</ListGroupItem>
-					</ListGroup>
-				</Card>
+				) : (
+					<div style={{ minHeight: '400px' }}>
+						<TableWidget
+							customTableActions={CardCustomHeader}
+							displayPagintaion={false}
+							displaySearch={false}
+							data={[{ id: '' }]}
+							tableColumns={columns}
+						/>
+					</div>
+				)}
 			</Page>
 		</PageWrapper>
 	);
 };
 
-export default ProjectDetails;
+export default InvoiceSummary;

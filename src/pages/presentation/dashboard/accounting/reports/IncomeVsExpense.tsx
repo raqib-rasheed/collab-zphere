@@ -15,7 +15,7 @@ const ProjectDetails = () => {
 		<Button color='dark' className='mx-1' icon='Download' />
 	);
 	const columns = [
-		{ name: 'CATEGORY' },
+		{ name: 'TYPE' },
 		{ name: 'JANUARY' },
 		{ name: 'FEBRUARY' },
 		{ name: 'MARCH' },
@@ -53,6 +53,14 @@ const ProjectDetails = () => {
 							/>
 						</div>
 						<div className='mx-4'>
+							<label htmlFor='End date'>Customer</label>
+							<Select
+								ariaLabel='Select Customer'
+								placeholder='Select Customer'
+								name='End date'
+							/>
+						</div>
+						<div className='mx-4'>
 							<label htmlFor='End date'>Vendor</label>
 							<Select placeholder='Select Vendor' ariaLabel='' name='End date'>
 								<option></option>
@@ -65,32 +73,15 @@ const ProjectDetails = () => {
 					</div>
 				</Card>
 				<div className='w-100 d-flex justify-content-between'>
-					<Card className='p-4' style={{ width: '31.75%' }}>
+					<Card className='p-4' style={{ width: '48.75%' }}>
 						<div className='d-flex justify-content-between'>
 							<div className='d-flex'>
 								<div className='mx-4'>
-									<Icon size='2x' icon='CardList' />
+									<Icon size='2x' icon='ClipboardX' />
 								</div>
 								<div>
-									<h6 className='text-muted'>Total Task</h6>
-									<h6>8</h6>
-								</div>
-							</div>
-							<div className=''>
-								<h6>6</h6>
-								<h6 className='text-muted'>Done Task</h6>
-							</div>
-						</div>
-					</Card>
-					<Card className='p-4' style={{ width: '31.75%' }}>
-						<div className='d-flex justify-content-between'>
-							<div className='d-flex'>
-								<div className='mx-4'>
-									<Icon size='2x' icon='CashCoin' />
-								</div>
-								<div>
-									<h6 className='text-muted'>Total Task</h6>
-									<h6>8</h6>
+									<h6 className='text-muted'>Report :</h6>
+									<h6>Income Vs Expense Summary</h6>
 								</div>
 							</div>
 							<div className=''>
@@ -99,15 +90,15 @@ const ProjectDetails = () => {
 							</div>
 						</div>{' '}
 					</Card>
-					<Card className='p-4' style={{ width: '31.75%' }}>
+					<Card className='p-4' style={{ width: '48.75%' }}>
 						<div className='d-flex justify-content-between'>
 							<div className='d-flex'>
 								<div className='mx-4'>
-									<Icon size='2x' icon='ClipboardX' />
+									<Icon size='2x' icon='Clock' />
 								</div>
 								<div>
-									<h6 className='text-muted'>Total Task</h6>
-									<h6>8</h6>
+									<h6 className='text-muted'>Duration :</h6>
+									<h6>Jan-2022 to Dec-2022</h6>
 								</div>
 							</div>
 							<div className=''>

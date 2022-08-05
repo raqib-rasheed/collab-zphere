@@ -328,15 +328,13 @@ const presentation = [
 		exact: true,
 	},
 	{
-		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.accountStatement
-			.path,
-		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.ACCOUNT_STATEMENT />,
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.billSummary.path,
+		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.BILL_SUMMARY />,
 		exact: true,
 	},
 	{
-		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.accountStatement
-			.path,
-		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.ACCOUNT_STATEMENT />,
+		path: sidebarMenus.dashboard.subMenu.accounting.subMenu.reports.subMenu.productStock.path,
+		element: <APP.DASHBOARD.ACCOUNTING.REPORTS.PRODUCT_STOCK />,
 		exact: true,
 	},
 	{

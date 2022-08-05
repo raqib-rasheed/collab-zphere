@@ -57,13 +57,9 @@ const ProjectDetails = () => {
 									<Icon size='2x' icon='CardList' />
 								</div>
 								<div>
-									<h6 className='text-muted'>Total Task</h6>
-									<h6>8</h6>
+									<h6 className='text-muted'>Report :</h6>
+									<h6>Account Statement Summary</h6>
 								</div>
-							</div>
-							<div className=''>
-								<h6>6</h6>
-								<h6 className='text-muted'>Done Task</h6>
 							</div>
 						</div>
 					</Card>
@@ -74,13 +70,9 @@ const ProjectDetails = () => {
 									<Icon size='2x' icon='CashCoin' />
 								</div>
 								<div>
-									<h6 className='text-muted'>Total Task</h6>
-									<h6>8</h6>
+									<h6 className='text-muted'>Type :</h6>
+									<h6>Revenue</h6>
 								</div>
-							</div>
-							<div className=''>
-								<h6>6</h6>
-								<h6 className='text-muted'>Done Task</h6>
 							</div>
 						</div>{' '}
 					</Card>
@@ -88,69 +80,53 @@ const ProjectDetails = () => {
 						<div className='d-flex justify-content-between'>
 							<div className='d-flex'>
 								<div className='mx-4'>
-									<Icon size='2x' icon='ClipboardX' />
+									<Icon size='2x' icon='Clock' />
 								</div>
 								<div>
-									<h6 className='text-muted'>Total Task</h6>
-									<h6>8</h6>
+									<h6 className='text-muted'>Duration :</h6>
+									<h6>Aug-2022 to Mar-2022</h6>
 								</div>
-							</div>
-							<div className=''>
-								<h6>6</h6>
-								<h6 className='text-muted'>Done Task</h6>
 							</div>
 						</div>{' '}
 					</Card>
 				</div>
 				<div className='w-75 d-flex justify-content-between'>
-					<Card className='p-4' style={{ width: '27.75%' }}>
+					<Card className='p-4' style={{ width: '31%' }}>
 						<div className='d-flex justify-content-between'>
 							<div className='d-flex'>
 								<div className='mx-4'>
-									<Icon size='2x' icon='CardList' />
+									<Icon size='2x' icon='Cash' />
 								</div>
 								<div>
-									<h6 className='text-muted'>Total Task</h6>
-									<h6>8</h6>
+									<h6 className='text-muted'>cash -</h6>
+									<h6>7,560.00$</h6>
 								</div>
-							</div>
-							<div className=''>
-								<h6>6</h6>
-								<h6 className='text-muted'>Done Task</h6>
 							</div>
 						</div>
 					</Card>
-					<Card className='p-4' style={{ width: '27.75%' }}>
+					<Card className='p-4' style={{ width: '31%' }}>
 						<div className='d-flex justify-content-between'>
 							<div className='d-flex'>
 								<div className='mx-4'>
 									<Icon size='2x' icon='CashCoin' />
 								</div>
 								<div>
-									<h6 className='text-muted'>Total Task</h6>
-									<h6>8</h6>
+									<h6 className='text-muted'>Benjamin Adams - ROUNDBANK</h6>
+									<h6>11.00$</h6>
 								</div>
-							</div>
-							<div className=''>
-								<h6>6</h6>
-								<h6 className='text-muted'>Done Task</h6>
 							</div>
 						</div>{' '}
 					</Card>
-					<Card className='p-4' style={{ width: '27.75%' }}>
+					<Card className='p-4' style={{ width: '31%' }}>
 						<div className='d-flex justify-content-between'>
 							<div className='d-flex'>
 								<div className='mx-4'>
 									<Icon size='2x' icon='ClipboardX' />
 								</div>
 								<div>
-									<h6 className='text-muted'>Total Task</h6>
-									<h6>8</h6>
+									<h6 className='text-muted'>Chisom Latifat - COBIZ BANK</h6>
+									<h6>30,000.00$</h6>
 								</div>
-							</div>
-							<div className=''>
-								<h6>6</h6>
-								<h6 className='text-muted'>Done Task</h6>
 							</div>
 						</div>{' '}
 					</Card>

@@ -40,7 +40,7 @@ const TableWidget = ({
 	const filteredData = data ?? dummyData;
 	const { selectTable } = useSelectTable(filteredData);
 
-	const shouldShowHeader = title || displayPagintaion || displaySearch;
+	const shouldShowHeader = title || displayPagintaion || displaySearch || customTableActions;
 	const shouldShowHeaderActions = customTableActions || (shouldShowHeader && !hideTableActions);
 
 	const tableNames = tableColumns ?? [{ name: 'Name' }, { name: 'END DATE' }, { name: 'STATUS' }];

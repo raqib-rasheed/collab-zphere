@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import Card, { CardBody } from '../../../../components/bootstrap/Card';
 import Chart from '../../../../components/extras/Chart';
 
-const BarBasic = () => {
+interface IBarBasicChartProps {
+	colors?: string[];
+	customChartHeader?: JSX.Element;
+}
+
+const BarBasic = (props: IBarBasicChartProps) => {
 	const [state] = useState({
 		series: [
 			{
@@ -28,15 +32,10 @@ const BarBasic = () => {
 			xaxis: {
 				categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
 			},
+			colors: props?.colors ?? ['#3E8EF7'],
 		},
 	});
-	return (
-		<Card stretch>
-			<CardBody>
-				<Chart series={state.series} options={state.options} type='bar' height={350} />
-			</CardBody>
-		</Card>
-	);
+	return <Chart series={state.series} options={state.options as any} type='bar' height={300} />;
 };
 
 export default BarBasic;
