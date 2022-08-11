@@ -1,4 +1,13 @@
 import { baseURL, isDevelopment } from "helpers/settings";
+import AWS from 'aws-sdk';
+
+const spaceEndpoint = "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/"
+// const spacesEndpoint = new AWS.Endpoint("zphere.s3.ap-south-1.amazonaws.com");
+// const s3 = new AWS.S3({
+//     endpoint: spacesEndpoint,
+//     accessKeyId: process.env.REACT_APP_SPACE_KEY,
+//     secretAccessKey: process.env.REACT_APP_SPACE_SECRET,
+// });
 
 const getUrl = (isDevelopment: boolean, fileName: string, staticURL: boolean = true):string => {
     // function to return image urls
@@ -8,8 +17,11 @@ const getUrl = (isDevelopment: boolean, fileName: string, staticURL: boolean = t
             const rootUrl = baseURL + staticURL;
             return rootUrl + fileName;
         }
+    } else {
+        const expireSeconds = 60 * 5;
+        // return a signed url
+        return `${spaceEndpoint}${fileName}`
     }
-    return ''
 };
 
 export enum iconsName  {

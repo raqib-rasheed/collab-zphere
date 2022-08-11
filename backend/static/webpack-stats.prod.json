@@ -16,15 +16,15 @@
       "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/js/27.07bc2567.chunk.js",
       "publicPath": "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/static/js/27.07bc2567.chunk.js"
     },
-    "static/js/main.c5e0f487.js.LICENSE.txt": {
-      "name": "static/js/main.c5e0f487.js.LICENSE.txt",
-      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/js/main.c5e0f487.js.LICENSE.txt",
-      "publicPath": "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/static/js/main.c5e0f487.js.LICENSE.txt"
+    "static/js/main.3c93be62.js.LICENSE.txt": {
+      "name": "static/js/main.3c93be62.js.LICENSE.txt",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/js/main.3c93be62.js.LICENSE.txt",
+      "publicPath": "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/static/js/main.3c93be62.js.LICENSE.txt"
     },
-    "static/js/main.c5e0f487.js": {
-      "name": "static/js/main.c5e0f487.js",
-      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/js/main.c5e0f487.js",
-      "publicPath": "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/static/js/main.c5e0f487.js"
+    "static/js/main.3c93be62.js": {
+      "name": "static/js/main.3c93be62.js",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/js/main.3c93be62.js",
+      "publicPath": "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/static/js/main.3c93be62.js"
     },
     "asset-manifest.json": {
       "name": "asset-manifest.json",
@@ -35,7 +35,7 @@
   "chunks": {
     "main": [
       "static/css/main.856b02a1.css",
-      "static/js/main.c5e0f487.js"
+      "static/js/main.3c93be62.js"
     ]
   },
   "publicPath": "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/"
