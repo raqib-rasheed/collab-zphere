@@ -16,3 +16,7 @@
 .border-transparent {
 	--#{$prefix}border-opacity: 0;
 }
+
+input[type='file'] {
+	display: none;
+}
