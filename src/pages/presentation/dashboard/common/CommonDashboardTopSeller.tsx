@@ -153,7 +153,6 @@ const CommonDashboardTopSeller = () => {
 	const filteredData = data
 		.filter(
 			(f) =>
-				(topSellerFilter === TOP_SELLER_FILTER.DAY && f.id < 6) ||
 				(topSellerFilter === TOP_SELLER_FILTER.WEEK && f.name.includes('c')) ||
 				(topSellerFilter === TOP_SELLER_FILTER.MONTH && f.price > 13),
 		)

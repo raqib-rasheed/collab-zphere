@@ -21,6 +21,7 @@ interface ITableProps {
 	displayLoadMore?: boolean;
 	displaySearch?: boolean;
 	customTableActions?: any;
+	hideTableActions?: boolean;
 }
 
 const TableWidget = ({
@@ -30,6 +31,8 @@ const TableWidget = ({
 	displayPagintaion = true,
 	displaySearch = true,
 	customTableActions,
+	displayLoadMore = false,
+	hideTableActions = false,
 }: ITableProps) => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [perPage, setPerPage] = useState(10);
@@ -37,19 +40,10 @@ const TableWidget = ({
 	const filteredData = data ?? dummyData;
 	const { selectTable } = useSelectTable(filteredData);
 
-	const shouldShowHeader = title || displayPagintaion || displaySearch;
+	const shouldShowHeader = title || displayPagintaion || displaySearch || customTableActions;
+	const shouldShowHeaderActions = customTableActions || (shouldShowHeader && !hideTableActions);
 
-	const tableNames = tableColumns ?? [
-		{ name: '-' },
-		{ name: '#' },
-		{ name: 'Image' },
-		{ name: 'Name' },
-		{ name: 'Sales' },
-		{ name: 'Stock' },
-		{ name: 'Price' },
-		{ name: 'Store' },
-		{ name: 'Actions' },
-	];
+	const tableNames = tableColumns ?? [{ name: 'Name' }, { name: 'END DATE' }, { name: 'STATUS' }];
 
 	return (
 		<>
@@ -57,26 +51,28 @@ const TableWidget = ({
 				{shouldShowHeader && (
 					<CardHeader>
 						{title && <CardTitle>{title}</CardTitle>}
-						<CardActions className='d-flex justify-content-between align-items-center w-100'>
-							{displayPagintaion && (
-								<div>
-									<PaginationButtons
-										data={filteredData}
-										label='items'
-										setCurrentPage={setCurrentPage}
-										currentPage={currentPage}
-										perPage={perPage}
-										setPerPage={setPerPage}
-									/>
-								</div>
-							)}
-							{displaySearch && (
-								<div>
-									<Input placeholder='Search' />
-								</div>
-							)}
-							{customTableActions && customTableActions}
-						</CardActions>
+						{shouldShowHeaderActions && (
+							<CardActions className='d-flex justify-content-between align-items-center w-100'>
+								{displayPagintaion && (
+									<div>
+										<PaginationButtons
+											data={filteredData}
+											label='items'
+											setCurrentPage={setCurrentPage}
+											currentPage={currentPage}
+											perPage={perPage}
+											setPerPage={setPerPage}
+										/>
+									</div>
+								)}
+								{displaySearch && (
+									<div>
+										<Input placeholder='Search' />
+									</div>
+								)}
+								{customTableActions && customTableActions}
+							</CardActions>
+						)}
 					</CardHeader>
 				)}
 				<CardBody className='table-responsive' isScrollable>
@@ -107,7 +103,7 @@ const TableWidget = ({
 						</tbody>
 					</table>
 				</CardBody>
-				{displayPagintaion && (
+				{displayLoadMore && (
 					<CardFooter className='justify-content-center'>
 						<Button color='dark' className='px-5 py-3'>
 							Load More

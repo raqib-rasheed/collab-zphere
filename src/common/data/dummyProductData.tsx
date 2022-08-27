@@ -25,7 +25,7 @@ export interface ITableData {
 }
 
 const data: {
-	id: number;
+	id: string;
 	image: string;
 	name: string;
 	category: string;
@@ -37,7 +37,7 @@ const data: {
 	file: string;
 }[] = [
 	{
-		id: 1,
+		id: 'assa',
 		image: BeveledCone,
 		name: 'Beveled Cone',
 		category: '3D Shapes',
@@ -53,7 +53,7 @@ const data: {
 		file: 'Figma',
 	},
 	{
-		id: 2,
+		id: '2',
 		image: CloudBall,
 		name: 'Cloud Ball',
 		category: '3D Shapes',
@@ -69,7 +69,7 @@ const data: {
 		file: 'Figma',
 	},
 	{
-		id: 3,
+		id: '3',
 		image: Quadrilateral,
 		name: 'Quadrilateral',
 		category: '3D Shapes',
@@ -85,7 +85,7 @@ const data: {
 		file: 'XD',
 	},
 	{
-		id: 4,
+		id: '4',
 		image: HardSharpDonut,
 		name: 'Bendy Rectangle',
 		category: '3D Shapes',
@@ -101,7 +101,7 @@ const data: {
 		file: 'Sketch',
 	},
 	{
-		id: 5,
+		id: '5',
 		image: BendyRectangle,
 		name: 'Bendy Rectangle',
 		category: '3D Shapes',
@@ -117,7 +117,7 @@ const data: {
 		file: 'Figma',
 	},
 	{
-		id: 6,
+		id: '6',
 		image: Infinity,
 		name: 'Bendy Rectangle',
 		category: '3D Shapes',
@@ -133,7 +133,7 @@ const data: {
 		file: 'Figma',
 	},
 	{
-		id: 7,
+		id: '7',
 		image: Octahedron,
 		name: 'Octahedron',
 		category: '3D Shapes',
@@ -149,7 +149,7 @@ const data: {
 		file: 'Figma',
 	},
 	{
-		id: 8,
+		id: '8',
 		image: Triangle,
 		name: 'Triangle',
 		category: '3D Shapes',
@@ -165,7 +165,7 @@ const data: {
 		file: 'Figma',
 	},
 	{
-		id: 9,
+		id: '9',
 		image: SquiglyGlobe,
 		name: 'SquiglyGlobe',
 		category: '3D Shapes',
@@ -181,7 +181,7 @@ const data: {
 		file: 'Figma',
 	},
 	{
-		id: 10,
+		id: '10',
 		image: Dodecagon,
 		name: 'Dodecagon',
 		category: '3D Shapes',
@@ -197,7 +197,7 @@ const data: {
 		file: 'Figma',
 	},
 	{
-		id: 11,
+		id: '11',
 		image: BeveledCube,
 		name: 'Beveled Cube',
 		category: '3D Shapes',
@@ -213,7 +213,7 @@ const data: {
 		file: 'Figma',
 	},
 	{
-		id: 12,
+		id: '12',
 		image: Cylinder,
 		name: 'Cylinder',
 		category: '3D Shapes',
