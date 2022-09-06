@@ -5,6 +5,8 @@ import { useFullscreen } from 'react-use';
 import { Route, Routes } from 'react-router-dom';
 import { ToastProvider } from 'react-toast-notifications';
 import { TourProvider } from '@reactour/tour';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import ThemeContext from '../contexts/themeContext';
 
 import Aside from '../layout/Aside/Aside';
@@ -18,10 +20,11 @@ import steps, { styles } from '../steps';
 
 const App = () => {
 	getOS();
-
+	const queryClient = new QueryClient();
 	/**
 	 * Dark Mode
 	 */
+
 	const { themeStatus, darkModeStatus } = useDarkMode();
 	const theme = {
 		theme: themeStatus,
@@ -69,30 +72,33 @@ const App = () => {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<ToastProvider components={{ ToastContainer, Toast }}>
-				<TourProvider
-					steps={steps}
-					styles={styles}
-					showNavigation={false}
-					showBadge={false}>
-					<div
-						ref={ref}
-						className='app'
-						style={{
-							backgroundColor: fullScreenStatus ? 'var(--bs-body-bg)' : undefined,
-							zIndex: fullScreenStatus ? 1 : undefined,
-							overflow: fullScreenStatus ? 'scroll' : undefined,
-						}}>
-						<Routes>
-							<Route path='*' element={<Aside />} />
-						</Routes>
-						<Wrapper />
-					</div>
-					<Portal id='portal-notification'>
-						<ReactNotifications />
-					</Portal>
-				</TourProvider>
-			</ToastProvider>
+			<QueryClientProvider client={queryClient}>
+				<ToastProvider components={{ ToastContainer, Toast }}>
+					<TourProvider
+						steps={steps}
+						styles={styles}
+						showNavigation={false}
+						showBadge={false}>
+						<div
+							ref={ref}
+							className='app'
+							style={{
+								backgroundColor: fullScreenStatus ? 'var(--bs-body-bg)' : undefined,
+								zIndex: fullScreenStatus ? 1 : undefined,
+								overflow: fullScreenStatus ? 'scroll' : undefined,
+							}}>
+							<Routes>
+								<Route path='*' element={<Aside />} />
+							</Routes>
+							<Wrapper />
+						</div>
+						<Portal id='portal-notification'>
+							<ReactNotifications />
+						</Portal>
+					</TourProvider>
+				</ToastProvider>
+				<ReactQueryDevtools initialIsOpen={false} />
+			</QueryClientProvider>
 		</ThemeProvider>
 	);
 };
