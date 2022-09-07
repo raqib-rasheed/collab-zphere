@@ -1,5 +1,5 @@
 import { baseURL, isDevelopment } from "helpers/settings";
-import AWS from 'aws-sdk';
+// import AWS from 'aws-sdk';
 
 const spaceEndpoint = "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/"
 // const spacesEndpoint = new AWS.Endpoint("zphere.s3.ap-south-1.amazonaws.com");
