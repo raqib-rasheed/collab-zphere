@@ -1,0 +1,42 @@
+{
+  "status": "done",
+  "assets": {
+    "index.html": {
+      "name": "index.html",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/index.html",
+      "publicPath": "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/index.html"
+    },
+    "static/css/main.856b02a1.css": {
+      "name": "static/css/main.856b02a1.css",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/css/main.856b02a1.css",
+      "publicPath": "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/static/css/main.856b02a1.css"
+    },
+    "static/js/27.07bc2567.chunk.js": {
+      "name": "static/js/27.07bc2567.chunk.js",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/js/27.07bc2567.chunk.js",
+      "publicPath": "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/static/js/27.07bc2567.chunk.js"
+    },
+    "static/js/main.3c93be62.js.LICENSE.txt": {
+      "name": "static/js/main.3c93be62.js.LICENSE.txt",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/js/main.3c93be62.js.LICENSE.txt",
+      "publicPath": "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/static/js/main.3c93be62.js.LICENSE.txt"
+    },
+    "static/js/main.3c93be62.js": {
+      "name": "static/js/main.3c93be62.js",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/static/js/main.3c93be62.js",
+      "publicPath": "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/static/js/main.3c93be62.js"
+    },
+    "asset-manifest.json": {
+      "name": "asset-manifest.json",
+      "path": "/home/ashish/workbench/Personal/Ajas work/frontend/build/asset-manifest.json",
+      "publicPath": "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/asset-manifest.json"
+    }
+  },
+  "chunks": {
+    "main": [
+      "static/css/main.856b02a1.css",
+      "static/js/main.3c93be62.js"
+    ]
+  },
+  "publicPath": "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/"
+}

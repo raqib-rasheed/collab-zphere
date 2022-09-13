@@ -1,0 +1,11 @@
+{
+    "editor.autoIndent": "advanced",
+    "editor.minimap.size": "proportional",
+    "prettier.printWidth": 115,
+    "prettier.tabWidth": 4,
+    "liveSassCompile.settings.formats": [{
+        "format": "expanded",
+        "extensionName": ".css",
+      "savePath": "~/../css/"
+    }]
+}

@@ -1,0 +1,36 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+django-cors-headers = "*"
+djangorestframework-simplejwt = "*"
+celery = {extras = ["redis"], version = "*"}
+django-celery-beat = "*"
+mysql-connector-python = "*"
+bcrypt = "*"
+pymysql = "*"
+mysqlclient = "*"
+pillow = "*"
+beautifulsoup4 = "*"
+lxml = "*"
+django-webpack-loader = "*"
+python-decouple = "*"
+psycopg2-binary = "*"
+django-storages = "*"
+boto3 = "*"
+gunicorn = "*"
+djangorestframework-api-key = "==2.*"
+
+[dev-packages]
+ipython = "*"
+black = "*"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
