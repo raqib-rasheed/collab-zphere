@@ -2,11 +2,11 @@ import React, { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PasswordInput, TextInput } from "@mantine/core";
 import axios from "axios";
-import { apiUrl, host, timezone } from "helpers/settings";
-import { setCookie } from "helpers/utils";
-import { loginIcons } from "helpers/assets/Images";
-import { getRoutePath, routes } from "routes";
-import { PathNames } from "helpers/types";
+import { apiUrl, host, timezone } from "bot/helpers/settings";
+import { setCookie } from "bot/helpers/utils";
+import { loginIcons } from "bot/helpers/assets/Images";
+import { getRoutePath, routes } from "bot/routes";
+import { PathNames } from "bot/helpers/types";
 import "./login.css";
 interface LoginFormData {
     email: string;

@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { getConnectedEdges, Edge, Node, useEdges, useNodes } from "react-flow-renderer";
-import { ElementNames, DrawerState } from "helpers/types";
-import { StatusChange, NewClient, EqualToDrawer, EmailDrawer } from "routes/BotsWorkspace/Drawer";
+import { ElementNames, DrawerState } from "bot/helpers/types";
+import { StatusChange, NewClient, EqualToDrawer, EmailDrawer } from "bot/routes/BotsWorkspace/Drawer";
 
 const getIds = (element: (Node | Edge)[]): string[] => {
     return element.reduce((result, current) => {

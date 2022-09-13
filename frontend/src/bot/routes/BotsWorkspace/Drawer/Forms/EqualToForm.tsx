@@ -2,8 +2,8 @@ import { FC, useEffect } from "react";
 
 import { useForm } from "@mantine/form";
 import { Select, Input } from "@mantine/core";
-import { useStoreState, useActions } from "helpers/store";
-import { DrawerState } from "helpers/types";
+import { useStoreState, useActions } from "bot/helpers/store";
+import { DrawerState } from "bot/helpers/types";
 
 type Props = {
     drawerState: DrawerState;

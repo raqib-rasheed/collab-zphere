@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { Button, Modal, Code } from "@mantine/core";
-import { getAxiosInstance } from "helpers/AxiosInstance";
+import { getAxiosInstance } from "bot/helpers/AxiosInstance";
 
 const APIKey: FC = () => {
     const axios = getAxiosInstance();

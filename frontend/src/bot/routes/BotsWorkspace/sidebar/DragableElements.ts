@@ -1,5 +1,5 @@
-import {faIcons, iconsName} from 'helpers/assets/Images';
-import {DragableElements, ElementNames} from 'helpers/types';
+import {faIcons, iconsName} from 'bot/helpers/assets/Images';
+import {DragableElements, ElementNames} from 'bot/helpers/types';
 
 export enum dragableElementsColors {
     triggers = "#ed2553",

@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from "react";
 import { Routes, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { PathNames } from "helpers/types";
-import { apiUrl } from "helpers/settings";
-import { getCookie } from "helpers/utils";
-import { useStoreState, useActions } from "helpers/store";
-import { makeRoutesFromObject, routes, getRoutePath } from "routes";
+import { PathNames } from "bot/helpers/types";
+import { apiUrl } from "bot/helpers/settings";
+import { getCookie } from "bot/helpers/utils";
+import { useStoreState, useActions } from "bot/helpers/store";
+import { makeRoutesFromObject, routes, getRoutePath } from "bot/routes";
 
 import "./styles/css/index.css";
 // import "./styles/css/otherstyles.css"

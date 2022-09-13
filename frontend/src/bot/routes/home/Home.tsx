@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { getRoutePath } from "routes";
-import { PathNames } from "helpers/types";
+import { getRoutePath } from "bot/routes";
+import { PathNames } from "bot/helpers/types";
 
 const Home: FC = () => {
     console.log(getRoutePath(PathNames.taskWorkspace))

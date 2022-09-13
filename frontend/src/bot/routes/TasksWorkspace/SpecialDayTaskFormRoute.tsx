@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { getAxiosInstance } from "helpers/AxiosInstance";
+import { getAxiosInstance } from "bot/helpers/AxiosInstance";
 import { Task } from "./SpecialDayTaskList";
 import SpecialDayTaskForm from "./SpecialDayFormWithPrefetchedData";
 

@@ -16,13 +16,13 @@ import { useForm } from "@mantine/form";
 import dayjs from "dayjs";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { getAxiosInstance } from "helpers/AxiosInstance";
-import { EmptyFieldError, timezone } from "helpers/settings";
-import { timeZones } from "helpers/timezones";
-import { faBell } from "helpers/assets/Images";
+import { getAxiosInstance } from "bot/helpers/AxiosInstance";
+import { EmptyFieldError, timezone } from "bot/helpers/settings";
+import { timeZones } from "bot/helpers/timezones";
+import { faBell } from "bot/helpers/assets/Images";
 
 import { Task } from "./SpecialDayTaskList";
-import { getTempDate } from "helpers/utils";
+import { getTempDate } from "bot/helpers/utils";
 import { RichTextEditor } from "@mantine/rte";
 
 export type LeadList = {

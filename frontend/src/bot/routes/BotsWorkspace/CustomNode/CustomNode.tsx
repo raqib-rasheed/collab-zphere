@@ -1,11 +1,11 @@
 import { FC, memo } from "react";
-import { Node, Edge, Handle, Position, useEdges, useNodes } from "react-flow-renderer";
-import { getIconUrl } from "helpers/assets/Images";
-import { deleteNode } from "routes/BotsWorkspace/utils";
-import { useStoreState, useActions } from "helpers/store";
-import { DrawerSize, ElementNames } from "helpers/types";
+import { Node, Edge, Handle, Position, useEdges, useNodes, NodeProps } from "react-flow-renderer";
+import { getIconUrl } from "bot/helpers/assets/Images";
+import { deleteNode } from "bot/routes/BotsWorkspace/utils";
+import { useStoreState, useActions } from "bot/helpers/store";
+import { DrawerSize, ElementNames } from "bot/helpers/types";
 
-const CustomNode: FC<Node> = ({ id, data }) => {
+const CustomNode: FC<NodeProps> = ({ id, data }) => {
     const edges = useEdges();
     const nodes = useNodes();
     // const drawerState = useStoreState((state) => state.defaultStore.drawerState);

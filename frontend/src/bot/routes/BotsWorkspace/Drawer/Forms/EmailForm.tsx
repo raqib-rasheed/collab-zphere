@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from "react";
 import { useForm } from "@mantine/form";
 import { RichTextEditor } from "@mantine/rte";
 import { MultiSelect, TextInput } from "@mantine/core";
-import { useStoreState, useActions } from "helpers/store";
+import { useStoreState, useActions } from "bot/helpers/store";
 
 const Email: FC = () => {
     const defaultData = {

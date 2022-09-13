@@ -1,4 +1,4 @@
-import { iconsName } from "helpers/assets/Images";
+import { iconsName } from "bot/helpers/assets/Images";
 
 export enum PathNames {
     home = "home",

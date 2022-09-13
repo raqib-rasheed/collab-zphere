@@ -4,8 +4,8 @@ import { useForm } from "@mantine/form";
 import { RichTextEditor } from "@mantine/rte";
 import { useNavigate } from "react-router-dom";
 
-import { EmailTemplateFormValues, emailTemplatePricing } from "helpers/types";
-import {getAxiosInstance} from 'helpers/AxiosInstance';
+import { EmailTemplateFormValues, emailTemplatePricing } from "bot/helpers/types";
+import {getAxiosInstance} from 'bot/helpers/AxiosInstance';
 
 export const EmailTemplateEditor: FC = () => {
     const [showPriceField, setShowPriceField] = useState(false);

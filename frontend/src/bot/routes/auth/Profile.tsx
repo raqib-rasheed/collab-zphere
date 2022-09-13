@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import axios from "axios";
-import { apiUrl } from "helpers/settings";
-import { getCookie } from "helpers/utils";
+import { apiUrl } from "bot/helpers/settings";
+import { getCookie } from "bot/helpers/utils";
 
 const Profile: FC = () => {
     const token = getCookie("AUTHORIZATION");

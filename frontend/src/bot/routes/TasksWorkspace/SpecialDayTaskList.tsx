@@ -5,9 +5,9 @@ import {useNavigate} from 'react-router-dom';
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 
-import { getAxiosInstance } from "helpers/AxiosInstance";
-import { faIcons } from "helpers/assets/Images";
-import {getTempDate} from 'helpers/utils';
+import { getAxiosInstance } from "bot/helpers/AxiosInstance";
+import { faIcons } from "bot/helpers/assets/Images";
+import {getTempDate} from 'bot/helpers/utils';
 
 export type Task = {
     id: string;

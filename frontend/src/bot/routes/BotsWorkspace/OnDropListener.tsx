@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
-import { useActions } from "helpers/store";
-import { ElementNames } from "helpers/types";
+import { useActions } from "bot/helpers/store";
+import { ElementNames } from "bot/helpers/types";
 
 type Props = {
     droppedNode: {

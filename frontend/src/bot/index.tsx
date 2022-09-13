@@ -1,5 +1,5 @@
 import { StoreProvider } from "easy-peasy";
-import store from "helpers/store";
+import store from "bot/helpers/store";
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -7,12 +7,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
+// easy peasy is not supported by react 18 so showing 
+// Property 'children' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<StoreProvider<StoreModel>> & Readonly<{ store: Store<StoreModel, EasyPeasyConfig<...>>; }>'.ts(2769)
+// fix
+const StoreProviderOverride = StoreProvider as any;
+
 ReactDOM.render(
     <BrowserRouter>
         <React.StrictMode>
-            <StoreProvider store={store}>
+            <StoreProviderOverride store={store}>
                 <App />
-            </StoreProvider>
+            </StoreProviderOverride>
         </React.StrictMode>
     </BrowserRouter>,
     document.getElementById("root")

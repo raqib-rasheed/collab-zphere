@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Search from './Search';
 import ActionButtons from './Actionbuttons';
-import DragableComponents from 'routes/BotsWorkspace/sidebar/DragableComponents';
+import DragableComponents from 'bot/routes/BotsWorkspace/sidebar/DragableComponents';
 
 
 const Sidebar: FC = () => {
@@ -13,7 +13,7 @@ const Sidebar: FC = () => {
     </div>
   );
 };
-
-export {default as elements} from 'routes/BotsWorkspace/sidebar/DragableElements'
+// should export below this
+export {default as elements} from 'bot/routes/BotsWorkspace/sidebar/DragableElements'
 
 export default Sidebar;

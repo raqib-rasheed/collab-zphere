@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { Table, Box } from "@mantine/core";
-import { EmailTemplate } from "helpers/types";
-import { getAxiosInstance } from "helpers/AxiosInstance";
-import {getTempDate} from 'helpers/utils';
+import { EmailTemplate } from "bot/helpers/types";
+import { getAxiosInstance } from "bot/helpers/AxiosInstance";
+import {getTempDate} from 'bot/helpers/utils';
 
 export const EmailTemplateList: FC = () => {
     const axiosInstance = getAxiosInstance();

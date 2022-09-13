@@ -2,10 +2,10 @@ import { FC, useEffect, useState } from "react";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
 import { TextInput, Button, Input } from "@mantine/core";
-import { getAxiosInstance } from "helpers/AxiosInstance";
-import { getRoutePath } from "routes/utils";
-import { PathNames, Bot } from "helpers/types";
-import { useStoreState, useActions } from "helpers/store";
+import { getAxiosInstance } from "bot/helpers/AxiosInstance";
+import { getRoutePath } from "bot/routes/utils";
+import { PathNames, Bot } from "bot/helpers/types";
+import { useStoreState, useActions } from "bot/helpers/store";
 
 type Props = {
     botId: string | null;

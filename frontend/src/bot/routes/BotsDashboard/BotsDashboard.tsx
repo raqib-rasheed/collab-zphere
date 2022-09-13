@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal, Button, Card } from "@mantine/core";
-import { getAxiosInstance } from "helpers/AxiosInstance";
-import { useActions, useStoreState } from "helpers/store";
-import BotForm from "routes/BotsDashboard/BotForm";
-import { getRoutePath } from "routes";
-import { PathNames, Bot } from "helpers/types";
+import { getAxiosInstance } from "bot/helpers/AxiosInstance";
+import { useActions, useStoreState } from "bot/helpers/store";
+import BotForm from "bot/routes/BotsDashboard/BotForm";
+import { getRoutePath } from "bot/routes";
+import { PathNames, Bot } from "bot/helpers/types";
 
 export const BotsDashboard: FC = () => {
     enum Buttons {

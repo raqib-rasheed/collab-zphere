@@ -1,4 +1,4 @@
-import { baseURL, isDevelopment } from "helpers/settings";
+import { baseURL, isDevelopment } from "bot/helpers/settings";
 // import AWS from 'aws-sdk';
 
 const spaceEndpoint = "https://zphere.s3.ap-south-1.amazonaws.com/zphere-static-root/"
@@ -22,6 +22,7 @@ const getUrl = (isDevelopment: boolean, fileName: string, staticURL: boolean = t
         // return a signed url
         return `${spaceEndpoint}${fileName}`
     }
+    return ''
 };
 
 export enum iconsName  {

@@ -1,7 +1,7 @@
 import { FC } from "react";
-import {useStoreState} from 'helpers/store'
-import EqualToForm from "routes/BotsWorkspace/Drawer/Forms/EqualToForm";
-import { useTargetNode } from "routes/BotsWorkspace/utils";
+import {useStoreState} from 'bot/helpers/store'
+import EqualToForm from "bot/routes/BotsWorkspace/Drawer/Forms/EqualToForm";
+import { useTargetNode } from "bot/routes/BotsWorkspace/utils";
 
 const EqualToDrawer: FC = () => {
     const drawerState = useStoreState((state) => state.defaultStore.drawerState)

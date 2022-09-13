@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { useParams } from "react-router-dom";
 import { Node, Edge, useEdges, useNodes } from "react-flow-renderer";
-import {NodeData} from 'helpers/types';
-import { getAxiosInstance } from "helpers/AxiosInstance";
-import {useStoreState} from 'helpers/store';
+import {NodeData} from 'bot/helpers/types';
+import { getAxiosInstance } from "bot/helpers/AxiosInstance";
+import {useStoreState} from 'bot/helpers/store';
 
 const ActionButtons: FC = () => {
     const axiosInstance = getAxiosInstance();

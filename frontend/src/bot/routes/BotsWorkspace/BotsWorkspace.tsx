@@ -14,12 +14,12 @@ import ReactFlow, {
 } from "react-flow-renderer";
 import { Drawer } from "@mantine/core";
 import { useParams } from "react-router-dom";
-import Sidebar from "routes/BotsWorkspace/sidebar";
-import CustomNode from "routes/BotsWorkspace/CustomNode/CustomNode";
-import { getAxiosInstance } from "helpers/AxiosInstance";
-import { useActions, useStoreState } from "helpers/store";
-import { DefaultDrawerState } from "helpers/store/defaultStore";
-import { getDrawerContent } from "routes/BotsWorkspace/utils";
+import Sidebar from "bot/routes/BotsWorkspace/sidebar";
+import CustomNode from "bot/routes/BotsWorkspace/CustomNode/CustomNode";
+import { getAxiosInstance } from "bot/helpers/AxiosInstance";
+import { useActions, useStoreState } from "bot/helpers/store";
+import { DefaultDrawerState } from "bot/helpers/store/defaultStore";
+import { getDrawerContent } from "bot/routes/BotsWorkspace/utils";
 import OnDropListener from "./OnDropListener";
 import "styles/css/index.css";
 

@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
-import { PathNames, TRoute } from "helpers/types";
-import { routes } from "routes";
+import { PathNames, TRoute } from "bot/helpers/types";
+import { routes } from "bot/routes";
 
 /*
     never import like 'routes/utils'

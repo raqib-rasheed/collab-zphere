@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { elements, dragableElementsColors } from "./DragableElements";
 
-import { DragableElements, DragableElementsFields } from "helpers/types";
+import { DragableElements, DragableElementsFields } from "bot/helpers/types";
 
 enum mainComponents {
     Triggers = "Triggers",

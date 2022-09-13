@@ -12,10 +12,10 @@ import {
     EmailTemplateEditor,
     EmailTemplateList,
     APIKey,
-} from "routes";
+} from "bot/routes";
 // import Home from 'routes/home/Home';
-import { Layout } from "components";
-import { PathNames, Routes } from "helpers/types";
+import { Layout } from "bot/components";
+import { PathNames, Routes } from "bot/helpers/types";
 
 export const routes: Routes = {
     main: {

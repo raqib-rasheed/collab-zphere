@@ -1,7 +1,7 @@
 import { FC } from "react";
-import {useStoreState} from 'helpers/store'
-import EmailForm from "routes/BotsWorkspace/Drawer/Forms/EmailForm";
-import { useTargetNode } from "routes/BotsWorkspace/utils";
+import {useStoreState} from 'bot/helpers/store'
+import EmailForm from "bot/routes/BotsWorkspace/Drawer/Forms/EmailForm";
+import { useTargetNode } from "bot/routes/BotsWorkspace/utils";
 
 const EmailDrawer: FC = () => {
     const drawerState = useStoreState((state) => state.defaultStore.drawerState)

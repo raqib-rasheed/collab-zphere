@@ -1,0 +1,326 @@
+{
+    "status": "done",
+    "assets": {
+        "static/media/bg.e7a5023c.jpg": {
+            "name": "static/media/bg.e7a5023c.jpg",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\bg.e7a5023c.jpg",
+            "publicPath": "http://localhost:3000/static/media/bg.e7a5023c.jpg"
+        },
+        "static/media/mixkit-bell-notification-933.a3dd13b6.wav": {
+            "name": "static/media/mixkit-bell-notification-933.a3dd13b6.wav",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\mixkit-bell-notification-933.a3dd13b6.wav",
+            "publicPath": "http://localhost:3000/static/media/mixkit-bell-notification-933.a3dd13b6.wav"
+        },
+        "static/media/fa-brands-400.89a52ae1.eot": {
+            "name": "static/media/fa-brands-400.89a52ae1.eot",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-brands-400.89a52ae1.eot",
+            "publicPath": "http://localhost:3000/static/media/fa-brands-400.89a52ae1.eot"
+        },
+        "static/media/fa-brands-400.7b7d0ddb.svg": {
+            "name": "static/media/fa-brands-400.7b7d0ddb.svg",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-brands-400.7b7d0ddb.svg",
+            "publicPath": "http://localhost:3000/static/media/fa-brands-400.7b7d0ddb.svg"
+        },
+        "static/media/fa-brands-400.9e138496.ttf": {
+            "name": "static/media/fa-brands-400.9e138496.ttf",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-brands-400.9e138496.ttf",
+            "publicPath": "http://localhost:3000/static/media/fa-brands-400.9e138496.ttf"
+        },
+        "static/media/fa-brands-400.329a95a9.woff": {
+            "name": "static/media/fa-brands-400.329a95a9.woff",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-brands-400.329a95a9.woff",
+            "publicPath": "http://localhost:3000/static/media/fa-brands-400.329a95a9.woff"
+        },
+        "static/media/fa-brands-400.c1210e5e.woff2": {
+            "name": "static/media/fa-brands-400.c1210e5e.woff2",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-brands-400.c1210e5e.woff2",
+            "publicPath": "http://localhost:3000/static/media/fa-brands-400.c1210e5e.woff2"
+        },
+        "static/media/fa-regular-400.4079ae2d.eot": {
+            "name": "static/media/fa-regular-400.4079ae2d.eot",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-regular-400.4079ae2d.eot",
+            "publicPath": "http://localhost:3000/static/media/fa-regular-400.4079ae2d.eot"
+        },
+        "static/media/fa-regular-400.ac3d16eb.svg": {
+            "name": "static/media/fa-regular-400.ac3d16eb.svg",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-regular-400.ac3d16eb.svg",
+            "publicPath": "http://localhost:3000/static/media/fa-regular-400.ac3d16eb.svg"
+        },
+        "static/media/fa-regular-400.1017bce8.ttf": {
+            "name": "static/media/fa-regular-400.1017bce8.ttf",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-regular-400.1017bce8.ttf",
+            "publicPath": "http://localhost:3000/static/media/fa-regular-400.1017bce8.ttf"
+        },
+        "static/media/fa-regular-400.36722648.woff": {
+            "name": "static/media/fa-regular-400.36722648.woff",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-regular-400.36722648.woff",
+            "publicPath": "http://localhost:3000/static/media/fa-regular-400.36722648.woff"
+        },
+        "static/media/fa-regular-400.68c5af1f.woff2": {
+            "name": "static/media/fa-regular-400.68c5af1f.woff2",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-regular-400.68c5af1f.woff2",
+            "publicPath": "http://localhost:3000/static/media/fa-regular-400.68c5af1f.woff2"
+        },
+        "static/media/fa-solid-900.efbd5d20.eot": {
+            "name": "static/media/fa-solid-900.efbd5d20.eot",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-solid-900.efbd5d20.eot",
+            "publicPath": "http://localhost:3000/static/media/fa-solid-900.efbd5d20.eot"
+        },
+        "static/media/fa-solid-900.3fbf3c25.svg": {
+            "name": "static/media/fa-solid-900.3fbf3c25.svg",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-solid-900.3fbf3c25.svg",
+            "publicPath": "http://localhost:3000/static/media/fa-solid-900.3fbf3c25.svg"
+        },
+        "static/media/fa-solid-900.07c3313b.ttf": {
+            "name": "static/media/fa-solid-900.07c3313b.ttf",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-solid-900.07c3313b.ttf",
+            "publicPath": "http://localhost:3000/static/media/fa-solid-900.07c3313b.ttf"
+        },
+        "static/media/fa-solid-900.c6ec0800.woff": {
+            "name": "static/media/fa-solid-900.c6ec0800.woff",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-solid-900.c6ec0800.woff",
+            "publicPath": "http://localhost:3000/static/media/fa-solid-900.c6ec0800.woff"
+        },
+        "static/media/fa-solid-900.ada6e6df.woff2": {
+            "name": "static/media/fa-solid-900.ada6e6df.woff2",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\media\\fa-solid-900.ada6e6df.woff2",
+            "publicPath": "http://localhost:3000/static/media/fa-solid-900.ada6e6df.woff2"
+        },
+        "static/js/0.chunk.js": {
+            "name": "static/js/0.chunk.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\0.chunk.js",
+            "publicPath": "http://localhost:3000/static/js/0.chunk.js"
+        },
+        "static/js/Chatbot.c4dd3df9.chunk.js": {
+            "name": "static/js/Chatbot.c4dd3df9.chunk.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\Chatbot.c4dd3df9.chunk.js",
+            "publicPath": "http://localhost:3000/static/js/Chatbot.c4dd3df9.chunk.js"
+        },
+        "static/js/Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js": {
+            "name": "static/js/Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js",
+            "publicPath": "http://localhost:3000/static/js/Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js"
+        },
+        "static/js/Chatbot.c4dd3df9~main.chunk.js": {
+            "name": "static/js/Chatbot.c4dd3df9~main.chunk.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\Chatbot.c4dd3df9~main.chunk.js",
+            "publicPath": "http://localhost:3000/static/js/Chatbot.c4dd3df9~main.chunk.js"
+        },
+        "static/js/ChatbotRebuild.94d665a3.chunk.js": {
+            "name": "static/js/ChatbotRebuild.94d665a3.chunk.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\ChatbotRebuild.94d665a3.chunk.js",
+            "publicPath": "http://localhost:3000/static/js/ChatbotRebuild.94d665a3.chunk.js"
+        },
+        "static/js/ChatbotRebuild.94d665a3~main.chunk.js": {
+            "name": "static/js/ChatbotRebuild.94d665a3~main.chunk.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\ChatbotRebuild.94d665a3~main.chunk.js",
+            "publicPath": "http://localhost:3000/static/js/ChatbotRebuild.94d665a3~main.chunk.js"
+        },
+        "static/js/loader.fdaf9032.chunk.js": {
+            "name": "static/js/loader.fdaf9032.chunk.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\loader.fdaf9032.chunk.js",
+            "publicPath": "http://localhost:3000/static/js/loader.fdaf9032.chunk.js"
+        },
+        "static/js/main.chunk.js": {
+            "name": "static/js/main.chunk.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\main.chunk.js",
+            "publicPath": "http://localhost:3000/static/js/main.chunk.js"
+        },
+        "static/js/runtime-Chatbot.c4dd3df9.bundle.js": {
+            "name": "static/js/runtime-Chatbot.c4dd3df9.bundle.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\runtime-Chatbot.c4dd3df9.bundle.js",
+            "publicPath": "http://localhost:3000/static/js/runtime-Chatbot.c4dd3df9.bundle.js"
+        },
+        "static/js/runtime-ChatbotRebuild.94d665a3.bundle.js": {
+            "name": "static/js/runtime-ChatbotRebuild.94d665a3.bundle.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\runtime-ChatbotRebuild.94d665a3.bundle.js",
+            "publicPath": "http://localhost:3000/static/js/runtime-ChatbotRebuild.94d665a3.bundle.js"
+        },
+        "static/js/runtime-loader.fdaf9032.bundle.js": {
+            "name": "static/js/runtime-loader.fdaf9032.bundle.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\runtime-loader.fdaf9032.bundle.js",
+            "publicPath": "http://localhost:3000/static/js/runtime-loader.fdaf9032.bundle.js"
+        },
+        "static/js/runtime-main.bundle.js": {
+            "name": "static/js/runtime-main.bundle.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\runtime-main.bundle.js",
+            "publicPath": "http://localhost:3000/static/js/runtime-main.bundle.js"
+        },
+        "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3.chunk.js": {
+            "name": "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3.chunk.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3.chunk.js",
+            "publicPath": "http://localhost:3000/static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3.chunk.js"
+        },
+        "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js": {
+            "name": "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js",
+            "publicPath": "http://localhost:3000/static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js"
+        },
+        "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js": {
+            "name": "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js",
+            "publicPath": "http://localhost:3000/static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js"
+        },
+        "static/js/vendors~main.chunk.js": {
+            "name": "static/js/vendors~main.chunk.js",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\vendors~main.chunk.js",
+            "publicPath": "http://localhost:3000/static/js/vendors~main.chunk.js"
+        },
+        "static/js/0.chunk.js.map": {
+            "name": "static/js/0.chunk.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\0.chunk.js.map",
+            "publicPath": "http://localhost:3000/static/js/0.chunk.js.map"
+        },
+        "static/js/Chatbot.c4dd3df9.chunk.js.map": {
+            "name": "static/js/Chatbot.c4dd3df9.chunk.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\Chatbot.c4dd3df9.chunk.js.map",
+            "publicPath": "http://localhost:3000/static/js/Chatbot.c4dd3df9.chunk.js.map"
+        },
+        "static/js/Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map": {
+            "name": "static/js/Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "publicPath": "http://localhost:3000/static/js/Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map"
+        },
+        "static/js/Chatbot.c4dd3df9~main.chunk.js.map": {
+            "name": "static/js/Chatbot.c4dd3df9~main.chunk.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\Chatbot.c4dd3df9~main.chunk.js.map",
+            "publicPath": "http://localhost:3000/static/js/Chatbot.c4dd3df9~main.chunk.js.map"
+        },
+        "static/js/ChatbotRebuild.94d665a3.chunk.js.map": {
+            "name": "static/js/ChatbotRebuild.94d665a3.chunk.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\ChatbotRebuild.94d665a3.chunk.js.map",
+            "publicPath": "http://localhost:3000/static/js/ChatbotRebuild.94d665a3.chunk.js.map"
+        },
+        "static/js/ChatbotRebuild.94d665a3~main.chunk.js.map": {
+            "name": "static/js/ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "publicPath": "http://localhost:3000/static/js/ChatbotRebuild.94d665a3~main.chunk.js.map"
+        },
+        "static/js/loader.fdaf9032.chunk.js.map": {
+            "name": "static/js/loader.fdaf9032.chunk.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\loader.fdaf9032.chunk.js.map",
+            "publicPath": "http://localhost:3000/static/js/loader.fdaf9032.chunk.js.map"
+        },
+        "static/js/main.chunk.js.map": {
+            "name": "static/js/main.chunk.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\main.chunk.js.map",
+            "publicPath": "http://localhost:3000/static/js/main.chunk.js.map"
+        },
+        "static/js/runtime-Chatbot.c4dd3df9.bundle.js.map": {
+            "name": "static/js/runtime-Chatbot.c4dd3df9.bundle.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\runtime-Chatbot.c4dd3df9.bundle.js.map",
+            "publicPath": "http://localhost:3000/static/js/runtime-Chatbot.c4dd3df9.bundle.js.map"
+        },
+        "static/js/runtime-ChatbotRebuild.94d665a3.bundle.js.map": {
+            "name": "static/js/runtime-ChatbotRebuild.94d665a3.bundle.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\runtime-ChatbotRebuild.94d665a3.bundle.js.map",
+            "publicPath": "http://localhost:3000/static/js/runtime-ChatbotRebuild.94d665a3.bundle.js.map"
+        },
+        "static/js/runtime-loader.fdaf9032.bundle.js.map": {
+            "name": "static/js/runtime-loader.fdaf9032.bundle.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\runtime-loader.fdaf9032.bundle.js.map",
+            "publicPath": "http://localhost:3000/static/js/runtime-loader.fdaf9032.bundle.js.map"
+        },
+        "static/js/runtime-main.bundle.js.map": {
+            "name": "static/js/runtime-main.bundle.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\runtime-main.bundle.js.map",
+            "publicPath": "http://localhost:3000/static/js/runtime-main.bundle.js.map"
+        },
+        "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3.chunk.js.map": {
+            "name": "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3.chunk.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3.chunk.js.map",
+            "publicPath": "http://localhost:3000/static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3.chunk.js.map"
+        },
+        "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js.map": {
+            "name": "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js.map",
+            "publicPath": "http://localhost:3000/static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js.map"
+        },
+        "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map": {
+            "name": "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "publicPath": "http://localhost:3000/static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map"
+        },
+        "static/js/vendors~main.chunk.js.map": {
+            "name": "static/js/vendors~main.chunk.js.map",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\static\\js\\vendors~main.chunk.js.map",
+            "publicPath": "http://localhost:3000/static/js/vendors~main.chunk.js.map"
+        },
+        "index.html": {
+            "name": "index.html",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\index.html",
+            "publicPath": "http://localhost:3000/index.html"
+        },
+        "public/index.html": {
+            "name": "public/index.html",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\public\\index.html",
+            "publicPath": "http://localhost:3000/public/index.html"
+        },
+        "asset-manifest.json": {
+            "name": "asset-manifest.json",
+            "path": "D:\\Projects\\nestones\\Projects\\texa\\frontend\\dist\\asset-manifest.json",
+            "publicPath": "http://localhost:3000/asset-manifest.json"
+        }
+    },
+    "chunks": {
+        "main": [
+            "static/js/runtime-main.bundle.js",
+            "static/js/runtime-main.bundle.js.map",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js.map",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "static/js/vendors~main.chunk.js",
+            "static/js/vendors~main.chunk.js.map",
+            "static/js/Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js",
+            "static/js/Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "static/js/ChatbotRebuild.94d665a3~main.chunk.js",
+            "static/js/ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "static/js/Chatbot.c4dd3df9~main.chunk.js",
+            "static/js/Chatbot.c4dd3df9~main.chunk.js.map",
+            "static/js/main.chunk.js",
+            "static/js/main.chunk.js.map"
+        ],
+        "Chatbot.c4dd3df9": [
+            "static/js/runtime-Chatbot.c4dd3df9.bundle.js",
+            "static/js/runtime-Chatbot.c4dd3df9.bundle.js.map",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js.map",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3.chunk.js",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3.chunk.js.map",
+            "static/js/Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js",
+            "static/js/Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "static/js/Chatbot.c4dd3df9~main.chunk.js",
+            "static/js/Chatbot.c4dd3df9~main.chunk.js.map",
+            "static/js/Chatbot.c4dd3df9.chunk.js",
+            "static/js/Chatbot.c4dd3df9.chunk.js.map"
+        ],
+        "ChatbotRebuild.94d665a3": [
+            "static/js/runtime-ChatbotRebuild.94d665a3.bundle.js",
+            "static/js/runtime-ChatbotRebuild.94d665a3.bundle.js.map",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js.map",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3.chunk.js",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3.chunk.js.map",
+            "static/js/Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js",
+            "static/js/Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "static/js/ChatbotRebuild.94d665a3~main.chunk.js",
+            "static/js/ChatbotRebuild.94d665a3~main.chunk.js.map",
+            "static/js/ChatbotRebuild.94d665a3.chunk.js",
+            "static/js/ChatbotRebuild.94d665a3.chunk.js.map"
+        ],
+        "loader.fdaf9032": [
+            "static/js/runtime-loader.fdaf9032.bundle.js",
+            "static/js/runtime-loader.fdaf9032.bundle.js.map",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js",
+            "static/js/vendors~Chatbot.c4dd3df9~ChatbotRebuild.94d665a3~loader.fdaf9032~main.chunk.js.map",
+            "static/js/loader.fdaf9032.chunk.js",
+            "static/js/loader.fdaf9032.chunk.js.map"
+        ]
+    },
+    "publicPath": "http://localhost:3000/"
+}
