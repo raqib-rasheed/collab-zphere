@@ -16,7 +16,7 @@ export const BotForm: FC<Props> = ({ botId, setIsOpened }) => {
     const axiosInstance = getAxiosInstance("multipart/form-data");
     const navigator = useNavigate();
 
-    const form = useForm<{ name: string; img: File }>({
+    const form = useForm<{ name: string; img: File | null }>({
         initialValues: {
             name: "",
             img: null,
@@ -58,7 +58,7 @@ export const BotForm: FC<Props> = ({ botId, setIsOpened }) => {
     };
 
     const onImageChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const input = e.target;
+        const input:any = e.target;
         const file = input.files[0];
         form.setFieldValue("img", file);
     };

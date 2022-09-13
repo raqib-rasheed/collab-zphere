@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { getConnectedEdges, Edge, Node, useEdges, useNodes } from "react-flow-renderer";
+import {ActionCreator} from 'easy-peasy';
 import { ElementNames, DrawerState } from "bot/helpers/types";
 import { StatusChange, NewClient, EqualToDrawer, EmailDrawer } from "bot/routes/BotsWorkspace/Drawer";
 
@@ -50,7 +51,7 @@ export const deleteNode = (
     edges: Edge[],
     setNodes: Dispatch<SetStateAction<Node<any>[]>>,
     setEdges: Dispatch<SetStateAction<Edge<any>[]>>,
-    deleteDatas: Dispatch<SetStateAction<Array<string>>>
+    deleteDatas: ActionCreator<string[]>
 ) => {
     const selectedNodes = getSelectedNodes(nodes);
     if (selectedNodes) {
@@ -93,7 +94,7 @@ export const useTargetNode = (drawerState: DrawerState) => {
         const edge = edges.find((edge) => edge.source === drawerState.nodeId);
         if (edge) {
             const targetNode = nodes.find((node) => node.id === edge?.target);
-            setTargetNode(targetNode);
+            setTargetNode(targetNode!);
         } else {
             setTargetNode(null);
         } // if the edge is deleted

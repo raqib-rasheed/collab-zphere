@@ -26,8 +26,8 @@ const Email: FC = () => {
 
     useEffect(() => {
         updateData({
-            componentName: drawerState.elementName,
-            nodeId: drawerState.nodeId,
+            componentName: drawerState.elementName!,
+            nodeId: drawerState.nodeId!,
             data: {
                 ...form.values,
             },
@@ -44,8 +44,8 @@ const Email: FC = () => {
             setEmailBody(data.data.subject);
         } else {
             addData({
-                componentName: drawerState.elementName,
-                nodeId: drawerState.nodeId,
+                componentName: drawerState.elementName!,
+                nodeId: drawerState.nodeId!,
                 data: defaultData,
             });
         }

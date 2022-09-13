@@ -121,7 +121,7 @@ const SpecialDayTaskForm: FC<Props> = (props) => {
         () => ({
             allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
             mentionDenotationChars: ["#"],
-            source: (searchTerm, renderList, mentionChar) => {
+            source: (searchTerm:string, renderList:any, mentionChar:string) => {
                 const list = templateVariables;
                 const includesSearchTerm = list.filter((item) =>
                     item.value.toLowerCase().includes(searchTerm.toLowerCase())

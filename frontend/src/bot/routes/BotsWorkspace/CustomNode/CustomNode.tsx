@@ -28,7 +28,7 @@ const CustomNode: FC<NodeProps> = ({ id, data }) => {
     };
 
     const onDeleteHandler = (nodes: Node[], edges: Edge[]) => {
-        deleteNode(nodes, edges, setNodes, setEdges, deleteDatas);
+        deleteNode(nodes, edges, setNodes!, setEdges!, deleteDatas);
     };
 
     return (

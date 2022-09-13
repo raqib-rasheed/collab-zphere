@@ -24,8 +24,8 @@ const EqualToForm: FC<Props> = ({ drawerState }) => {
     useEffect(() => {
         console.log('555 ')     
         updateData({
-            componentName: drawerState.elementName,
-            nodeId: drawerState.nodeId,
+            componentName: drawerState.elementName!,
+            nodeId: drawerState.nodeId!,
             data: {
                 ...form.values,
             },
@@ -39,8 +39,8 @@ const EqualToForm: FC<Props> = ({ drawerState }) => {
             form.setFieldValue("value", data.data.value);
         } else {
             addData({
-                componentName: drawerState.elementName,
-                nodeId: drawerState.nodeId,
+                componentName: drawerState.elementName!,
+                nodeId: drawerState.nodeId!,
                 data: {
                     parameter: '',
                     value: '',

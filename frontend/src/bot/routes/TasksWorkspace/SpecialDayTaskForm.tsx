@@ -107,8 +107,8 @@ const SpecialDayTaskForm: FC = () => {
         () => ({
             allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
             mentionDenotationChars: ["#"],
-            source: async (searchTerm, renderList, mentionChar) => {
-                const list =
+            source: async (searchTerm:string, renderList:any, mentionChar:string) => {
+                const list: Array<{id:string, value:string}> =
                     templateVariables.length === 0
                         ? await axiosInstance.get("/template-variables/").then((response) => {
                               setTemplateVariables(response.data);

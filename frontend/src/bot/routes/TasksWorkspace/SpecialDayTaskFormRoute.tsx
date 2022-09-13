@@ -10,7 +10,7 @@ export const SpecialDayTaskFormRoute: FC = () => {
     const params = useParams();
     const navigator = useNavigate();
 
-    const [fetchedData, setFetchedData] = useState<Task>(null);
+    const [fetchedData, setFetchedData] = useState<Task | null>(null);
 
     useEffect(() => {
         console.log("special day route");

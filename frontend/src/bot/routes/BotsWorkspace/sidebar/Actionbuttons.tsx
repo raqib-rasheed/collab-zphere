@@ -24,8 +24,8 @@ const ActionButtons: FC = () => {
 
     const onRestClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        setNodes([]);
-        setEdges([]);
+        setNodes!([]);
+        setEdges!([]);
     };
 
     const saveRequest = async (nodes: Node[], edges: Edge[], datas: NodeData[]) => {

@@ -80,6 +80,7 @@ export interface Bot {
 }
 
 export type TRoute = {
+    [key:string]:any;
     path?: string;
     name?: PathNames;
     element?: JSX.Element;

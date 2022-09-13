@@ -25,7 +25,7 @@ export const BotsDashboard: FC = () => {
 
     const botsWorkspacePath = (id: string) => getRoutePath(PathNames.botsWorkspace).replace(":botId", id);
 
-    const onCreateClickHandler = (e) => {
+    const onCreateClickHandler = (e:any) => {
         e.preventDefault();
         setIsOpened(true);
     };

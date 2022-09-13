@@ -4,8 +4,8 @@ import { ElementNames } from "bot/helpers/types";
 
 type Props = {
     droppedNode: {
-        nodeId: string;
-        componentName: string;
+        nodeId: string | null;
+        componentName: string | null;
     }
 };
 // this use of this component it to set datas by default when an element is dropped
