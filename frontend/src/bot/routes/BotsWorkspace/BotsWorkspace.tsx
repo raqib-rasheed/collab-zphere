@@ -21,7 +21,7 @@ import { useActions, useStoreState } from "bot/helpers/store";
 import { DefaultDrawerState } from "bot/helpers/store/defaultStore";
 import { getDrawerContent } from "bot/routes/BotsWorkspace/utils";
 import OnDropListener from "./OnDropListener";
-import "styles/css/index.css";
+import "bot/styles/css/index.css";
 
 const nodeTypes = {
     customNode: CustomNode,

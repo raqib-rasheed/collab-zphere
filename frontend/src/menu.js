@@ -813,7 +813,7 @@ export const sidebarMenus = {
 	bot: {
 		id: 'bot',
 		text: 'Bot',
-		path: 'system-setup',
+		path: 'bot',
 		icon: 'Gear',
 	},
 };
