@@ -1,6 +1,12 @@
 import React, { lazy } from 'react';
+import store from 'bot/helpers/store';
+import { StoreProvider } from 'easy-peasy';
 import { sidebarMenus } from '../menu';
 
+// easy peasy is not supported by react 18 so showing
+// Property 'children' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<StoreProvider<StoreModel>> & Readonly<{ store: Store<StoreModel, EasyPeasyConfig<...>>; }>'.ts(2769)
+// fix
+const StoreProviderOverride = StoreProvider as any;
 const APP = {
 	DASHBOARD: {
 		PROJECT: lazy(() => import('../pages/presentation/dashboard/DashboardPage')),
@@ -273,6 +279,7 @@ const APP = {
 	SUPPORT_SYSTEM_TICKETS: lazy(
 		() => import('../pages/presentation/support-system/SupportTickets'),
 	),
+	BOT: lazy(() => import('../bot/App')),
 };
 
 const presentation = [
@@ -856,6 +863,11 @@ const presentation = [
 	{
 		path: sidebarMenus.supportSystem.path + '/ticket/:id',
 		element: <APP.SUPPORT_SYSTEM_TICKETS />,
+		exact: true,
+	},
+	{
+		path: sidebarMenus.bot.path,
+		element: <StoreProviderOverride store={store}><APP.BOT /></StoreProviderOverride>,
 		exact: true,
 	},
 ];
