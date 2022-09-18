@@ -1,0 +1,19 @@
+.bot {
+    border: 1px dotted lightblue;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2px;
+}
+
+.bot img {
+    border-radius: 10%;
+    margin-right: 5px;
+}
+
+.bot .details {
+    display: flex;
+}
+
+.bot .options button {
+    margin-left: 5px;
+}

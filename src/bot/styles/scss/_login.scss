@@ -1,0 +1,14 @@
+.login-form-container {
+    padding: 50px 100px;
+    box-shadow: 0px 30px 60px 0px rgba(8, 0, 46, 0.1);
+}
+
+.login-form-container input {
+    margin-bottom: 10px;
+}
+
+.login-form-container input:focus {
+    border-color: #6af1ac;
+    background: #ffffff;
+    outline: none;
+}

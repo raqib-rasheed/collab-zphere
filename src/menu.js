@@ -810,6 +810,12 @@ export const sidebarMenus = {
 			},
 		},
 	},
+	bot: {
+		id: 'bot',
+		text: 'Bot',
+		path: 'bot',
+		icon: 'Gear',
+	},
 };
 
 export const componentsMenu = {
