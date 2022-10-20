@@ -120,7 +120,9 @@ const APP = {
 		DEALS: lazy(() => import('../pages/presentation/crm-system/Deals')),
 		FORM_BUILDER: lazy(() => import('../pages/presentation/crm-system/FormBuilder')),
 		CONTRACT: lazy(() => import('../pages/presentation/crm-system/Contract')),
-		CRM_SYSTEM_SETUP: lazy(() => import('../pages/presentation/crm-system/CrmSystemSetup')),
+		CRM_SYSTEM_SETUP: lazy(
+			() => import('../pages/presentation/crm-system/crm-system-setup/CrmSystemSetup'),
+		),
 	},
 	HRM_SYSTEM: {
 		EMPLOYEE_SETUP: lazy(() => import('../pages/presentation/hrm-system/EmployeeSetup')),
