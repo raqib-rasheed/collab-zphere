@@ -592,7 +592,7 @@ export const sidebarMenus = {
 			formBuilder: {
 				id: 'crmSystemFormBuilder',
 				text: 'Form Builder',
-				path: 'crm-system/for-builder',
+				path: 'crm-system/form-builder',
 				icon: 'Dot',
 			},
 			contract: {
