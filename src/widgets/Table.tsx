@@ -27,7 +27,7 @@ interface ITableProps {
 	getTableDataUrl?: string;
 	// -->>>buttonsRowId is passed to each row actions so that we can keep track of the
 	//Node ids to apply action in the cache.
-	//When user edits a particular colum in the table we need to find the
+	//When user edits a particular column in the table we need to find the
 	//The redundant node in the cache and make necessary changes to it.
 	rowActions?: (buttonsRowId?: number) => JSX.Element;
 	customColumnItems?: { key: string; component: JSX.Element }[];
@@ -62,7 +62,6 @@ const TableWidget = ({
 		error,
 		isLoading,
 	} = useQuery([getTableDataUrl?.replace('/', '')], getTableData);
-	console.log(tableData?.data, error, isLoading);
 	const cardFooter = displayLoadMore && (
 		<CardFooter className='justify-content-center'>
 			<Button color='dark' className='px-5 py-3'>
