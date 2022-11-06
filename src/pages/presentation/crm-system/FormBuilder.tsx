@@ -30,15 +30,19 @@ const EmployeeAssetSetup = () => {
 		return (
 			<div>
 				{/* eslint-disable-next-line react/jsx-props-no-spreading */}
-				<Button {...commonProps} icon='Verified' />
+				<Button {...commonProps} icon='CenterFocusStrong' />
+				{/* eslint-disable-next-line react/jsx-props-no-spreading */}
+				<Button {...commonProps} icon='Recycling' />
 				{/* eslint-disable-next-line react/jsx-props-no-spreading */}
 				<Button {...commonProps} icon='FileCopy' />
+				{/* eslint-disable-next-line react/jsx-props-no-spreading */}
+				<Button {...commonProps} icon='TableChart' />
+				{/* eslint-disable-next-line react/jsx-props-no-spreading */}
+				<Button {...commonProps} icon='Eye' />
 				{/* eslint-disable-next-line react/jsx-props-no-spreading */}
 				<Button {...commonProps} icon='Edit' />
 				{/* eslint-disable-next-line react/jsx-props-no-spreading */}
 				<Button {...commonProps} icon='Delete' />
-				{/* eslint-disable-next-line react/jsx-props-no-spreading */}
-				<Button {...commonProps} icon='Verified' />
 			</div>
 		);
 	};
@@ -52,7 +56,6 @@ const EmployeeAssetSetup = () => {
 			// console.log(JSON.stringify(values, null, 2));
 		},
 	});
-	console.log(formik.values);
 	const addNewModal = (
 		<Modal
 			setIsOpen={setAddNewModalVisible}

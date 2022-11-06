@@ -62,7 +62,6 @@ const TableWidget = ({
 		error,
 		isLoading,
 	} = useQuery([getTableDataUrl?.replace('/', '')], getTableData);
-	console.log(tableData?.data, error, isLoading);
 	const cardFooter = displayLoadMore && (
 		<CardFooter className='justify-content-center'>
 			<Button color='dark' className='px-5 py-3'>

@@ -2,8 +2,8 @@ import React, { useMemo, useState } from 'react';
 import Button from '../../../../components/bootstrap/Button';
 import Page from '../../../../layout/Page/Page';
 import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
-import TableWidget from '../../../../widgets/Table';
 import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
+import TableWidget from '../../../../widgets/Table';
 import Card, { CardBody } from '../../../../components/bootstrap/Card';
 
 // TODO Add select for Lead stages and Deal stages
