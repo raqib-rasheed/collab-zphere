@@ -119,7 +119,10 @@ const APP = {
 		LEADS: lazy(() => import('../pages/presentation/crm-system/Leads')),
 		DEALS: lazy(() => import('../pages/presentation/crm-system/Deals')),
 		FORM_BUILDER: lazy(() => import('../pages/presentation/crm-system/FormBuilder')),
-		CONTRACT: lazy(() => import('../pages/presentation/crm-system/Contract')),
+		CONTRACT: lazy(() => import('../pages/presentation/crm-system/contract/Contract')),
+		CONTRACT_DETAILS: lazy(
+			() => import('../pages/presentation/crm-system/contract/ContractDetails'),
+		),
 		CRM_SYSTEM_SETUP: lazy(
 			() => import('../pages/presentation/crm-system/crm-system-setup/CrmSystemSetup'),
 		),
@@ -783,11 +786,11 @@ const presentation = [
 		element: <APP.CRM_SYSTEM.CONTRACT />,
 		exact: true,
 	},
-	// {
-	// 	path: sidebarMenus.crmSystem.subMenu.tracker.path,
-	// 	element: <APP.CRM_SYSTEM.TRACKER />,
-	// 	exact: true,
-	// },
+	{
+		path: sidebarMenus.crmSystem.subMenu.contract.path + '/:id',
+		element: <APP.CRM_SYSTEM.CONTRACT_DETAILS />,
+		exact: true,
+	},
 	{
 		path: sidebarMenus.crmSystem.subMenu.setup.path,
 		element: <APP.CRM_SYSTEM.CRM_SYSTEM_SETUP />,
