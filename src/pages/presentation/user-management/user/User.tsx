@@ -20,17 +20,17 @@ import Modal, { ModalBody, ModalFooter, ModalHeader } from '../../../../componen
 import { OffCanvasTitle } from '../../../../components/bootstrap/OffCanvas';
 import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
 import Input from '../../../../components/bootstrap/forms/Input';
-import _ from 'lodash';
+// import _ from 'lodash';
 import Select from '../../../../components/bootstrap/forms/Select';
 import { Options } from '../../../../components/bootstrap/Option';
 
-type FormValues = {
-	name: String;
-	email: String;
-	type: String;
-	password: String;
-	dob: String;
-};
+// type FormValues = {
+// 	name: String;
+// 	email: String;
+// 	type: String;
+// 	password: String;
+// 	dob: String;
+// };
 
 const User = () => {
 	useTourStep(18);
