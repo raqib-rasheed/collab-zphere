@@ -1,19 +1,19 @@
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
-import Button from '../../../components/bootstrap/Button';
-import Checks, { ChecksGroup } from '../../../components/bootstrap/forms/Checks';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Input from '../../../components/bootstrap/forms/Input';
-import { InputGroupText } from '../../../components/bootstrap/forms/InputGroup';
-import Modal, { ModalBody, ModalFooter, ModalHeader } from '../../../components/bootstrap/Modal';
-import { OffCanvasTitle } from '../../../components/bootstrap/OffCanvas';
-import Page from '../../../layout/Page/Page';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import { TColor } from '../../../type/color';
-import PresentaionPagesSubHeader from '../../../widgets/PresentaionPagesSubHeader';
-import TableWidget from '../../../widgets/Table';
+import Button from '../../../../components/bootstrap/Button';
+import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import Input from '../../../../components/bootstrap/forms/Input';
+import { InputGroupText } from '../../../../components/bootstrap/forms/InputGroup';
+import Modal, { ModalBody, ModalFooter, ModalHeader } from '../../../../components/bootstrap/Modal';
+import { OffCanvasTitle } from '../../../../components/bootstrap/OffCanvas';
+import Page from '../../../../layout/Page/Page';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import { TColor } from '../../../../type/color';
+import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
+import TableWidget from '../../../../widgets/Table';
 
-const FormBuilder = () => {
+const CreateUserForm = () => {
 	const [addNewModalVisible, setAddNewModalVisible] = useState(false);
 	const columns = [
 		{ name: 'NAME', key: 'name' },
@@ -134,4 +134,4 @@ const FormBuilder = () => {
 	);
 };
 
-export default FormBuilder;
+export default CreateUserForm;

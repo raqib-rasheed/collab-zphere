@@ -1,11 +1,11 @@
 import React from 'react';
-import Badge from '../../../components/bootstrap/Badge';
+import Badge from '../../../../components/bootstrap/Badge';
 // import Input from '../../../components/bootstrap/forms/Input';
-import Icon from '../../../components/icon/Icon';
-import Page from '../../../layout/Page/Page';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import PresentaionPagesSubHeader from '../../../widgets/PresentaionPagesSubHeader';
-import TableWidget from '../../../widgets/Table';
+import Icon from '../../../../components/icon/Icon';
+import Page from '../../../../layout/Page/Page';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
+import TableWidget from '../../../../widgets/Table';
 
 const SetSalary = () => {
 	function generateDummyData(count: number) {

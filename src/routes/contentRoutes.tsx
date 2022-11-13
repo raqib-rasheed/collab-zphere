@@ -254,8 +254,8 @@ const APP = {
 		},
 	},
 	USER_MANAGEMENT: {
-		USER: lazy(() => import('../pages/presentation/user-management/User')),
-		ROLE: lazy(() => import('../pages/presentation/user-management/Role')),
+		USER: lazy(() => import('../pages/presentation/user-management/user/User')),
+		ROLE: lazy(() => import('../pages/presentation/user-management/role/Role')),
 		CLIENT: lazy(() => import('../pages/presentation/user-management/clients/Client')),
 	},
 	PRODUCT_SYSTEM: {
