@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card, {
 	CardActions,
 	CardBody,
@@ -31,6 +31,8 @@ interface ITableProps {
 	//The redundant node in the cache and make necessary changes to it.
 	rowActions?: (buttonsRowId?: number) => JSX.Element;
 	customColumnItems?: { key: string; component: JSX.Element }[];
+	setShouldRefetch?: React.Dispatch<React.SetStateAction<boolean>>;
+	shouldRefetch?: boolean;
 }
 
 const TableWidget = ({
@@ -45,6 +47,8 @@ const TableWidget = ({
 	getTableDataUrl = '',
 	rowActions,
 	customColumnItems,
+	shouldRefetch,
+	setShouldRefetch,
 }: ITableProps) => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [perPage, setPerPage] = useState(10);
@@ -61,6 +65,7 @@ const TableWidget = ({
 		data: tableData,
 		error,
 		isLoading,
+		refetch,
 	} = useQuery([getTableDataUrl?.replace('/', '')], getTableData);
 	const cardFooter = displayLoadMore && (
 		<CardFooter className='justify-content-center'>
@@ -69,6 +74,10 @@ const TableWidget = ({
 			</Button>
 		</CardFooter>
 	);
+	useEffect(() => {
+		if (shouldRefetch) refetch().then(() => setShouldRefetch && setShouldRefetch(false));
+	}, [refetch, setShouldRefetch, shouldRefetch]);
+
 	const cardHeader = shouldShowHeader && (
 		<CardHeader>
 			{title && <CardTitle>{title}</CardTitle>}
@@ -120,7 +129,7 @@ const TableWidget = ({
 								{tableColumns &&
 									tableColumns.map((i, index) => (
 										<th scope='col' key={index}>
-											{i.name}
+											loading......
 										</th>
 									))}
 							</tr>

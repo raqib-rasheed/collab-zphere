@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import Button from '../../../components/bootstrap/Button';
@@ -15,6 +16,7 @@ import TableWidget from '../../../widgets/Table';
 
 const EmployeeAssetSetup = () => {
 	const [addNewModalVisible, setAddNewModalVisible] = useState(false);
+	const [shouldRefetch, setShouldRefetch] = useState(false);
 	const columns = [
 		{ name: 'NAME', key: 'name' },
 		{ name: 'RESPONSE', key: 'created_at' },
@@ -27,6 +29,7 @@ const EmployeeAssetSetup = () => {
 			color: 'info' as TColor | 'link' | 'brand' | 'brand-two' | 'storybook',
 			id: `formBuilder-${buttonsRowId}`,
 		};
+		function handleRemoveFormBuilderItem() {}
 		return (
 			<div>
 				{/* eslint-disable-next-line react/jsx-props-no-spreading */}
@@ -42,7 +45,7 @@ const EmployeeAssetSetup = () => {
 				{/* eslint-disable-next-line react/jsx-props-no-spreading */}
 				<Button {...commonProps} icon='Edit' />
 				{/* eslint-disable-next-line react/jsx-props-no-spreading */}
-				<Button {...commonProps} icon='Delete' />
+				<Button onClick={handleRemoveFormBuilderItem} {...commonProps} icon='Delete' />
 			</div>
 		);
 	};
@@ -52,8 +55,15 @@ const EmployeeAssetSetup = () => {
 			formName: '',
 		},
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		onSubmit: (values) => {
-			// console.log(JSON.stringify(values, null, 2));
+		onSubmit: async (values) => {
+			await axios.post('/FormBuilder-store', {
+				name: values.formName,
+				code: `LPK- ${Math.random()}`,
+				is_active: values.formActiveRadio,
+				user_id: 1,
+			});
+			setAddNewModalVisible(false);
+			setShouldRefetch(true);
 		},
 	});
 	const addNewModal = (
@@ -107,7 +117,7 @@ const EmployeeAssetSetup = () => {
 				</div>
 			</ModalBody>
 			<ModalFooter className='bg-transparent'>
-				<Button color='info' className='w-100' onClick={() => {}}>
+				<Button color='info' className='w-100' onClick={formik.handleSubmit}>
 					Save
 				</Button>
 			</ModalFooter>
@@ -124,6 +134,8 @@ const EmployeeAssetSetup = () => {
 			/>
 			<Page container='fluid'>
 				<TableWidget
+					shouldRefetch={shouldRefetch}
+					setShouldRefetch={setShouldRefetch}
 					getTableDataUrl='/FormBuilder'
 					tableColumns={columns}
 					title=''
