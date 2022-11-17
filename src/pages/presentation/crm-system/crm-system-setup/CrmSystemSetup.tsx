@@ -5,6 +5,7 @@ import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
 import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
 import TableWidget from '../../../../widgets/Table';
 import Card, { CardBody } from '../../../../components/bootstrap/Card';
+import Pipeline from './Pipeline';
 
 // TODO Add select for Lead stages and Deal stages
 
@@ -20,10 +21,7 @@ const columns = {
 	Pipeline: [{ name: 'PIPELINE', key: 'name' }, { name: 'ACTION' }],
 	'Lead Stages': ['LEAD STAGES', 'ACTION'],
 	'Deal Stages': ['DEAL STAGES', 'ACTION'],
-	Sources: [
-		{ name: 'SOURCES', key: 'name' },
-		{ name: 'ACTION', key: 'name' },
-	],
+	Sources: [{ name: 'SOURCES', key: 'name' }, { name: 'ACTION' }],
 	Labels: ['LABELS', 'ACTION'],
 	'Contract-Type': [{ name: 'NAME', key: 'name' }, { name: 'ACTION' }],
 };
@@ -45,11 +43,22 @@ const CrmSystemSetup = () => {
 	}, [activeTab]);
 
 	const getTabContent = useMemo(() => {
-		console.log(generateColumns);
 		const contentsWithTable = ['Pipeline', 'Sources', 'Contract-Type'];
+		if (activeTab === 'Pipeline') {
+			return <Pipeline />;
+		}
 		if (contentsWithTable.includes(activeTab)) {
+			const commonRowActions = () => {
+				return (
+					<>
+						<Button icon='Edit' />
+						<Button className='mx-2' icon='Delete' />
+					</>
+				);
+			};
 			return (
 				<TableWidget
+					rowActions={commonRowActions}
 					getTableDataUrl={`/${activeTab.toLocaleLowerCase()}`}
 					tableColumns={generateColumns as any}
 				/>
