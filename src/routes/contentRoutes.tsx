@@ -119,8 +119,13 @@ const APP = {
 		LEADS: lazy(() => import('../pages/presentation/crm-system/Leads')),
 		DEALS: lazy(() => import('../pages/presentation/crm-system/Deals')),
 		FORM_BUILDER: lazy(() => import('../pages/presentation/crm-system/FormBuilder')),
-		CONTRACT: lazy(() => import('../pages/presentation/crm-system/Contract')),
-		CRM_SYSTEM_SETUP: lazy(() => import('../pages/presentation/crm-system/CrmSystemSetup')),
+		CONTRACT: lazy(() => import('../pages/presentation/crm-system/contract/Contract')),
+		CONTRACT_DETAILS: lazy(
+			() => import('../pages/presentation/crm-system/contract/ContractDetails'),
+		),
+		CRM_SYSTEM_SETUP: lazy(
+			() => import('../pages/presentation/crm-system/crm-system-setup/CrmSystemSetup'),
+		),
 	},
 	HRM_SYSTEM: {
 		EMPLOYEE_SETUP: lazy(() => import('../pages/presentation/hrm-system/EmployeeSetup')),
@@ -522,7 +527,7 @@ const presentation = [
 		element: <APP.HRM_SYSTEM.HR_ADMIN_SETUP.HOLIDAYS />,
 		exact: true,
 	},
-	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 	{
 		path: sidebarMenus.hrmSystem.subMenu.documentSetup.path,
@@ -674,6 +679,7 @@ const presentation = [
 	},
 
 	// App > Project system
+
 	{
 		path: sidebarMenus.projectSystem.subMenu.projects.path,
 		element: <APP.PROJECT_SYSTEM.PROJECT />,
@@ -780,11 +786,11 @@ const presentation = [
 		element: <APP.CRM_SYSTEM.CONTRACT />,
 		exact: true,
 	},
-	// {
-	// 	path: sidebarMenus.crmSystem.subMenu.tracker.path,
-	// 	element: <APP.CRM_SYSTEM.TRACKER />,
-	// 	exact: true,
-	// },
+	{
+		path: sidebarMenus.crmSystem.subMenu.contract.path + '/:id',
+		element: <APP.CRM_SYSTEM.CONTRACT_DETAILS />,
+		exact: true,
+	},
 	{
 		path: sidebarMenus.crmSystem.subMenu.setup.path,
 		element: <APP.CRM_SYSTEM.CRM_SYSTEM_SETUP />,
