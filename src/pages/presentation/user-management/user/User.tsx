@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { useFormik } from 'formik';
 import Icon from '../../../../components/icon/Icon';
 import Page from '../../../../layout/Page/Page';
 import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
@@ -15,14 +14,10 @@ import Dropdown, {
 import useTourStep from '../../../../hooks/useTourStep';
 import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
 import axios from 'axios';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import Modal, { ModalBody, ModalFooter, ModalHeader } from '../../../../components/bootstrap/Modal';
-import { OffCanvasTitle } from '../../../../components/bootstrap/OffCanvas';
-import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
-import Input from '../../../../components/bootstrap/forms/Input';
-// import _ from 'lodash';
-import Select from '../../../../components/bootstrap/forms/Select';
-import { Options } from '../../../../components/bootstrap/Option';
+import { useQuery } from '@tanstack/react-query';
+import CreateNewUserForm from './CreateNewUserForm';
+import Spinner from '../../../../components/bootstrap/Spinner';
+import RemoveUser from './RemoveUser';
 
 // type FormValues = {
 // 	name: String;
@@ -35,143 +30,22 @@ import { Options } from '../../../../components/bootstrap/Option';
 const User = () => {
 	useTourStep(18);
 	const [addNewModalVisible, setAddNewModalVisible] = useState(false);
-
-	const formik = useFormik({
-		initialValues: {
-			name: '',
-			email: '',
-			type: '',
-			password: '',
-			dob: '',
-		},
-		onSubmit: (value: any) => {
-			// const alterVal = _.omit(value, ['type']);
-			console.log(value, 'first');
-			setAddNewModalVisible(false);
-			// @ts-ignore comment to disable type checking for a line in TypeScript.
-			addNewUser.mutate({
-				dob: value.dob,
-				email: value.email,
-				name: value.name,
-				password: value.password,
-				type: '1',
-			});
-		},
-	});
+	const [updateNewModalVisible, setUpdateNewModalVisible] = useState(false);
 
 	// api call
-	const getTableData = () => axios.get('/User');
+	const getUsers = () => axios.get('/User');
 	const {
 		data: usersResponse,
 		error: userErr,
 		isLoading: userLoading,
-	} = useQuery(['/User'], getTableData);
-
-	// const addNewUser = () => axios.get('/User-store');
-	// const {
-	// 	data: addNewUserResponse,
-	// 	error: addNewUserErr,
-	// 	isLoading: addNewUserLoading,
-	// } = useMutation(['/User-store'], addNewUser);
-
-	const addNewUser = useMutation((newUser) => {
-		return axios.post('/User-store', newUser);
-	});
-
-	const addNewUserModal = (
-		<Modal
-			// size='sm'
-			titleId='upcomingEdit'
-			isOpen={addNewModalVisible}
-			setIsOpen={setAddNewModalVisible}>
-			<ModalHeader setIsOpen={setAddNewModalVisible}>
-				<OffCanvasTitle id='upcomingEdit'>Create new user</OffCanvasTitle>
-			</ModalHeader>
-			<form onSubmit={formik.handleSubmit}>
-				<ModalBody>
-					<div>
-						<FormGroup isFloating>
-							<div className='row '>
-								<div className='col-6'>
-									<Input
-										placeholder='Name'
-										name='name'
-										value={formik.values.name}
-										onChange={formik.handleChange}
-									/>
-								</div>
-								<div className='col-6'>
-									<Input
-										placeholder='Email'
-										name='email'
-										value={formik.values.email}
-										onChange={formik.handleChange}
-									/>
-								</div>
-							</div>
-
-							<div className='row'>
-								<div className='col-6'>
-									{/* <Input
-										placeholder='User role'
-										name='type'
-										value={formik.values.type}
-										onChange={formik.handleChange}
-									/> */}
-									<Select
-										id={'role'}
-										name={'type'}
-										placeholder={'Role'}
-										value={formik.values.type}
-										onChange={formik.handleChange}
-										ariaLabel={'role'} // onBlur={Function}
-										// onFocus={Function}
-										// onInput={Function}
-										// onInvalid={Function}
-										// onSelect={Function}
-									>
-										<Options
-											list={[
-												{ value: 1, text: 'Accountant' },
-												{ value: 2, text: 'HR' },
-												{ value: 3, text: 'Employee' },
-											]}
-										/>
-									</Select>
-								</div>
-								<div className='col-6'>
-									<Input
-										placeholder='Password'
-										name='password'
-										value={formik.values.password}
-										onChange={formik.handleChange}
-									/>
-								</div>
-							</div>
-							<div className='row'>
-								<div className='col-12'>
-									<Input
-										placeholder='dob'
-										name='dob'
-										value={formik.values.dob}
-										onChange={formik.handleChange}
-									/>
-								</div>
-							</div>
-						</FormGroup>
-					</div>
-				</ModalBody>
-				<ModalFooter className='bg-transparent'>
-					<Button color='info' className='w-100' type='submit'>
-						Save
-					</Button>
-				</ModalFooter>
-			</form>
-		</Modal>
-	);
+	} = useQuery(['User'], getUsers);
 
 	if (userLoading) {
-		return <div>loading...</div>;
+		return (
+			<div style={{ textAlign: 'center', width: '130vh' }}>
+				<Spinner color={'primary'} />
+			</div>
+		);
 	}
 	if (userErr) {
 		return <div>error...</div>;
@@ -179,11 +53,16 @@ const User = () => {
 	return (
 		<PageWrapper title='Users Page'>
 			<PresentaionPagesSubHeader
-				showSubHeaderRight
 				title='Manage User'
-				addNewModal={addNewUserModal}
+				showSubHeaderRight
+				addNewModal={
+					<CreateNewUserForm
+						addNewModalVisible={addNewModalVisible}
+						setAddNewModalVisible={setAddNewModalVisible}
+					/>
+				}
 				setAddNewModalVisible={setAddNewModalVisible}
-				showAddNewButton={true}
+				// customSubHeaderRightActions={CreateNewUserForm}
 			/>
 			<Page container='fluid'>
 				<div className='row row-cols-xxl-3 row-cols-lg-3 row-cols-md-2'>
@@ -253,22 +132,38 @@ const User = () => {
 																</DropdownToggle>
 																<DropdownMenu>
 																	<DropdownItem className='p-2'>
-																		<div>
+																		<div
+																			onClick={() =>
+																				setAddNewModalVisible(
+																					true,
+																				)
+																			}>
 																			<Icon
 																				size='lg'
 																				icon='edit'
 																			/>
 																			<span>Edit</span>
+																			<CreateNewUserForm
+																				addNewModalVisible={
+																					updateNewModalVisible
+																				}
+																				setAddNewModalVisible={
+																					setUpdateNewModalVisible
+																				}
+																				initialValues={{
+																					id: user?.id,
+																					name: user?.name,
+																					email: user?.email,
+																					dob: user?.dob,
+																					type: user?.type,
+																				}}
+																			/>
 																		</div>
 																	</DropdownItem>
 																	<DropdownItem className='p-2'>
-																		<div>
-																			<Icon
-																				size='lg'
-																				icon='trash'
-																			/>
-																			<span>Delete</span>
-																		</div>
+																		<RemoveUser
+																			userId={user?.idddd}
+																		/>
 																	</DropdownItem>
 																	<DropdownItem className='p-2'>
 																		<div>
