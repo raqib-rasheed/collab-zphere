@@ -5,19 +5,13 @@ import Page from '../../../../layout/Page/Page';
 import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
 import Card, { CardBody } from '../../../../components/bootstrap/Card';
 import Badge from '../../../../components/bootstrap/Badge';
-import Button from '../../../../components/bootstrap/Button';
-import Dropdown, {
-	DropdownItem,
-	DropdownMenu,
-	DropdownToggle,
-} from '../../../../components/bootstrap/Dropdown';
 import useTourStep from '../../../../hooks/useTourStep';
 import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import CreateNewUserForm from './CreateNewUserForm';
+import CreateOrEditUserForm from './user-actions/CreateOrEditUserForm';
 import Spinner from '../../../../components/bootstrap/Spinner';
-import RemoveUser from './RemoveUser';
+import UserDropdownOptions from './UserDropdownOptions';
 
 // type FormValues = {
 // 	name: String;
@@ -30,9 +24,8 @@ import RemoveUser from './RemoveUser';
 const User = () => {
 	useTourStep(18);
 	const [addNewModalVisible, setAddNewModalVisible] = useState(false);
-	const [updateNewModalVisible, setUpdateNewModalVisible] = useState(false);
 
-	// api call
+	// api calls
 	const getUsers = () => axios.get('/User');
 	const {
 		data: usersResponse,
@@ -48,7 +41,7 @@ const User = () => {
 		);
 	}
 	if (userErr) {
-		return <div>error...</div>;
+		return <div>something went wrong...</div>;
 	}
 	return (
 		<PageWrapper title='Users Page'>
@@ -56,13 +49,13 @@ const User = () => {
 				title='Manage User'
 				showSubHeaderRight
 				addNewModal={
-					<CreateNewUserForm
+					<CreateOrEditUserForm
 						addNewModalVisible={addNewModalVisible}
 						setAddNewModalVisible={setAddNewModalVisible}
 					/>
 				}
 				setAddNewModalVisible={setAddNewModalVisible}
-				// customSubHeaderRightActions={CreateNewUserForm}
+				// customSubHeaderRightActions={CreateOrEditUserForm}
 			/>
 			<Page container='fluid'>
 				<div className='row row-cols-xxl-3 row-cols-lg-3 row-cols-md-2'>
@@ -93,7 +86,10 @@ const User = () => {
 														</div>
 													</div>
 													{user.isActive && (
-														<span className='position-absolute top-100 start-85 translate-middle badge border border-2 border-light rounded-circle bg-success p-2'>
+														<span
+															className='position-absolute 
+															top-100 start-85 translate-middle badge border 
+															border-2 border-light rounded-circle bg-success p-2'>
 															<span className='visually-hidden'>
 																Online user
 															</span>
@@ -110,7 +106,9 @@ const User = () => {
 																	{/* {`${user.name} ${user.surname}`} */}
 																	{`${user.name}`}
 																</div>
-																<small className='border border-success border-2 text-success fw-bold px-2 py-1 rounded-1'>
+																<small
+																	className='border border-success border-2 text-success 
+																	fw-bold px-2 py-1 rounded-1'>
 																	{user.position}
 																</small>
 															</div>
@@ -119,66 +117,7 @@ const User = () => {
 																@{user.name}
 															</div>
 														</div>
-														<div className='col-auto'>
-															<Dropdown direction='start'>
-																<DropdownToggle hasIcon={false}>
-																	<Button
-																		icon='ThreeDotsVertical'
-																		color='dark'
-																		isLight
-																		hoverShadow='sm'
-																		data-tour={user.name}
-																	/>
-																</DropdownToggle>
-																<DropdownMenu>
-																	<DropdownItem className='p-2'>
-																		<div
-																			onClick={() =>
-																				setAddNewModalVisible(
-																					true,
-																				)
-																			}>
-																			<Icon
-																				size='lg'
-																				icon='edit'
-																			/>
-																			<span>Edit</span>
-																			<CreateNewUserForm
-																				addNewModalVisible={
-																					updateNewModalVisible
-																				}
-																				setAddNewModalVisible={
-																					setUpdateNewModalVisible
-																				}
-																				initialValues={{
-																					id: user?.id,
-																					name: user?.name,
-																					email: user?.email,
-																					dob: user?.dob,
-																					type: user?.type,
-																				}}
-																			/>
-																		</div>
-																	</DropdownItem>
-																	<DropdownItem className='p-2'>
-																		<RemoveUser
-																			userId={user?.idddd}
-																		/>
-																	</DropdownItem>
-																	<DropdownItem className='p-2'>
-																		<div>
-																			<Icon
-																				size='lg'
-																				icon='settings'
-																			/>
-																			<span>
-																				Reset Password
-																			</span>
-																		</div>
-																	</DropdownItem>
-																</DropdownMenu>
-															</Dropdown>
-														</div>
+														<UserDropdownOptions user={user} />
 													</div>
 													{!!user?.services && (
 														<div className='row g-2 mt-3'>

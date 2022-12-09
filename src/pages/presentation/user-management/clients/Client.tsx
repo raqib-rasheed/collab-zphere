@@ -1,55 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
-import { useFormik } from 'formik';
 import Icon from '../../../../components/icon/Icon';
 import Page from '../../../../layout/Page/Page';
 import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
-import Card, { CardBody, CardFooter } from '../../../../components/bootstrap/Card';
-import USERS from '../../../../common/data/userDummyData';
+import Card, { CardBody } from '../../../../components/bootstrap/Card';
 import Badge from '../../../../components/bootstrap/Badge';
-import Button from '../../../../components/bootstrap/Button';
-import Dropdown, {
-	DropdownItem,
-	DropdownMenu,
-	DropdownToggle,
-} from '../../../../components/bootstrap/Dropdown';
 import useTourStep from '../../../../hooks/useTourStep';
 import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import CreateOrEditClientForm from './client-actions/CreateOrEditClientForm';
+import Spinner from '../../../../components/bootstrap/Spinner';
+import UserDropdownOptions from './ClientDropdownOptions';
+
+// type FormValues = {
+// 	name: String;
+// 	email: String;
+// 	type: String;
+// 	password: String;
+// 	dob: String;
+// };
 
 const Client = () => {
 	useTourStep(18);
-	const formik = useFormik({
-		initialValues: {
-			available: false,
-			searchInput: '',
-			services: [],
-		},
-		onSubmit: () => {
-			// setFilterMenu(false);
-			// alert(JSON.stringify(values, null, 2));
-		},
-	});
+	const [addNewModalVisible, setAddNewModalVisible] = useState(false);
 
-	const searchUsers = Object.keys(USERS)
-		.filter(
-			(key) =>
-				USERS[key].username
-					.toLowerCase()
-					.includes(formik.values.searchInput.toLowerCase()) ||
-				USERS[key].name.toLowerCase().includes(formik.values.searchInput.toLowerCase()) ||
-				USERS[key].surname
-					.toLowerCase()
-					.includes(formik.values.searchInput.toLowerCase()) ||
-				USERS[key].position.toLowerCase().includes(formik.values.searchInput.toLowerCase()),
-		)
-		.filter((key2) => (formik.values.available ? USERS[key2].isOnline : key2))
-		.map((i) => USERS[i]);
+	// api calls
+	const getClient = () => axios.get('/Client');
+	const {
+		data: usersResponse,
+		error: userErr,
+		isLoading: userLoading,
+	} = useQuery(['Client'], getClient);
+
+	if (userLoading) {
+		return (
+			<div style={{ textAlign: 'center', width: '130vh' }}>
+				<Spinner color={'primary'} />
+			</div>
+		);
+	}
+	if (userErr) {
+		return <div>something went wrong...</div>;
+	}
 	return (
 		<PageWrapper title='Users Page'>
-			<PresentaionPagesSubHeader showSubHeaderRight title='Find Employee Payslip' />
+			<PresentaionPagesSubHeader
+				title='Manage User'
+				showSubHeaderRight
+				addNewModal={
+					<CreateOrEditClientForm
+						addNewModalVisible={addNewModalVisible}
+						setAddNewModalVisible={setAddNewModalVisible}
+					/>
+				}
+				setAddNewModalVisible={setAddNewModalVisible}
+			/>
 			<Page container='fluid'>
 				<div className='row row-cols-xxl-3 row-cols-lg-3 row-cols-md-2'>
-					{searchUsers.map((user) => (
+					{usersResponse?.data?.data?.map((user: any) => (
 						<div key={user.username} className='col'>
 							<Card>
 								<CardBody>
@@ -69,14 +78,17 @@ const Client = () => {
 																'shadow',
 															)}>
 															<img
-																src={user.src}
+																src={user.profile}
 																alt={user.name}
 																width={100}
 															/>
 														</div>
 													</div>
-													{user.isOnline && (
-														<span className='position-absolute top-100 start-85 translate-middle badge border border-2 border-light rounded-circle bg-success p-2'>
+													{user.isActive && (
+														<span
+															className='position-absolute 
+															top-100 start-85 translate-middle badge border 
+															border-2 border-light rounded-circle bg-success p-2'>
 															<span className='visually-hidden'>
 																Online user
 															</span>
@@ -90,65 +102,25 @@ const Client = () => {
 														<div className='col'>
 															<div className='d-flex align-items-center'>
 																<div className='fw-bold fs-5 me-2'>
-																	{`${user.name} ${user.surname}`}
+																	{/* {`${user.name} ${user.surname}`} */}
+																	{`${user.name}`}
 																</div>
-																<small className='border border-success border-2 text-success fw-bold px-2 py-1 rounded-1'>
+																<small
+																	className='border border-success border-2 text-success 
+																	fw-bold px-2 py-1 rounded-1'>
 																	{user.position}
 																</small>
 															</div>
 
 															<div className='text-muted'>
-																@{user.username}
+																@{user.name}
 															</div>
 														</div>
-														<div className='col-auto'>
-															<Dropdown direction='start'>
-																<DropdownToggle hasIcon={false}>
-																	<Button
-																		icon='ThreeDotsVertical'
-																		color='dark'
-																		isLight
-																		hoverShadow='sm'
-																		data-tour={user.name}
-																	/>
-																</DropdownToggle>
-																<DropdownMenu>
-																	<DropdownItem className='p-2'>
-																		<div>
-																			<Icon
-																				size='lg'
-																				icon='edit'
-																			/>
-																			<span>Edit</span>
-																		</div>
-																	</DropdownItem>
-																	<DropdownItem className='p-2'>
-																		<div>
-																			<Icon
-																				size='lg'
-																				icon='trash'
-																			/>
-																			<span>Delete</span>
-																		</div>
-																	</DropdownItem>
-																	<DropdownItem className='p-2'>
-																		<div>
-																			<Icon
-																				size='lg'
-																				icon='settings'
-																			/>
-																			<span>
-																				Reset Password
-																			</span>
-																		</div>
-																	</DropdownItem>
-																</DropdownMenu>
-															</Dropdown>
-														</div>
+														<UserDropdownOptions user={user} />
 													</div>
 													{!!user?.services && (
 														<div className='row g-2 mt-3'>
-															{user?.services.map((service) => (
+															{user?.services.map((service: any) => (
 																<div
 																	key={service.name}
 																	className='col-auto'>
@@ -172,20 +144,6 @@ const Client = () => {
 										</div>
 									</div>
 								</CardBody>
-								<CardFooter
-									className='py-1'
-									style={{ borderTop: '1px solid #f1f1f1' }}>
-									<div className='w-100 mx-5 d-flex justify-content-between'>
-										<div>
-											<h6>2</h6>
-											<span className='text-muted'>Deal</span>
-										</div>
-										<div>
-											<h6>2</h6>
-											<span className='text-muted'>Projects</span>
-										</div>
-									</div>
-								</CardFooter>
 							</Card>
 						</div>
 					))}
