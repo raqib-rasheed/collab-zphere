@@ -8,6 +8,7 @@ import { sidebarMenus } from '../menu';
 // fix
 const StoreProviderOverride = StoreProvider as any;
 const APP = {
+	AUTH: { LOGIN: lazy(() => import('../pages/auth/login')) },
 	DASHBOARD: {
 		PROJECT: lazy(() => import('../pages/presentation/dashboard/DashboardPage')),
 		HRM: {
@@ -283,6 +284,12 @@ const APP = {
 };
 
 const presentation = [
+	//  >>>>>>>>> Auth
+	{
+		path: '/login',
+		element: <APP.AUTH.LOGIN />,
+		exact: true,
+	},
 	//  >>>>>>>>> Dashboard
 	{
 		path: sidebarMenus.dashboard.path,
@@ -867,7 +874,11 @@ const presentation = [
 	},
 	{
 		path: sidebarMenus.bot.path,
-		element: <StoreProviderOverride store={store}><APP.BOT /></StoreProviderOverride>,
+		element: (
+			<StoreProviderOverride store={store}>
+				<APP.BOT />
+			</StoreProviderOverride>
+		),
 		exact: true,
 	},
 ];
