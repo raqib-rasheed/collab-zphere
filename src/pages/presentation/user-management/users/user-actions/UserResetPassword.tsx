@@ -12,6 +12,7 @@ import { OffCanvasTitle } from '../../../../../components/bootstrap/OffCanvas';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import Alert from '../../../../../components/bootstrap/Alert';
+import Spinner from '../../../../../components/bootstrap/Spinner';
 
 interface IResetPassword {
 	userId: string;
@@ -21,7 +22,7 @@ interface IResetPassword {
 }
 
 const UserResetPassword = (props: IResetPassword) => {
-	const userResetPassword = useMutation(
+	const userPasswordUpdate = useMutation(
 		(updatedUser) => {
 			return axios.post('/User-password-update', updatedUser);
 		},
@@ -36,6 +37,7 @@ const UserResetPassword = (props: IResetPassword) => {
 					shadow='md'>
 					A simple alert—check it out!
 				</Alert>;
+				props.setResetPasswordModalVisible(false);
 			},
 			onError: () => {
 				<Alert
@@ -58,13 +60,11 @@ const UserResetPassword = (props: IResetPassword) => {
 		},
 		onSubmit: (value: any) => {
 			// @ts-ignore comment to disable type checking for a line in TypeScript.
-			userResetPassword.mutate({
+			userPasswordUpdate.mutate({
 				id: props.userId,
 				oldPassword: value.oldPassword,
 				newPassword: value.newPassword,
 			});
-
-			props.setResetPasswordModalVisible(false);
 		},
 	});
 
@@ -83,6 +83,7 @@ const UserResetPassword = (props: IResetPassword) => {
 							<div className='row my-3'>
 								<div className='col-6'>
 									<Input
+										required
 										placeholder='Old Password'
 										name='oldPassword'
 										value={formik.values.oldPassword}
@@ -91,6 +92,7 @@ const UserResetPassword = (props: IResetPassword) => {
 								</div>
 								<div className='col-6'>
 									<Input
+										required
 										placeholder='New Password'
 										name='newPassword'
 										value={formik.values.newPassword}
@@ -103,6 +105,9 @@ const UserResetPassword = (props: IResetPassword) => {
 				</ModalBody>
 				<ModalFooter className='bg-transparent'>
 					<Button color='info' className='w-100' type='submit'>
+						{userPasswordUpdate.isLoading && (
+							<Spinner color='primary' inButton isSmall />
+						)}
 						Save
 					</Button>
 				</ModalFooter>

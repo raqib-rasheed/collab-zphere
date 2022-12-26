@@ -38,7 +38,9 @@ const UserDropdownOptions = (props: IUserDropdownOptions) => {
 							<span>Delete</span>
 						</div>
 					</DropdownItem>
-					<DropdownItem className='p-2'>
+					<DropdownItem
+						className='p-2'
+						onClick={() => setResetPasswordModalVisible(true)}>
 						<div>
 							<Icon size='lg' icon='settings' />
 							<span>Reset Password</span>

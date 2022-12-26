@@ -10,17 +10,17 @@ import CreateOrEditUserForm from './client-actions/CreateOrEditClientForm';
 import RemoveUser from './client-actions/RemoveClient';
 import ClientResetPassword from './client-actions/ClientResetPassword';
 
-interface IUserDropdownOptions {
-	user: any;
+interface IClientDropdownOptions {
+	client: any;
 }
 
-const UserDropdownOptions = (props: IUserDropdownOptions) => {
+const ClientDropdownOptions = (props: IClientDropdownOptions) => {
 	const [updateNewModalVisible, setUpdateNewModalVisible] = useState(false);
 	const [removeModalVisible, setRemoveModalVisible] = useState(false);
 	const [resetPasswordModalVisible, setResetPasswordModalVisible] = useState(false);
 	return (
 		<div className='col-auto'>
-			<Dropdown key={props.user?.id} direction='start'>
+			<Dropdown key={props.client?.id} direction='start'>
 				<DropdownToggle hasIcon={false}>
 					<Button icon='ThreeDotsVertical' color='dark' isLight hoverShadow='sm' />
 				</DropdownToggle>
@@ -50,21 +50,21 @@ const UserDropdownOptions = (props: IUserDropdownOptions) => {
 				addNewModalVisible={updateNewModalVisible}
 				setAddNewModalVisible={setUpdateNewModalVisible}
 				initialValues={{
-					id: props.user?.id,
-					name: props.user?.name,
-					email: props.user?.email,
-					dob: props.user?.dob,
-					type: props.user?.type,
+					id: props.client?.id,
+					name: props.client?.name,
+					email: props.client?.email,
+					dob: props.client?.dob,
+					type: props.client?.type,
 				}}
 			/>
 			<RemoveUser
-				userId={props.user?.id}
+				userId={props.client?.id}
 				removeModalVisible={removeModalVisible}
 				setRemoveModalVisible={setRemoveModalVisible}
 			/>
 			<ClientResetPassword
-				userId={props.user?.id}
-				userPassword={props.user?.password}
+				userId={props.client?.id}
+				userPassword={props.client?.password}
 				resetPasswordModalVisible={resetPasswordModalVisible}
 				setResetPasswordModalVisible={setResetPasswordModalVisible}
 			/>
@@ -72,4 +72,4 @@ const UserDropdownOptions = (props: IUserDropdownOptions) => {
 	);
 };
 
-export default UserDropdownOptions;
+export default ClientDropdownOptions;

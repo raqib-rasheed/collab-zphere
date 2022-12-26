@@ -15,23 +15,50 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import moment from 'moment';
 import Alert from '../../../../../components/bootstrap/Alert';
+import { useToasts } from 'react-toast-notifications';
+import Toasts from '../../../../../components/bootstrap/Toasts';
+import Spinner from '../../../../../components/bootstrap/Spinner';
 
 const CreateOrEditUserForm = (props: any) => {
+	const { addToast } = useToasts();
 	const addNewUser = useMutation(
 		(newUser) => {
 			return axios.post('/User-store', newUser);
 		},
 		{
-			onSuccess: () => {
-				<Alert
-					className=''
-					color='success'
-					icon='CheckCircleOutline'
-					isDismissible
-					isLight
-					shadow='md'>
-					A simple alert—check it out!
-				</Alert>;
+			onSuccess: (data) => {
+				console.log(data);
+				if (data.data?.is_success) {
+					addToast(
+						<Toasts
+							icon={'bolt'}
+							iconColor={'primary'} // 'primary' || 'secondary' || 'success' || 'info' || 'warning' || 'danger' || 'light' || 'dark'
+							title={'Success'}
+							// time={'now'}
+							isDismiss={true}>
+							User created successfully
+						</Toasts>,
+						{
+							autoDismiss: true,
+							autoDismissTimeout: 1000,
+						},
+					);
+				} else {
+					addToast(
+						<Toasts
+							icon={'bolt'}
+							iconColor={'primary'}
+							title={'Oops...'}
+							isDismiss={true}>
+							{data.data?.msg}
+						</Toasts>,
+						{
+							autoDismiss: true,
+							autoDismissTimeout: 1000,
+						},
+					);
+				}
+				props.setAddNewModalVisible(false);
 			},
 			onError: () => {
 				<Alert
@@ -82,11 +109,12 @@ const CreateOrEditUserForm = (props: any) => {
 			name: props?.initialValues?.name ?? '',
 			email: props?.initialValues?.email ?? '',
 			type: props?.initialValues?.type ?? '',
-			dob: moment(props?.initialValues?.dob).format('YYYY-MM-DD') ?? '',
+			dob: props?.initialValues?.dob
+				? moment(props?.initialValues?.dob).format('YYYY-MM-DD')
+				: '',
 			password: '',
 		},
 		onSubmit: (value: any) => {
-			// props.setAddNewModalVisible(false);
 			if (props?.initialFormValue?.id) {
 				// @ts-ignore comment to disable type checking for a line in TypeScript.
 				updateExistUser.mutate({
@@ -124,6 +152,7 @@ const CreateOrEditUserForm = (props: any) => {
 							<div className='row my-3'>
 								<div className='col-6'>
 									<Input
+										required
 										placeholder='Name'
 										name='name'
 										value={formik.values.name}
@@ -132,35 +161,49 @@ const CreateOrEditUserForm = (props: any) => {
 								</div>
 								<div className='col-6'>
 									<Input
-										placeholder='Email'
-										name='email'
-										value={formik.values.email}
+										required
+										placeholder='Date of birth'
+										type='date'
+										name='dob'
+										value={formik.values.dob}
 										onChange={formik.handleChange}
 									/>
 								</div>
 							</div>
+							<div className='col-12 my-3'>
+								<Input
+									required
+									// type='email'
+									placeholder='Email'
+									name='email'
+									value={formik.values.email}
+									onChange={formik.handleChange}
+								/>
+							</div>
 
+							<div className='col-12 my-3'>
+								<Select
+									required
+									id={'role'}
+									name={'type'}
+									placeholder={'Role'}
+									value={formik.values.type}
+									onChange={formik.handleChange}
+									ariaLabel={'role'}>
+									<Options
+										list={[
+											{ value: 1, text: 'Accountant' },
+											{ value: 2, text: 'HR' },
+											{ value: 3, text: 'Employee' },
+										]}
+									/>
+								</Select>
+							</div>
 							<div className='row my-3'>
-								<div className='col-6'>
-									<Select
-										id={'role'}
-										name={'type'}
-										placeholder={'Role'}
-										value={formik.values.type}
-										onChange={formik.handleChange}
-										ariaLabel={'role'}>
-										<Options
-											list={[
-												{ value: 1, text: 'Accountant' },
-												{ value: 2, text: 'HR' },
-												{ value: 3, text: 'Employee' },
-											]}
-										/>
-									</Select>
-								</div>
 								{!props?.initialValues?.id && (
-									<div className='col-6'>
+									<div className='col-12'>
 										<Input
+											required
 											placeholder='Password'
 											name='password'
 											value={formik.values.password}
@@ -169,21 +212,12 @@ const CreateOrEditUserForm = (props: any) => {
 									</div>
 								)}
 							</div>
-							<div className='row my-3'>
-								<div className='col-12'>
-									<Input
-										placeholder='dob'
-										name='dob'
-										value={formik.values.dob}
-										onChange={formik.handleChange}
-									/>
-								</div>
-							</div>
 						</FormGroup>
 					</div>
 				</ModalBody>
 				<ModalFooter className='bg-transparent'>
 					<Button color='info' className='w-100' type='submit'>
+						{addNewUser.isLoading && <Spinner color='primary' inButton isSmall />}
 						Save
 					</Button>
 				</ModalFooter>

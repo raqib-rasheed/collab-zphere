@@ -8,6 +8,7 @@ import Modal, {
 	ModalHeader,
 } from '../../../../../components/bootstrap/Modal';
 import { OffCanvasTitle } from '../../../../../components/bootstrap/OffCanvas';
+import Spinner from '../../../../../components/bootstrap/Spinner';
 
 interface IRemoveUser {
 	userId: string;
@@ -16,9 +17,15 @@ interface IRemoveUser {
 }
 
 const RemoveUser = (props: IRemoveUser) => {
-	const removeUser = useMutation((userId) => {
-		return axios.post('/User-del', userId);
-	});
+	const removeUser = useMutation(
+		(userId) => {
+			return axios.post('/User-del', userId);
+		},
+		{
+			onSuccess: () => {},
+			onError: () => {},
+		},
+	);
 
 	function handleRemoveUser() {
 		// @ts-ignore comment to disable type checking for a line in TypeScript.
@@ -34,21 +41,18 @@ const RemoveUser = (props: IRemoveUser) => {
 			isOpen={props.removeModalVisible}
 			setIsOpen={() => props.setRemoveModalVisible(false)}>
 			<ModalHeader setIsOpen={() => props.setRemoveModalVisible(false)}>
-				<OffCanvasTitle id='upcomingEdit'>Delete user</OffCanvasTitle>
+				<OffCanvasTitle id='upcomingEdit'>Delete</OffCanvasTitle>
 			</ModalHeader>
 
 			<ModalBody>
-				<div></div>
+				<div>Are sure want to delete user!</div>
 			</ModalBody>
 			<ModalFooter className='bg-transparent'>
-				<Button color='info' className='w-100' type='submit'>
-					No
-				</Button>
-				<Button
-					color='info'
-					className='w-100'
-					// type='submit'
-					onClick={() => handleRemoveUser()}>
+				{/* <Button color='info' className='col-4 mx-2'>
+					Cancel
+				</Button> */}
+				<Button color='info' className=' col-4 mx-2' onClick={() => handleRemoveUser()}>
+					{removeUser.isLoading && <Spinner color='primary' inButton isSmall />}
 					Yes
 				</Button>
 			</ModalFooter>

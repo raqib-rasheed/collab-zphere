@@ -19,7 +19,7 @@ import Alert from '../../../../../components/bootstrap/Alert';
 const CreateOrEditClientForm = (props: any) => {
 	const addNewUser = useMutation(
 		(newUser) => {
-			return axios.post('/User-store', newUser);
+			return axios.post('/Client-store', newUser);
 		},
 		{
 			onSuccess: () => {
@@ -49,7 +49,7 @@ const CreateOrEditClientForm = (props: any) => {
 
 	const updateExistUser = useMutation(
 		(updatedUser) => {
-			return axios.post('/User-edit', updatedUser);
+			return axios.post('/Client-edit', updatedUser);
 		},
 		{
 			onSuccess: () => {
@@ -81,8 +81,8 @@ const CreateOrEditClientForm = (props: any) => {
 		initialValues: {
 			name: props?.initialValues?.name ?? '',
 			email: props?.initialValues?.email ?? '',
-			type: props?.initialValues?.type ?? '',
-			dob: moment(props?.initialValues?.dob).format('YYYY-MM-DD') ?? '',
+			// type: props?.initialValues?.type ?? '',
+			// dob: moment(props?.initialValues?.dob).format('YYYY-MM-DD') ?? '',
 			password: '',
 		},
 		onSubmit: (value: any) => {
@@ -93,17 +93,17 @@ const CreateOrEditClientForm = (props: any) => {
 					id: props?.initialValues?.id,
 					name: value.name,
 					email: value.email,
-					dob: value.dob,
-					type: '1',
+					// dob: value.dob,
+					// type: '1',
 				});
 			} else {
 				// @ts-ignore comment to disable type checking for a line in TypeScript.
 				addNewUser.mutate({
-					dob: value.dob,
+					// dob: value.dob,
 					email: value.email,
 					name: value.name,
 					password: value.password,
-					type: '1',
+					// type: '1',
 				});
 			}
 		},
@@ -141,7 +141,7 @@ const CreateOrEditClientForm = (props: any) => {
 							</div>
 
 							<div className='row my-3'>
-								<div className='col-6'>
+								{/* <div className='col-6'>
 									<Select
 										id={'role'}
 										name={'type'}
@@ -157,7 +157,7 @@ const CreateOrEditClientForm = (props: any) => {
 											]}
 										/>
 									</Select>
-								</div>
+								</div> */}
 								{!props?.initialValues?.id && (
 									<div className='col-6'>
 										<Input
@@ -169,7 +169,7 @@ const CreateOrEditClientForm = (props: any) => {
 									</div>
 								)}
 							</div>
-							<div className='row my-3'>
+							{/* <div className='row my-3'>
 								<div className='col-12'>
 									<Input
 										placeholder='dob'
@@ -178,7 +178,7 @@ const CreateOrEditClientForm = (props: any) => {
 										onChange={formik.handleChange}
 									/>
 								</div>
-							</div>
+							</div> */}
 						</FormGroup>
 					</div>
 				</ModalBody>
