@@ -1,10 +1,7 @@
 import React from 'react';
-import useDarkMode from '../../../../hooks/useDarkMode';
 import { CardBody, CardHeader } from '../../../../components/bootstrap/Card';
 
 const CompanySetting = () => {
-	const { themeStatus } = useDarkMode();
-
 	return (
 		<>
 			<CardHeader size={'sm'} borderSize={1} className='d-block'>
