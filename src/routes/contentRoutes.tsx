@@ -118,7 +118,9 @@ const APP = {
 	CRM_SYSTEM: {
 		LEADS: lazy(() => import('../pages/presentation/crm-system/Leads')),
 		DEALS: lazy(() => import('../pages/presentation/crm-system/Deals')),
-		FORM_BUILDER: lazy(() => import('../pages/presentation/crm-system/FormBuilder')),
+		FORM_BUILDER: lazy(
+			() => import('../pages/presentation/crm-system/form-builder/FormBuilder'),
+		),
 		CONTRACT: lazy(() => import('../pages/presentation/crm-system/contract/Contract')),
 		CONTRACT_DETAILS: lazy(
 			() => import('../pages/presentation/crm-system/contract/ContractDetails'),

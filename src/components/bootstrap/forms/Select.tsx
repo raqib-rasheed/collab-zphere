@@ -1,7 +1,7 @@
 import React, { forwardRef, HTMLAttributes, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Option, { IOptionsProps, Options } from '../Option';
+import { IOptionsProps, Options } from '../Option';
 import Validation from './Validation';
 
 interface ISelectProps extends Partial<IOptionsProps>, HTMLAttributes<HTMLSelectElement> {
@@ -102,11 +102,6 @@ const Select = forwardRef<HTMLSelectElement, ISelectProps>(
 					onSelect={onSelect}
 					// eslint-disable-next-line react/jsx-props-no-spreading
 					{...props}>
-					{placeholder && (
-						<Option value='' hidden>
-							{placeholder}
-						</Option>
-					)}
 					{children || (list && <Options list={list} />)}
 				</select>
 				{isValidMessage && (

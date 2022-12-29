@@ -5,6 +5,9 @@ import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
 import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
 import Card, { CardBody } from '../../../../components/bootstrap/Card';
 import GeneralDetails from './GeneralDetails';
+import AttachmentDetails from './AttachmentDetails';
+import Comments from './Comments';
+import Notes from './Notes';
 
 // TODO Add select for Lead stages and Deal stages
 
@@ -33,9 +36,9 @@ const CrmSystemSetup = () => {
 	const getTabContent = useMemo(() => {
 		const tabContentsMap = {
 			General: <GeneralDetails />,
-			Attachment: <></>,
-			Comment: <></>,
-			Notes: <></>,
+			Attachment: <AttachmentDetails />,
+			Comment: <Comments />,
+			Notes: <Notes />,
 		};
 		return tabContentsMap[activeTab];
 	}, [activeTab]);

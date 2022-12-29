@@ -1,18 +1,18 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
-import Button from '../../../components/bootstrap/Button';
-import Checks, { ChecksGroup } from '../../../components/bootstrap/forms/Checks';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Input from '../../../components/bootstrap/forms/Input';
-import { InputGroupText } from '../../../components/bootstrap/forms/InputGroup';
-import Modal, { ModalBody, ModalFooter, ModalHeader } from '../../../components/bootstrap/Modal';
-import { OffCanvasTitle } from '../../../components/bootstrap/OffCanvas';
-import Page from '../../../layout/Page/Page';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import { TColor } from '../../../type/color';
-import PresentaionPagesSubHeader from '../../../widgets/PresentaionPagesSubHeader';
-import TableWidget from '../../../widgets/Table';
+import Button from '../../../../components/bootstrap/Button';
+import Checks, { ChecksGroup } from '../../../../components/bootstrap/forms/Checks';
+import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
+import Input from '../../../../components/bootstrap/forms/Input';
+import { InputGroupText } from '../../../../components/bootstrap/forms/InputGroup';
+import Modal, { ModalBody, ModalFooter, ModalHeader } from '../../../../components/bootstrap/Modal';
+import { OffCanvasTitle } from '../../../../components/bootstrap/OffCanvas';
+import Page from '../../../../layout/Page/Page';
+import PageWrapper from '../../../../layout/PageWrapper/PageWrapper';
+import { TColor } from '../../../../type/color';
+import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
+import TableWidget from '../../../../widgets/Table';
 
 const EmployeeAssetSetup = () => {
 	const [addNewModalVisible, setAddNewModalVisible] = useState(false);
@@ -29,7 +29,9 @@ const EmployeeAssetSetup = () => {
 			color: 'info' as TColor | 'link' | 'brand' | 'brand-two' | 'storybook',
 			id: `formBuilder-${buttonsRowId}`,
 		};
-		function handleRemoveFormBuilderItem() {}
+		async function handleRemoveFormBuilderItem() {
+			await axios.post('/del-FormBuilder?FormBuilder_id=' + buttonsRowId);
+		}
 		return (
 			<div>
 				{/* eslint-disable-next-line react/jsx-props-no-spreading */}

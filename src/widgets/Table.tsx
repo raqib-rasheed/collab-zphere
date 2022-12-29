@@ -25,7 +25,7 @@ interface ITableProps {
 	customTableActions?: any;
 	hideTableActions?: boolean;
 	getTableDataUrl?: string;
-	// -->>>buttonsRowId is passed to each row actions so that we can keep track of the
+	// -->>> buttonsRowId is passed to each row actions so that we can keep track of the
 	//Node ids to apply action in the cache.
 	//When user edits a particular column in the table we need to find the
 	//The redundant node in the cache and make necessary changes to it.
