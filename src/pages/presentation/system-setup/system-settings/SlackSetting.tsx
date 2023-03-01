@@ -1,5 +1,10 @@
 import React from 'react';
-import { CardBody, CardHeader } from '../../../../components/bootstrap/Card';
+import {
+	CardBody,
+	CardFooter,
+	CardFooterRight,
+	CardHeader,
+} from '../../../../components/bootstrap/Card';
 import FormGroup from '../../../../components/bootstrap/forms/FormGroup';
 import Input from '../../../../components/bootstrap/forms/Input';
 import Button from '../../../../components/bootstrap/Button';
@@ -330,17 +335,16 @@ const SlackSetting = () => {
 								/>
 							</FormGroup>
 						</div>
-
-						<div
-							style={{ borderTop: '1px solid #d4dbe3', marginTop: '5%' }}
-							className='d-flex justify-content-end'>
-							<Button className='my-4' color='primary'>
-								Save Changes
-							</Button>
-						</div>
 					</form>
 				</div>
 			</CardBody>
+			<CardFooter style={{ borderTop: '1px solid #d4dbe3' }}>
+				<CardFooterRight>
+					<Button className='my-2 mx-3' color='primary'>
+						Save Changes
+					</Button>
+				</CardFooterRight>
+			</CardFooter>
 		</>
 	);
 };

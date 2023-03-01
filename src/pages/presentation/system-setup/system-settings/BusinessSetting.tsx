@@ -1,6 +1,11 @@
 import React from 'react';
 import useDarkMode from '../../../../hooks/useDarkMode';
-import Card, { CardBody, CardHeader } from '../../../../components/bootstrap/Card';
+import Card, {
+	CardBody,
+	CardFooter,
+	CardFooterRight,
+	CardHeader,
+} from '../../../../components/bootstrap/Card';
 import Button from '../../../../components/bootstrap/Button';
 import Icon from '../../../../components/icon/Icon';
 import Input from '../../../../components/bootstrap/forms/Input';
@@ -198,11 +203,15 @@ const BusinessSetting = () => {
 							</div>
 						</div>
 					</div>
-					<div className='d-flex justify-content-end mt-4'>
-						<Button color='info'>Save Changes</Button>
-					</div>
 				</div>
 			</CardBody>
+			<CardFooter style={{ borderTop: '1px solid #d4dbe3' }}>
+				<CardFooterRight>
+					<Button className='my-2 mx-3' color='primary'>
+						Save Changes
+					</Button>
+				</CardFooterRight>
+			</CardFooter>
 		</>
 	);
 };
