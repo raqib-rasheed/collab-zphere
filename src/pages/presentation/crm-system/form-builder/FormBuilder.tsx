@@ -14,7 +14,7 @@ import { TColor } from '../../../../type/color';
 import PresentaionPagesSubHeader from '../../../../widgets/PresentaionPagesSubHeader';
 import TableWidget from '../../../../widgets/Table';
 
-const EmployeeAssetSetup = () => {
+const FormBuilder = () => {
 	const [addNewModalVisible, setAddNewModalVisible] = useState(false);
 	const [shouldRefetch, setShouldRefetch] = useState(false);
 	const columns = [
@@ -148,4 +148,4 @@ const EmployeeAssetSetup = () => {
 	);
 };
 
-export default EmployeeAssetSetup;
+export default FormBuilder;

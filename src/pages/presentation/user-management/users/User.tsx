@@ -1,13 +1,13 @@
-import classNames from 'classnames';
 import React from 'react';
+import classNames from 'classnames';
 import Badge from '../../../../components/bootstrap/Badge';
 import Card, { CardBody } from '../../../../components/bootstrap/Card';
 import Icon from '../../../../components/icon/Icon';
-import ClientDropdownOptions from './ClientDropdownOptions';
+import UserDropdownOptions from './UserDropdownOptions';
 
-const Client = (props: any) => {
+const User = (props: any) => {
 	return (
-		<div key={props.client.username} className='col'>
+		<div key={props.user.username} className='col'>
 			<Card>
 				<CardBody>
 					<div className='row g-3'>
@@ -17,20 +17,20 @@ const Client = (props: any) => {
 									<div className='ratio ratio-1x1' style={{ width: 100 }}>
 										<div
 											className={classNames(
-												`bg-l25-${props.client.color}`,
+												`bg-l25-${props.user.color}`,
 												'rounded-2',
 												'd-flex align-items-center justify-content-center',
 												'overflow-hidden',
 												'shadow',
 											)}>
 											<img
-												src={props.client.profile}
-												alt={props.client.name}
+												src={props.user.profile}
+												alt={props.user.name}
 												width={100}
 											/>
 										</div>
 									</div>
-									{props.client.isActive && (
+									{props.user.isActive && (
 										<span
 											className='position-absolute 
 															top-100 start-85 translate-middle badge border 
@@ -46,22 +46,23 @@ const Client = (props: any) => {
 										<div className='col'>
 											<div className='d-flex align-items-center'>
 												<div className='fw-bold fs-5 me-2'>
-													{`${props.client.name}`}
+													{/* {`${user.name} ${user.surname}`} */}
+													{`${props.user.name}`}
 												</div>
 												<small
 													className='border border-success border-2 text-success 
 																	fw-bold px-2 py-1 rounded-1'>
-													{props.client.position}
+													{props.user.position}
 												</small>
 											</div>
 
-											<div className='text-muted'>@{props.client.name}</div>
+											<div className='text-muted'>@{props.user.name}</div>
 										</div>
-										<ClientDropdownOptions client={props.client} />
+										<UserDropdownOptions user={props.user} />
 									</div>
-									{!!props.client?.services && (
+									{!!props.user?.services && (
 										<div className='row g-2 mt-3'>
-											{props.client?.services.map((service: any) => (
+											{props.user?.services.map((service: any) => (
 												<div key={service.name} className='col-auto'>
 													<Badge
 														isLight
@@ -88,4 +89,4 @@ const Client = (props: any) => {
 	);
 };
 
-export default Client;
+export default User;
